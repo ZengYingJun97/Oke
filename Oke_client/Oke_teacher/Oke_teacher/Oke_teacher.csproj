@@ -153,12 +153,6 @@
     can be found.
   -->
   <ItemGroup>
-    <Compile Include="Control\PictureButton.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Control\PictureButton.Designer.cs">
-      <DependentUpon>PictureButton.cs</DependentUpon>
-    </Compile>
     <Compile Include="OkeRibbon.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -168,9 +162,6 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <EmbeddedResource Include="Control\PictureButton.resx">
-      <DependentUpon>PictureButton.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="OkeRibbon.resx">
       <DependentUpon>OkeRibbon.cs</DependentUpon>
     </EmbeddedResource>
