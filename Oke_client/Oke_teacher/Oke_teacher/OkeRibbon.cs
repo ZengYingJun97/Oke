@@ -12,5 +12,10 @@ namespace Oke_teacher
         {
 
         }
+
+        private void LoginButton_Click(object sender, RibbonControlEventArgs e)
+        {
+            System.Windows.Forms.MessageBox.Show("Test");
+        }
     }
 }
