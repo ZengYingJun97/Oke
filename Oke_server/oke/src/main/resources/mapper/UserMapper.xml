@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bnuz.oke.dao.UserDao">
+
+    <select id="queryByUsername" resultType="com.bnuz.oke.entity.User">
+        select
+            username, password
+        from user
+        where username = #{username}
+    </select>
+
+    <insert id="insertUser" parameterType="com.bnuz.oke.entity.User">
+        insert into
+            user(username, password)
+        value
+            (#{username}, #{password})
+    </insert>
+</mapper>

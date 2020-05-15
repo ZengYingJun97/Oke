@@ -13,7 +13,7 @@ create table user (
 
 ##创建teacher表
 create table teacher (
-    teacher_id int(11) not null comment '教师id',
+    teacher_id int(11) auto_increment not null comment '教师id',
     teacher_name varchar(255) not null comment '姓名',
     teacher_title varchar(255) not null comment '职称',
     username varchar(255) not null comment '账号',
@@ -24,7 +24,7 @@ create table teacher (
 
 ##创建student表
 create table student (
-    student_id int(11) not null comment '学生id',
+    student_id int(11) auto_increment not null comment '学生id',
     student_number varchar(255) not null comment '学生学号',
     student_name varchar(255) not null comment '学生姓名',
     student_class varchar(255) not null comment '学生行政班',
@@ -57,7 +57,7 @@ create table course_record (
 
 ##创建question表
 create table question (
-    question_id int(11) not null comment '问题id',
+    question_id int(11) auto_increment not null comment '问题id',
     course_number varchar(255) not null comment '课程号',
     question_type int not null comment '题目类型(0:单选题 1:多选题 2:判断题 3:填空题 4:简答题)',
     question_describe varchar(255) not null comment '题目描述',
@@ -70,7 +70,7 @@ create table question (
 
 ##创建option表
 create table option (
-    option_id int(11) not null comment '选项id',
+    option_id int(11) auto_increment not null comment '选项id',
     question_id int(11) not null comment '题目id',
     option_type varchar(255)not null comment '选项符号',
     option_describe varchar(255) not null comment '选项描述',
@@ -92,7 +92,7 @@ create table student_answer (
 
 ##创建scratcher表
 create table scratcher (
-    scratcher_id int(11) not null comment '抽奖id',
+    scratcher_id int(11) auto_increment not null comment '抽奖id',
     course_number varchar(255) not null comment '课程号',
     primary key (scratcher_id),
     foreign key (course_number) references course(course_number)
@@ -100,7 +100,7 @@ create table scratcher (
 
 ##创建prize表
 create table prize (
-    prize_id int(11) not null comment '奖品id',
+    prize_id int(11) auto_increment not null comment '奖品id',
     scratcher_id int(11) not null comment '抽奖id',
     prize_describe varchar(255) not null comment '奖品描述',
     prize_count int not null comment '奖品数量',
