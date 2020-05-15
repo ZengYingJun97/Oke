@@ -15,4 +15,12 @@
         value
             (#{username}, #{password})
     </insert>
+
+    <update id="updateUser" parameterType="com.bnuz.oke.entity.User">
+        update user
+        <set>
+            <if test="password != null">password = #{password},</if>
+        </set>
+        where username = #{username}
+    </update>
 </mapper>

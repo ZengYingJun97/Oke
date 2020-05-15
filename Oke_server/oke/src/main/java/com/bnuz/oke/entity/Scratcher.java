@@ -28,4 +28,12 @@ public class Scratcher {
 	public void setCourse(Course course) {
 		this.course = course;
 	}
+
+	@Override
+	public String toString() {
+		return "Scratcher{" +
+				"scratcherId=" + scratcherId +
+				", course=" + course +
+				'}';
+	}
 }

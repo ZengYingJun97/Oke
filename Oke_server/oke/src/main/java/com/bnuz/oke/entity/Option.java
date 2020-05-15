@@ -47,4 +47,14 @@ public class Option {
 	public void setOptionDescribe(String optionDescribe) {
 		this.optionDescribe = optionDescribe;
 	}
+
+	@Override
+	public String toString() {
+		return "Option{" +
+				"optionId=" + optionId +
+				", question=" + question +
+				", optionType='" + optionType + '\'' +
+				", optionDescribe='" + optionDescribe + '\'' +
+				'}';
+	}
 }

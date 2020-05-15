@@ -22,7 +22,9 @@ class TeacherDaoTest {
 
 	@Test
 	void queryByUsername() {
-
+		String username = "admin";
+		Teacher teacher = teacherDao.queryByUsername(username);
+		logger.info("teacher = {}", teacher);
 	}
 
 	@Test
@@ -39,5 +41,10 @@ class TeacherDaoTest {
 
 	@Test
 	void updateTeacher() {
+		Teacher teacher = new Teacher();
+		teacher.setTeacherId(1);
+		teacher.setTeacherTitle("辅导员");
+		int count = teacherDao.updateTeacher(teacher);
+		logger.info("count = {}", count);
 	}
 }

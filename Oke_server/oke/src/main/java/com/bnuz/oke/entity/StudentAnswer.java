@@ -57,4 +57,15 @@ public class StudentAnswer {
 	public void setAnswerValue(float answerValue) {
 		this.answerValue = answerValue;
 	}
+
+	@Override
+	public String toString() {
+		return "StudentAnswer{" +
+				"student=" + student +
+				", question=" + question +
+				", answerContent='" + answerContent + '\'' +
+				", answerCorrect=" + answerCorrect +
+				", answerValue=" + answerValue +
+				'}';
+	}
 }
