@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bnuz.oke.dao.TeacherDao">
+
+    <select id="queryByUsername" resultType="com.bnuz.oke.entity.Teacher">
+        select
+            t.teacher_id, t.teacher_name, t.teacher_title,
+            u.username as "user.username"
+        from teacher t, user u
+        where t.username = u.username and u.username = #{username}
+    </select>
+
+    <insert id="insertTeacher" parameterType="com.bnuz.oke.entity.Teacher"
+        useGeneratedKeys="true" keyProperty="teacherId" keyColumn="teacher_id">
+        insert into
+            teacher(teacher_name, teacher_title, username)
+        value
+            (#{teacherName}, #{teacherTitle}, #{user.username})
+    </insert>
+
+    <update id="updateTeacher" parameterType="com.bnuz.oke.entity.Teacher">
+        update teacher
+        <set>
+            <if test="teacherName != null">teacher_name = #{teacherName},</if>
+            <if test="teacherTitle != null">teacher_title = #{teacherTitle},</if>
+        </set>
+        where teacher_id = #{teacherId}
+    </update>
+</mapper>
