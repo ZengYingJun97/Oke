@@ -49,7 +49,7 @@ create table course_record (
     course_number varchar(255) not null comment '课程号',
     online_time timestamp not null comment '学生上线时间',
     offline_time timestamp comment '学生下线时间',
-    student_id int(11) comment '学生id',
+    student_id int(11) not null comment '学生id',
     primary key (course_number, student_id),
     foreign key (course_number) references course(course_number),
     foreign key (student_id) references student(student_id)

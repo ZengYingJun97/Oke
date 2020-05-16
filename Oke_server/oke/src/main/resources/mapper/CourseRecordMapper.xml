@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bnuz.oke.dao.CourseRecordDao">
+
+    <select id="queryByCourseNumber" resultType="com.bnuz.oke.entity.CourseRecord">
+        select
+            cr.online_time, cr.offline_time,
+            c.course_number as "course.courseNumber", course_name as "course.courseName", course_create_time as "course.courseCreateTime", course_end_time as "course.courseEndTime", teacher_id as "course.teacher.teacherId",
+            s.student_id as "student.studentId", student_number as "student.studentNumber", student_name as "student.studentName", student_class as "student.studentClass", username as "student.user.username"
+        from course_record cr, course c, student s
+        where cr.course_number = c.course_number and cr.student_id = s.student_id and cr.course_number = #{courseNumber}
+    </select>
+
+    <select id="queryByStudentId" resultType="com.bnuz.oke.entity.CourseRecord">
+        select
+            cr.online_time, cr.offline_time,
+            c.course_number as "course.courseNumber", course_name as "course.courseName", course_create_time as "course.courseCreateTime", course_end_time as "course.courseEndTime", teacher_id as "course.teacher.teacherId",
+            s.student_id as "student.studentId", student_number as "student.studentNumber", student_name as "student.studentName", student_class as "student.studentClass", username as "student.user.username"
+        from course_record cr, course c, student s
+        where cr.course_number = c.course_number and cr.student_id = s.student_id and cr.student_id = #{studentId}
+    </select>
+
+    <insert id="insertCourseRecord" parameterType="com.bnuz.oke.entity.CourseRecord">
+        insert into
+            course_record(course_number, online_time, student_id)
+        value
+            (#{course.courseNumber}, now(), #{student.studentId})
+    </insert>
+
+    <update id="updateCourseRecord" parameterType="com.bnuz.oke.entity.CourseRecord">
+        update course_record
+        <set>
+            <if test="offlineTime != null">offline_time = #{offlineTime},</if>
+        </set>
+        where course_number = #{course.courseNumber} and student_id = #{student.studentId}
+    </update>
+</mapper>
