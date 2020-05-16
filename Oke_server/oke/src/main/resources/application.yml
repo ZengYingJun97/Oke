@@ -15,6 +15,8 @@ spring:
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
       password: handsome
-      url: jdbc:mysql://127.0.0.1:3306/db_oke
+      url: jdbc:mysql://127.0.0.1:3306/db_oke?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&serverTimezone=Asia/Shanghai
       username: handsome
     type: com.alibaba.druid.pool.DruidDataSource
+  jackson:
+    time-zone: Asia/Shanghai
