@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bnuz.oke.dao.QuestionDao">
+
+    <select id="queryByCourseNumber" resultType="com.bnuz.oke.entity.Question">
+        select
+            q.question_id, question_type, question_describe, question_answer, question_score, question_limit_time,
+            c.course_number as "course.courseNumber", course_name as "course.courseName", course_create_time as "course.courseCreateTime", course_end_time as "course.courseEndTime", teacher_id as "course.teacher.teacherId"
+        from question q, course c
+        where q.course_number = c.course_number and q.course_number = #{courseNumber}
+    </select>
+
+    <select id="queryByQuestionId" resultType="com.bnuz.oke.entity.Question">
+        select
+            q.question_id, question_type, question_describe, question_answer, question_score, question_limit_time,
+            c.course_number as "course.courseNumber", course_name as "course.courseName", course_create_time as "course.courseCreateTime", course_end_time as "course.courseEndTime", teacher_id as "course.teacher.teacherId"
+        from question q, course c
+        where q.course_number = c.course_number and q.question_id = #{questionId}
+    </select>
+
+    <insert id="insertQuestion" parameterType="com.bnuz.oke.entity.Question"
+        useGeneratedKeys="true" keyProperty="questionId" keyColumn="question_id">
+        insert into
+            question(question_id, course_number, question_type, question_describe, question_answer, question_score, question_limit_time)
+        value
+            (#{questionId}, #{course.courseNumber}, #{questionType}, #{questionDescribe}, #{questionAnswer}, #{questionScore}, #{questionLimitTime})
+    </insert>
+
+    <update id="updateQuestion" parameterType="com.bnuz.oke.entity.Question">
+        update question
+        <set>
+            <if test="questionDescribe != null">question_describe = #{questionDescribe},</if>
+            <if test="questionAnswer != null">question_answer = #{questionAnswer},</if>
+            <if test="questionScore != null">question_score = #{questionScore},</if>
+            <if test="questionLimitTime != null">question_limit_time = #{questionLimitTime},</if>
+        </set>
+        where question_id = #{questionId}
+    </update>
+</mapper>
