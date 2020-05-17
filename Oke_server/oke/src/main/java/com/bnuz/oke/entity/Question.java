@@ -10,7 +10,7 @@ public class Question {
 
 	private int questionId;
 
-	private String courseNumber;
+	private Course course;
 
 	private int questionType;
 
@@ -30,12 +30,12 @@ public class Question {
 		this.questionId = questionId;
 	}
 
-	public String getCourseNumber() {
-		return courseNumber;
+	public Course getCourse() {
+		return course;
 	}
 
-	public void setCourseNumber(String courseNumber) {
-		this.courseNumber = courseNumber;
+	public void setCourse(Course course) {
+		this.course = course;
 	}
 
 	public int getQuestionType() {
@@ -82,7 +82,7 @@ public class Question {
 	public String toString() {
 		return "Question{" +
 				"questionId=" + questionId +
-				", courseNumber='" + courseNumber + '\'' +
+				", course=" + course +
 				", questionType=" + questionType +
 				", questionDescribe='" + questionDescribe + '\'' +
 				", questionAnswer='" + questionAnswer + '\'' +

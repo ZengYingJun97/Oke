@@ -69,10 +69,10 @@ create table question (
 ) engine = innodb charset = utf8 comment = '问题表';
 
 ##创建option表
-create table option (
+create table question_option (
     option_id int(11) auto_increment not null comment '选项id',
     question_id int(11) not null comment '题目id',
-    option_type varchar(255)not null comment '选项符号',
+    option_type varchar(255) not null comment '选项符号',
     option_describe varchar(255) not null comment '选项描述',
     primary key (option_id),
     foreign key (question_id) references question(question_id)
