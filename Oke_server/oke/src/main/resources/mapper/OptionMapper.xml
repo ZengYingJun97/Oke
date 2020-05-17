@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bnuz.oke.dao.OptionDao">
+
+    <select id="queryByQuestionId" resultType="com.bnuz.oke.entity.Option">
+        select
+            qo.option_id, question_id as "question.questionId", option_type, option_describe
+        from question_option qo
+        where qo.question_id = #{questionId}
+    </select>
+
+    <select id="queryByOptionId" resultType="com.bnuz.oke.entity.Option">
+        select
+            qo.option_id, question_id, option_type, option_describe
+        from question_option qo
+        where qo.option_id = #{optionId}
+    </select>
+
+    <insert id="insertOption" parameterType="com.bnuz.oke.entity.Option"
+            useGeneratedKeys="true" keyProperty="optionId" keyColumn="option_id">
+        insert into
+            question_option(option_id, question_id, option_type, option_describe)
+        value
+            (#{optionId}, #{question.questionId}, #{optionType}, #{optionDescribe})
+    </insert>
+
+    <update id="updateOption" parameterType="com.bnuz.oke.entity.Option">
+        update question_option
+        <set>
+            <if test="optionType != null">option_type = #{optionType},</if>
+            <if test="optionDescribe != null">option_describe = #{optionDescribe},</if>
+        </set>
+        where option_id = #{optionId}
+    </update>
+</mapper>
