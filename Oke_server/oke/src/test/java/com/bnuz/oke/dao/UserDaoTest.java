@@ -34,4 +34,13 @@ class UserDaoTest {
 		userDao.insertUser(user);
 		logger.info("success insert");
 	}
+
+	@Test
+	void updateUser() {
+		User user = new User();
+		user.setUsername("admin");
+		user.setPassword("123456");
+		int count = userDao.updateUser(user);
+		logger.info("count = {}", count);
+	}
 }

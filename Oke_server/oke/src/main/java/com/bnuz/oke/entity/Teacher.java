@@ -47,4 +47,14 @@ public class Teacher {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	@Override
+	public String toString() {
+		return "Teacher{" +
+				"teacherId=" + teacherId +
+				", teacherName='" + teacherName + '\'' +
+				", teacherTitle='" + teacherTitle + '\'' +
+				", user=" + user +
+				'}';
+	}
 }

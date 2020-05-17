@@ -49,4 +49,14 @@ public class CourseRecord {
 	public void setOfflineTime(Date offlineTime) {
 		this.offlineTime = offlineTime;
 	}
+
+	@Override
+	public String toString() {
+		return "CourseRecord{" +
+				"course=" + course +
+				", student=" + student +
+				", onlineTime=" + onlineTime +
+				", offlineTime=" + offlineTime +
+				'}';
+	}
 }

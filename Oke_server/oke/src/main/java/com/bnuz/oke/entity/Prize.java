@@ -47,4 +47,14 @@ public class Prize {
 	public void setPrizeCount(int prizeCount) {
 		this.prizeCount = prizeCount;
 	}
+
+	@Override
+	public String toString() {
+		return "Prize{" +
+				"prizeId=" + prizeId +
+				", scratcher=" + scratcher +
+				", prizeDescribe='" + prizeDescribe + '\'' +
+				", prizeCount=" + prizeCount +
+				'}';
+	}
 }

@@ -77,4 +77,17 @@ public class Question {
 	public void setQuestionLimitTime(int questionLimitTime) {
 		this.questionLimitTime = questionLimitTime;
 	}
+
+	@Override
+	public String toString() {
+		return "Question{" +
+				"questionId=" + questionId +
+				", courseNumber='" + courseNumber + '\'' +
+				", questionType=" + questionType +
+				", questionDescribe='" + questionDescribe + '\'' +
+				", questionAnswer='" + questionAnswer + '\'' +
+				", questionScore=" + questionScore +
+				", questionLimitTime=" + questionLimitTime +
+				'}';
+	}
 }
