@@ -1,5 +1,7 @@
 package com.bnuz.oke.entity;
 
+import java.util.List;
+
 /**
  * Scratcher
  *
@@ -11,6 +13,8 @@ public class Scratcher {
 	private int scratcherId;
 
 	private Course course;
+
+	private List<Prize> prizeList;
 
 
 	public int getScratcherId() {
@@ -29,11 +33,20 @@ public class Scratcher {
 		this.course = course;
 	}
 
+	public List<Prize> getPrizeList() {
+		return prizeList;
+	}
+
+	public void setPrizeList(List<Prize> prizeList) {
+		this.prizeList = prizeList;
+	}
+
 	@Override
 	public String toString() {
 		return "Scratcher{" +
 				"scratcherId=" + scratcherId +
 				", course=" + course +
+				", prizeList=" + prizeList +
 				'}';
 	}
 }
