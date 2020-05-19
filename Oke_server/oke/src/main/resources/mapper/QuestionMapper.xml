@@ -21,9 +21,9 @@
     <insert id="insertQuestion" parameterType="com.bnuz.oke.entity.Question"
         useGeneratedKeys="true" keyProperty="questionId" keyColumn="question_id">
         insert into
-            question(question_id, course_number, question_type, question_describe, question_answer, question_score, question_limit_time)
+            question(course_number, question_type, question_describe, question_answer, question_score, question_limit_time)
         value
-            (#{questionId}, #{course.courseNumber}, #{questionType}, #{questionDescribe}, #{questionAnswer}, #{questionScore}, #{questionLimitTime})
+            (#{course.courseNumber}, #{questionType}, #{questionDescribe}, #{questionAnswer}, #{questionScore}, #{questionLimitTime})
     </insert>
 
     <update id="updateQuestion" parameterType="com.bnuz.oke.entity.Question">

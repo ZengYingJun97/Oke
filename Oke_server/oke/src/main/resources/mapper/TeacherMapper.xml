@@ -5,7 +5,7 @@
     <select id="queryByUsername" resultType="com.bnuz.oke.entity.Teacher">
         select
             t.teacher_id, t.teacher_name, t.teacher_title,
-            u.username as "user.username"
+            u.username as "user.username", u.password as "user.password"
         from teacher t, user u
         where t.username = u.username and u.username = #{username}
     </select>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bnuz.oke.dao.PrizeDao">
+
+    <select id="queryByScratcherId" resultType="com.bnuz.oke.entity.Prize">
+        select
+            prize_id, scratcher_id as "scratcher.scratcherId", prize_describe, prize_count
+        from prize
+        where scratcher_id = #{scratcherId}
+    </select>
+
+    <select id="queryByPrizeId" resultType="com.bnuz.oke.entity.Prize">
+        select
+            prize_id, scratcher_id as "scratcher.scratcherId", prize_describe, prize_count
+        from prize
+        where prize_id = #{prizeId}
+    </select>
+
+    <insert id="insertPrize" parameterType="com.bnuz.oke.entity.Prize"
+            useGeneratedKeys="true" keyProperty="prizeId" keyColumn="prize_id">
+        insert into
+            prize(scratcher_id, prize_describe, prize_count)
+        value
+            (#{scratcher.scratcherId}, #{prizeDescribe}, #{prizeCount})
+    </insert>
+
+    <update id="updatePrize" parameterType="com.bnuz.oke.entity.Prize">
+        update prize
+        <set>
+            <if test="prizeDescribe != null">prize_describe = #{prizeDescribe},</if>
+            <if test="prizeCount != null">prize_count = #{prizeCount},</if>
+        </set>
+        where prize_id = #{prizeId}
+    </update>
+
+
+    <delete id="deletePrize">
+        delete from
+            prize
+        where prize_id = #{prizeId}
+    </delete>
+</mapper>

@@ -5,7 +5,7 @@
     <select id="queryByUsername" resultType="com.bnuz.oke.entity.Student">
         select
             s.student_id, s.student_number, s.student_name, s.student_class,
-            u.username as "user.username"
+            u.username as "user.username", u.password as "user.password"
         from student s, user u
         where s.username = u.username and u.username = #{username}
     </select>
@@ -13,7 +13,7 @@
     <select id="queryById" resultType="com.bnuz.oke.entity.Student">
         select
             s.student_id, s.student_number, s.student_name, s.student_class,
-            u.username as "user.username"
+            u.username as "user.username", u.password as "user.password"
         from student s, user u
         where s.username = u.username and s.student_id = #{studentId}
     </select>

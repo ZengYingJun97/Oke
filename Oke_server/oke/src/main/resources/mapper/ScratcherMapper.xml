@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bnuz.oke.dao.ScratcherDao">
+
+    <resultMap id="scratcherMap" type="com.bnuz.oke.entity.Scratcher">
+        <id property="scratcherId" column="scratcher_id" />
+        <result property="course.courseNumber" column="course_number" />
+        <collection property="prizeList" ofType="com.bnuz.oke.entity.Prize" column="prize_id">
+            <id property="prizeId" column="prize_id" />
+            <result property="prizeDescribe" column="prize_describe" />
+            <result property="prizeCount" column="prize_count" />
+        </collection>
+    </resultMap>
+
+    <select id="queryByCourseNumber" resultMap="scratcherMap">
+        select
+            sc.scratcher_id as "scratcher_id", course_number,
+            prize_id, prize_describe, prize_count
+        from scratcher sc, prize p
+        where sc.scratcher_id = p.scratcher_id and sc.course_number = #{courseNumber}
+    </select>
+
+    <select id="queryByScratcherId" resultType="com.bnuz.oke.entity.Scratcher">
+        select
+            sc.scratcher_id,
+            c.course_number as "course.courseNumber", c.course_name as "course.courseName", course_create_time as "course.courseCreateTime", course_end_time as "course.courseEndTime",
+            t.teacher_id as "course.teacher.teacherId", t.teacher_name as "course.teacher.teacherName", t.teacher_title as "course.teacher.teacherTitle"
+        from scratcher sc, course c, teacher t
+        where sc.course_number = c.course_number and c.teacher_id = t.teacher_id and sc.scratcher_id = #{scratcherId}
+    </select>
+
+    <insert id="insertScratcher" parameterType="com.bnuz.oke.entity.Scratcher"
+            useGeneratedKeys="true" keyProperty="scratcherId" keyColumn="scratcher_id">
+        insert into
+            scratcher(course_number)
+        value
+            (#{course.courseNumber})
+    </insert>
+</mapper>
