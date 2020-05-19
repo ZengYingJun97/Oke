@@ -18,7 +18,7 @@ public interface QuestionDao {
 
 	List<Question> queryByCourseNumber(String courseNumber);
 
-	Question  queryByQuestionId(int questionId);
+	Question queryByQuestionId(int questionId);
 
 	int insertQuestion(Question question);
 

@@ -7,7 +7,7 @@
             c.course_number, c.course_name, c.course_create_time, c.course_end_time,
             t.teacher_id as "teacher.teacherId", teacher_name as "teacher.teacherName", teacher_title as "teacher.teacherTitle"
         from course c, teacher t
-        where c.course_number = #{courseNumber}
+        where t.teacher_id = c.teacher_id and c.course_number = #{courseNumber}
     </select>
 
     <insert id="insertCourse" parameterType="com.bnuz.oke.entity.Course">

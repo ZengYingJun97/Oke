@@ -14,6 +14,8 @@ public interface CourseService {
 
 	Course beginCourse(Course course);
 
+	Course getCourseByCourseNumber(String courseNumber);
+
 	boolean endCourse(Course course);
 
 	boolean onlineStudent(CourseRecord courseRecord);

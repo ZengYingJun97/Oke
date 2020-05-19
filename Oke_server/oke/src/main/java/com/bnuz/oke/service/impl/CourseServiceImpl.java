@@ -46,7 +46,12 @@ public class CourseServiceImpl implements CourseService {
 			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
 			return null;
 		}
-		return course;
+		return courseDao.queryByNumber(courseNumber);
+	}
+
+	@Override
+	public Course getCourseByCourseNumber(String courseNumber) {
+		return courseDao.queryByNumber(courseNumber);
 	}
 
 	@Override
@@ -57,6 +62,15 @@ public class CourseServiceImpl implements CourseService {
 		if (updateCount == 0) {
 			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
 			return false;
+		}
+		List<CourseRecord> courseRecordList = courseRecordDao.queryByCourseNumber(course.getCourseNumber());
+		for (CourseRecord courseRecord: courseRecordList) {
+			courseRecord.setOfflineTime(course.getCourseEndTime());
+			updateCount = courseRecordDao.updateCourseRecord(courseRecord);
+			if (updateCount == 0) {
+				TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+				return false;
+			}
 		}
 		return true;
 	}
@@ -82,8 +96,9 @@ public class CourseServiceImpl implements CourseService {
 	@Transactional
 	public Question addQuestion(Question question, List<Option> optionList) {
 		int insertCount = questionDao.insertQuestion(question);
+		System.out.println(question.getQuestionId());
+		Question resultQuestion = null;
 		if (insertCount != 0) {
-			question.setQuestionId(insertCount);
 			for (Option option: optionList) {
 				option.setQuestion(question);
 				insertCount = optionDao.insertOption(option);
@@ -92,12 +107,12 @@ public class CourseServiceImpl implements CourseService {
 					return null;
 				}
 			}
-
+			resultQuestion = questionDao.queryByQuestionId(question.getQuestionId());
 		} else {
 			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
 			return null;
 		}
-		return question;
+		return resultQuestion;
 	}
 
 	@Override
