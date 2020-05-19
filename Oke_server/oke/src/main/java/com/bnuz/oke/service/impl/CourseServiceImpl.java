@@ -1,10 +1,16 @@
 package com.bnuz.oke.service.impl;
 
+import com.bnuz.oke.dao.*;
 import com.bnuz.oke.entity.*;
 import com.bnuz.oke.service.CourseService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * CourseServiceImpl
@@ -15,33 +21,110 @@ import java.util.List;
 @Service
 public class CourseServiceImpl implements CourseService {
 
+	@Autowired
+	private CourseDao courseDao;
+
+	@Autowired
+	private CourseRecordDao courseRecordDao;
+
+	@Autowired
+	private QuestionDao questionDao;
+
+	@Autowired
+	private OptionDao optionDao;
+
+	@Autowired
+	private StudentAnswerDao studentAnswerDao;
+
 	@Override
+	@Transactional
 	public Course beginCourse(Course course) {
-		return null;
+		String courseNumber = UUID.randomUUID().toString().replace("-", "").toUpperCase();
+		course.setCourseNumber(courseNumber);
+		int insertCount = courseDao.insertCourse(course);
+		if (insertCount == 0) {
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+			return null;
+		}
+		return course;
 	}
 
 	@Override
+	@Transactional
 	public boolean endCourse(Course course) {
-		return false;
+		course.setCourseEndTime(new Date());
+		int updateCount = courseDao.updateCourse(course);
+		if (updateCount == 0) {
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+			return false;
+		}
+		return true;
 	}
 
 	@Override
+	@Transactional
 	public boolean onlineStudent(CourseRecord courseRecord) {
-		return false;
+		int insertCount = courseRecordDao.insertCourseRecord(courseRecord);
+		if (insertCount == 0) {
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+			return false;
+		}
+		return true;
 	}
 
 	@Override
-	public List<CourseRecord> getStudentRecord(CourseRecord courseRecord) {
-		return null;
+	public List<CourseRecord> getStudentRecord(Course course) {
+		List<CourseRecord> courseRecordList = courseRecordDao.queryByCourseNumber(course.getCourseNumber());
+		return courseRecordList;
 	}
 
 	@Override
+	@Transactional
 	public Question addQuestion(Question question, List<Option> optionList) {
-		return null;
+		int insertCount = questionDao.insertQuestion(question);
+		if (insertCount != 0) {
+			question.setQuestionId(insertCount);
+			for (Option option: optionList) {
+				option.setQuestion(question);
+				insertCount = optionDao.insertOption(option);
+				if (insertCount == 0) {
+					TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+					return null;
+				}
+			}
+
+		} else {
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+			return null;
+		}
+		return question;
 	}
 
 	@Override
+	@Transactional
 	public StudentAnswer isTrueStudentAnswer(StudentAnswer studentAnswer) {
-		return null;
+		Question question = questionDao.queryByQuestionId(studentAnswer.getQuestion().getQuestionId());
+		if (question == null) {
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+			return null;
+		}
+ 		if (studentAnswer.getAnswerContent().equals(question.getQuestionAnswer())) {
+			studentAnswer.setAnswerCorrect(1);
+			studentAnswer.setAnswerValue(1);
+			int insertCount = studentAnswerDao.insertStudentAnswer(studentAnswer);
+			if (insertCount == 0) {
+				TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+				return null;
+			}
+		} else {
+ 			studentAnswer.setAnswerCorrect(0);
+			studentAnswer.setAnswerValue(0);
+			int insertCount = studentAnswerDao.insertStudentAnswer(studentAnswer);
+			if (insertCount == 0) {
+				TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+				return null;
+			}
+		}
+		return studentAnswer;
 	}
 }

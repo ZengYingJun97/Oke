@@ -18,7 +18,7 @@ public interface CourseService {
 
 	boolean onlineStudent(CourseRecord courseRecord);
 
-	List<CourseRecord> getStudentRecord(CourseRecord courseRecord);
+	List<CourseRecord> getStudentRecord(Course course);
 
 	Question addQuestion(Question question, List<Option> optionList);
 
