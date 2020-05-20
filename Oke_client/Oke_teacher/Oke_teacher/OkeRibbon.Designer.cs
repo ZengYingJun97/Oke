@@ -57,7 +57,7 @@
             // 
             this.LoginButton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
             this.LoginButton.Image = global::Oke_teacher.Properties.Resources.Oke_logo;
-            this.LoginButton.Label = "账号登录\n";
+            this.LoginButton.Label = "用户登录\n";
             this.LoginButton.Name = "LoginButton";
             this.LoginButton.ShowImage = true;
             this.LoginButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.LoginButton_Click);
