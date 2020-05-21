@@ -8,13 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Oke_teacher.winform
+namespace Oke_teacher.Winform
 {
     public partial class LoginForm : Form
     {
         public LoginForm()
         {
             InitializeComponent();
+            passwordBox.PasswordChar = '*';
         }
     }
 }

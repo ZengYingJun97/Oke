@@ -165,10 +165,11 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="winform\LoginForm.cs">
+    <Compile Include="UntiImpl\WinWrap.cs" />
+    <Compile Include="Winform\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="winform\LoginForm.Designer.cs">
+    <Compile Include="Winform\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="OkeRibbon.resx">
@@ -184,7 +185,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="winform\LoginForm.resx">
+    <EmbeddedResource Include="Winform\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Oke_teacher_TemporaryKey.pfx" />
@@ -212,6 +213,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Oke_logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Oke_loginBg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Oke_loginBg1.png" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
