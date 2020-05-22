@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Microsoft.Office.Tools.Ribbon;
-using Oke_teacher.Winform;
-using Oke_teacher.UntiImpl;
+using Oke_teacher.WinForms;
 
 namespace Oke_teacher
 {
