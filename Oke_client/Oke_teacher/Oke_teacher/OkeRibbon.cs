@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Microsoft.Office.Tools.Ribbon;
-using Oke_teacher.Winform;
-using Oke_teacher.UntiImpl;
+using Oke_teacher.WinForms;
 
 namespace Oke_teacher
 {
@@ -19,8 +18,7 @@ namespace Oke_teacher
         private void LoginButton_Click(object sender, RibbonControlEventArgs e)
         {
             LoginForm loginForm = new LoginForm();
-            WinWrap owner = new WinWrap(Globals.ThisAddIn.Application.HWND);
-            loginForm.Show(owner);
+            loginForm.ShowDialog();
         }
     }
 }

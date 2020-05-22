@@ -8,14 +8,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Oke_teacher.Winform
+namespace Oke_teacher.WinForms
 {
     public partial class LoginForm : Form
     {
         public LoginForm()
         {
             InitializeComponent();
-            passwordBox.PasswordChar = '*';
+            passwordBox.PasswordChar = '●';
+        }
+
+        private void registerLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            RegisterForm registerForm = new RegisterForm();
+            registerForm.ShowDialog();
         }
     }
 }

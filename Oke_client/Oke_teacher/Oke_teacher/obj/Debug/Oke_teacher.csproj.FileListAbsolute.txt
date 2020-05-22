@@ -13,4 +13,7 @@ F:\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.dll
 F:\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.pdb
 F:\Oke\Oke_client\Oke_teacher\Oke_teacher\bin\Debug\CxFlatUI.dll
 F:\Oke\Oke_client\Oke_teacher\Oke_teacher\bin\Debug\CxFlatUI.pdb
-F:\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.winform.LoginForm.resources
+F:\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.WinForms.LoginForm.resources
+F:\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.WinForms.RegisterForm.resources
+F:\Oke\Oke_client\Oke_teacher\Oke_teacher\bin\Debug\Newtonsoft.Json.dll
+F:\Oke\Oke_client\Oke_teacher\Oke_teacher\bin\Debug\Newtonsoft.Json.xml
