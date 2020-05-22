@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.titleBar = new CxFlatUI.CxFlatStatusBar();
             this.loginMainBox = new CxFlatUI.CxFlatGroupBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.registerLink = new System.Windows.Forms.LinkLabel();
             this.rememberUser = new CxFlatUI.CxFlatCheckBox();
             this.loginButton = new CxFlatUI.Controls.CxFlatButton();
@@ -38,7 +39,6 @@
             this.passwordBox = new CxFlatUI.CxFlatTextBox();
             this.usernameLabel = new System.Windows.Forms.Label();
             this.usernameBox = new CxFlatUI.CxFlatTextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.loginMainBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -75,6 +75,18 @@
             this.loginMainBox.TabStop = false;
             this.loginMainBox.Text = "cxFlatGroupBox1";
             this.loginMainBox.ThemeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.White;
+            this.pictureBox1.Image = global::Oke_teacher.Properties.Resources.Oke_loginBg1;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Padding = new System.Windows.Forms.Padding(3);
+            this.pictureBox1.Size = new System.Drawing.Size(294, 150);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
             // 
             // registerLink
             // 
@@ -170,18 +182,6 @@
             this.usernameBox.TabIndex = 0;
             this.usernameBox.TabStop = false;
             this.usernameBox.UseSystemPasswordChar = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.White;
-            this.pictureBox1.Image = global::Oke_teacher.Properties.Resources.Oke_loginBg1;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Padding = new System.Windows.Forms.Padding(3);
-            this.pictureBox1.Size = new System.Drawing.Size(294, 150);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
             // 
             // LoginForm
             // 

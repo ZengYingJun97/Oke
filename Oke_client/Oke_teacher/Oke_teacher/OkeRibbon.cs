@@ -19,8 +19,7 @@ namespace Oke_teacher
         private void LoginButton_Click(object sender, RibbonControlEventArgs e)
         {
             LoginForm loginForm = new LoginForm();
-            WinWrap owner = new WinWrap(Globals.ThisAddIn.Application.HWND);
-            loginForm.Show(owner);
+            loginForm.ShowDialog();
         }
     }
 }
