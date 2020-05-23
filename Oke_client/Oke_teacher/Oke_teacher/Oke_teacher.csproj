@@ -160,11 +160,11 @@
     can be found.
   -->
   <ItemGroup>
+    <Compile Include="Dto\OkeResult.cs" />
     <Compile Include="Entity\Teacher.cs" />
     <Compile Include="Entity\User.cs" />
     <Compile Include="Enums\EnumExtend.cs" />
     <Compile Include="Enums\RegisterEnum.cs" />
-    <Compile Include="Enums\UrlEnum.cs" />
     <Compile Include="OkeRibbon.cs">
       <SubType>Component</SubType>
     </Compile>

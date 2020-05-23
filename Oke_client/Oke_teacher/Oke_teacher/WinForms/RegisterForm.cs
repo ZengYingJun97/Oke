@@ -4,15 +4,12 @@ using Oke_teacher.Entity;
 using Oke_teacher.Enums;
 using Oke_teacher.Uitls;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Oke_teacher.Properties;
+using Oke_teacher.Dto;
+using System.Threading;
+using Timer = System.Windows.Forms.Timer;
 
 namespace Oke_teacher.WinForms
 {
@@ -35,6 +32,19 @@ namespace Oke_teacher.WinForms
             registerButton.Enabled = true;
         }
 
+        private void addAlter(string alterText, CxFlatAlertBox.AlertType alertType)
+        {
+            CxFlatAlertBox alert = new CxFlatAlertBox();
+            alert.Location = new Point(30, 196);
+            alert.Name = "alert";
+            alert.Text = alterText;
+            alert.Size = new Size(240, 34);
+            alert.Type = alertType;
+            registerGroupBox.Controls.Add(alert);
+            alert.BringToFront();
+            timer.Start();
+        }
+
         private void registerButton_Click(object sender, EventArgs e)
         {
             lockButton();
@@ -51,52 +61,28 @@ namespace Oke_teacher.WinForms
                 || name.Equals("")
                 || title.Equals(""))
             {
-                CxFlatAlertBox alert = new CxFlatAlertBox();
-                alert.Location = new Point(30, 196);
-                alert.Text = EnumExtend.GetDisplayText(RegisterEnum.NULLINPUT);
-                alert.Size = new Size(240, 34);
-                alert.Type = CxFlatAlertBox.AlertType.Error;
-                registerGroupBox.Controls.Add(alert);
-                alert.BringToFront();
+                addAlter(EnumExtend.GetDisplayText(RegisterEnum.NULLINPUT), CxFlatAlertBox.AlertType.Error);
                 unlockButton();
                 return;
             }
 
             if (!password.Equals(passwordConfirm))
             {
-                CxFlatAlertBox alert = new CxFlatAlertBox();
-                alert.Location = new Point(30, 196);
-                alert.Text = EnumExtend.GetDisplayText(RegisterEnum.DIFFPWD);
-                alert.Size = new Size(240, 34);
-                alert.Type = CxFlatAlertBox.AlertType.Error;
-                registerGroupBox.Controls.Add(alert);
-                alert.BringToFront();
+                addAlter(EnumExtend.GetDisplayText(RegisterEnum.DIFFPWD), CxFlatAlertBox.AlertType.Error);
                 unlockButton();
                 return;
             }
 
             if (!UserUitls.IsOkUsername(username))
             {
-                CxFlatAlertBox alert = new CxFlatAlertBox();
-                alert.Location = new Point(30, 196);
-                alert.Text = EnumExtend.GetDisplayText(RegisterEnum.ERRORURN);
-                alert.Size = new Size(240, 34);
-                alert.Type = CxFlatAlertBox.AlertType.Error;
-                registerGroupBox.Controls.Add(alert);
-                alert.BringToFront();
+                addAlter(EnumExtend.GetDisplayText(RegisterEnum.ERRORURN), CxFlatAlertBox.AlertType.Error);
                 unlockButton();
                 return;
             }
 
             if (!UserUitls.IsOkPassword(password))
             {
-                CxFlatAlertBox alert = new CxFlatAlertBox();
-                alert.Location = new Point(30, 196);
-                alert.Text = EnumExtend.GetDisplayText(RegisterEnum.ERRORPWD);
-                alert.Size = new Size(240, 34);
-                alert.Type = CxFlatAlertBox.AlertType.Error;
-                registerGroupBox.Controls.Add(alert);
-                alert.BringToFront();
+                addAlter(EnumExtend.GetDisplayText(RegisterEnum.ERRORPWD), CxFlatAlertBox.AlertType.Error);
                 unlockButton();
                 return;
             }
@@ -109,8 +95,40 @@ namespace Oke_teacher.WinForms
             teacher.teacherTitle = title;
             teacher.user = user;
 
-            MessageBox.Show(JsonConvert.SerializeObject(teacher));
-            unlockButton();
+            try
+            {
+                string url = Resources.Server + Resources.RegisterUrl;
+                string data = JsonConvert.SerializeObject(teacher);
+                string response = HttpUitls.POST(url, data);
+                OkeResult okeResult = JsonConvert.DeserializeObject<OkeResult>(response);
+                if (okeResult.success)
+                {
+                    addAlter(okeResult.error, CxFlatAlertBox.AlertType.Success);
+                    timer.Stop();
+                    timer.Tick += formClose_Tick;
+                    timer.Start();
+                }
+                else
+                {
+                    addAlter(okeResult.error, CxFlatAlertBox.AlertType.Error);
+                }
+                unlockButton();
+            }
+            catch (Exception)
+            {
+                addAlter(Resources.ExceptionTip, CxFlatAlertBox.AlertType.Error);
+            }
+            return;
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            registerGroupBox.Controls.RemoveByKey("alert");
+        }
+
+        private void formClose_Tick(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.titleBar = new CxFlatUI.CxFlatStatusBar();
             this.registerGroupBox = new CxFlatUI.CxFlatGroupBox();
             this.titleBox = new CxFlatUI.CxFlatTextBox();
@@ -41,6 +42,7 @@
             this.passwordConfirmLabel = new System.Windows.Forms.Label();
             this.passwordLabel = new System.Windows.Forms.Label();
             this.usernameLabel = new System.Windows.Forms.Label();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.registerGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -237,6 +239,11 @@
             this.usernameLabel.TabIndex = 41;
             this.usernameLabel.Text = "用户名*";
             // 
+            // timer
+            // 
+            this.timer.Interval = 2000;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
             // RegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -273,5 +280,6 @@
         private CxFlatUI.CxFlatTextBox passwordConfirmBox;
         private CxFlatUI.CxFlatTextBox passwordBox;
         private CxFlatUI.CxFlatTextBox usernameBox;
+        private System.Windows.Forms.Timer timer;
     }
 }
