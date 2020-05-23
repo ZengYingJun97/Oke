@@ -17,15 +17,13 @@ namespace Oke_teacher.Uitls
             var request = (HttpWebRequest)WebRequest.Create(_url);
             request.Method = "GET";
             request.ContentType = "application/json;charset=UTF-8";
-            byte[] byteData = Encoding.UTF8.GetBytes(jsonParam);
-            int length = byteData.Length;
-            request.ContentLength = length;
-            Stream writer = request.GetRequestStream();
-            writer.Write(byteData, 0, length);
-            writer.Close();
-            var response = (HttpWebResponse)request.GetResponse();
-            var responseString = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("utf-8")).ReadToEnd();
-            return responseString.ToString();
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            Stream myResponseStream = response.GetResponseStream();
+            StreamReader streamReader = new StreamReader(myResponseStream);
+            string retString = streamReader.ReadToEnd();
+            streamReader.Close();
+            myResponseStream.Close();
+            return retString;
         }
 
         public static string POST(string url, string data)
@@ -33,7 +31,7 @@ namespace Oke_teacher.Uitls
             string _url = url;
             string jsonParam = data;
             var request = (HttpWebRequest)WebRequest.Create(_url);
-            request.Method = "GET";
+            request.Method = "POST";
             request.ContentType = "application/json;charset=UTF-8";
             byte[] byteData = Encoding.UTF8.GetBytes(jsonParam);
             int length = byteData.Length;
