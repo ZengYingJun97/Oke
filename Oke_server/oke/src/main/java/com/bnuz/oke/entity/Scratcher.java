@@ -1,5 +1,6 @@
 package com.bnuz.oke.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -8,7 +9,9 @@ import java.util.List;
  * @author handsome
  * @date 2020年 05月15日 00:14:38
  */
-public class Scratcher {
+public class Scratcher implements Serializable {
+
+	private static final long serialVersionUID = -7217401108178683132L;
 
 	private int scratcherId;
 
