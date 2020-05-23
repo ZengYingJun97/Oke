@@ -63,10 +63,40 @@ namespace Oke_teacher.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap Oke_loginBg {
+            get {
+                object obj = ResourceManager.GetObject("Oke_loginBg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Oke_loginBg1 {
+            get {
+                object obj = ResourceManager.GetObject("Oke_loginBg1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap Oke_logo {
             get {
                 object obj = ResourceManager.GetObject("Oke_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似于 (图标) 的 System.Drawing.Icon 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Icon Oke_logo1 {
+            get {
+                object obj = ResourceManager.GetObject("Oke_logo1", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
     }

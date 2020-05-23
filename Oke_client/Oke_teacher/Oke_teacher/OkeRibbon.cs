@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 using Microsoft.Office.Tools.Ribbon;
+using Oke_teacher.WinForms;
 
 namespace Oke_teacher
 {
@@ -15,7 +17,8 @@ namespace Oke_teacher
 
         private void LoginButton_Click(object sender, RibbonControlEventArgs e)
         {
-            System.Windows.Forms.MessageBox.Show("Test");
+            LoginForm loginForm = new LoginForm();
+            loginForm.ShowDialog();
         }
     }
 }
