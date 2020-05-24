@@ -163,7 +163,7 @@ namespace Oke_teacher.WinForms
                 }
                 unlockButton();
             }
-            catch (Exception e1)
+            catch (Exception)
             {
                 addAlter(Resources.ExceptionTip, CxFlatAlertBox.AlertType.Error);
                 unlockButton();
