@@ -11,20 +11,19 @@ using System.Windows.Forms;
 
 namespace Oke_teacher.WinForms
 {
-    public partial class InfoForm : Form
+    public partial class ManageInfoForm : Form
     {
-        public InfoForm()
+        public ManageInfoForm()
         {
             InitializeComponent();
+
+            //密码格式为●
+            oldPasswordBox.PasswordChar = '●';
+            newPasswordBox.PasswordChar = '●';
+
+            //加载用户信息
             nameBox.Text = LoginInfo.CurrentUser.data.teacherName;
             titleBox.Text = LoginInfo.CurrentUser.data.teacherTitle;
-            usernameBox.Text = LoginInfo.CurrentUser.data.user.username;
-        }
-
-        private void manageButton_Click(object sender, EventArgs e)
-        {
-            ManageInfoForm manageInfoForm = new ManageInfoForm();
-            manageInfoForm.ShowDialog();
         }
     }
 }

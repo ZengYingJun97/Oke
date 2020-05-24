@@ -20,7 +20,12 @@ namespace Oke_teacher.Uitls
         /// <param name="userData"></param>
         public static void saveData(UserData userData)
         {
-            FileStream fs = new FileStream("data.bin", FileMode.OpenOrCreate);
+            string path = Environment.SpecialFolder.MyDocuments.ToString() + @"\Oke";
+            if (Directory.Exists(path) == false)
+            {
+                Directory.CreateDirectory(path);
+            }
+            FileStream fs = new FileStream(path + @"\data.bin", FileMode.OpenOrCreate);
             BinaryFormatter bf = new BinaryFormatter();
             bf.Serialize(fs, userData);
             fs.Close();
@@ -34,7 +39,12 @@ namespace Oke_teacher.Uitls
         /// <returns></returns>
         public static UserData loadData()
         {
-            FileStream fs = new FileStream("data.bin", FileMode.OpenOrCreate);
+            string path = Environment.SpecialFolder.MyDocuments.ToString() + @"\Oke";
+            if (Directory.Exists(path) == false)
+            {
+                Directory.CreateDirectory(path);
+            }
+            FileStream fs = new FileStream(path + @"\data.bin", FileMode.OpenOrCreate);
 
             UserData userData = null;
             if (fs.Length > 0)

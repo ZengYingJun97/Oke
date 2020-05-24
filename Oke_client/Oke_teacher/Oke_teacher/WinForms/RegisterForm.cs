@@ -149,8 +149,8 @@ namespace Oke_teacher.WinForms
                 else
                 {
                     addAlter(EnumExtend.GetDisplayText(RegisterEnum.FAIL_REGISTER), CxFlatAlertBox.AlertType.Error);
+                    unlockButton();
                 }
-                unlockButton();
             }
             catch (Exception)
             {

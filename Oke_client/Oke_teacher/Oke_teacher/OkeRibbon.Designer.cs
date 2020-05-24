@@ -76,6 +76,7 @@
             this.InfoButton.Name = "InfoButton";
             this.InfoButton.ShowImage = true;
             this.InfoButton.Visible = false;
+            this.InfoButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.InfoButton_Click);
             // 
             // group1
             // 

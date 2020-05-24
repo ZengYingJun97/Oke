@@ -35,5 +35,11 @@ namespace Oke_teacher
             SetQuestForm setQuestForm = new SetQuestForm();
             setQuestForm.Show();
         }
+
+        private void InfoButton_Click(object sender, RibbonControlEventArgs e)
+        {
+            InfoForm infoForm = new InfoForm();
+            infoForm.ShowDialog();
+        }
     }
 }

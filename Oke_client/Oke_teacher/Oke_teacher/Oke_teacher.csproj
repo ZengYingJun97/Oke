@@ -185,6 +185,12 @@
     <Compile Include="WinForms\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="WinForms\ManageInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\ManageInfoForm.Designer.cs">
+      <DependentUpon>ManageInfoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="WinForms\QuesList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -239,6 +245,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WinForms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\ManageInfoForm.resx">
+      <DependentUpon>ManageInfoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinForms\QuesList.resx">
       <DependentUpon>QuesList.cs</DependentUpon>
