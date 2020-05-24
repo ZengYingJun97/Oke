@@ -61,12 +61,78 @@ namespace Oke_teacher.Properties {
         }
         
         /// <summary>
+        ///   查找类似 系统繁忙，稍等片刻 的本地化字符串。
+        /// </summary>
+        internal static string ExceptionTip {
+            get {
+                return ResourceManager.GetString("ExceptionTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 /teacher/login 的本地化字符串。
+        /// </summary>
+        internal static string LoginUrl {
+            get {
+                return ResourceManager.GetString("LoginUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Oke_loginBg {
+            get {
+                object obj = ResourceManager.GetObject("Oke_loginBg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Oke_loginBg1 {
+            get {
+                object obj = ResourceManager.GetObject("Oke_loginBg1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
         internal static System.Drawing.Bitmap Oke_logo {
             get {
                 object obj = ResourceManager.GetObject("Oke_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似于 (图标) 的 System.Drawing.Icon 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Icon Oke_logo1 {
+            get {
+                object obj = ResourceManager.GetObject("Oke_logo1", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 /teacher/register 的本地化字符串。
+        /// </summary>
+        internal static string RegisterUrl {
+            get {
+                return ResourceManager.GetString("RegisterUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 http://192.168.3.18:8080/oke 的本地化字符串。
+        /// </summary>
+        internal static string Server {
+            get {
+                return ResourceManager.GetString("Server", resourceCulture);
             }
         }
     }
