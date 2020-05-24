@@ -18,20 +18,38 @@ namespace Oke_teacher.WinForms
         public RegisterForm()
         {
             InitializeComponent();
+
+            //密码格式为●
             passwordBox.PasswordChar = '●';
             passwordConfirmBox.PasswordChar = '●';
         }
 
+        #region 锁住注册按钮
+        /// <summary>
+        /// 锁住注册按钮
+        /// </summary>
         private void lockButton()
         {
             registerButton.Enabled = false;
         }
+        #endregion
 
+        #region 解锁注册按钮
+        /// <summary>
+        /// 解锁注册按钮
+        /// </summary>
         private void unlockButton()
         {
             registerButton.Enabled = true;
         }
+        #endregion
 
+        #region 增加提示框
+        /// <summary>
+        /// 增加提示框
+        /// </summary>
+        /// <param name="alterText">提示内容</param>
+        /// <param name="alertType">提示类型</param>
         private void addAlter(string alterText, CxFlatAlertBox.AlertType alertType)
         {
             CxFlatAlertBox alert = new CxFlatAlertBox();
@@ -44,17 +62,25 @@ namespace Oke_teacher.WinForms
             alert.BringToFront();
             timer.Start();
         }
+        #endregion
 
+        #region 注册按钮事件
+        /// <summary>
+        /// 注册按钮事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void registerButton_Click(object sender, EventArgs e)
         {
             lockButton();
 
-            string username = usernameBox.Text;
-            string password = passwordBox.Text;
-            string passwordConfirm = passwordConfirmBox.Text;
-            string name = nameBox.Text;
-            string title = titleBox.Text;
+            string username = usernameBox.Text.Trim();
+            string password = passwordBox.Text.Trim();
+            string passwordConfirm = passwordConfirmBox.Text.Trim();
+            string name = nameBox.Text.Trim();
+            string title = titleBox.Text.Trim();
 
+            //输入框不能空
             if (username.Equals("")
                 || password.Equals("")
                 || passwordConfirm.Equals("")
@@ -66,6 +92,7 @@ namespace Oke_teacher.WinForms
                 return;
             }
 
+            //确认密码错误
             if (!password.Equals(passwordConfirm))
             {
                 addAlter(EnumExtend.GetDisplayText(RegisterEnum.DIFFPWD), CxFlatAlertBox.AlertType.Error);
@@ -73,6 +100,7 @@ namespace Oke_teacher.WinForms
                 return;
             }
 
+            //用户名格式错误
             if (!UserUitls.IsOkUsername(username))
             {
                 addAlter(EnumExtend.GetDisplayText(RegisterEnum.ERRORURN), CxFlatAlertBox.AlertType.Error);
@@ -80,6 +108,7 @@ namespace Oke_teacher.WinForms
                 return;
             }
 
+            //密码格式错误
             if (!UserUitls.IsOkPassword(password))
             {
                 addAlter(EnumExtend.GetDisplayText(RegisterEnum.ERRORPWD), CxFlatAlertBox.AlertType.Error);
@@ -95,40 +124,57 @@ namespace Oke_teacher.WinForms
             teacher.teacherTitle = title;
             teacher.user = user;
 
+            //发送HTTP请求访问服务器
             try
             {
                 string url = Resources.Server + Resources.RegisterUrl;
                 string data = JsonConvert.SerializeObject(teacher);
                 string response = HttpUitls.POST(url, data);
-                OkeResult okeResult = JsonConvert.DeserializeObject<OkeResult>(response);
+                OkeResult<string> okeResult = JsonConvert.DeserializeObject<OkeResult<string> >(response);
                 if (okeResult.success)
                 {
-                    addAlter(okeResult.error, CxFlatAlertBox.AlertType.Success);
+                    addAlter(EnumExtend.GetDisplayText(RegisterEnum.SUCC_REGISTER), CxFlatAlertBox.AlertType.Success);
                     timer.Stop();
                     timer.Tick += formClose_Tick;
                     timer.Start();
                 }
                 else
                 {
-                    addAlter(okeResult.error, CxFlatAlertBox.AlertType.Error);
+                    addAlter(EnumExtend.GetDisplayText(RegisterEnum.FAIL_REGISTER), CxFlatAlertBox.AlertType.Error);
                 }
                 unlockButton();
             }
             catch (Exception)
             {
                 addAlter(Resources.ExceptionTip, CxFlatAlertBox.AlertType.Error);
+                unlockButton();
             }
             return;
         }
+        #endregion
 
+        #region timer触发事件
+        /// <summary>
+        /// timer触发事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void timer_Tick(object sender, EventArgs e)
         {
             registerGroupBox.Controls.RemoveByKey("alert");
         }
+        #endregion
 
+        #region 注册成功timer触发事件
+        /// <summary>
+        /// 注册成功timer触发事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void formClose_Tick(object sender, EventArgs e)
         {
             this.Close();
         }
+        #endregion
     }
 }

@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace Oke_teacher.Dto
 {
-    public class OkeResult
+    /// <summary>
+    /// 接收服务器传回数据封装
+    /// </summary>
+    public class OkeResult<T>
     {
         public bool success { set; get; }
 
-        public string data { set; get; }
+        public T data { set; get; }
 
         public string error { set; get; }
     }

@@ -67,7 +67,6 @@
             this.Name = "OkeRibbon";
             this.RibbonType = "Microsoft.PowerPoint.Presentation";
             this.Tabs.Add(this.OkeTab);
-            this.Load += new Microsoft.Office.Tools.Ribbon.RibbonUIEventHandler(this.OkeRibbon_Load);
             this.OkeTab.ResumeLayout(false);
             this.OkeTab.PerformLayout();
             this.LoginGroup.ResumeLayout(false);

@@ -10,15 +10,18 @@ namespace Oke_teacher
 {
     public partial class OkeRibbon
     {
-        private void OkeRibbon_Load(object sender, RibbonUIEventArgs e)
-        {
 
-        }
-
+        #region 登录按钮触发事件
+        /// <summary>
+        /// 登录按钮触发事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LoginButton_Click(object sender, RibbonControlEventArgs e)
         {
             LoginForm loginForm = new LoginForm();
             loginForm.ShowDialog();
         }
+        #endregion
     }
 }

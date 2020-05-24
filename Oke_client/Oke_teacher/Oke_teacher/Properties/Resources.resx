@@ -139,4 +139,7 @@
   <data name="Server" xml:space="preserve">
     <value>http://192.168.3.18:8080/oke</value>
   </data>
+  <data name="LoginUrl" xml:space="preserve">
+    <value>/teacher/login</value>
+  </data>
 </root>

@@ -10,6 +10,13 @@ namespace Oke_teacher.Uitls
 {
     public static class HttpUitls
     {
+        #region 发送Get请求，携带JSON数据
+        /// <summary>
+        /// 发送Get请求，携带JSON数据
+        /// </summary>
+        /// <param name="url">服务接口地址</param>
+        /// <param name="data">json格式数据</param>
+        /// <returns></returns>
         public static string Get(string url, string data)
         {
             string _url = url;
@@ -25,7 +32,15 @@ namespace Oke_teacher.Uitls
             myResponseStream.Close();
             return retString;
         }
+        #endregion
 
+        #region 发送Post请求，携带JSON数据
+        /// <summary>
+        /// 发送Post请求，携带JSON数据
+        /// </summary>
+        /// <param name="url">服务接口地址</param>
+        /// <param name="data">json格式数据</param>
+        /// <returns></returns>
         public static string POST(string url, string data)
         {
             string _url = url;
@@ -43,5 +58,6 @@ namespace Oke_teacher.Uitls
             var responseString = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("utf-8")).ReadToEnd();
             return responseString.ToString();
         }
+        #endregion
     }
 }

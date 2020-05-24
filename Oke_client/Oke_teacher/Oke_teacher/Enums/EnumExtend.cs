@@ -9,6 +9,11 @@ namespace Oke_teacher.Enums
 {
     public static class EnumExtend
     {
+        /// <summary>
+        /// 获取Enum上的display
+        /// </summary>
+        /// <param name="t"></param>
+        /// <returns></returns>
         public static string GetDisplayText(this Enum t)
         {
             var t_type = t.GetType();
