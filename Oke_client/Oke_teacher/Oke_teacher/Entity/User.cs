@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace Oke_teacher.Entity
 {
+    /// <summary>
+    /// 用户账号封装类
+    /// </summary>
+    [Serializable]
     public class User
     {
         public string username { set; get; }

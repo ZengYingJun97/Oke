@@ -70,6 +70,15 @@ namespace Oke_teacher.Properties {
         }
         
         /// <summary>
+        ///   查找类似 /teacher/login 的本地化字符串。
+        /// </summary>
+        internal static string LoginUrl {
+            get {
+                return ResourceManager.GetString("LoginUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
         internal static System.Drawing.Bitmap Oke_loginBg {
