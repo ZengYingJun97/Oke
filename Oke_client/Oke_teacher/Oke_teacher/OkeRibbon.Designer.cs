@@ -50,7 +50,7 @@
             // LoginGroup
             // 
             this.LoginGroup.Items.Add(this.LoginButton);
-            this.LoginGroup.Label = "登录";
+            this.LoginGroup.Label = "个人中心";
             this.LoginGroup.Name = "LoginGroup";
             // 
             // LoginButton
