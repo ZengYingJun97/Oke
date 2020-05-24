@@ -23,6 +23,8 @@ namespace Oke_teacher.Enums
         [Display(Name = "存在该用户，请登录")]
         FAIL_REGISTER,
         [Display(Name = "注册成功")]
-        SUCC_REGISTER
+        SUCC_REGISTER,
+        [Display(Name = "姓名和职称长度应2-10")]
+        ERROR_INFO
     }
 }

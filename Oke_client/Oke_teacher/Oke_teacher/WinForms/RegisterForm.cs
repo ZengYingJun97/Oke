@@ -115,7 +115,15 @@ namespace Oke_teacher.WinForms
                 unlockButton();
                 return;
             }
-            
+
+            //姓名和职称格式错误
+            if (!UserUitls.IsOkInfo(name, title))
+            {
+                addAlter(EnumExtend.GetDisplayText(RegisterEnum.ERROR_INFO), CxFlatAlertBox.AlertType.Error);
+                unlockButton();
+                return;
+            }
+
             User user = new User();
             user.username = username;
             user.password = password;

@@ -37,6 +37,7 @@
             this.OkeTab = this.Factory.CreateRibbonTab();
             this.LoginGroup = this.Factory.CreateRibbonGroup();
             this.LoginButton = this.Factory.CreateRibbonButton();
+            this.InfoButton = this.Factory.CreateRibbonButton();
             this.OkeTab.SuspendLayout();
             this.LoginGroup.SuspendLayout();
             this.SuspendLayout();
@@ -50,7 +51,8 @@
             // LoginGroup
             // 
             this.LoginGroup.Items.Add(this.LoginButton);
-            this.LoginGroup.Label = "个人中心";
+            this.LoginGroup.Items.Add(this.InfoButton);
+            this.LoginGroup.Label = "个人中心\n";
             this.LoginGroup.Name = "LoginGroup";
             // 
             // LoginButton
@@ -61,6 +63,15 @@
             this.LoginButton.Name = "LoginButton";
             this.LoginButton.ShowImage = true;
             this.LoginButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.LoginButton_Click);
+            // 
+            // InfoButton
+            // 
+            this.InfoButton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.InfoButton.Image = global::Oke_teacher.Properties.Resources.MyInfo;
+            this.InfoButton.Label = "我的信息";
+            this.InfoButton.Name = "InfoButton";
+            this.InfoButton.ShowImage = true;
+            this.InfoButton.Visible = false;
             // 
             // OkeRibbon
             // 
@@ -80,6 +91,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonTab OkeTab;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup LoginGroup;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton LoginButton;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton InfoButton;
     }
 
     partial class ThisRibbonCollection

@@ -21,6 +21,12 @@ namespace Oke_teacher
         {
             LoginForm loginForm = new LoginForm();
             loginForm.ShowDialog();
+
+            if (loginForm.DialogResult == DialogResult.OK)
+            {
+                LoginButton.Visible = false;
+                InfoButton.Visible = true;
+            }
         }
         #endregion
     }

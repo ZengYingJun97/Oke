@@ -156,6 +156,7 @@ namespace Oke_teacher.WinForms
                     timer.Stop();
                     timer.Tick += formClose_Tick;
                     timer.Start();
+                    this.DialogResult = DialogResult.OK;
                 }
                 else
                 {

@@ -32,5 +32,10 @@ namespace Oke_teacher.Uitls
             return password.Length >= 8 && password.Length <= 20;
         }
         #endregion
+
+        public static bool IsOkInfo(string name, string title)
+        {
+            return name.Length >= 2 && name.Length <= 10 && title.Length >= 2 && title.Length <= 10;
+        }
     }
 }
