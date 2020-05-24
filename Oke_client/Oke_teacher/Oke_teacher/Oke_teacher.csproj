@@ -103,8 +103,19 @@
     <Reference Include="CxFlatUI">
       <HintPath>..\..\..\..\CxFlatUI-master\CxFlatUI\bin\Debug\CxFlatUI.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Tools, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Office.Tools.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Office.Tools.Common.v4.0.Utilities, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Office.Tools.v4.0.Framework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Office, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -118,29 +129,11 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Office.Tools.v4.0.Framework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Microsoft.VisualStudio.Tools.Applications.Runtime, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <Private>False</Private>
     </Reference>
-    <Reference Include="Microsoft.Office.Tools, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Microsoft.Office.Tools.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <Private>False</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Office.Tools.Common.v4.0.Utilities, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Office, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
-      <Private>False</Private>
-      <EmbedInteropTypes>true</EmbedInteropTypes>
-    </Reference>
     <Reference Include="Microsoft.Office.Interop.PowerPoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
       <Private>False</Private>
       <EmbedInteropTypes>true</EmbedInteropTypes>
@@ -180,17 +173,53 @@
     <Compile Include="Uitls\DataUitls.cs" />
     <Compile Include="Uitls\HttpUitls.cs" />
     <Compile Include="Uitls\UserUitls.cs" />
+    <Compile Include="WinForms\InfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\InfoForm.Designer.cs">
+      <DependentUpon>InfoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="WinForms\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="WinForms\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="WinForms\QuesList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\QuesList.Designer.cs">
+      <DependentUpon>QuesList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\QuestLIstForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\QuestLIstForm.Designer.cs">
+      <DependentUpon>QuestLIstForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="WinForms\RegisterForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="WinForms\RegisterForm.Designer.cs">
       <DependentUpon>RegisterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\SetQuestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\SetQuestForm.Designer.cs">
+      <DependentUpon>SetQuestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\StudentGetQuesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\StudentGetQuesForm.Designer.cs">
+      <DependentUpon>StudentGetQuesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\TeacherSetQuesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\TeacherSetQuesForm.Designer.cs">
+      <DependentUpon>TeacherSetQuesForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="OkeRibbon.resx">
       <DependentUpon>OkeRibbon.cs</DependentUpon>
@@ -205,11 +234,29 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="WinForms\InfoForm.resx">
+      <DependentUpon>InfoForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WinForms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\QuesList.resx">
+      <DependentUpon>QuesList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\QuestLIstForm.resx">
+      <DependentUpon>QuestLIstForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WinForms\RegisterForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\SetQuestForm.resx">
+      <DependentUpon>SetQuestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\StudentGetQuesForm.resx">
+      <DependentUpon>StudentGetQuesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\TeacherSetQuesForm.resx">
+      <DependentUpon>TeacherSetQuesForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Oke_teacher_TemporaryKey.pfx" />
     <None Include="packages.config" />
@@ -244,7 +291,9 @@
   <ItemGroup>
     <None Include="Resources\Oke_loginBg1.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Resources\MyInfo.png" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

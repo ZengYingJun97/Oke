@@ -117,32 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Oke_loginBg" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Oke_loginBg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Oke_logo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Oke_logo.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Oke_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Oke_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Oke_loginBg1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Oke_loginBg1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ExceptionTip" xml:space="preserve">
-    <value>系统繁忙，稍等片刻</value>
-  </data>
-  <data name="RegisterUrl" xml:space="preserve">
-    <value>/teacher/register</value>
-  </data>
-  <data name="Server" xml:space="preserve">
-    <value>http://192.168.3.18:8080/oke</value>
-  </data>
-  <data name="LoginUrl" xml:space="preserve">
-    <value>/teacher/login</value>
-  </data>
-  <data name="MyInfo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MyInfo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
 </root>

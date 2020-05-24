@@ -21,7 +21,19 @@ namespace Oke_teacher
         {
             LoginForm loginForm = new LoginForm();
             loginForm.ShowDialog();
+
+            if (loginForm.DialogResult == DialogResult.OK)
+            {
+                LoginButton.Visible = false;
+                InfoButton.Visible = true;
+            }
         }
         #endregion
+
+        private void button1_Click(object sender, RibbonControlEventArgs e)
+        {
+            SetQuestForm setQuestForm = new SetQuestForm();
+            setQuestForm.Show();
+        }
     }
 }
