@@ -29,5 +29,11 @@ namespace Oke_teacher
             }
         }
         #endregion
+
+        private void button1_Click(object sender, RibbonControlEventArgs e)
+        {
+            SetQuestForm setQuestForm = new SetQuestForm();
+            setQuestForm.Show();
+        }
     }
 }
