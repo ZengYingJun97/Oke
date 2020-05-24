@@ -24,6 +24,7 @@ namespace Oke_teacher.WinForms
         public LoginForm()
         {
             InitializeComponent();
+
             //密码格式为●
             passwordBox.PasswordChar = '●';
 
@@ -79,9 +80,9 @@ namespace Oke_teacher.WinForms
         }
         #endregion
 
-        #region 注册用户触发事件
+        #region 登录用户触发事件
         /// <summary>
-        /// 注册用户触发事件
+        /// 登录用户触发事件
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -152,17 +153,16 @@ namespace Oke_teacher.WinForms
                 {
                     addAlter(EnumExtend.GetDisplayText(LoginEnum.SUCC_LOGIN), CxFlatAlertBox.AlertType.Success);
                     LoginInfo.CurrentUser.sessionId = okeResult.data.sessionId;
-                    LoginInfo.CurrentUser.teacher = okeResult.data.teacher;
+                    LoginInfo.CurrentUser.data = okeResult.data.data;
                     timer.Stop();
                     timer.Tick += formClose_Tick;
                     timer.Start();
-                    this.DialogResult = DialogResult.OK;
                 }
                 else
                 {
                     addAlter(EnumExtend.GetDisplayText(LoginEnum.FAIL_LOGIN), CxFlatAlertBox.AlertType.Error);
+                    unlockButton();
                 }
-                unlockButton();
             }
             catch (Exception)
             {
@@ -183,14 +183,15 @@ namespace Oke_teacher.WinForms
         }
         #endregion
 
-        #region 注册成功timer触发事件
+        #region 登录成功timer触发事件
         /// <summary>
-        /// 注册成功timer触发事件
+        /// 登录成功timer触发事件
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void formClose_Tick(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.OK;
             this.Close();
         }
         #endregion

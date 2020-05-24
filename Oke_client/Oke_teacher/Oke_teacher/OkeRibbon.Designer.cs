@@ -40,15 +40,20 @@
             this.InfoButton = this.Factory.CreateRibbonButton();
             this.group1 = this.Factory.CreateRibbonGroup();
             this.button1 = this.Factory.CreateRibbonButton();
+            this.button2 = this.Factory.CreateRibbonButton();
+            this.group2 = this.Factory.CreateRibbonGroup();
+            this.button3 = this.Factory.CreateRibbonButton();
             this.OkeTab.SuspendLayout();
             this.LoginGroup.SuspendLayout();
             this.group1.SuspendLayout();
+            this.group2.SuspendLayout();
             this.SuspendLayout();
             // 
             // OkeTab
             // 
             this.OkeTab.Groups.Add(this.LoginGroup);
             this.OkeTab.Groups.Add(this.group1);
+            this.OkeTab.Groups.Add(this.group2);
             this.OkeTab.Label = "Oke";
             this.OkeTab.Name = "OkeTab";
             // 
@@ -76,21 +81,44 @@
             this.InfoButton.Name = "InfoButton";
             this.InfoButton.ShowImage = true;
             this.InfoButton.Visible = false;
+            this.InfoButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.InfoButton_Click);
             // 
             // group1
             // 
             this.group1.Items.Add(this.button1);
-            this.group1.Label = "题目";
+            this.group1.Items.Add(this.button2);
             this.group1.Name = "group1";
             // 
             // button1
             // 
             this.button1.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
             this.button1.Image = global::Oke_teacher.Properties.Resources.Oke_logo;
-            this.button1.Label = "发布题目\n";
+            this.button1.Label = "签到";
             this.button1.Name = "button1";
             this.button1.ShowImage = true;
             this.button1.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.button2.Image = global::Oke_teacher.Properties.Resources.Oke_logo;
+            this.button2.Label = "签退";
+            this.button2.Name = "button2";
+            this.button2.ShowImage = true;
+            // 
+            // group2
+            // 
+            this.group2.Items.Add(this.button3);
+            this.group2.Label = "题目";
+            this.group2.Name = "group2";
+            // 
+            // button3
+            // 
+            this.button3.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.button3.Image = global::Oke_teacher.Properties.Resources.Oke_logo;
+            this.button3.Label = "判断题";
+            this.button3.Name = "button3";
+            this.button3.ShowImage = true;
             // 
             // OkeRibbon
             // 
@@ -103,6 +131,8 @@
             this.LoginGroup.PerformLayout();
             this.group1.ResumeLayout(false);
             this.group1.PerformLayout();
+            this.group2.ResumeLayout(false);
+            this.group2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -115,6 +145,9 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup group1;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton button1;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton InfoButton;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton button2;
+        internal Microsoft.Office.Tools.Ribbon.RibbonGroup group2;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton button3;
     }
 
     partial class ThisRibbonCollection

@@ -14,7 +14,7 @@ namespace Oke_teacher.Info
     {
         public string sessionId { set; get; }
 
-        public Teacher teacher { set; get; }
+        public Teacher data { set; get; }
 
         private static LoginInfo _CurrentUser;
 
