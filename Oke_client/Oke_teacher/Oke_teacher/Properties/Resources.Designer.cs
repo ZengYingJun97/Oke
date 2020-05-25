@@ -79,6 +79,15 @@ namespace Oke_teacher.Properties {
         }
         
         /// <summary>
+        ///   查找类似 /teacher/logout 的本地化字符串。
+        /// </summary>
+        internal static string LogoutUrl {
+            get {
+                return ResourceManager.GetString("LogoutUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
         internal static System.Drawing.Bitmap MyInfo {
@@ -143,6 +152,24 @@ namespace Oke_teacher.Properties {
         internal static string Server {
             get {
                 return ResourceManager.GetString("Server", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 /teacher/info/update 的本地化字符串。
+        /// </summary>
+        internal static string UpdateInfoUrl {
+            get {
+                return ResourceManager.GetString("UpdateInfoUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 /teacher/user/update 的本地化字符串。
+        /// </summary>
+        internal static string UpdateUserUrl {
+            get {
+                return ResourceManager.GetString("UpdateUserUrl", resourceCulture);
             }
         }
     }

@@ -36,10 +36,23 @@ namespace Oke_teacher
             setQuestForm.Show();
         }
 
+        #region 我的信息按钮事件
+        /// <summary>
+        /// 我的信息按钮事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void InfoButton_Click(object sender, RibbonControlEventArgs e)
         {
             InfoForm infoForm = new InfoForm();
             infoForm.ShowDialog();
+
+            if (infoForm.DialogResult == DialogResult.OK)
+            {
+                InfoButton.Visible = false;
+                LoginButton.Visible = true;
+            }
         }
+        #endregion
     }
 }

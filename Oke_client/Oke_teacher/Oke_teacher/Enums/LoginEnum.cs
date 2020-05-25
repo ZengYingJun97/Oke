@@ -20,7 +20,13 @@ namespace Oke_teacher.Enums
         ERRORPWD,
         [Display(Name = "用户名或密码不存在")]
         FAIL_LOGIN,
+        [Display(Name = "登出失败")]
+        FAIL_LOGOUT,
         [Display(Name = "登录成功")]
-        SUCC_LOGIN
+        SUCC_LOGIN,
+        [Display(Name = "登出成功")]
+        SUCC_LOGOUT,
+        [Display(Name = "修改成功")]
+        SUCC_UPDATE
     }
 }

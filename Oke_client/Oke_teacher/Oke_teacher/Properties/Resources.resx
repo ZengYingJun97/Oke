@@ -145,4 +145,13 @@
   <data name="MyInfo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MyInfo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="LogoutUrl" xml:space="preserve">
+    <value>/teacher/logout</value>
+  </data>
+  <data name="UpdateInfoUrl" xml:space="preserve">
+    <value>/teacher/info/update</value>
+  </data>
+  <data name="UpdateUserUrl" xml:space="preserve">
+    <value>/teacher/user/update</value>
+  </data>
 </root>
