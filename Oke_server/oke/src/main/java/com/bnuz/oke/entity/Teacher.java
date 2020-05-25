@@ -1,12 +1,16 @@
 package com.bnuz.oke.entity;
 
+import java.io.Serializable;
+
 /**
  * Teacher
  *
  * @author handsome
  * @date 2020年 05月14日 23:58:10
  */
-public class Teacher {
+public class Teacher implements Serializable {
+
+	private static final long serialVersionUID = -194261173474839551L;
 
 	private int teacherId;
 
