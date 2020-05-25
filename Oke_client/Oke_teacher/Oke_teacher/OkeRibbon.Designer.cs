@@ -42,8 +42,9 @@
             this.Upclassbtn = this.Factory.CreateRibbonButton();
             this.Downclassbtn = this.Factory.CreateRibbonButton();
             this.group2 = this.Factory.CreateRibbonGroup();
-            this.Judgquesbtn = this.Factory.CreateRibbonButton();
+            this.fillbutton = this.Factory.CreateRibbonButton();
             this.simleanswerbutton = this.Factory.CreateRibbonButton();
+            this.Judgquesbtn = this.Factory.CreateRibbonButton();
             this.OkeTab.SuspendLayout();
             this.LoginGroup.SuspendLayout();
             this.group1.SuspendLayout();
@@ -110,10 +111,29 @@
             // 
             // group2
             // 
+            this.group2.Items.Add(this.fillbutton);
             this.group2.Items.Add(this.simleanswerbutton);
             this.group2.Items.Add(this.Judgquesbtn);
             this.group2.Label = "题目\n";
             this.group2.Name = "group2";
+            // 
+            // fillbutton
+            // 
+            this.fillbutton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.fillbutton.Image = global::Oke_teacher.Properties.Resources.Oke_fillinblank;
+            this.fillbutton.Label = "填空题";
+            this.fillbutton.Name = "fillinbutton";
+            this.fillbutton.ShowImage = true;
+            this.fillbutton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.fillinbutton_Click);
+            // 
+            // simleanswerbutton
+            // 
+            this.simleanswerbutton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.simleanswerbutton.Image = global::Oke_teacher.Properties.Resources.Oke_simpleanswer;
+            this.simleanswerbutton.Label = "简答题";
+            this.simleanswerbutton.Name = "simpleanswerbutton";
+            this.simleanswerbutton.ShowImage = true;
+            this.simleanswerbutton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.simpleanswerbutton_Click);
             // 
             // Judgquesbtn
             // 
@@ -123,14 +143,6 @@
             this.Judgquesbtn.Name = "Judgquesbtn";
             this.Judgquesbtn.ShowImage = true;
             this.Judgquesbtn.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Judgquesbtn_Click);
-            // 
-            // simleanswerbutton
-            // 
-            this.simleanswerbutton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.simleanswerbutton.Image = global::Oke_teacher.Properties.Resources.Oke_simpleanswer;
-            this.simleanswerbutton.Label = "简答题";
-            this.simleanswerbutton.Name = "simleanswerbutton";
-            this.simleanswerbutton.ShowImage = true;
             // 
             // OkeRibbon
             // 
@@ -162,6 +174,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup group2;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton Judgquesbtn;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton simleanswerbutton;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton fillbutton;
     }
 
     partial class ThisRibbonCollection
