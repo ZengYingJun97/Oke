@@ -1,12 +1,16 @@
 package com.bnuz.oke.entity;
 
+import java.io.Serializable;
+
 /**
  * Option
  *
  * @author handsome
  * @date 2020年 05月15日 00:10:58
  */
-public class Option {
+public class Option implements Serializable {
+
+	private static final long serialVersionUID = -5758423836246959319L;
 
 	private int optionId;
 

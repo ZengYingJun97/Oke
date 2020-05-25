@@ -62,11 +62,58 @@ public class LoginServiceImpl implements LoginService {
 
 	@Override
 	public Student loginStudent(User user) {
-		return studentDao.queryByUsername(user.getUsername());
+		Student student = studentDao.queryByUsername(user.getUsername());
+		if (!student.getUser().getPassword().equals(user.getPassword())) {
+			student = null;
+		}
+		return student;
 	}
 
 	@Override
 	public Teacher loginTeacher(User user) {
-		return teacherDao.queryByUsername(user.getUsername());
+		Teacher teacher = teacherDao.queryByUsername(user.getUsername());
+		if (!teacher.getUser().getPassword().equals(user.getPassword())) {
+			teacher = null;
+		}
+		return teacher;
+	}
+
+	@Override
+	public Student updateStudent(Student student) {
+		studentDao.updateStudent(student);
+		student = studentDao.queryById(student.getStudentId());
+		return student;
+	}
+
+	@Override
+	public Teacher updateTeacher(Teacher teacher) {
+		teacherDao.updateTeacher(teacher);
+		teacher = teacherDao.queryByUsername(teacher.getUser().getUsername());
+		return teacher;
+	}
+
+	@Override
+	public boolean updateUser(User user) {
+		int updateCount = userDao.updateUser(user);
+		if (updateCount == 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	@Override
+	public User getUserByUsername(String username) {
+		return userDao.queryByUsername(username);
+	}
+
+	@Override
+	public Teacher getTeacherByUsername(String username) {
+		return teacherDao.queryByUsername(username);
+	}
+
+	@Override
+	public Student getStudentByUsername(String username) {
+		return studentDao.queryByUsername(username);
 	}
 }

@@ -1,12 +1,16 @@
 package com.bnuz.oke.entity;
 
+import java.io.Serializable;
+
 /**
  * Prize
  *
  * @author handsome
  * @date 2020年 05月15日 00:16:04
  */
-public class Prize {
+public class Prize implements Serializable {
+
+	private static final long serialVersionUID = -8461166026478967738L;
 
 	private int prizeId;
 
