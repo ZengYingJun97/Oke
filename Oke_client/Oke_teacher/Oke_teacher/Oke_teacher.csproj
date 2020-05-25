@@ -314,6 +314,7 @@
     <Content Include="Resources\MyInfo.png" />
     <None Include="Resources\Oke_simpleanswer.png" />
     <None Include="Resources\Oke_fillinblank.png" />
+    <None Include="Resources\Oke_scratchcard.png" />
     <Content Include="Resources\upclassicon-08.png" />
     <Content Include="Resources\upclassicon-081.png" />
   </ItemGroup>

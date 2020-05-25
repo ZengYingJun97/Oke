@@ -160,6 +160,16 @@ namespace Oke_teacher.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap Oke_scratchcard {
+            get {
+                object obj = ResourceManager.GetObject("Oke_scratchcard", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap Oke_simpleanswer {
             get {
                 object obj = ResourceManager.GetObject("Oke_simpleanswer", resourceCulture);
