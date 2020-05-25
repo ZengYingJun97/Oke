@@ -19,4 +19,16 @@ public interface LoginService {
 	Student loginStudent(User user);
 
 	Teacher loginTeacher(User user);
+
+	Student updateStudent(Student student);
+
+	Teacher updateTeacher(Teacher teacher);
+
+	boolean updateUser(User user);
+
+	User getUserByUsername(String username);
+
+	Teacher getTeacherByUsername(String username);
+
+	Student getStudentByUsername(String username);
 }
