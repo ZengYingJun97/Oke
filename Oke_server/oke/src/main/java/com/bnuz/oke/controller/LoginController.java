@@ -38,9 +38,6 @@ public class LoginController {
 	private LoginService loginService;
 
 	@Autowired
-	private CourseService courseService;
-
-	@Autowired
 	private RedisTemplate redisTemplate;
 
 	/**
