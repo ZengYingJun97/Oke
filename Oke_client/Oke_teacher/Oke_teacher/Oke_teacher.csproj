@@ -303,7 +303,9 @@
     <None Include="Resources\Oke_loginBg1.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\downclassicon-091.png" />
     <Content Include="Resources\MyInfo.png" />
+    <Content Include="Resources\upclassicon-081.png" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

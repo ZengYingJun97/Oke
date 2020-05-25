@@ -154,4 +154,10 @@
   <data name="UpdateUserUrl" xml:space="preserve">
     <value>/teacher/user/update</value>
   </data>
+  <data name="downclassicon_09" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\downclassicon-091.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="upclassicon_08" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\upclassicon-081.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

@@ -65,7 +65,7 @@ namespace Oke_teacher.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap downclassicon_09 {
             get {
-                object obj = ResourceManager.GetObject("downclassicon-09", resourceCulture);
+                object obj = ResourceManager.GetObject("downclassicon_09", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -166,6 +166,16 @@ namespace Oke_teacher.Properties {
         }
         
         /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap upclassicon_08 {
+            get {
+                object obj = ResourceManager.GetObject("upclassicon_08", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 /teacher/info/update 的本地化字符串。
         /// </summary>
         internal static string UpdateInfoUrl {
@@ -180,16 +190,6 @@ namespace Oke_teacher.Properties {
         internal static string UpdateUserUrl {
             get {
                 return ResourceManager.GetString("UpdateUserUrl", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
-        internal static System.Drawing.Bitmap upclassicon_08 {
-            get {
-                object obj = ResourceManager.GetObject("upclassicon-08", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }
