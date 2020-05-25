@@ -39,13 +39,24 @@ namespace Oke_teacher
 
         }
 
-
-
+        #region 我的信息按钮事件
+        /// <summary>
+        /// 我的信息按钮事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void InfoButton_Click(object sender, RibbonControlEventArgs e)
         {
             InfoForm infoForm = new InfoForm();
             infoForm.ShowDialog();
+
+            if (infoForm.DialogResult == DialogResult.OK)
+            {
+                InfoButton.Visible = false;
+                LoginButton.Visible = true;
+            }
         }
+        #endregion
 
         private void Judgquesbtn_Click(object sender, RibbonControlEventArgs e)
         {
@@ -53,6 +64,9 @@ namespace Oke_teacher
             setQuestForm.Show();
         }
 
-        
+        private void OkeRibbon_Load(object sender, RibbonUIEventArgs e)
+        {
+
+        }
     }
 }

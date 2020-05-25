@@ -28,21 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.ManageGroup = new CxFlatUI.CxFlatGroupBox();
             this.tabPage = new CxFlatUI.CxFlatTabControl();
             this.updateInfoPage = new System.Windows.Forms.TabPage();
-            this.updateUserPage = new System.Windows.Forms.TabPage();
-            this.nameLabel = new System.Windows.Forms.Label();
-            this.nameBox = new CxFlatUI.CxFlatTextBox();
+            this.updateInfoButton = new CxFlatUI.CxFlatRoundButton();
             this.titleBox = new CxFlatUI.CxFlatTextBox();
             this.titleLabel = new System.Windows.Forms.Label();
-            this.updateInfoButton = new CxFlatUI.CxFlatRoundButton();
-            this.cxFlatRoundButton1 = new CxFlatUI.CxFlatRoundButton();
+            this.nameBox = new CxFlatUI.CxFlatTextBox();
+            this.nameLabel = new System.Windows.Forms.Label();
+            this.updateUserPage = new System.Windows.Forms.TabPage();
+            this.updateUserButton = new CxFlatUI.CxFlatRoundButton();
             this.newPasswordBox = new CxFlatUI.CxFlatTextBox();
             this.newPasswordLabel = new System.Windows.Forms.Label();
             this.oldPasswordBox = new CxFlatUI.CxFlatTextBox();
             this.oldPasswordLabel = new System.Windows.Forms.Label();
             this.titleBar = new CxFlatUI.CxFlatStatusBar();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.ManageGroup.SuspendLayout();
             this.tabPage.SuspendLayout();
             this.updateInfoPage.SuspendLayout();
@@ -93,48 +95,17 @@
             this.updateInfoPage.TabIndex = 0;
             this.updateInfoPage.Text = "修改信息";
             // 
-            // updateUserPage
+            // updateInfoButton
             // 
-            this.updateUserPage.BackColor = System.Drawing.Color.White;
-            this.updateUserPage.Controls.Add(this.cxFlatRoundButton1);
-            this.updateUserPage.Controls.Add(this.newPasswordBox);
-            this.updateUserPage.Controls.Add(this.newPasswordLabel);
-            this.updateUserPage.Controls.Add(this.oldPasswordBox);
-            this.updateUserPage.Controls.Add(this.oldPasswordLabel);
-            this.updateUserPage.Location = new System.Drawing.Point(0, 40);
-            this.updateUserPage.Name = "updateUserPage";
-            this.updateUserPage.Padding = new System.Windows.Forms.Padding(3);
-            this.updateUserPage.Size = new System.Drawing.Size(294, 254);
-            this.updateUserPage.TabIndex = 1;
-            this.updateUserPage.Text = "修改密码";
-            // 
-            // nameLabel
-            // 
-            this.nameLabel.AutoSize = true;
-            this.nameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(173)))), ((int)(((byte)(255)))));
-            this.nameLabel.Location = new System.Drawing.Point(47, 22);
-            this.nameLabel.Name = "nameLabel";
-            this.nameLabel.Size = new System.Drawing.Size(42, 21);
-            this.nameLabel.TabIndex = 0;
-            this.nameLabel.Text = "姓名";
-            // 
-            // nameBox
-            // 
-            this.nameBox.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.nameBox.Hint = "";
-            this.nameBox.Location = new System.Drawing.Point(47, 50);
-            this.nameBox.MaxLength = 32767;
-            this.nameBox.Multiline = false;
-            this.nameBox.Name = "nameBox";
-            this.nameBox.PasswordChar = '\0';
-            this.nameBox.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.nameBox.SelectedText = "";
-            this.nameBox.SelectionLength = 0;
-            this.nameBox.SelectionStart = 0;
-            this.nameBox.Size = new System.Drawing.Size(200, 38);
-            this.nameBox.TabIndex = 1;
-            this.nameBox.TabStop = false;
-            this.nameBox.UseSystemPasswordChar = false;
+            this.updateInfoButton.ButtonType = CxFlatUI.ButtonType.Primary;
+            this.updateInfoButton.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.updateInfoButton.Location = new System.Drawing.Point(47, 194);
+            this.updateInfoButton.Name = "updateInfoButton";
+            this.updateInfoButton.Size = new System.Drawing.Size(200, 38);
+            this.updateInfoButton.TabIndex = 4;
+            this.updateInfoButton.Text = "确定修改";
+            this.updateInfoButton.TextColor = System.Drawing.Color.White;
+            this.updateInfoButton.Click += new System.EventHandler(this.updateInfoButton_Click);
             // 
             // titleBox
             // 
@@ -164,27 +135,60 @@
             this.titleLabel.TabIndex = 2;
             this.titleLabel.Text = "职称";
             // 
-            // updateInfoButton
+            // nameBox
             // 
-            this.updateInfoButton.ButtonType = CxFlatUI.ButtonType.Primary;
-            this.updateInfoButton.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.updateInfoButton.Location = new System.Drawing.Point(47, 194);
-            this.updateInfoButton.Name = "updateInfoButton";
-            this.updateInfoButton.Size = new System.Drawing.Size(200, 38);
-            this.updateInfoButton.TabIndex = 4;
-            this.updateInfoButton.Text = "确定修改";
-            this.updateInfoButton.TextColor = System.Drawing.Color.White;
+            this.nameBox.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.nameBox.Hint = "";
+            this.nameBox.Location = new System.Drawing.Point(47, 50);
+            this.nameBox.MaxLength = 32767;
+            this.nameBox.Multiline = false;
+            this.nameBox.Name = "nameBox";
+            this.nameBox.PasswordChar = '\0';
+            this.nameBox.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.nameBox.SelectedText = "";
+            this.nameBox.SelectionLength = 0;
+            this.nameBox.SelectionStart = 0;
+            this.nameBox.Size = new System.Drawing.Size(200, 38);
+            this.nameBox.TabIndex = 1;
+            this.nameBox.TabStop = false;
+            this.nameBox.UseSystemPasswordChar = false;
             // 
-            // cxFlatRoundButton1
+            // nameLabel
             // 
-            this.cxFlatRoundButton1.ButtonType = CxFlatUI.ButtonType.Primary;
-            this.cxFlatRoundButton1.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.cxFlatRoundButton1.Location = new System.Drawing.Point(47, 194);
-            this.cxFlatRoundButton1.Name = "cxFlatRoundButton1";
-            this.cxFlatRoundButton1.Size = new System.Drawing.Size(200, 38);
-            this.cxFlatRoundButton1.TabIndex = 9;
-            this.cxFlatRoundButton1.Text = "确定修改";
-            this.cxFlatRoundButton1.TextColor = System.Drawing.Color.White;
+            this.nameLabel.AutoSize = true;
+            this.nameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(173)))), ((int)(((byte)(255)))));
+            this.nameLabel.Location = new System.Drawing.Point(47, 22);
+            this.nameLabel.Name = "nameLabel";
+            this.nameLabel.Size = new System.Drawing.Size(42, 21);
+            this.nameLabel.TabIndex = 0;
+            this.nameLabel.Text = "姓名";
+            // 
+            // updateUserPage
+            // 
+            this.updateUserPage.BackColor = System.Drawing.Color.White;
+            this.updateUserPage.Controls.Add(this.updateUserButton);
+            this.updateUserPage.Controls.Add(this.newPasswordBox);
+            this.updateUserPage.Controls.Add(this.newPasswordLabel);
+            this.updateUserPage.Controls.Add(this.oldPasswordBox);
+            this.updateUserPage.Controls.Add(this.oldPasswordLabel);
+            this.updateUserPage.Location = new System.Drawing.Point(0, 40);
+            this.updateUserPage.Name = "updateUserPage";
+            this.updateUserPage.Padding = new System.Windows.Forms.Padding(3);
+            this.updateUserPage.Size = new System.Drawing.Size(294, 254);
+            this.updateUserPage.TabIndex = 1;
+            this.updateUserPage.Text = "修改密码";
+            // 
+            // updateUserButton
+            // 
+            this.updateUserButton.ButtonType = CxFlatUI.ButtonType.Primary;
+            this.updateUserButton.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.updateUserButton.Location = new System.Drawing.Point(47, 194);
+            this.updateUserButton.Name = "updateUserButton";
+            this.updateUserButton.Size = new System.Drawing.Size(200, 38);
+            this.updateUserButton.TabIndex = 9;
+            this.updateUserButton.Text = "确定修改";
+            this.updateUserButton.TextColor = System.Drawing.Color.White;
+            this.updateUserButton.Click += new System.EventHandler(this.updateUserButton_Click);
             // 
             // newPasswordBox
             // 
@@ -254,6 +258,11 @@
             this.titleBar.Text = "管理信息";
             this.titleBar.ThemeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(173)))), ((int)(((byte)(255)))));
             // 
+            // timer
+            // 
+            this.timer.Interval = 2000;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
             // ManageInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -290,11 +299,12 @@
         private CxFlatUI.CxFlatTextBox nameBox;
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.TabPage updateUserPage;
-        private CxFlatUI.CxFlatRoundButton cxFlatRoundButton1;
+        private CxFlatUI.CxFlatRoundButton updateUserButton;
         private CxFlatUI.CxFlatTextBox newPasswordBox;
         private System.Windows.Forms.Label newPasswordLabel;
         private CxFlatUI.CxFlatTextBox oldPasswordBox;
         private System.Windows.Forms.Label oldPasswordLabel;
         private CxFlatUI.CxFlatStatusBar titleBar;
+        private System.Windows.Forms.Timer timer;
     }
 }
