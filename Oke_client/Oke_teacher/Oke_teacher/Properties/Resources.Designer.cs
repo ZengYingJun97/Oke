@@ -65,7 +65,7 @@ namespace Oke_teacher.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap downclassicon_09 {
             get {
-                object obj = ResourceManager.GetObject("downclassicon-09", resourceCulture);
+                object obj = ResourceManager.GetObject("downclassicon_09", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -85,6 +85,15 @@ namespace Oke_teacher.Properties {
         internal static string LoginUrl {
             get {
                 return ResourceManager.GetString("LoginUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 /teacher/logout 的本地化字符串。
+        /// </summary>
+        internal static string LogoutUrl {
+            get {
+                return ResourceManager.GetString("LogoutUrl", resourceCulture);
             }
         }
         
@@ -161,8 +170,26 @@ namespace Oke_teacher.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap upclassicon_08 {
             get {
-                object obj = ResourceManager.GetObject("upclassicon-08", resourceCulture);
+                object obj = ResourceManager.GetObject("upclassicon_08", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 /teacher/info/update 的本地化字符串。
+        /// </summary>
+        internal static string UpdateInfoUrl {
+            get {
+                return ResourceManager.GetString("UpdateInfoUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 /teacher/user/update 的本地化字符串。
+        /// </summary>
+        internal static string UpdateUserUrl {
+            get {
+                return ResourceManager.GetString("UpdateUserUrl", resourceCulture);
             }
         }
     }

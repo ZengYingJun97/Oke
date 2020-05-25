@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.infoMainBox = new CxFlatUI.CxFlatGroupBox();
             this.manageButton = new CxFlatUI.CxFlatSimpleButton();
             this.logoutButton = new CxFlatUI.CxFlatSimpleButton();
@@ -39,6 +40,7 @@
             this.nameLabel = new System.Windows.Forms.Label();
             this.logoBox = new System.Windows.Forms.PictureBox();
             this.titleBar = new CxFlatUI.CxFlatStatusBar();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.infoMainBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoBox)).BeginInit();
             this.SuspendLayout();
@@ -87,6 +89,7 @@
             this.logoutButton.TabIndex = 8;
             this.logoutButton.Text = "退出";
             this.logoutButton.TextColor = System.Drawing.Color.White;
+            this.logoutButton.Click += new System.EventHandler(this.logoutButton_Click);
             // 
             // usernameBox
             // 
@@ -174,6 +177,11 @@
             this.titleBar.Text = "我的信息";
             this.titleBar.ThemeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(173)))), ((int)(((byte)(255)))));
             // 
+            // timer
+            // 
+            this.timer.Interval = 2000;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
             // InfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -209,5 +217,6 @@
         private CxFlatUI.CxFlatSimpleButton manageButton;
         private CxFlatUI.CxFlatSimpleButton logoutButton;
         private CxFlatUI.CxFlatStatusBar titleBar;
+        private System.Windows.Forms.Timer timer;
     }
 }

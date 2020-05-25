@@ -93,6 +93,12 @@ namespace Oke_teacher.WinForms
         }
         #endregion
 
+        #region 登录按钮事件
+        /// <summary>
+        /// 登录按钮事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void loginButton_Click(object sender, EventArgs e)
         {
             lockButton();
@@ -170,6 +176,7 @@ namespace Oke_teacher.WinForms
                 unlockButton();
             }
         }
+        #endregion
 
         #region timer触发事件
         /// <summary>

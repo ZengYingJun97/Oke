@@ -154,6 +154,8 @@
   -->
   <ItemGroup>
     <Compile Include="Dto\OkeResult.cs" />
+    <Compile Include="Dto\SessionData.cs" />
+    <Compile Include="Dto\UpdateUserData.cs" />
     <Compile Include="Dto\UserData.cs" />
     <Compile Include="Entity\Teacher.cs" />
     <Compile Include="Entity\User.cs" />
@@ -301,7 +303,9 @@
     <None Include="Resources\Oke_loginBg1.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\downclassicon-091.png" />
     <Content Include="Resources\MyInfo.png" />
+    <Content Include="Resources\upclassicon-081.png" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
