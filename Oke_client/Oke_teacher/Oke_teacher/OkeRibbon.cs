@@ -30,16 +30,29 @@ namespace Oke_teacher
         }
         #endregion
 
-        private void button1_Click(object sender, RibbonControlEventArgs e)
+        private void Upclassbtn_Click(object sender, RibbonControlEventArgs e)
         {
-            SetQuestForm setQuestForm = new SetQuestForm();
-            setQuestForm.Show();
+            
         }
+        private void Downclassbtn_Click(object sender, RibbonControlEventArgs e)
+        {
+
+        }
+
+
 
         private void InfoButton_Click(object sender, RibbonControlEventArgs e)
         {
             InfoForm infoForm = new InfoForm();
             infoForm.ShowDialog();
         }
+
+        private void Judgquesbtn_Click(object sender, RibbonControlEventArgs e)
+        {
+            SetQuestForm setQuestForm = new SetQuestForm();
+            setQuestForm.Show();
+        }
+
+        
     }
 }
