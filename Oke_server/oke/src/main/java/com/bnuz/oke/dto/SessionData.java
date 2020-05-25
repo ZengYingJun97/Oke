@@ -4,7 +4,7 @@ package com.bnuz.oke.dto;
  * SessionData
  *
  * @author handsome
- * @date 2020年 05月25日 16:45:24
+ * @date 2020年 05月23日 15:21:04
  */
 public class SessionData<T> {
 

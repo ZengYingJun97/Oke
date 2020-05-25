@@ -1,12 +1,5 @@
 package com.bnuz.oke.config;
 
-/**
- * RedisConfig
- *
- * @author handsome
- * @date 2020年 05月25日 16:58:58
- */
-
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -20,9 +13,10 @@ import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 /**
- * @Auther: yukong
- * @Date: 2018/8/17 14:58
- * @Description: redis配置
+ * RedisConfig
+ *
+ * @author handsome
+ * @date 2020年 05月23日 14:29:03
  */
 @Configuration
 @AutoConfigureAfter(RedisAutoConfiguration.class)
@@ -50,5 +44,4 @@ public class RedisConfig {
 		template.afterPropertiesSet();
 		return template;
 	}
-
 }

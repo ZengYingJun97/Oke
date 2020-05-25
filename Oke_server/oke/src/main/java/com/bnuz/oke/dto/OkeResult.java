@@ -4,7 +4,7 @@ package com.bnuz.oke.dto;
  * OkeResult
  *
  * @author handsome
- * @date 2020年 05月25日 16:46:51
+ * @date 2020年 05月23日 12:35:56
  */
 public class OkeResult<T> {
 
@@ -19,13 +19,13 @@ public class OkeResult<T> {
 		this.data = data;
 	}
 
-	public boolean isSuccess() {
-		return success;
-	}
-
 	public OkeResult(boolean success, String error) {
 		this.success = success;
 		this.error = error;
+	}
+
+	public boolean isSuccess() {
+		return success;
 	}
 
 	public void setSuccess(boolean success) {

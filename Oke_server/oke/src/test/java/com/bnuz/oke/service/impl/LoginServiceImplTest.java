@@ -63,8 +63,8 @@ class LoginServiceImplTest {
 	@Test
 	void loginTeacher() {
 		User user = new User();
-		user.setUsername("IamDuang");
-		user.setPassword("test123");
+		user.setUsername("admin");
+		user.setPassword("123456");
 		Teacher teacher = loginService.loginTeacher(user);
 		if (teacher != null && teacher.getUser().getPassword().equals(user.getPassword())) {
 			logger.info("登陆成功！");
