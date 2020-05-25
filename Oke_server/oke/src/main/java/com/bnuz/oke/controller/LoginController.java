@@ -31,7 +31,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Controller
 @RequestMapping("/oke")
-public class OkeController {
+public class LoginController {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
