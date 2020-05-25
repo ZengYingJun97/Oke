@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.titleBar = new CxFlatUI.CxFlatStatusBar();
             this.loginMainBox = new CxFlatUI.CxFlatGroupBox();
@@ -39,6 +40,7 @@
             this.passwordBox = new CxFlatUI.CxFlatTextBox();
             this.usernameLabel = new System.Windows.Forms.Label();
             this.usernameBox = new CxFlatUI.CxFlatTextBox();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.loginMainBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -109,9 +111,9 @@
             this.rememberUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(173)))), ((int)(((byte)(255)))));
             this.rememberUser.Location = new System.Drawing.Point(44, 354);
             this.rememberUser.Name = "rememberUser";
-            this.rememberUser.Size = new System.Drawing.Size(140, 20);
+            this.rememberUser.Size = new System.Drawing.Size(84, 20);
             this.rememberUser.TabIndex = 5;
-            this.rememberUser.Text = "记住用户名和密码";
+            this.rememberUser.Text = "记住密码";
             this.rememberUser.UseVisualStyleBackColor = true;
             // 
             // loginButton
@@ -124,6 +126,7 @@
             this.loginButton.TabIndex = 4;
             this.loginButton.Text = "登录";
             this.loginButton.TextColor = System.Drawing.Color.White;
+            this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
             // 
             // passwordLabel
             // 
@@ -184,6 +187,11 @@
             this.usernameBox.TabStop = false;
             this.usernameBox.UseSystemPasswordChar = false;
             // 
+            // timer
+            // 
+            this.timer.Interval = 2000;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -221,5 +229,6 @@
         private System.Windows.Forms.LinkLabel registerLink;
         private CxFlatUI.CxFlatCheckBox rememberUser;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Timer timer;
     }
 }

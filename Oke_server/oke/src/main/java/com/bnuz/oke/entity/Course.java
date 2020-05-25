@@ -1,6 +1,5 @@
 package com.bnuz.oke.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -9,9 +8,7 @@ import java.util.Date;
  * @author handsome
  * @date 2020年 05月15日 00:02:34
  */
-public class Course implements Serializable {
-
-	private static final long serialVersionUID = 830830966765014573L;
+public class Course {
 
 	private String courseNumber;
 

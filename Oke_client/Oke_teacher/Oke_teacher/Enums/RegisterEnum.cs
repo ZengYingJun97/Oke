@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Oke_teacher.Enums
 {
+    /// <summary>
+    /// 用户注册提示消息
+    /// </summary>
     public enum RegisterEnum
     {
         [Display(Name = "主要信息不能为空")]
@@ -16,6 +19,12 @@ namespace Oke_teacher.Enums
         [Display(Name = "用户名长度应8-20")]
         ERRORURN,
         [Display(Name = "密码长度应8-20")]
-        ERRORPWD
+        ERRORPWD,
+        [Display(Name = "存在该用户，请登录")]
+        FAIL_REGISTER,
+        [Display(Name = "注册成功")]
+        SUCC_REGISTER,
+        [Display(Name = "姓名和职称长度应2-10")]
+        ERROR_INFO
     }
 }
