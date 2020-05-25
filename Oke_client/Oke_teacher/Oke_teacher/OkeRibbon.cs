@@ -64,6 +64,9 @@ namespace Oke_teacher
             setQuestForm.Show();
         }
 
-        
+        private void OkeRibbon_Load(object sender, RibbonUIEventArgs e)
+        {
+
+        }
     }
 }

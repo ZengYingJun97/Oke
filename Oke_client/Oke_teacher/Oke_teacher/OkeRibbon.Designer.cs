@@ -43,6 +43,7 @@
             this.Downclassbtn = this.Factory.CreateRibbonButton();
             this.group2 = this.Factory.CreateRibbonGroup();
             this.Judgquesbtn = this.Factory.CreateRibbonButton();
+            this.simleanswerbutton = this.Factory.CreateRibbonButton();
             this.OkeTab.SuspendLayout();
             this.LoginGroup.SuspendLayout();
             this.group1.SuspendLayout();
@@ -109,6 +110,7 @@
             // 
             // group2
             // 
+            this.group2.Items.Add(this.simleanswerbutton);
             this.group2.Items.Add(this.Judgquesbtn);
             this.group2.Label = "题目\n";
             this.group2.Name = "group2";
@@ -122,11 +124,20 @@
             this.Judgquesbtn.ShowImage = true;
             this.Judgquesbtn.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Judgquesbtn_Click);
             // 
+            // simleanswerbutton
+            // 
+            this.simleanswerbutton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.simleanswerbutton.Image = global::Oke_teacher.Properties.Resources.Oke_simpleanswer;
+            this.simleanswerbutton.Label = "简答题";
+            this.simleanswerbutton.Name = "simleanswerbutton";
+            this.simleanswerbutton.ShowImage = true;
+            // 
             // OkeRibbon
             // 
             this.Name = "OkeRibbon";
             this.RibbonType = "Microsoft.PowerPoint.Presentation";
             this.Tabs.Add(this.OkeTab);
+            this.Load += new Microsoft.Office.Tools.Ribbon.RibbonUIEventHandler(this.OkeRibbon_Load);
             this.OkeTab.ResumeLayout(false);
             this.OkeTab.PerformLayout();
             this.LoginGroup.ResumeLayout(false);
@@ -150,6 +161,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton Downclassbtn;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup group2;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton Judgquesbtn;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton simleanswerbutton;
     }
 
     partial class ThisRibbonCollection

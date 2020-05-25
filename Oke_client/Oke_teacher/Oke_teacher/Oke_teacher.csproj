@@ -303,8 +303,11 @@
     <None Include="Resources\Oke_loginBg1.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\downclassicon-09.png" />
     <Content Include="Resources\downclassicon-091.png" />
     <Content Include="Resources\MyInfo.png" />
+    <None Include="Resources\Oke_simpleanswer.png" />
+    <Content Include="Resources\upclassicon-08.png" />
     <Content Include="Resources\upclassicon-081.png" />
   </ItemGroup>
   <PropertyGroup>

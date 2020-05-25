@@ -97,9 +97,9 @@
             this.usernameBox.ForeColor = System.Drawing.Color.Black;
             this.usernameBox.Location = new System.Drawing.Point(178, 118);
             this.usernameBox.Name = "usernameBox";
-            this.usernameBox.Size = new System.Drawing.Size(174, 21);
+            this.usernameBox.Size = new System.Drawing.Size(148, 21);
             this.usernameBox.TabIndex = 7;
-            this.usernameBox.Text = "handsomehandsomehh";
+            this.usernameBox.Text = "handsomehandsom";
             this.usernameBox.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // usernameLabel
@@ -108,7 +108,7 @@
             this.usernameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(173)))), ((int)(((byte)(255)))));
             this.usernameLabel.Location = new System.Drawing.Point(120, 118);
             this.usernameLabel.Name = "usernameLabel";
-            this.usernameLabel.Size = new System.Drawing.Size(58, 21);
+            this.usernameLabel.Size = new System.Drawing.Size(61, 21);
             this.usernameLabel.TabIndex = 6;
             this.usernameLabel.Text = "用户名";
             // 
@@ -118,7 +118,7 @@
             this.titleBox.ForeColor = System.Drawing.Color.Black;
             this.titleBox.Location = new System.Drawing.Point(178, 84);
             this.titleBox.Name = "titleBox";
-            this.titleBox.Size = new System.Drawing.Size(74, 21);
+            this.titleBox.Size = new System.Drawing.Size(78, 21);
             this.titleBox.TabIndex = 5;
             this.titleBox.Text = "测试人员";
             this.titleBox.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -129,7 +129,7 @@
             this.titleLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(173)))), ((int)(((byte)(255)))));
             this.titleLabel.Location = new System.Drawing.Point(120, 84);
             this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(42, 21);
+            this.titleLabel.Size = new System.Drawing.Size(44, 21);
             this.titleLabel.TabIndex = 4;
             this.titleLabel.Text = "职称";
             // 
@@ -140,7 +140,7 @@
             this.nameBox.ForeColor = System.Drawing.Color.Black;
             this.nameBox.Location = new System.Drawing.Point(178, 50);
             this.nameBox.Name = "nameBox";
-            this.nameBox.Size = new System.Drawing.Size(58, 21);
+            this.nameBox.Size = new System.Drawing.Size(61, 21);
             this.nameBox.TabIndex = 3;
             this.nameBox.Text = "曾小课";
             this.nameBox.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -151,7 +151,7 @@
             this.nameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(173)))), ((int)(((byte)(255)))));
             this.nameLabel.Location = new System.Drawing.Point(120, 50);
             this.nameLabel.Name = "nameLabel";
-            this.nameLabel.Size = new System.Drawing.Size(42, 21);
+            this.nameLabel.Size = new System.Drawing.Size(44, 21);
             this.nameLabel.TabIndex = 2;
             this.nameLabel.Text = "姓名";
             // 
