@@ -8,9 +8,12 @@ package com.bnuz.oke.enums;
  */
 public enum LoginStateEnum {
 	SUCCESS_REGISTER(0, "注册成功"),
-	FAIL_REGISTER(1, "注册失败"),
+	FAIL_REGISTER(1, "该账号已存在"),
 	SUCCESS_LOGIN(2, "登陆成功"),
-	FAIL_LOGIN(3, "用户名或密码不正确");
+	FAIL_LOGIN(3, "用户名或密码不正确"),
+	INVALID_OP(4, "无效操作"),
+	SUCCESS_UPDATE(5, "修改成功"),
+	SUCCESS_LOGOUT(6, "退出成功");
 
 	private int state;
 

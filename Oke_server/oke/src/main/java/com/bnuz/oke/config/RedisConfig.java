@@ -22,10 +22,6 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 @AutoConfigureAfter(RedisAutoConfiguration.class)
 public class RedisConfig {
 
-	/**
-	 * 配置自定义redisTemplate
-	 * @return
-	 */
 	@Bean
 	RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
 

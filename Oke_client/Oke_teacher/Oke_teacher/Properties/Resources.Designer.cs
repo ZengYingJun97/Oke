@@ -61,6 +61,16 @@ namespace Oke_teacher.Properties {
         }
         
         /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap downclassicon_09 {
+            get {
+                object obj = ResourceManager.GetObject("downclassicon-09", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 系统繁忙，稍等片刻 的本地化字符串。
         /// </summary>
         internal static string ExceptionTip {
@@ -143,6 +153,16 @@ namespace Oke_teacher.Properties {
         internal static string Server {
             get {
                 return ResourceManager.GetString("Server", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap upclassicon_08 {
+            get {
+                object obj = ResourceManager.GetObject("upclassicon-08", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

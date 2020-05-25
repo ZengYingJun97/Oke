@@ -72,4 +72,43 @@ class LoginServiceImplTest {
 			logger.info("登陆失败！");
 		}
 	}
+
+	@Test
+	void updateStudent() {
+		Student student = new Student();
+		student.setStudentId(1);
+		student.setStudentNumber("17017010003");
+		student.setStudentName("人亦须");
+		student.setStudentClass("测试班");
+		Student nowStudent = loginService.updateStudent(student);
+		logger.info("nowStudent = {}", nowStudent);
+	}
+
+	@Test
+	void updateTeacher() {
+		Teacher teacher = new Teacher();
+		User user = new User();
+		user.setUsername("admin");
+		teacher.setUser(user);
+		teacher.setTeacherId(1);
+		teacher.setTeacherTitle("篮球老师");
+		teacher.setTeacherName("流川枫");
+		Teacher nowTeacher = loginService.updateTeacher(teacher);
+		logger.info("nowTeacher = {}", nowTeacher);
+	}
+
+	@Test
+	void updateUser() {
+		User user = new User();
+		user.setUsername("admin");
+		user.setPassword("admin");
+		boolean isOK = loginService.updateUser(user);
+		logger.info("isOK = {}", isOK);
+	}
+
+	@Test
+	void getUserByUsername() {
+		User user = loginService.getUserByUsername("admin");
+		logger.info("user = {}", user);
+	}
 }

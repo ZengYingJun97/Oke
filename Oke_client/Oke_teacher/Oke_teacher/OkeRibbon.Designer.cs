@@ -39,10 +39,10 @@
             this.LoginButton = this.Factory.CreateRibbonButton();
             this.InfoButton = this.Factory.CreateRibbonButton();
             this.group1 = this.Factory.CreateRibbonGroup();
-            this.button1 = this.Factory.CreateRibbonButton();
-            this.button2 = this.Factory.CreateRibbonButton();
+            this.Upclassbtn = this.Factory.CreateRibbonButton();
+            this.Downclassbtn = this.Factory.CreateRibbonButton();
             this.group2 = this.Factory.CreateRibbonGroup();
-            this.button3 = this.Factory.CreateRibbonButton();
+            this.Judgquesbtn = this.Factory.CreateRibbonButton();
             this.OkeTab.SuspendLayout();
             this.LoginGroup.SuspendLayout();
             this.group1.SuspendLayout();
@@ -85,40 +85,42 @@
             // 
             // group1
             // 
-            this.group1.Items.Add(this.button1);
-            this.group1.Items.Add(this.button2);
+            this.group1.Items.Add(this.Upclassbtn);
+            this.group1.Items.Add(this.Downclassbtn);
             this.group1.Name = "group1";
             // 
-            // button1
+            // Upclassbtn
             // 
-            this.button1.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.button1.Image = global::Oke_teacher.Properties.Resources.Oke_logo;
-            this.button1.Label = "签到";
-            this.button1.Name = "button1";
-            this.button1.ShowImage = true;
-            this.button1.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button1_Click);
+            this.Upclassbtn.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.Upclassbtn.Image = global::Oke_teacher.Properties.Resources.upclassicon_08;
+            this.Upclassbtn.Label = "上课\n";
+            this.Upclassbtn.Name = "Upclassbtn";
+            this.Upclassbtn.ShowImage = true;
+            this.Upclassbtn.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Upclassbtn_Click);
             // 
-            // button2
+            // Downclassbtn
             // 
-            this.button2.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.button2.Image = global::Oke_teacher.Properties.Resources.Oke_logo;
-            this.button2.Label = "签退";
-            this.button2.Name = "button2";
-            this.button2.ShowImage = true;
+            this.Downclassbtn.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.Downclassbtn.Image = global::Oke_teacher.Properties.Resources.downclassicon_09;
+            this.Downclassbtn.Label = "下课\n";
+            this.Downclassbtn.Name = "Downclassbtn";
+            this.Downclassbtn.ShowImage = true;
+            this.Downclassbtn.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Downclassbtn_Click);
             // 
             // group2
             // 
-            this.group2.Items.Add(this.button3);
-            this.group2.Label = "题目";
+            this.group2.Items.Add(this.Judgquesbtn);
+            this.group2.Label = "题目\n";
             this.group2.Name = "group2";
             // 
-            // button3
+            // Judgquesbtn
             // 
-            this.button3.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.button3.Image = global::Oke_teacher.Properties.Resources.Oke_logo;
-            this.button3.Label = "判断题";
-            this.button3.Name = "button3";
-            this.button3.ShowImage = true;
+            this.Judgquesbtn.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.Judgquesbtn.Image = global::Oke_teacher.Properties.Resources.Oke_logo;
+            this.Judgquesbtn.Label = "判断题\n";
+            this.Judgquesbtn.Name = "Judgquesbtn";
+            this.Judgquesbtn.ShowImage = true;
+            this.Judgquesbtn.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Judgquesbtn_Click);
             // 
             // OkeRibbon
             // 
@@ -143,11 +145,11 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup LoginGroup;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton LoginButton;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup group1;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton button1;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton Upclassbtn;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton InfoButton;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton button2;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton Downclassbtn;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup group2;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton button3;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton Judgquesbtn;
     }
 
     partial class ThisRibbonCollection
