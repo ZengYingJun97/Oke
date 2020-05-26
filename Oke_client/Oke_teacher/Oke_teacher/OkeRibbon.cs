@@ -64,7 +64,19 @@ namespace Oke_teacher
         {
             SetQuestForm setQuestForm = new SetQuestForm();
             setQuestForm.Show();
+
         }
+        #region 在PPT添加作答按钮
+        //添加Form窗体,窗体中添加Image控件,单击弹出"PPT"信息提示
+        //命名引用：using MF = Microsoft.Vbe.Interop.Forms;
+        
+
+
+
+        //点击事件
+
+        
+        #endregion
 
         private void OkeRibbon_Load(object sender, RibbonUIEventArgs e)
         {
