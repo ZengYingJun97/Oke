@@ -8,7 +8,6 @@ import com.bnuz.oke.entity.Teacher;
 import com.bnuz.oke.entity.User;
 import com.bnuz.oke.enums.LoginStateEnum;
 import com.bnuz.oke.enums.OkeStateEnum;
-import com.bnuz.oke.service.CourseService;
 import com.bnuz.oke.service.LoginService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -86,7 +85,7 @@ public class LoginController {
 			if (teacher != null) {
 				SessionData sessionData = new SessionData(session.getId(), teacher);
 
-				redisTemplate.opsForValue().set("sessionId:" + sessionData.getSessionId(), "teacher:" + teacher.getTeacherId(), 60 * 60 * 24, TimeUnit.SECONDS);
+				redisTemplate.opsForValue().set("session:" + sessionData.getSessionId(), "teacher:" + teacher.getTeacherId(), 60 * 60 * 24, TimeUnit.SECONDS);
 				redisTemplate.opsForValue().set("teacher:" + teacher.getTeacherId(), teacher, 60 * 60 * 24, TimeUnit.SECONDS);
 
 				teacher.getUser().setPassword(null);
@@ -148,7 +147,7 @@ public class LoginController {
 			if (student != null) {
 				SessionData sessionData = new SessionData(session.getId(), student);
 
-				redisTemplate.opsForValue().set("sessionId:" + sessionData.getSessionId(), "student:" + student.getStudentId(), 60 * 60 * 24, TimeUnit.SECONDS);
+				redisTemplate.opsForValue().set("session:" + sessionData.getSessionId(), "student:" + student.getStudentId(), 60 * 60 * 24, TimeUnit.SECONDS);
 				redisTemplate.opsForValue().set("student:" + student.getStudentId(), student, 60 * 60 * 24, TimeUnit.SECONDS);
 
 				student.getUser().setPassword(null);
@@ -178,7 +177,7 @@ public class LoginController {
 	public OkeResult<SessionData> updateTeacher(@RequestBody SessionData<Teacher> sessionData) {
 		OkeResult<SessionData> result;
 		String sessionId = sessionData.getSessionId();
-		String value = (String) redisTemplate.opsForValue().get("sessionId:" + sessionId);
+		String value = (String) redisTemplate.opsForValue().get("session:" + sessionId);
 		if (value == null) {
 			result = new OkeResult<>(false, LoginStateEnum.INVALID_OP.getStateInfo());
 		} else {
@@ -209,7 +208,7 @@ public class LoginController {
 	public OkeResult<SessionData> updateStudent(@RequestBody SessionData<Student> sessionData) {
 		OkeResult<SessionData> result;
 		String sessionId = sessionData.getSessionId();
-		String value = (String) redisTemplate.opsForValue().get("sessionId:" + sessionId);
+		String value = (String) redisTemplate.opsForValue().get("session:" + sessionId);
 		if (value == null) {
 			result = new OkeResult<>(false, LoginStateEnum.INVALID_OP.getStateInfo());
 		} else {
@@ -244,7 +243,7 @@ public class LoginController {
 
 		OkeResult<SessionData> result;
 		String sessionId = sessionData.getSessionId();
-		String value = (String) redisTemplate.opsForValue().get("sessionId:" + sessionId);
+		String value = (String) redisTemplate.opsForValue().get("session:" + sessionId);
 		if (value == null) {
 			result = new OkeResult<>(false, LoginStateEnum.INVALID_OP.getStateInfo());
 		} else {
@@ -297,7 +296,7 @@ public class LoginController {
 
 		OkeResult<SessionData> result;
 		String sessionId = sessionData.getSessionId();
-		String value = (String) redisTemplate.opsForValue().get("sessionId:" + sessionId);
+		String value = (String) redisTemplate.opsForValue().get("session:" + sessionId);
 		if (value == null) {
 			result = new OkeResult<>(false, LoginStateEnum.INVALID_OP.getStateInfo());
 		} else {
@@ -348,7 +347,7 @@ public class LoginController {
 		String sessionId= sessionData.getSessionId();
 		int teacherId = sessionData.getData().getTeacherId();
 		try {
-			redisTemplate.delete("sessionId:" + sessionId);
+			redisTemplate.delete("session:" + sessionId);
 			redisTemplate.delete("teacher:" + teacherId);
 			result = new OkeResult<>(true, LoginStateEnum.SUCCESS_LOGOUT.getStateInfo());
 		} catch (Exception e) {
@@ -373,7 +372,7 @@ public class LoginController {
 		String sessionId= sessionData.getSessionId();
 		int studentId = sessionData.getData().getStudentId();
 		try {
-			redisTemplate.delete("sessionId:" + sessionId);
+			redisTemplate.delete("session:" + sessionId);
 			redisTemplate.delete("student:" + studentId);
 			result = new OkeResult<>(true, LoginStateEnum.SUCCESS_LOGOUT.getStateInfo());
 		} catch (Exception e) {

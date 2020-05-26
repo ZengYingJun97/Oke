@@ -2,6 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bnuz.oke.dao.CourseDao">
 
+    <select id="queryByTeacherId" resultType="com.bnuz.oke.entity.Course">
+        select
+            c.course_number, c.course_name, c.course_create_time, c.course_end_time,
+            t.teacher_id as "teacher.teacherId", teacher_name as "teacher.teacherName", teacher_title as "teacher.teacherTitle"
+        from course c, teacher t
+        where t.teacher_id = c.teacher_id and c.teacher_id = #{teacherId}
+    </select>
+
     <select id="queryByNumber" resultType="com.bnuz.oke.entity.Course">
         select
             c.course_number, c.course_name, c.course_create_time, c.course_end_time,

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class CourseServiceImplTest {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -112,10 +112,24 @@ class CourseServiceImplTest {
 		Student student = new Student();
 		student.setStudentId(1);
 		StudentAnswer studentAnswer = new StudentAnswer();
-		studentAnswer.setAnswerContent("B");
+		studentAnswer.setAnswerContent("B;");
 		studentAnswer.setQuestion(question);
 		studentAnswer.setStudent(student);
 		courseService.isTrueStudentAnswer(studentAnswer);
 		logger.info("studentAnswer = {}", studentAnswer);
+	}
+
+	@Test
+	void questionAnswerList() {
+		int questionId = 9;
+		List<StudentAnswer> studentAnswerList = courseService.questionAnswerList(questionId);
+		logger.info("studentAnswerList = {}", studentAnswerList);
+	}
+
+	@Test
+	void getCourseByTeacherId() {
+		int teacherId = 1;
+		List<Course> courseList = courseService.getCourseByTeacherId(teacherId);
+		logger.info("courseList = {}", courseList);
 	}
 }
