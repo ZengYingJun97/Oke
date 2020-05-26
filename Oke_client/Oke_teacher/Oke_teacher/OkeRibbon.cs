@@ -60,11 +60,15 @@ namespace Oke_teacher
         }
         #endregion
         #region 判断题
+
         private void Judgquesbtn_Click(object sender, RibbonControlEventArgs e)
         {
-
-            //SetQuestForm setQuestForm = new SetQuestForm();
-            //setQuestForm.Show();
+            if (Globals.ThisAddIn._JudgeTaskPane != null)
+            {
+                Globals.ThisAddIn._JudgeTaskPane.Visible = true;
+            }
+                //SetQuestForm setQuestForm = new SetQuestForm();
+                //setQuestForm.Show();
             Microsoft.Office.Interop.PowerPoint.Presentation MyPres = null;//ppt实例
             Microsoft.Office.Interop.PowerPoint.Slides AllSlides = null;//PPT中所有的幻灯片
             Microsoft.Office.Interop.PowerPoint.Slide MySlide = null;//当前幻灯片
@@ -106,8 +110,8 @@ namespace Oke_teacher
             NewSlide.Shapes[2].TextFrame.VerticalAnchor = MsoVerticalAnchor.msoAnchorMiddle; //文本对齐方式（垂直方向）
             #endregion
             #region 添加对错按钮
-            AddOleForm1(NewSlide, 21.5F, 400F, 70F, 50F, "true", 1);
-            AddOleForm1(NewSlide, 200F, 400F, 70F, 50F, "false", 2);
+            AddOleForm1(NewSlide, 21.5F, 400F, 70F, 50F, "True", 1);
+            AddOleForm1(NewSlide, 200F, 400F, 70F, 50F, "False", 2);
 
             //Image image1 = Properties.Resources.Oke_true;
             //Image image2 = Properties.Resources.Oke_false;
