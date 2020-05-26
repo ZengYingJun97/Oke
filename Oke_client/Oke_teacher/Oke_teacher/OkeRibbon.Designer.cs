@@ -45,10 +45,13 @@
             this.fillbutton = this.Factory.CreateRibbonButton();
             this.simleanswerbutton = this.Factory.CreateRibbonButton();
             this.Judgquesbtn = this.Factory.CreateRibbonButton();
+            this.interactgroup = this.Factory.CreateRibbonGroup();
+            this.scratchbutton = this.Factory.CreateRibbonButton();
             this.OkeTab.SuspendLayout();
             this.LoginGroup.SuspendLayout();
             this.group1.SuspendLayout();
             this.group2.SuspendLayout();
+            this.interactgroup.SuspendLayout();
             this.SuspendLayout();
             // 
             // OkeTab
@@ -56,6 +59,7 @@
             this.OkeTab.Groups.Add(this.LoginGroup);
             this.OkeTab.Groups.Add(this.group1);
             this.OkeTab.Groups.Add(this.group2);
+            this.OkeTab.Groups.Add(this.interactgroup);
             this.OkeTab.Label = "Oke";
             this.OkeTab.Name = "OkeTab";
             // 
@@ -121,8 +125,8 @@
             // 
             this.fillbutton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
             this.fillbutton.Image = global::Oke_teacher.Properties.Resources.Oke_fillinblank;
-            this.fillbutton.Label = "填空题";
-            this.fillbutton.Name = "fillinbutton";
+            this.fillbutton.Label = "填空题\n";
+            this.fillbutton.Name = "fillbutton";
             this.fillbutton.ShowImage = true;
             this.fillbutton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.fillinbutton_Click);
             // 
@@ -130,19 +134,33 @@
             // 
             this.simleanswerbutton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
             this.simleanswerbutton.Image = global::Oke_teacher.Properties.Resources.Oke_simpleanswer;
-            this.simleanswerbutton.Label = "简答题";
-            this.simleanswerbutton.Name = "simpleanswerbutton";
+            this.simleanswerbutton.Label = "简答题\n";
+            this.simleanswerbutton.Name = "simleanswerbutton";
             this.simleanswerbutton.ShowImage = true;
             this.simleanswerbutton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.simpleanswerbutton_Click);
             // 
             // Judgquesbtn
             // 
             this.Judgquesbtn.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.Judgquesbtn.Image = global::Oke_teacher.Properties.Resources.Oke_logo;
+            this.Judgquesbtn.Image = global::Oke_teacher.Properties.Resources.Oke_judge;
             this.Judgquesbtn.Label = "判断题\n";
             this.Judgquesbtn.Name = "Judgquesbtn";
             this.Judgquesbtn.ShowImage = true;
             this.Judgquesbtn.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Judgquesbtn_Click);
+            // 
+            // interactgroup
+            // 
+            this.interactgroup.Items.Add(this.scratchbutton);
+            this.interactgroup.Label = "课堂互动";
+            this.interactgroup.Name = "interactgroup";
+            // 
+            // scratchbutton
+            // 
+            this.scratchbutton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.scratchbutton.Image = global::Oke_teacher.Properties.Resources.Oke_scratchcard;
+            this.scratchbutton.Label = "刮奖\n";
+            this.scratchbutton.Name = "scratchbutton";
+            this.scratchbutton.ShowImage = true;
             // 
             // OkeRibbon
             // 
@@ -158,6 +176,8 @@
             this.group1.PerformLayout();
             this.group2.ResumeLayout(false);
             this.group2.PerformLayout();
+            this.interactgroup.ResumeLayout(false);
+            this.interactgroup.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -175,6 +195,8 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton Judgquesbtn;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton simleanswerbutton;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton fillbutton;
+        internal Microsoft.Office.Tools.Ribbon.RibbonGroup interactgroup;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton scratchbutton;
     }
 
     partial class ThisRibbonCollection
