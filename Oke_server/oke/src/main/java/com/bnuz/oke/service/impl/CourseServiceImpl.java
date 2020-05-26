@@ -55,6 +55,11 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
+	public List<Course> getCourseByTeacherId(int teacherId) {
+		return courseDao.queryByTeacherId(teacherId);
+	}
+
+	@Override
 	@Transactional
 	public boolean endCourse(Course course) {
 		course.setCourseEndTime(new Date());
@@ -141,5 +146,10 @@ public class CourseServiceImpl implements CourseService {
 			}
 		}
 		return studentAnswer;
+	}
+
+	@Override
+	public List<StudentAnswer> questionAnswerList(int questionId) {
+		return studentAnswerDao.queryByQuestionId(questionId);
 	}
 }

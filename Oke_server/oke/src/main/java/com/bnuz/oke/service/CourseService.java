@@ -16,6 +16,8 @@ public interface CourseService {
 
 	Course getCourseByCourseNumber(String courseNumber);
 
+	List<Course> getCourseByTeacherId(int teacherId);
+
 	boolean endCourse(Course course);
 
 	boolean onlineStudent(CourseRecord courseRecord);
@@ -25,4 +27,6 @@ public interface CourseService {
 	Question addQuestion(Question question, List<Option> optionList);
 
 	StudentAnswer isTrueStudentAnswer(StudentAnswer studentAnswer);
+
+	List<StudentAnswer> questionAnswerList(int questionId);
 }
