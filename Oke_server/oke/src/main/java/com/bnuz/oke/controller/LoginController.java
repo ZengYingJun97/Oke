@@ -14,10 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.concurrent.TimeUnit;
@@ -29,6 +26,7 @@ import java.util.concurrent.TimeUnit;
  * @date 2020年 05月22日 23:46:36
  */
 @Controller
+@CrossOrigin
 @RequestMapping("/oke")
 public class LoginController {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -71,7 +69,7 @@ public class LoginController {
 	 * @date 2020/05/24 23:34:34
 	 * @author handsome
 	 * @param user
- * @param session
+	 * @param session
 	 * @return com.bnuz.oke.dto.OkeResult<com.bnuz.oke.dto.SessionData>
 	 */
 	@RequestMapping(value = "/teacher/login",
@@ -89,7 +87,7 @@ public class LoginController {
 				redisTemplate.opsForValue().set("teacher:" + teacher.getTeacherId(), teacher, 60 * 60 * 24, TimeUnit.SECONDS);
 
 				teacher.getUser().setPassword(null);
-
+				logger.info("sessionId = {}", session.getId());
 				result = new OkeResult<>(true, sessionData);
 			} else {
 				result = new OkeResult<>(false, LoginStateEnum.FAIL_LOGIN.getStateInfo());

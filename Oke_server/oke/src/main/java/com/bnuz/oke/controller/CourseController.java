@@ -16,10 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -31,6 +28,7 @@ import java.util.concurrent.TimeUnit;
  * @date 2020年 05月25日 23:26:43
  */
 @Controller
+@CrossOrigin
 @RequestMapping("/oke")
 public class CourseController {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -132,6 +130,7 @@ public class CourseController {
 	@ResponseBody
 	public OkeResult<SessionData> entryCourse(@RequestBody SessionData<String> sessionData) {
 		OkeResult<SessionData> result;
+		sessionData.setData(sessionData.getData().toUpperCase());
 		String sessionId = sessionData.getSessionId();
 		String value = (String) redisTemplate.opsForValue().get("session:" + sessionId);
 		if (value == null) {
@@ -162,7 +161,7 @@ public class CourseController {
 	}
 
 	/**
-	 * 课程发布题目
+	 * 老师发布题目
 	 * @date 2020/05/26 16:25:45
 	 * @author handsome
 	 * @param sessionData
@@ -200,6 +199,7 @@ public class CourseController {
 					}
 					result = new OkeResult<>(true, CourseStateEnum.SUCCESS_OP.getStateInfo());
 				} catch (Exception e){
+					logger.info("e = {}", e);
 					result = new OkeResult<>(false, OkeStateEnum.EXCEPTION_SERVER.getStateInfo());
 				}
 			}
@@ -312,7 +312,7 @@ public class CourseController {
 
 	/**
 	 * 获得课程列表 
-	 * @date 2020/05/26 18:29:16
+	 * @date 2020/05/26 20:21:58
 	 * @author handsome
 	 * @param sessionData
 	 * @return com.bnuz.oke.dto.OkeResult<com.bnuz.oke.dto.SessionData>
