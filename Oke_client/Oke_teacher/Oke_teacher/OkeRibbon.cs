@@ -163,7 +163,7 @@ namespace Oke_teacher
         }
 
         #region 填空题按钮的点击事件
-        private void fillinbutton_Click(object sender, RibbonControlEventArgs e)
+        private void Fillinbutton_Click(object sender, RibbonControlEventArgs e)
         {
             //Microsoft.Office.Interop.PowerPoint.Presentation MyPres = null;//PPT应用的实例  
             Microsoft.Office.Interop.PowerPoint.Slides slides = null;//PPT中所有的幻灯片
@@ -221,7 +221,7 @@ namespace Oke_teacher
         #endregion
 
         #region 简答题按钮的点击事件
-        private void simpleanswerbutton_Click(object sender, RibbonControlEventArgs e)
+        private void Simpleanswerbutton_Click(object sender, RibbonControlEventArgs e)
         {
             //Microsoft.Office.Interop.PowerPoint.Presentation MyPres = null;//PPT应用的实例  
             Microsoft.Office.Interop.PowerPoint.Slides slides = null;//PPT中所有的幻灯片
@@ -295,7 +295,7 @@ namespace Oke_teacher
 
         //点击事件
 
-        private void button_Click()
+        private void Button_Click()
         {
             MessageBox.Show("编辑用户控件");
 
@@ -304,7 +304,7 @@ namespace Oke_teacher
 
 
         #region 刮奖PPT
-        private void scratchbutton_Click(object sender, RibbonControlEventArgs e)
+        private void Scratchbutton_Click(object sender, RibbonControlEventArgs e)
         {
 
             //Microsoft.Office.Interop.PowerPoint.Presentation MyPres = null;//PPT应用的实例  
@@ -329,7 +329,7 @@ namespace Oke_teacher
         #endregion
 
         #region 导出学生数据生成excel
-        private void dataoutbutton_Click(object sender, RibbonControlEventArgs e)
+        private void Dataoutbutton_Click(object sender, RibbonControlEventArgs e)
         {
             DataoutForm dataoutForm = new DataoutForm();
             dataoutForm.ShowDialog();

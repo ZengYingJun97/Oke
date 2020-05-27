@@ -106,8 +106,6 @@
     <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="Microsoft.Office.Interop.PowerPoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
     <Reference Include="Microsoft.Office.Interop.PowerPoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
@@ -336,6 +334,7 @@
     <None Include="Resources\Oke_simpleanswer.png" />
     <None Include="Resources\Oke_fillinblank.png" />
     <None Include="Resources\Oke_scratchcard.png" />
+    <None Include="Resources\Oke_dataout.bmp" />
     <None Include="Resources\Oke_dataout.png" />
     <Content Include="Resources\upclassicon-08.png" />
     <Content Include="Resources\upclassicon-081.png" />
