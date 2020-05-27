@@ -52,3 +52,5 @@ F:\Oke\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.pdb
 F:\Oke\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.csprojAssemblyReference.cache
 F:\Oke\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.WinForms.DataoutForm.resources
 F:\Oke\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.WinForms.JudgeTaskPane.resources
+F:\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.WinForms.DataoutForm.resources
+F:\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.WinForms.JudgeTaskPane.resources

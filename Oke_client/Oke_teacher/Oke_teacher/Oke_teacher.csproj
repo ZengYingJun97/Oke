@@ -336,6 +336,7 @@
     <None Include="Resources\Oke_scratchcard.png" />
     <None Include="Resources\Oke_dataout.bmp" />
     <None Include="Resources\Oke_dataout.png" />
+    <Content Include="Resources\Oke_judge.png" />
     <Content Include="Resources\upclassicon-08.png" />
     <Content Include="Resources\upclassicon-081.png" />
   </ItemGroup>
