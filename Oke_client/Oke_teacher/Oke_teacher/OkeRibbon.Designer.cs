@@ -146,7 +146,7 @@
             // Judgquesbtn
             // 
             this.Judgquesbtn.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.Judgquesbtn.Image = global::Oke_teacher.Properties.Resources.Oke_logo;
+            this.Judgquesbtn.Image = global::Oke_teacher.Properties.Resources.Oke_judge;
             this.Judgquesbtn.Label = "判断题\n";
             this.Judgquesbtn.Name = "Judgquesbtn";
             this.Judgquesbtn.ShowImage = true;
