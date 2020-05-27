@@ -20,6 +20,8 @@ public interface CourseRecordDao {
 
 	List<CourseRecord> queryByStudentId(int studentId);
 
+	CourseRecord queryByCourseNumberAndStudentId(String courseNumber, int studentId);
+
 	int insertCourseRecord(CourseRecord courseRecord);
 
 	int updateCourseRecord(CourseRecord courseRecord);

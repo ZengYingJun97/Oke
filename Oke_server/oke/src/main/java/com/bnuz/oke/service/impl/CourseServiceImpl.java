@@ -98,6 +98,11 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
+	public CourseRecord getStudentRecordId(Course course, Student student) {
+		return courseRecordDao.queryByCourseNumberAndStudentId(course.getCourseNumber(), student.getStudentId());
+	}
+
+	@Override
 	@Transactional
 	public Question addQuestion(Question question, List<Option> optionList) {
 		int insertCount = questionDao.insertQuestion(question);

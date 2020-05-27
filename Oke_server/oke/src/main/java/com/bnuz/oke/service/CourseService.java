@@ -24,6 +24,8 @@ public interface CourseService {
 
 	List<CourseRecord> getStudentRecord(Course course);
 
+	CourseRecord getStudentRecordId(Course course, Student student);
+
 	Question addQuestion(Question question, List<Option> optionList);
 
 	StudentAnswer isTrueStudentAnswer(StudentAnswer studentAnswer);

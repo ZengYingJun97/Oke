@@ -15,7 +15,7 @@ import java.util.Date;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class CourseRecordDaoTest {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -61,5 +61,13 @@ class CourseRecordDaoTest {
 		courseRecord.setOfflineTime(new Date());
 		int count = courseRecordDao.updateCourseRecord(courseRecord);
 		logger.info("count = {}", count);
+	}
+
+	@Test
+	void queryByCourseNumberAndStudentId() {
+		String courseNumber = "3384CBB8AAC34A2C9895F0A6DE27AB3C";
+		int studentId = 6;
+		CourseRecord courseRecord = courseRecordDao.queryByCourseNumberAndStudentId(courseNumber, studentId);
+		logger.info("courseRecord = {}", courseRecord);
 	}
 }
