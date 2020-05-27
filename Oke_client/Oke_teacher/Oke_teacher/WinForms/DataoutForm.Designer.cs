@@ -44,7 +44,7 @@
             this.excelbutton.TabIndex = 0;
             this.excelbutton.Text = "导出excel";
             this.excelbutton.TextColor = System.Drawing.Color.White;
-            this.excelbutton.Click += new System.EventHandler(this.excelbutton_Click);
+            this.excelbutton.Click += new System.EventHandler(this.Excelbutton_Click);
             // 
             // studentdataview
             // 

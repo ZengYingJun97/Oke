@@ -29,14 +29,16 @@ namespace Oke_teacher.WinForms
         }
 
         #region 导出excel按钮点击事件
-        private void excelbutton_Click(object sender, EventArgs e)
+        private void Excelbutton_Click(object sender, EventArgs e)
         {
             string fileName = "";
             string saveFileName = "";
-            SaveFileDialog saveDialog = new SaveFileDialog();
-            saveDialog.DefaultExt = "xls";
-            saveDialog.Filter = "Excel文件|*.xls";
-            saveDialog.FileName = fileName;
+            SaveFileDialog saveDialog = new SaveFileDialog
+            {
+                DefaultExt = "xls",
+                Filter = "Excel文件|*.xls",
+                FileName = fileName
+            };
             saveDialog.ShowDialog();
             saveFileName = saveDialog.FileName;
             if (saveFileName.IndexOf(":") < 0) return; //被点了取消

@@ -132,7 +132,7 @@
             this.fillbutton.Label = "填空题\n";
             this.fillbutton.Name = "fillbutton";
             this.fillbutton.ShowImage = true;
-            this.fillbutton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.fillinbutton_Click);
+            this.fillbutton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Fillinbutton_Click);
             // 
             // simleanswerbutton
             // 
@@ -141,7 +141,7 @@
             this.simleanswerbutton.Label = "简答题\n";
             this.simleanswerbutton.Name = "simleanswerbutton";
             this.simleanswerbutton.ShowImage = true;
-            this.simleanswerbutton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.simpleanswerbutton_Click);
+            this.simleanswerbutton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Simpleanswerbutton_Click);
             // 
             // Judgquesbtn
             // 
@@ -165,7 +165,7 @@
             this.scratchbutton.Label = "刮奖\n";
             this.scratchbutton.Name = "scratchbutton";
             this.scratchbutton.ShowImage = true;
-            this.scratchbutton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.scratchbutton_Click);
+            this.scratchbutton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Scratchbutton_Click);
             // 
             // datagroup
             // 
@@ -180,7 +180,7 @@
             this.dataoutbutton.Label = "导出学生名单\n";
             this.dataoutbutton.Name = "dataoutbutton";
             this.dataoutbutton.ShowImage = true;
-            this.dataoutbutton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.dataoutbutton_Click);
+            this.dataoutbutton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Dataoutbutton_Click);
             // 
             // OkeRibbon
             // 
