@@ -9,11 +9,17 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CxFlatUI;
 using Microsoft.Office.Interop.Excel;
+using Newtonsoft.Json;
+using Oke_teacher.Dto;
+using Oke_teacher.Properties;
+using Oke_teacher.Uitls;
 
 namespace Oke_teacher.WinForms
 {
     public partial class DataoutForm : Form
     {
+        private UserData userData;
+        private object user;
 
         public DataoutForm()
         {
@@ -22,10 +28,7 @@ namespace Oke_teacher.WinForms
 
         private void DataoutForm_Load(object sender, EventArgs e)
         {
-            #region 把接受到的数据展示在datagridview
-            List<object> studentlist = new List<object>();
-            studentdataview.DataSource = new BindingList<object>(studentlist);
-            #endregion
+            userData = DataUitls.loadData();//加载用户数据
         }
 
         #region 导出excel按钮点击事件
@@ -84,6 +87,64 @@ namespace Oke_teacher.WinForms
             }
             xlApp.Quit();
             GC.Collect();//强行销毁
+        }
+
+        #endregion
+
+        #region 查询该课程所对应的学生名单
+        private void Classcheckbutton_Click(object sender, EventArgs e)
+        {
+            String classname = Classchoose.Text.Trim();//获取下拉选择框选中的值
+
+            /*
+            #region 发送http请求
+            try
+            {
+                string url = Resources.Server + Resources.新的课堂url;
+                string data = JsonConvert.SerializeObject(user);
+                string response = HttpUitls.POST(url, data);
+                OkeResult<这里写课堂信息Info> okeResult = JsonConvert.DeserializeObject<OkeResult<这里写课堂信息Info>>(response);
+                if (okeResult.success)
+                {
+                    addAlter("成功查询，已导出", CxFlatAlertBox.AlertType.Success);
+                    //LoginInfo.CurrentUser.sessionId = okeResult.data.sessionId;
+                    //LoginInfo.CurrentUser.data = okeResult.data.data;
+                }
+                else
+                {
+                    addAlter("查询出错，请重新选择", CxFlatAlertBox.AlertType.Error);
+                }
+            }
+            catch (Exception)
+            {
+                addAlter(Resources.ExceptionTip, CxFlatAlertBox.AlertType.Error);//弹出提示
+            }
+            #endregion
+
+    */
+            #region 把接受到的数据展示在datagridview
+            List<object> studentlist = new List<object>();
+            studentdataview.DataSource = new BindingList<object>(studentlist);
+            #endregion
+        }
+        #endregion
+
+        #region 增加提示框
+        /// <summary>
+        /// 增加提示框
+        /// </summary>
+        /// <param name="alterText">提示内容</param>
+        /// <param name="alertType">提示类型</param>
+        private void addAlter(string alterText, CxFlatAlertBox.AlertType alertType)
+        {
+            CxFlatAlertBox alert = new CxFlatAlertBox();
+            alert.Location = new System.Drawing.Point(30, 196);
+            alert.Name = "alert";
+            alert.Text = alterText;
+            alert.Size = new Size(240, 34);
+            alert.Type = alertType;
+            this.Controls.Add(alert);
+            alert.BringToFront();
         }
         #endregion
     }
