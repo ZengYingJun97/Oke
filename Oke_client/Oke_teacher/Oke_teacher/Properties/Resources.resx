@@ -198,7 +198,7 @@
     <value>/course/end</value>
     <comment>结束课堂</comment>
   </data>
-  <data name="LoginOutUrl" xml:space="preserve">
+  <data name="LogoutUrl" xml:space="preserve">
     <value>/teacher/logout</value>
     <comment>登出路由</comment>
   </data>

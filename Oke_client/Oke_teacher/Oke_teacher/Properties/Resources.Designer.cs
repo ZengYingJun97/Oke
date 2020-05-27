@@ -125,20 +125,20 @@ namespace Oke_teacher.Properties {
         }
         
         /// <summary>
-        ///   查找类似 /teacher/logout 的本地化字符串。
-        /// </summary>
-        internal static string LoginOutUrl {
-            get {
-                return ResourceManager.GetString("LoginOutUrl", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   查找类似 /teacher/login 的本地化字符串。
         /// </summary>
         internal static string LoginUrl {
             get {
                 return ResourceManager.GetString("LoginUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 /teacher/logout 的本地化字符串。
+        /// </summary>
+        internal static string LogoutUrl {
+            get {
+                return ResourceManager.GetString("LogoutUrl", resourceCulture);
             }
         }
         
