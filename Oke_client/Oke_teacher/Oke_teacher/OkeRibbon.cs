@@ -211,5 +211,38 @@ namespace Oke_teacher
         }
         #endregion
 
+
+        #region 刮奖PPT
+        private void scratchbutton_Click(object sender, RibbonControlEventArgs e)
+        {
+
+            //Microsoft.Office.Interop.PowerPoint.Presentation MyPres = null;//PPT应用的实例  
+            Microsoft.Office.Interop.PowerPoint.Slides slides = null;//PPT中所有的幻灯片
+            Microsoft.Office.Interop.PowerPoint.Slide MySlide = null;//PPT中的幻灯片
+            Microsoft.Office.Interop.PowerPoint.Slide NewSlide = null;//PPT新插入的幻灯片
+            //MyPres = Globals.ThisAddIn.Application.ActivePresentation; // 当前ppt应用实例          
+            slides = Globals.ThisAddIn.Application.ActivePresentation.Slides;//获取当前PPT中的所有幻灯片
+            MySlide = Globals.ThisAddIn.Application.ActiveWindow.View.Slide;  //获取当前选中的幻灯片
+            NewSlide = slides.Add(MySlide.SlideIndex, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);//插入新的幻灯片
+
+            #region 没有办法弄相对路径
+            //在当前PPT位置插入指定路径ppt中第7的刮奖PPT
+            Globals.ThisAddIn.Application.ActivePresentation.Slides.InsertFromFile(@"C:\Users\csq\Desktop\大作业素材\教学 PPT.ppt", MySlide.SlideIndex, 7, 7);
+            #endregion
+
+            #region 刮奖数量for生成多少个选项
+
+            #endregion
+        }
+
+        #endregion
+
+        #region 导出学生数据生成excel
+        private void dataoutbutton_Click(object sender, RibbonControlEventArgs e)
+        {
+            DataoutForm dataoutForm = new DataoutForm();
+            dataoutForm.ShowDialog();
+        }
+        #endregion
     }
 }

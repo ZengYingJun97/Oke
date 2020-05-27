@@ -103,6 +103,9 @@
     <Reference Include="CxFlatUI">
       <HintPath>..\..\..\..\CxFlatUI-master\CxFlatUI\bin\Debug\CxFlatUI.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Microsoft.Office.Interop.PowerPoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -181,6 +184,12 @@
     <Compile Include="Uitls\DataUitls.cs" />
     <Compile Include="Uitls\HttpUitls.cs" />
     <Compile Include="Uitls\UserUitls.cs" />
+    <Compile Include="WinForms\DataoutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\DataoutForm.Designer.cs">
+      <DependentUpon>DataoutForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="WinForms\InfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -248,6 +257,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="WinForms\DataoutForm.resx">
+      <DependentUpon>DataoutForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WinForms\InfoForm.resx">
       <DependentUpon>InfoForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -315,6 +327,7 @@
     <None Include="Resources\Oke_simpleanswer.png" />
     <None Include="Resources\Oke_fillinblank.png" />
     <None Include="Resources\Oke_scratchcard.png" />
+    <None Include="Resources\Oke_dataout.png" />
     <Content Include="Resources\upclassicon-08.png" />
     <Content Include="Resources\upclassicon-081.png" />
   </ItemGroup>
