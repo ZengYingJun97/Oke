@@ -4,6 +4,8 @@ import com.bnuz.oke.entity.Course;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  * CourseDao
  *
@@ -13,6 +15,8 @@ import org.springframework.stereotype.Component;
 @Mapper
 @Component
 public interface CourseDao {
+
+	List<Course> queryByTeacherId(int teacherId);
 
 	Course queryByNumber(String courseNumber);
 

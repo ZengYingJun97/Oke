@@ -103,6 +103,12 @@
     <Reference Include="CxFlatUI">
       <HintPath>..\..\..\..\CxFlatUI-master\CxFlatUI\bin\Debug\CxFlatUI.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.PowerPoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Microsoft.Office.Tools, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
@@ -111,6 +117,11 @@
     </Reference>
     <Reference Include="Microsoft.Office.Tools.Common.v4.0.Utilities, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Office.Tools.v4.0.Framework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Vbe.Interop.Forms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>D:\Net\Microsoft.Vbe.Interop.Forms.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -134,10 +145,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Office.Interop.PowerPoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
-      <Private>False</Private>
-      <EmbedInteropTypes>true</EmbedInteropTypes>
-    </Reference>
     <Reference Include="stdole, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <Private>False</Private>
     </Reference>
@@ -175,11 +182,23 @@
     <Compile Include="Uitls\DataUitls.cs" />
     <Compile Include="Uitls\HttpUitls.cs" />
     <Compile Include="Uitls\UserUitls.cs" />
+    <Compile Include="WinForms\DataoutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\DataoutForm.Designer.cs">
+      <DependentUpon>DataoutForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="WinForms\InfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="WinForms\InfoForm.Designer.cs">
       <DependentUpon>InfoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\JudgeTaskPane.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WinForms\JudgeTaskPane.Designer.cs">
+      <DependentUpon>JudgeTaskPane.cs</DependentUpon>
     </Compile>
     <Compile Include="WinForms\LoginForm.cs">
       <SubType>Form</SubType>
@@ -242,8 +261,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="WinForms\DataoutForm.resx">
+      <DependentUpon>DataoutForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WinForms\InfoForm.resx">
       <DependentUpon>InfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\JudgeTaskPane.resx">
+      <DependentUpon>JudgeTaskPane.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinForms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -303,8 +328,15 @@
     <None Include="Resources\Oke_loginBg1.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\downclassicon-09.png" />
     <Content Include="Resources\downclassicon-091.png" />
     <Content Include="Resources\MyInfo.png" />
+    <None Include="Resources\Oke_simpleanswer.png" />
+    <None Include="Resources\Oke_fillinblank.png" />
+    <None Include="Resources\Oke_scratchcard.png" />
+    <None Include="Resources\Oke_dataout.bmp" />
+    <None Include="Resources\Oke_dataout.png" />
+    <Content Include="Resources\upclassicon-08.png" />
     <Content Include="Resources\upclassicon-081.png" />
   </ItemGroup>
   <PropertyGroup>

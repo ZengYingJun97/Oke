@@ -16,13 +16,19 @@ public interface CourseService {
 
 	Course getCourseByCourseNumber(String courseNumber);
 
+	List<Course> getCourseByTeacherId(int teacherId);
+
 	boolean endCourse(Course course);
 
 	boolean onlineStudent(CourseRecord courseRecord);
 
 	List<CourseRecord> getStudentRecord(Course course);
 
+	CourseRecord getStudentRecordId(Course course, Student student);
+
 	Question addQuestion(Question question, List<Option> optionList);
 
 	StudentAnswer isTrueStudentAnswer(StudentAnswer studentAnswer);
+
+	List<StudentAnswer> questionAnswerList(int questionId);
 }

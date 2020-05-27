@@ -119,18 +119,19 @@
             this.cxFlatTextArea1.Size = new System.Drawing.Size(320, 116);
             this.cxFlatTextArea1.TabIndex = 15;
             this.cxFlatTextArea1.TabStop = false;
-            this.cxFlatTextArea1.Text = "cxFlatTextArea1";
+            this.cxFlatTextArea1.Text = "请输入题目内容...";
             this.cxFlatTextArea1.UseSystemPasswordChar = false;
+            this.cxFlatTextArea1.Click += new System.EventHandler(this.cxFlatTextArea1_Click);
             // 
             // cxFlatButton2
             // 
             this.cxFlatButton2.ButtonType = CxFlatUI.ButtonType.Primary;
             this.cxFlatButton2.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.cxFlatButton2.Location = new System.Drawing.Point(168, 125);
+            this.cxFlatButton2.Location = new System.Drawing.Point(184, 125);
             this.cxFlatButton2.Name = "cxFlatButton2";
             this.cxFlatButton2.Size = new System.Drawing.Size(75, 23);
             this.cxFlatButton2.TabIndex = 14;
-            this.cxFlatButton2.Text = "选题";
+            this.cxFlatButton2.Text = "回答统计";
             this.cxFlatButton2.TextColor = System.Drawing.Color.White;
             this.cxFlatButton2.Click += new System.EventHandler(this.cxFlatButton2_Click);
             // 

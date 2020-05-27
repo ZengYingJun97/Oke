@@ -11,10 +11,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class CourseDaoTest {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -49,5 +50,12 @@ class CourseDaoTest {
 		course.setCourseEndTime(new Date());
 		int count = courseDao.updateCourse(course);
 		logger.info("count = {}", count);
+	}
+
+	@Test
+	void queryByTeacherId() {
+		int teacherId = 1;
+		List<Course> courseList = courseDao.queryByTeacherId(teacherId);
+		logger.info("courseList = {}", courseList);
 	}
 }

@@ -110,6 +110,36 @@ namespace Oke_teacher.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap Oke_dataout {
+            get {
+                object obj = ResourceManager.GetObject("Oke_dataout", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Oke_fillinblank {
+            get {
+                object obj = ResourceManager.GetObject("Oke_fillinblank", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Oke_judge {
+            get {
+                object obj = ResourceManager.GetObject("Oke_judge", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap Oke_loginBg {
             get {
                 object obj = ResourceManager.GetObject("Oke_loginBg", resourceCulture);
@@ -144,6 +174,26 @@ namespace Oke_teacher.Properties {
             get {
                 object obj = ResourceManager.GetObject("Oke_logo1", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Oke_scratchcard {
+            get {
+                object obj = ResourceManager.GetObject("Oke_scratchcard", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Oke_simpleanswer {
+            get {
+                object obj = ResourceManager.GetObject("Oke_simpleanswer", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

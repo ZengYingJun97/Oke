@@ -2,6 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bnuz.oke.dao.CourseRecordDao">
 
+    <select id="queryByCourseNumberAndStudentId" resultType="com.bnuz.oke.entity.CourseRecord">
+        select
+            cr.online_time, cr.offline_time,
+            c.course_number as "course.courseNumber", course_name as "course.courseName", course_create_time as "course.courseCreateTime", course_end_time as "course.courseEndTime", teacher_id as "course.teacher.teacherId",
+            s.student_id as "student.studentId", student_number as "student.studentNumber", student_name as "student.studentName", student_class as "student.studentClass", username as "student.user.username"
+        from course_record cr, course c, student s
+        where cr.course_number = c.course_number and cr.student_id = s.student_id and cr.course_number = #{courseNumber} and cr.student_id = #{studentId}
+    </select>
+
     <select id="queryByCourseNumber" resultType="com.bnuz.oke.entity.CourseRecord">
         select
             cr.online_time, cr.offline_time,

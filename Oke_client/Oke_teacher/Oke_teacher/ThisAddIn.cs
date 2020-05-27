@@ -5,13 +5,24 @@ using System.Text;
 using System.Xml.Linq;
 using PowerPoint = Microsoft.Office.Interop.PowerPoint;
 using Office = Microsoft.Office.Core;
+using Microsoft.Office.Core;
+using Oke_teacher.WinForms;
+using Microsoft.Office.Tools;
 
 namespace Oke_teacher
 {
     public partial class ThisAddIn
     {
+        public Microsoft.Office.Tools.CustomTaskPane _JudgeTaskPane = null;
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
+            //TaskPanetest taskPanetest = new TaskPanetest();测试
+
+            JudgeTaskPane judgeTaskPane = new JudgeTaskPane();
+            _JudgeTaskPane = CustomTaskPanes.Add(judgeTaskPane, "Judge Question");
+            _JudgeTaskPane.Width = 200;
+            _JudgeTaskPane.Visible = false;
+
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)

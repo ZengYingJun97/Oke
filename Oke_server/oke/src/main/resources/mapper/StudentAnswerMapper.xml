@@ -15,7 +15,7 @@
             question_id as "question.questionId", answer_content, answer_correct, answer_value,
             s.student_id as "student.studentId", student_number as "student.studentNumber", student_name as "student.studentName", student_class as "student.studentClass", username as "student.user.username"
         from student_answer sa, student s
-        where sa.student_id = s.student_id and sa.student_id = #{studentId}
+        where sa.student_id = s.student_id and sa.question_id = #{questionId}
     </select>
 
     <insert id="insertStudentAnswer" parameterType="com.bnuz.oke.entity.StudentAnswer">
