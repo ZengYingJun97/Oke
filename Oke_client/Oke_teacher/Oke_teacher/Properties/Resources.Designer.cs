@@ -61,12 +61,57 @@ namespace Oke_teacher.Properties {
         }
         
         /// <summary>
+        ///   查找类似 /course/question/add 的本地化字符串。
+        /// </summary>
+        internal static string AddQuestionUrl {
+            get {
+                return ResourceManager.GetString("AddQuestionUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 /course/question/answerlist 的本地化字符串。
+        /// </summary>
+        internal static string AnswerListUrl {
+            get {
+                return ResourceManager.GetString("AnswerListUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 /course/begin 的本地化字符串。
+        /// </summary>
+        internal static string BeginCourseUrl {
+            get {
+                return ResourceManager.GetString("BeginCourseUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 /course/list 的本地化字符串。
+        /// </summary>
+        internal static string CourseListUrl {
+            get {
+                return ResourceManager.GetString("CourseListUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
         internal static System.Drawing.Bitmap downclassicon_09 {
             get {
                 object obj = ResourceManager.GetObject("downclassicon_09", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 /course/end 的本地化字符串。
+        /// </summary>
+        internal static string EndCourseUrl {
+            get {
+                return ResourceManager.GetString("EndCourseUrl", resourceCulture);
             }
         }
         
@@ -80,20 +125,20 @@ namespace Oke_teacher.Properties {
         }
         
         /// <summary>
+        ///   查找类似 /teacher/logout 的本地化字符串。
+        /// </summary>
+        internal static string LoginOutUrl {
+            get {
+                return ResourceManager.GetString("LoginOutUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 /teacher/login 的本地化字符串。
         /// </summary>
         internal static string LoginUrl {
             get {
                 return ResourceManager.GetString("LoginUrl", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 /teacher/logout 的本地化字符串。
-        /// </summary>
-        internal static string LogoutUrl {
-            get {
-                return ResourceManager.GetString("LogoutUrl", resourceCulture);
             }
         }
         
@@ -194,6 +239,15 @@ namespace Oke_teacher.Properties {
             get {
                 object obj = ResourceManager.GetObject("Oke_simpleanswer", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 /course/record/list 的本地化字符串。
+        /// </summary>
+        internal static string OnlineStudentListUrl {
+            get {
+                return ResourceManager.GetString("OnlineStudentListUrl", resourceCulture);
             }
         }
         
