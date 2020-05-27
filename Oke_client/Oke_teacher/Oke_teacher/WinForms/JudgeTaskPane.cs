@@ -38,10 +38,10 @@ namespace Oke_teacher.WinForms
 
         private void cxFlatButton1_Click(object sender, EventArgs e)
         {
-            Microsoft.Office.Interop.PowerPoint.Presentation MyPres = null;//ppt实例
+            //Microsoft.Office.Interop.PowerPoint.Presentation MyPres = null;//ppt实例
             Microsoft.Office.Interop.PowerPoint.Slides AllSlides = null;//PPT中所有的幻灯片
             Microsoft.Office.Interop.PowerPoint.Slide MySlide = null;//当前幻灯片
-            Microsoft.Office.Interop.PowerPoint.Slide NewSlide = null;//新插入的幻灯片
+            //Microsoft.Office.Interop.PowerPoint.Slide NewSlide = null;//新插入的幻灯片
             AllSlides = Globals.ThisAddIn.Application.ActivePresentation.Slides;//获取当前PPT中的所有幻灯片
             MySlide = Globals.ThisAddIn.Application.ActiveWindow.View.Slide;//获取选中幻灯片
 
