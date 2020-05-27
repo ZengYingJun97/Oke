@@ -69,7 +69,7 @@ namespace Oke_teacher
             }
                 //SetQuestForm setQuestForm = new SetQuestForm();
                 //setQuestForm.Show();
-            Microsoft.Office.Interop.PowerPoint.Presentation MyPres = null;//ppt实例
+            //Microsoft.Office.Interop.PowerPoint.Presentation MyPres = null;//ppt实例
             Microsoft.Office.Interop.PowerPoint.Slides AllSlides = null;//PPT中所有的幻灯片
             Microsoft.Office.Interop.PowerPoint.Slide MySlide = null;//当前幻灯片
             Microsoft.Office.Interop.PowerPoint.Slide NewSlide = null;//新插入的幻灯片
