@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Oke_teacher.Dto
 {
     /// <summary>
-    /// 用户传递新旧密码数据
+    /// 用户传递新旧密码数据类
     /// </summary>
     [Serializable]
     public class UpdateUserData

@@ -161,9 +161,18 @@
   -->
   <ItemGroup>
     <Compile Include="Dto\OkeResult.cs" />
+    <Compile Include="Dto\QuestionData.cs" />
     <Compile Include="Dto\SessionData.cs" />
     <Compile Include="Dto\UpdateUserData.cs" />
     <Compile Include="Dto\UserData.cs" />
+    <Compile Include="Entity\Course.cs" />
+    <Compile Include="Entity\CourseRecord.cs" />
+    <Compile Include="Entity\Option.cs" />
+    <Compile Include="Entity\Prize.cs" />
+    <Compile Include="Entity\Question.cs" />
+    <Compile Include="Entity\Scratcher.cs" />
+    <Compile Include="Entity\Student.cs" />
+    <Compile Include="Entity\StudentAnswer.cs" />
     <Compile Include="Entity\Teacher.cs" />
     <Compile Include="Entity\User.cs" />
     <Compile Include="Enums\EnumExtend.cs" />
