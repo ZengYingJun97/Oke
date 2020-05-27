@@ -169,7 +169,4 @@
   <data name="Oke_scratchcard" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Oke_scratchcard.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Oke_dataout" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Oke_dataout.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
 </root>
