@@ -148,9 +148,11 @@ public class CourseController {
 					courseRecord.setCourse(course);
 					courseRecord.setStudent(student);
 
-					courseService.onlineStudent(courseRecord);
-					redisTemplate.opsForList().leftPush("courseStudent:" + course.getCourseNumber(), student);
-
+					CourseRecord hasRecord = courseService.getStudentRecordId(course, student);
+					if (hasRecord == null) {
+						courseService.onlineStudent(courseRecord);
+						redisTemplate.opsForList().leftPush("courseStudent:" + course.getCourseNumber(), student);
+					}
 					result = new OkeResult<>(true, stringSessionData);
 				} catch (Exception e) {
 					result = new OkeResult<>(false, OkeStateEnum.EXCEPTION_SERVER.getStateInfo());
