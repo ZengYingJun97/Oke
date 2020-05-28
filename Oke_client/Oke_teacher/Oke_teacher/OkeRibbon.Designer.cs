@@ -41,6 +41,8 @@
             this.group1 = this.Factory.CreateRibbonGroup();
             this.Upclassbtn = this.Factory.CreateRibbonButton();
             this.Downclassbtn = this.Factory.CreateRibbonButton();
+            this.Noupclassbtn = this.Factory.CreateRibbonButton();
+            this.Nodownclassbtn = this.Factory.CreateRibbonButton();
             this.group2 = this.Factory.CreateRibbonGroup();
             this.fillbutton = this.Factory.CreateRibbonButton();
             this.simleanswerbutton = this.Factory.CreateRibbonButton();
@@ -97,6 +99,8 @@
             // 
             this.group1.Items.Add(this.Upclassbtn);
             this.group1.Items.Add(this.Downclassbtn);
+            this.group1.Items.Add(this.Noupclassbtn);
+            this.group1.Items.Add(this.Nodownclassbtn);
             this.group1.Name = "group1";
             // 
             // Upclassbtn
@@ -106,6 +110,7 @@
             this.Upclassbtn.Label = "上课\n";
             this.Upclassbtn.Name = "Upclassbtn";
             this.Upclassbtn.ShowImage = true;
+            this.Upclassbtn.Visible = false;
             this.Upclassbtn.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Upclassbtn_Click);
             // 
             // Downclassbtn
@@ -115,7 +120,26 @@
             this.Downclassbtn.Label = "下课\n";
             this.Downclassbtn.Name = "Downclassbtn";
             this.Downclassbtn.ShowImage = true;
+            this.Downclassbtn.Visible = false;
             this.Downclassbtn.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Downclassbtn_Click);
+            // 
+            // Noupclassbtn
+            // 
+            this.Noupclassbtn.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.Noupclassbtn.Enabled = false;
+            this.Noupclassbtn.Image = global::Oke_teacher.Properties.Resources.Oke_upclass1_08__1_;
+            this.Noupclassbtn.Label = "上课\n";
+            this.Noupclassbtn.Name = "Noupclassbtn";
+            this.Noupclassbtn.ShowImage = true;
+            // 
+            // Nodownclassbtn
+            // 
+            this.Nodownclassbtn.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.Nodownclassbtn.Enabled = false;
+            this.Nodownclassbtn.Image = global::Oke_teacher.Properties.Resources.Oke_downclass1_09;
+            this.Nodownclassbtn.Label = "下课\n";
+            this.Nodownclassbtn.Name = "Nodownclassbtn";
+            this.Nodownclassbtn.ShowImage = true;
             // 
             // group2
             // 
@@ -221,6 +245,8 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton scratchbutton;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup datagroup;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton dataoutbutton;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton Noupclassbtn;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton Nodownclassbtn;
     }
 
     partial class ThisRibbonCollection

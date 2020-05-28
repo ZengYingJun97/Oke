@@ -165,6 +165,16 @@ namespace Oke_teacher.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap Oke_downclass1_09 {
+            get {
+                object obj = ResourceManager.GetObject("Oke_downclass1-09", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap Oke_fillinblank {
             get {
                 object obj = ResourceManager.GetObject("Oke_fillinblank", resourceCulture);
@@ -243,6 +253,16 @@ namespace Oke_teacher.Properties {
         }
         
         /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Oke_upclass1_08__1_ {
+            get {
+                object obj = ResourceManager.GetObject("Oke_upclass1-08 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 /course/record/list 的本地化字符串。
         /// </summary>
         internal static string OnlineStudentListUrl {
@@ -296,5 +316,6 @@ namespace Oke_teacher.Properties {
                 return ResourceManager.GetString("UpdateUserUrl", resourceCulture);
             }
         }
+        
     }
 }

@@ -28,17 +28,35 @@ namespace Oke_teacher
             {
                 LoginButton.Visible = false;
                 InfoButton.Visible = true;
+                Upclassbtn.Visible = true;
+                Noupclassbtn.Visible = false;
             }
         }
         #endregion
 
         private void Upclassbtn_Click(object sender, RibbonControlEventArgs e)
         {
+            UpclassForm upclassForm = new UpclassForm();
+            upclassForm.ShowDialog();
+            if (upclassForm.DialogResult == DialogResult.OK)
+            {
+                Nodownclassbtn.Visible = false;
+                Downclassbtn.Visible = true;
+            }
             
+            
+
         }
         private void Downclassbtn_Click(object sender, RibbonControlEventArgs e)
         {
-
+            DownForm downForm = new DownForm();
+            downForm.ShowDialog();
+            if (downForm.DialogResult == DialogResult.OK)
+            {
+                Nodownclassbtn.Visible = true;
+                Downclassbtn.Visible = false;
+            }
+            
         }
 
         #region 我的信息按钮事件
