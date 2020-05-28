@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Oke_teacher.Dto
 {
     /// <summary>
-    /// 接收服务器传回数据封装
+    /// 接收服务器传回数据类
     /// </summary>
     public class OkeResult<T>
     {
