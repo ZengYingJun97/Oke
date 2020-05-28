@@ -316,6 +316,5 @@ namespace Oke_teacher.Properties {
                 return ResourceManager.GetString("UpdateUserUrl", resourceCulture);
             }
         }
-        
     }
 }
