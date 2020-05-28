@@ -11,6 +11,7 @@ using CxFlatUI;
 using Microsoft.Office.Interop.Excel;
 using Newtonsoft.Json;
 using Oke_teacher.Dto;
+using Oke_teacher.Entity;
 using Oke_teacher.Properties;
 using Oke_teacher.Uitls;
 
@@ -18,8 +19,9 @@ namespace Oke_teacher.WinForms
 {
     public partial class DataoutForm : Form
     {
-        private UserData userData;
-        private object user;
+
+        SessionData<Teacher> Teacher = null;//这个怎么弄?!!!!!!!!!!!!!
+        List<Course> Classlist = null;
 
         public DataoutForm()
         {
@@ -28,26 +30,26 @@ namespace Oke_teacher.WinForms
 
         private void DataoutForm_Load(object sender, EventArgs e)
         {
-            /*
-            userData = DataUitls.loadData();//加载用户数据
-
+            
             #region 下拉框的加载
-            #region 发送http请求,获取该教师教授的课程
+            //发送http请求,获取该教师教授的课程
             try
             {
                 string url = Resources.Server + Resources.CourseListUrl;
-                string data = JsonConvert.SerializeObject(user);
+                string data = JsonConvert.SerializeObject(Teacher);
                 string response = HttpUitls.POST(url, data);
-                OkeResult<SessionData<CourceRecord>> okeResult = JsonConvert.DeserializeObject<OkeResult<SessionData<CourceRecord>>>(response);
-                if (okeResult.success)
+                OkeResult<SessionData<List<Course>>> okeResult1 = JsonConvert.DeserializeObject<OkeResult<SessionData<List<Course>>>>(response);
+                if (okeResult1.success)
                 {
                     AddAlter("成功查询", CxFlatAlertBox.AlertType.Success);
-                    //LoginInfo.CurrentUser.sessionId = okeResult.data.sessionId;
-                    //LoginInfo.CurrentUser.data = okeResult.data.data;
 
-                    #region 把接受到的数据展示在datagridview
-                    List<object> studentlist = new List<object>();
-                    studentdataview.DataSource = new BindingList<object>(studentlist);
+                    Classlist = okeResult1.data.data;
+
+                    #region 动态创建item
+                    for (int i = 0; i < Classlist.Count; i++)
+                    {
+                        this.Classchoose.Items.Add(Classlist[i].courseName);
+                    }
                     #endregion
 
                 }
@@ -61,41 +63,30 @@ namespace Oke_teacher.WinForms
                 AddAlter(Resources.ExceptionTip, CxFlatAlertBox.AlertType.Error);//弹出提示
             }
             #endregion
-
-            //for动态创建items
-            for ()
-            {
-                this.Classchoose.Items.Add(插入文本);
-            }
-            #endregion
-            */
+            
         }
-
 
         #region 查询该课程所对应的学生名单
         private void Classcheckbutton_Click(object sender, EventArgs e)
         {
-            /*
-            String classname = Classchoose.Text.Trim();//获取下拉选择框选中的值
 
-            
+            int choosenum = Classchoose.SelectedIndex;//获取下拉选择框选中的值
+            SessionData<Course> classsave = Classlist[choosenum];
+
             #region 发送http请求
             try
             {
                 string url = Resources.Server + Resources.CourseListUrl;
-                string data = JsonConvert.SerializeObject(user);
+                string data = JsonConvert.SerializeObject(classsave);
                 string response = HttpUitls.POST(url, data);
-                //OkeResult<这里写课堂信息Info> okeResult = JsonConvert.DeserializeObject<OkeResult<这里写课堂信息Info>>(response);
-                OkeResult<object> okeResult = JsonConvert.DeserializeObject<OkeResult<object>>(response);
+                OkeResult<SessionData<List<CourseRecord>>> okeResult = JsonConvert.DeserializeObject<OkeResult<SessionData<List<CourseRecord>>>>(response);
                 if (okeResult.success)
                 {
                     AddAlter("成功查询", CxFlatAlertBox.AlertType.Success);
-                    //LoginInfo.CurrentUser.sessionId = okeResult.data.sessionId;
-                    //LoginInfo.CurrentUser.data = okeResult.data.data;
 
                     #region 把接受到的数据展示在datagridview
-                    List<object> studentlist = new List<object>();
-                    studentdataview.DataSource = new BindingList<object>(studentlist);
+                    List<CourseRecord> Studentlist = okeResult.data.data;
+                    studentdataview.DataSource = new BindingList<CourseRecord>(Studentlist);
                     #endregion
 
                 }
@@ -110,14 +101,14 @@ namespace Oke_teacher.WinForms
             }
             #endregion
 
-            */
+            
         }
         #endregion
 
         #region 导出excel按钮点击事件
         private void Excelbutton_Click(object sender, EventArgs e)
         {
-            /*
+            
             string fileName = "";
             string saveFileName = "";
             SaveFileDialog saveDialog = new SaveFileDialog
@@ -171,12 +162,10 @@ namespace Oke_teacher.WinForms
             }
             xlApp.Quit();
             GC.Collect();//强行销毁
-            */
+            
         }
 
         #endregion
-
-        /*
 
         #region 增加提示框
         /// <summary>
@@ -186,17 +175,19 @@ namespace Oke_teacher.WinForms
         /// <param name="alertType">提示类型</param>
         private void AddAlter(string alterText, CxFlatAlertBox.AlertType alertType)
         {
-            CxFlatAlertBox alert = new CxFlatAlertBox();
-            alert.Location = new System.Drawing.Point(30, 196);
-            alert.Name = "alert";
-            alert.Text = alterText;
-            alert.Size = new Size(240, 34);
-            alert.Type = alertType;
+            CxFlatAlertBox alert = new CxFlatAlertBox
+            {
+                Location = new System.Drawing.Point(30, 196),
+                Name = "alert",
+                Text = alterText,
+                Size = new Size(240, 34),
+                Type = alertType
+            };
             this.Controls.Add(alert);
             alert.BringToFront();
         }
         #endregion
 
-        */
+        
     }
 }
