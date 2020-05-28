@@ -42,6 +42,7 @@
             this.Upclassbtn = this.Factory.CreateRibbonButton();
             this.Downclassbtn = this.Factory.CreateRibbonButton();
             this.group2 = this.Factory.CreateRibbonGroup();
+            this.singleChoice = this.Factory.CreateRibbonButton();
             this.fillbutton = this.Factory.CreateRibbonButton();
             this.simleanswerbutton = this.Factory.CreateRibbonButton();
             this.Judgquesbtn = this.Factory.CreateRibbonButton();
@@ -119,11 +120,21 @@
             // 
             // group2
             // 
+            this.group2.Items.Add(this.singleChoice);
             this.group2.Items.Add(this.fillbutton);
             this.group2.Items.Add(this.simleanswerbutton);
             this.group2.Items.Add(this.Judgquesbtn);
-            this.group2.Label = "题目\n";
+            this.group2.Label = "题目";
             this.group2.Name = "group2";
+            // 
+            // singleChoice
+            // 
+            this.singleChoice.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.singleChoice.Image = global::Oke_teacher.Properties.Resources.Oke_SingleChoice;
+            this.singleChoice.Label = "单选题\n";
+            this.singleChoice.Name = "singleChoice";
+            this.singleChoice.ShowImage = true;
+            this.singleChoice.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.singleChoice_Click);
             // 
             // fillbutton
             // 
@@ -187,7 +198,6 @@
             this.Name = "OkeRibbon";
             this.RibbonType = "Microsoft.PowerPoint.Presentation";
             this.Tabs.Add(this.OkeTab);
-            this.Load += new Microsoft.Office.Tools.Ribbon.RibbonUIEventHandler(this.OkeRibbon_Load);
             this.OkeTab.ResumeLayout(false);
             this.OkeTab.PerformLayout();
             this.LoginGroup.ResumeLayout(false);
@@ -221,6 +231,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton scratchbutton;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup datagroup;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton dataoutbutton;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton singleChoice;
     }
 
     partial class ThisRibbonCollection

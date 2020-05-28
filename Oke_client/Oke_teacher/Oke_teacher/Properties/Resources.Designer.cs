@@ -243,6 +243,16 @@ namespace Oke_teacher.Properties {
         }
         
         /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Oke_SingleChoice {
+            get {
+                object obj = ResourceManager.GetObject("Oke_SingleChoice", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 /course/record/list 的本地化字符串。
         /// </summary>
         internal static string OnlineStudentListUrl {

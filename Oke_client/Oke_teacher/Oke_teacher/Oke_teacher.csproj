@@ -188,6 +188,12 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="TaskPane\SingleChoiceTaskPane.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TaskPane\SingleChoiceTaskPane.Designer.cs">
+      <DependentUpon>SingleChoiceTaskPane.cs</DependentUpon>
+    </Compile>
     <Compile Include="Uitls\DataUitls.cs" />
     <Compile Include="Uitls\HttpUitls.cs" />
     <Compile Include="Uitls\UserUitls.cs" />
@@ -270,6 +276,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="TaskPane\SingleChoiceTaskPane.resx">
+      <DependentUpon>SingleChoiceTaskPane.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WinForms\DataoutForm.resx">
       <DependentUpon>DataoutForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -346,9 +355,11 @@
     <None Include="Resources\Oke_dataout.bmp" />
     <None Include="Resources\Oke_dataout.png" />
     <Content Include="Resources\Oke_judge.png" />
+    <None Include="Resources\Oke_SingleChoice.png" />
     <Content Include="Resources\upclassicon-08.png" />
     <Content Include="Resources\upclassicon-081.png" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
