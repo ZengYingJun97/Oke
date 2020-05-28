@@ -28,12 +28,96 @@ namespace Oke_teacher.WinForms
 
         private void DataoutForm_Load(object sender, EventArgs e)
         {
+            /*
             userData = DataUitls.loadData();//加载用户数据
+
+            #region 下拉框的加载
+            #region 发送http请求,获取该教师教授的课程
+            try
+            {
+                string url = Resources.Server + Resources.CourseListUrl;
+                string data = JsonConvert.SerializeObject(user);
+                string response = HttpUitls.POST(url, data);
+                OkeResult<SessionData<CourceRecord>> okeResult = JsonConvert.DeserializeObject<OkeResult<SessionData<CourceRecord>>>(response);
+                if (okeResult.success)
+                {
+                    AddAlter("成功查询", CxFlatAlertBox.AlertType.Success);
+                    //LoginInfo.CurrentUser.sessionId = okeResult.data.sessionId;
+                    //LoginInfo.CurrentUser.data = okeResult.data.data;
+
+                    #region 把接受到的数据展示在datagridview
+                    List<object> studentlist = new List<object>();
+                    studentdataview.DataSource = new BindingList<object>(studentlist);
+                    #endregion
+
+                }
+                else
+                {
+                    AddAlter("查询出错，请重新选择", CxFlatAlertBox.AlertType.Error);
+                }
+            }
+            catch (Exception)
+            {
+                AddAlter(Resources.ExceptionTip, CxFlatAlertBox.AlertType.Error);//弹出提示
+            }
+            #endregion
+
+            //for动态创建items
+            for ()
+            {
+                this.Classchoose.Items.Add(插入文本);
+            }
+            #endregion
+            */
         }
+
+
+        #region 查询该课程所对应的学生名单
+        private void Classcheckbutton_Click(object sender, EventArgs e)
+        {
+            /*
+            String classname = Classchoose.Text.Trim();//获取下拉选择框选中的值
+
+            
+            #region 发送http请求
+            try
+            {
+                string url = Resources.Server + Resources.CourseListUrl;
+                string data = JsonConvert.SerializeObject(user);
+                string response = HttpUitls.POST(url, data);
+                //OkeResult<这里写课堂信息Info> okeResult = JsonConvert.DeserializeObject<OkeResult<这里写课堂信息Info>>(response);
+                OkeResult<object> okeResult = JsonConvert.DeserializeObject<OkeResult<object>>(response);
+                if (okeResult.success)
+                {
+                    AddAlter("成功查询", CxFlatAlertBox.AlertType.Success);
+                    //LoginInfo.CurrentUser.sessionId = okeResult.data.sessionId;
+                    //LoginInfo.CurrentUser.data = okeResult.data.data;
+
+                    #region 把接受到的数据展示在datagridview
+                    List<object> studentlist = new List<object>();
+                    studentdataview.DataSource = new BindingList<object>(studentlist);
+                    #endregion
+
+                }
+                else
+                {
+                    AddAlter("查询出错，请重新选择", CxFlatAlertBox.AlertType.Error);
+                }
+            }
+            catch (Exception)
+            {
+                AddAlter(Resources.ExceptionTip, CxFlatAlertBox.AlertType.Error);//弹出提示
+            }
+            #endregion
+
+            */
+        }
+        #endregion
 
         #region 导出excel按钮点击事件
         private void Excelbutton_Click(object sender, EventArgs e)
         {
+            /*
             string fileName = "";
             string saveFileName = "";
             SaveFileDialog saveDialog = new SaveFileDialog
@@ -87,47 +171,12 @@ namespace Oke_teacher.WinForms
             }
             xlApp.Quit();
             GC.Collect();//强行销毁
+            */
         }
 
         #endregion
 
-        #region 查询该课程所对应的学生名单
-        private void Classcheckbutton_Click(object sender, EventArgs e)
-        {
-            String classname = Classchoose.Text.Trim();//获取下拉选择框选中的值
-
-            /*
-            #region 发送http请求
-            try
-            {
-                string url = Resources.Server + Resources.新的课堂url;
-                string data = JsonConvert.SerializeObject(user);
-                string response = HttpUitls.POST(url, data);
-                OkeResult<这里写课堂信息Info> okeResult = JsonConvert.DeserializeObject<OkeResult<这里写课堂信息Info>>(response);
-                if (okeResult.success)
-                {
-                    addAlter("成功查询，已导出", CxFlatAlertBox.AlertType.Success);
-                    //LoginInfo.CurrentUser.sessionId = okeResult.data.sessionId;
-                    //LoginInfo.CurrentUser.data = okeResult.data.data;
-                }
-                else
-                {
-                    addAlter("查询出错，请重新选择", CxFlatAlertBox.AlertType.Error);
-                }
-            }
-            catch (Exception)
-            {
-                addAlter(Resources.ExceptionTip, CxFlatAlertBox.AlertType.Error);//弹出提示
-            }
-            #endregion
-
-    */
-            #region 把接受到的数据展示在datagridview
-            List<object> studentlist = new List<object>();
-            studentdataview.DataSource = new BindingList<object>(studentlist);
-            #endregion
-        }
-        #endregion
+        /*
 
         #region 增加提示框
         /// <summary>
@@ -135,7 +184,7 @@ namespace Oke_teacher.WinForms
         /// </summary>
         /// <param name="alterText">提示内容</param>
         /// <param name="alertType">提示类型</param>
-        private void addAlter(string alterText, CxFlatAlertBox.AlertType alertType)
+        private void AddAlter(string alterText, CxFlatAlertBox.AlertType alertType)
         {
             CxFlatAlertBox alert = new CxFlatAlertBox();
             alert.Location = new System.Drawing.Point(30, 196);
@@ -147,5 +196,7 @@ namespace Oke_teacher.WinForms
             alert.BringToFront();
         }
         #endregion
+
+        */
     }
 }
