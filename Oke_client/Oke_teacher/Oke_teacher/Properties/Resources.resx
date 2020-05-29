@@ -117,6 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="LogoutUrl" xml:space="preserve">
+    <value>/teacher/logout</value>
+    <comment>登出路由</comment>
+  </data>
+  <data name="AddQuestionUrl" xml:space="preserve">
+    <value>/course/question/add</value>
+    <comment>老师发布题目</comment>
+  </data>
   <data name="Server" xml:space="preserve">
     <value>http://120.25.193.138:8080/oke</value>
     <comment>服务器地址</comment>
@@ -131,6 +139,13 @@
   <data name="UpdateInfoUrl" xml:space="preserve">
     <value>/teacher/info/update</value>
     <comment>更改用户信息路由</comment>
+  </data>
+  <data name="Oke_judge" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Oke_judge.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OnlineStudentListUrl" xml:space="preserve">
+    <value>/course/record/list</value>
+    <comment>获取学生上课记录</comment>
   </data>
   <data name="Oke_simpleanswer" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Oke_simpleanswer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -158,9 +173,16 @@
     <value>系统繁忙，稍等片刻</value>
     <comment>异常提示</comment>
   </data>
+  <data name="AnswerListUrl" xml:space="preserve">
+    <value>/course/question/answerlist</value>
+    <comment>获取学生答题情况</comment>
+  </data>
   <data name="RegisterUrl" xml:space="preserve">
     <value>/teacher/register</value>
     <comment>注册路由</comment>
+  </data>
+  <data name="Oke_scratchcard" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Oke_scratchcard.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="LoginUrl" xml:space="preserve">
     <value>/teacher/login</value>
@@ -169,42 +191,26 @@
   <data name="Oke_loginBg1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Oke_loginBg1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Oke_fillinblank" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Oke_fillinblank.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Oke_scratchcard" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Oke_scratchcard.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Oke_judge" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Oke_judge.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="AddQuestionUrl" xml:space="preserve">
-    <value>/course/question/add</value>
-    <comment>老师发布题目</comment>
-  </data>
-  <data name="AnswerListUrl" xml:space="preserve">
-    <value>/course/question/answerlist</value>
-    <comment>获取学生答题情况</comment>
+  <data name="EndCourseUrl" xml:space="preserve">
+    <value>/course/end</value>
+    <comment>结束课堂</comment>
   </data>
   <data name="BeginCourseUrl" xml:space="preserve">
     <value>/course/begin</value>
     <comment>开启课堂</comment>
   </data>
+  <data name="Oke_fillinblank" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Oke_fillinblank.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="CourseListUrl" xml:space="preserve">
     <value>/course/list</value>
     <comment>获取课程列表</comment>
   </data>
-  <data name="EndCourseUrl" xml:space="preserve">
-    <value>/course/end</value>
-    <comment>结束课堂</comment>
+  <data name="Oke_upclass1-08 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Oke_upclass1-08 (1)1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="LogoutUrl" xml:space="preserve">
-    <value>/teacher/logout</value>
-    <comment>登出路由</comment>
-  </data>
-  <data name="OnlineStudentListUrl" xml:space="preserve">
-    <value>/course/record/list</value>
-    <comment>获取学生上课记录</comment>
+  <data name="Oke_downclass1-09" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Oke_downclass1-091.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Oke_SingleChoice" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Oke_SingleChoice.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

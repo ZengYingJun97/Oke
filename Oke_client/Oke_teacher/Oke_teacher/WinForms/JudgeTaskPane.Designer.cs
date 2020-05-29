@@ -32,13 +32,10 @@
             this.cxFlatCheckBox1 = new CxFlatUI.CxFlatCheckBox();
             this.cxFlatCheckBox2 = new CxFlatUI.CxFlatCheckBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.cxFlatButton1 = new CxFlatUI.Controls.CxFlatButton();
             this.label2 = new System.Windows.Forms.Label();
             this.cxFlatTextBox1 = new CxFlatUI.CxFlatTextBox();
+            this.cxFlatTextBox2 = new CxFlatUI.CxFlatTextBox();
             this.SuspendLayout();
             // 
             // JudegeQuestText
@@ -54,7 +51,7 @@
             this.JudegeQuestText.SelectedText = "";
             this.JudegeQuestText.SelectionLength = 0;
             this.JudegeQuestText.SelectionStart = 0;
-            this.JudegeQuestText.Size = new System.Drawing.Size(159, 175);
+            this.JudegeQuestText.Size = new System.Drawing.Size(168, 175);
             this.JudegeQuestText.TabIndex = 0;
             this.JudegeQuestText.TabStop = false;
             this.JudegeQuestText.Text = "请输入题目...";
@@ -76,7 +73,7 @@
             // 
             this.cxFlatCheckBox2.AutoSize = true;
             this.cxFlatCheckBox2.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.cxFlatCheckBox2.Location = new System.Drawing.Point(110, 240);
+            this.cxFlatCheckBox2.Location = new System.Drawing.Point(119, 240);
             this.cxFlatCheckBox2.Name = "cxFlatCheckBox2";
             this.cxFlatCheckBox2.Size = new System.Drawing.Size(66, 20);
             this.cxFlatCheckBox2.TabIndex = 2;
@@ -87,47 +84,13 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 292);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(173)))), ((int)(((byte)(255)))));
+            this.label1.Location = new System.Drawing.Point(15, 336);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 12);
+            this.label1.Size = new System.Drawing.Size(95, 21);
             this.label1.TabIndex = 3;
             this.label1.Text = "答题时间：";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(17, 324);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "30s";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(110, 323);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "60s";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(17, 368);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 6;
-            this.button3.Text = "120s";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(110, 368);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 7;
-            this.button4.Text = "360s";
-            this.button4.UseVisualStyleBackColor = true;
             // 
             // cxFlatButton1
             // 
@@ -144,9 +107,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(173)))), ((int)(((byte)(255)))));
             this.label2.Location = new System.Drawing.Point(17, 420);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 12);
+            this.label2.Size = new System.Drawing.Size(61, 21);
             this.label2.TabIndex = 9;
             this.label2.Text = "分值：";
             // 
@@ -154,7 +119,7 @@
             // 
             this.cxFlatTextBox1.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.cxFlatTextBox1.Hint = "";
-            this.cxFlatTextBox1.Location = new System.Drawing.Point(64, 409);
+            this.cxFlatTextBox1.Location = new System.Drawing.Point(100, 403);
             this.cxFlatTextBox1.MaxLength = 32767;
             this.cxFlatTextBox1.Multiline = false;
             this.cxFlatTextBox1.Name = "cxFlatTextBox1";
@@ -169,17 +134,33 @@
             this.cxFlatTextBox1.Text = "2";
             this.cxFlatTextBox1.UseSystemPasswordChar = false;
             // 
+            // cxFlatTextBox2
+            // 
+            this.cxFlatTextBox2.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.cxFlatTextBox2.Hint = "";
+            this.cxFlatTextBox2.Location = new System.Drawing.Point(100, 328);
+            this.cxFlatTextBox2.MaxLength = 32767;
+            this.cxFlatTextBox2.Multiline = false;
+            this.cxFlatTextBox2.Name = "cxFlatTextBox2";
+            this.cxFlatTextBox2.PasswordChar = '\0';
+            this.cxFlatTextBox2.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.cxFlatTextBox2.SelectedText = "";
+            this.cxFlatTextBox2.SelectionLength = 0;
+            this.cxFlatTextBox2.SelectionStart = 0;
+            this.cxFlatTextBox2.Size = new System.Drawing.Size(85, 38);
+            this.cxFlatTextBox2.TabIndex = 11;
+            this.cxFlatTextBox2.TabStop = false;
+            this.cxFlatTextBox2.Text = "2";
+            this.cxFlatTextBox2.UseSystemPasswordChar = false;
+            // 
             // JudgeTaskPane
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.cxFlatTextBox2);
             this.Controls.Add(this.cxFlatTextBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cxFlatButton1);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cxFlatCheckBox2);
             this.Controls.Add(this.cxFlatCheckBox1);
@@ -197,12 +178,9 @@
         private CxFlatUI.CxFlatCheckBox cxFlatCheckBox1;
         private CxFlatUI.CxFlatCheckBox cxFlatCheckBox2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
         private CxFlatUI.Controls.CxFlatButton cxFlatButton1;
         private System.Windows.Forms.Label label2;
         private CxFlatUI.CxFlatTextBox cxFlatTextBox1;
+        private CxFlatUI.CxFlatTextBox cxFlatTextBox2;
     }
 }
