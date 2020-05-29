@@ -75,6 +75,11 @@ namespace Oke_teacher
             {
                 InfoButton.Visible = false;
                 LoginButton.Visible = true;
+                Upclassbtn.Visible = false;
+                Downclassbtn.Visible = false;
+                Noupclassbtn.Visible = true;
+                Nodownclassbtn.Visible = true;
+
             }
         }
         #endregion

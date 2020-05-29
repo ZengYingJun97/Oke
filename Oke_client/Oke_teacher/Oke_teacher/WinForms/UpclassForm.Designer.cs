@@ -42,6 +42,7 @@
             this.richTextBox6 = new System.Windows.Forms.RichTextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.cxFlatGroupBox1 = new CxFlatUI.CxFlatGroupBox();
+            this.cxFlatGroupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // cxFlatStatusBar1
@@ -62,7 +63,7 @@
             // 
             this.classTextBox1.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.classTextBox1.Hint = "";
-            this.classTextBox1.Location = new System.Drawing.Point(238, 135);
+            this.classTextBox1.Location = new System.Drawing.Point(287, 135);
             this.classTextBox1.MaxLength = 32767;
             this.classTextBox1.Multiline = false;
             this.classTextBox1.Name = "classTextBox1";
@@ -82,7 +83,7 @@
             this.classlabel.AutoSize = true;
             this.classlabel.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.classlabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(173)))), ((int)(((byte)(255)))));
-            this.classlabel.Location = new System.Drawing.Point(138, 145);
+            this.classlabel.Location = new System.Drawing.Point(180, 145);
             this.classlabel.Name = "classlabel";
             this.classlabel.Size = new System.Drawing.Size(76, 28);
             this.classlabel.TabIndex = 2;
@@ -179,6 +180,8 @@
             // 
             // cxFlatGroupBox1
             // 
+            this.cxFlatGroupBox1.Controls.Add(this.classTextBox1);
+            this.cxFlatGroupBox1.Controls.Add(this.classlabel);
             this.cxFlatGroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cxFlatGroupBox1.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.cxFlatGroupBox1.Location = new System.Drawing.Point(0, 0);
@@ -203,8 +206,6 @@
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.closebtn);
             this.Controls.Add(this.getclassbtn);
-            this.Controls.Add(this.classlabel);
-            this.Controls.Add(this.classTextBox1);
             this.Controls.Add(this.cxFlatStatusBar1);
             this.Controls.Add(this.cxFlatGroupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -214,8 +215,9 @@
             this.Name = "UpclassForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UpclassForm";
+            this.cxFlatGroupBox1.ResumeLayout(false);
+            this.cxFlatGroupBox1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

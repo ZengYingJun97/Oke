@@ -31,10 +31,10 @@
             this.components = new System.ComponentModel.Container();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.downclassGroupBox1 = new CxFlatUI.CxFlatGroupBox();
-            this.cxFlatStatusBar1 = new CxFlatUI.CxFlatStatusBar();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cxFlatButton1 = new CxFlatUI.Controls.CxFlatButton();
             this.cxFlatButton2 = new CxFlatUI.Controls.CxFlatButton();
+            this.cxFlatButton1 = new CxFlatUI.Controls.CxFlatButton();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cxFlatStatusBar1 = new CxFlatUI.CxFlatStatusBar();
             this.downclassGroupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,27 +59,17 @@
             this.downclassGroupBox1.Text = "cxFlatGroupBox1";
             this.downclassGroupBox1.ThemeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
             // 
-            // cxFlatStatusBar1
+            // cxFlatButton2
             // 
-            this.cxFlatStatusBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cxFlatStatusBar1.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.cxFlatStatusBar1.Location = new System.Drawing.Point(0, 0);
-            this.cxFlatStatusBar1.Name = "cxFlatStatusBar1";
-            this.cxFlatStatusBar1.Size = new System.Drawing.Size(419, 40);
-            this.cxFlatStatusBar1.TabIndex = 0;
-            this.cxFlatStatusBar1.Text = "提示";
-            this.cxFlatStatusBar1.ThemeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(173)))), ((int)(((byte)(255)))));
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(173)))), ((int)(((byte)(255)))));
-            this.label1.Location = new System.Drawing.Point(144, 82);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(112, 21);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "是否结束课堂";
+            this.cxFlatButton2.ButtonType = CxFlatUI.ButtonType.Primary;
+            this.cxFlatButton2.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.cxFlatButton2.Location = new System.Drawing.Point(254, 151);
+            this.cxFlatButton2.Name = "cxFlatButton2";
+            this.cxFlatButton2.Size = new System.Drawing.Size(75, 23);
+            this.cxFlatButton2.TabIndex = 3;
+            this.cxFlatButton2.Text = "否";
+            this.cxFlatButton2.TextColor = System.Drawing.Color.White;
+            this.cxFlatButton2.Click += new System.EventHandler(this.cxFlatButton2_Click);
             // 
             // cxFlatButton1
             // 
@@ -93,16 +83,27 @@
             this.cxFlatButton1.TextColor = System.Drawing.Color.White;
             this.cxFlatButton1.Click += new System.EventHandler(this.cxFlatButton1_Click);
             // 
-            // cxFlatButton2
+            // label1
             // 
-            this.cxFlatButton2.ButtonType = CxFlatUI.ButtonType.Primary;
-            this.cxFlatButton2.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.cxFlatButton2.Location = new System.Drawing.Point(254, 151);
-            this.cxFlatButton2.Name = "cxFlatButton2";
-            this.cxFlatButton2.Size = new System.Drawing.Size(75, 23);
-            this.cxFlatButton2.TabIndex = 3;
-            this.cxFlatButton2.Text = "否";
-            this.cxFlatButton2.TextColor = System.Drawing.Color.White;
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(173)))), ((int)(((byte)(255)))));
+            this.label1.Location = new System.Drawing.Point(144, 82);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(112, 21);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "是否结束课堂";
+            // 
+            // cxFlatStatusBar1
+            // 
+            this.cxFlatStatusBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cxFlatStatusBar1.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.cxFlatStatusBar1.Location = new System.Drawing.Point(0, 0);
+            this.cxFlatStatusBar1.Name = "cxFlatStatusBar1";
+            this.cxFlatStatusBar1.Size = new System.Drawing.Size(419, 40);
+            this.cxFlatStatusBar1.TabIndex = 0;
+            this.cxFlatStatusBar1.Text = "提示";
+            this.cxFlatStatusBar1.ThemeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(173)))), ((int)(((byte)(255)))));
             // 
             // DownForm
             // 

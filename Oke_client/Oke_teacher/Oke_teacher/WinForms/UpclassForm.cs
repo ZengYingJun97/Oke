@@ -22,7 +22,7 @@ namespace Oke_teacher.WinForms
         public UpclassForm()
         {
             InitializeComponent();
-            if (CourseInfo.CurrentUser.data != null)
+            if (CourseInfo.CurrentUser.classCode != null)
             {
                 classTextBox1.Text = CourseInfo.CurrentUser.data.courseName;
                 classTextBox1.Enabled = false;
@@ -56,10 +56,10 @@ namespace Oke_teacher.WinForms
 
         private void getclassbtn_Click(object sender, EventArgs e)
         {
-            if (CourseInfo.CurrentUser.data!=null)
+            if (CourseInfo.CurrentUser.classCode!=null)
             {
                 classTextBox1.Enabled = false;
-                Clipboard.SetDataObject(CourseInfo.CurrentUser.data.courseNumber);
+                Clipboard.SetDataObject(CourseInfo.CurrentUser.classCode);
                 addAlter("已复制", CxFlatAlertBox.AlertType.Success);
                 timer1.Stop();
                 timer1.Interval = 1000;
@@ -91,8 +91,9 @@ namespace Oke_teacher.WinForms
                     {
 
                         CourseInfo.CurrentUser.sessionId = okeResult.data.sessionId;
-                        course.courseNumber = okeResult.data.data;
-                        CourseInfo.CurrentUser.data = course;
+                        //course.courseNumber = okeResult.data.data;
+                        //CourseInfo.CurrentUser.data = course;
+                        CourseInfo.CurrentUser.classCode = okeResult.data.data;
                         //classTextBox2.Text = okeResult.data.data;
                         richTextBox1.Text = okeResult.data.data.Substring(0, 1);
                         richTextBox2.Text = okeResult.data.data.Substring(1, 1);
