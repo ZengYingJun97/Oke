@@ -35,6 +35,7 @@ namespace Oke_teacher
         }
         #endregion
 
+
         private void Upclassbtn_Click(object sender, RibbonControlEventArgs e)
         {
             UpclassForm upclassForm = new UpclassForm();
@@ -48,6 +49,8 @@ namespace Oke_teacher
             
 
         }
+
+
         private void Downclassbtn_Click(object sender, RibbonControlEventArgs e)
         {
             DownForm downForm = new DownForm();
@@ -59,6 +62,7 @@ namespace Oke_teacher
             }
             
         }
+
 
         #region 我的信息按钮事件
         /// <summary>
@@ -83,6 +87,8 @@ namespace Oke_teacher
             }
         }
         #endregion
+
+
         #region 判断题
 
         private void Judgquesbtn_Click(object sender, RibbonControlEventArgs e)
@@ -150,6 +156,7 @@ namespace Oke_teacher
         }
         #endregion
 
+
         #region 在PPT添加作答按钮
         //添加Form窗体,窗体中添加Image控件,单击弹出"PPT"信息提示
         //命名引用：using MF = Microsoft.Vbe.Interop.Forms;
@@ -183,9 +190,21 @@ namespace Oke_teacher
         #endregion
 
 
+        private void OkeRibbon_Load(object sender, RibbonUIEventArgs e)
+        {
+        }
+
+
         #region 填空题按钮的点击事件
         private void Fillinbutton_Click(object sender, RibbonControlEventArgs e)
         {
+            #region 填空侧栏
+            if (Globals.ThisAddIn._FillTaskPane != null)
+            {
+                Globals.ThisAddIn._FillTaskPane.Visible = true;
+            }
+            #endregion
+
             //Microsoft.Office.Interop.PowerPoint.Presentation MyPres = null;//PPT应用的实例  
             Microsoft.Office.Interop.PowerPoint.Slides slides = null;//PPT中所有的幻灯片
             Microsoft.Office.Interop.PowerPoint.Slide MySlide = null;//PPT中的幻灯片
@@ -194,8 +213,6 @@ namespace Oke_teacher
             slides = Globals.ThisAddIn.Application.ActivePresentation.Slides;//获取当前PPT中的所有幻灯片
             MySlide = Globals.ThisAddIn.Application.ActiveWindow.View.Slide;  //获取当前选中的幻灯片
             NewSlide = slides.Add(MySlide.SlideIndex, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);//插入新的幻灯片
-
-
 
             #region 插入填空题题目类型
             Microsoft.Office.Interop.PowerPoint.TextRange FillTextRng = null;
@@ -214,8 +231,6 @@ namespace Oke_teacher
             NewSlide.Shapes[1].TextFrame.VerticalAnchor = MsoVerticalAnchor.msoAnchorMiddle; //文本对齐方式（垂直方向）
             #endregion
 
-
-
             #region 插入填空题题目
             Microsoft.Office.Interop.PowerPoint.TextRange FQTextRng = null;
 
@@ -233,13 +248,10 @@ namespace Oke_teacher
             NewSlide.Shapes[2].TextFrame.VerticalAnchor = MsoVerticalAnchor.msoAnchorMiddle; //文本对齐方式（垂直方向）
             #endregion
 
-
-
-            #region 插入填空的按钮（插入填空-未完成）
-
-            #endregion
         }
         #endregion
+
+
 
         #region 简答题按钮的点击事件
         private void Simpleanswerbutton_Click(object sender, RibbonControlEventArgs e)
@@ -252,9 +264,6 @@ namespace Oke_teacher
             slides = Globals.ThisAddIn.Application.ActivePresentation.Slides;//获取当前PPT中的所有幻灯片
             MySlide = Globals.ThisAddIn.Application.ActiveWindow.View.Slide;  //获取当前选中的幻灯片
             NewSlide = slides.Add(MySlide.SlideIndex, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);//插入新的幻灯片
-
-
-
 
             #region 插入简答题题目类型
             Microsoft.Office.Interop.PowerPoint.TextRange SATextRng = null;
@@ -294,7 +303,6 @@ namespace Oke_teacher
             AddOleForm(NewSlide, 21.5F, 400F, 70F, 50F);
             #endregion
         }
-        #endregion
 
         #region 在PPT添加作答按钮
         //添加Form窗体,窗体中添加Image控件,单击弹出"PPT"信息提示
@@ -312,17 +320,17 @@ namespace Oke_teacher
             button.Caption = "作答";
         }
 
-
-
         //点击事件
-
         private void Button_Click()
         {
+            System.Windows.Forms.MessageBox.Show("Hello World!");
             MessageBox.Show("编辑用户控件");
-
         }
         #endregion
 
+        #endregion
+
+       
 
         #region 刮奖PPT
         private void Scratchbutton_Click(object sender, RibbonControlEventArgs e)
@@ -348,6 +356,8 @@ namespace Oke_teacher
         }
 
         #endregion
+
+
 
         #region 导出学生数据生成excel
         private void Dataoutbutton_Click(object sender, RibbonControlEventArgs e)

@@ -16,6 +16,8 @@ namespace Oke_teacher
     {
         public Microsoft.Office.Tools.CustomTaskPane _JudgeTaskPane = null;
         public Microsoft.Office.Tools.CustomTaskPane _SingleChoiceTaskPane = null;
+        public Microsoft.Office.Tools.CustomTaskPane _FillTaskPane = null;
+
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
             //TaskPanetest taskPanetest = new TaskPanetest();测试
@@ -29,6 +31,11 @@ namespace Oke_teacher
             _SingleChoiceTaskPane = CustomTaskPanes.Add(singleChoiceTaskPane, "单选题");
             _SingleChoiceTaskPane.Width = 250;
             _SingleChoiceTaskPane.Visible = false;
+
+            FillTaskPane taskPane = new FillTaskPane();
+            _FillTaskPane = this.CustomTaskPanes.Add(taskPane, "Fill Question");
+            _FillTaskPane.Width = 200;
+            _FillTaskPane.Visible = false;
 
         }
 
