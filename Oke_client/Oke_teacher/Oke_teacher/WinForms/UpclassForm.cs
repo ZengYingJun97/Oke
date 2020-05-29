@@ -27,12 +27,12 @@ namespace Oke_teacher.WinForms
                 classTextBox1.Text = CourseInfo.CurrentUser.data.courseName;
                 classTextBox1.Enabled = false;
                 getclassbtn.Text = "复制上课码";
-                richTextBox1.Text = CourseInfo.CurrentUser.data.courseNumber.Substring(0, 1);
-                richTextBox2.Text = CourseInfo.CurrentUser.data.courseNumber.Substring(1, 1);
-                richTextBox3.Text = CourseInfo.CurrentUser.data.courseNumber.Substring(2, 1);
-                richTextBox4.Text = CourseInfo.CurrentUser.data.courseNumber.Substring(3, 1);
-                richTextBox5.Text = CourseInfo.CurrentUser.data.courseNumber.Substring(4, 1);
-                richTextBox6.Text = CourseInfo.CurrentUser.data.courseNumber.Substring(5, 1);
+                richTextBox1.Text = CourseInfo.CurrentUser.classCode.Substring(0, 1);
+                richTextBox2.Text = CourseInfo.CurrentUser.classCode.Substring(1, 1);
+                richTextBox3.Text = CourseInfo.CurrentUser.classCode.Substring(2, 1);
+                richTextBox4.Text = CourseInfo.CurrentUser.classCode.Substring(3, 1);
+                richTextBox5.Text = CourseInfo.CurrentUser.classCode.Substring(4, 1);
+                richTextBox6.Text = CourseInfo.CurrentUser.classCode.Substring(5, 1);
                 this.closebtn.Enabled = true;
             }
             
@@ -94,6 +94,8 @@ namespace Oke_teacher.WinForms
                         //course.courseNumber = okeResult.data.data;
                         //CourseInfo.CurrentUser.data = course;
                         CourseInfo.CurrentUser.classCode = okeResult.data.data;
+                        CourseInfo.CurrentUser.data = course;
+                        CourseInfo.CurrentUser.data.courseName = classTextBox1.Text;
                         //classTextBox2.Text = okeResult.data.data;
                         richTextBox1.Text = okeResult.data.data.Substring(0, 1);
                         richTextBox2.Text = okeResult.data.data.Substring(1, 1);
