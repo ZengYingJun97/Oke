@@ -8,7 +8,6 @@ using Microsoft.Office.Interop.PowerPoint;
 using Microsoft.Office.Tools.Ribbon;
 using Oke_teacher.WinForms;
 using MF = Microsoft.Vbe.Interop.Forms;
-using 
 
 namespace Oke_teacher
 {
