@@ -7,6 +7,7 @@ using PowerPoint = Microsoft.Office.Interop.PowerPoint;
 using Office = Microsoft.Office.Core;
 using Microsoft.Office.Core;
 using Oke_teacher.WinForms;
+using Oke_teacher.TaskPane;
 using Microsoft.Office.Tools;
 
 namespace Oke_teacher
@@ -14,6 +15,7 @@ namespace Oke_teacher
     public partial class ThisAddIn
     {
         public Microsoft.Office.Tools.CustomTaskPane _JudgeTaskPane = null;
+        public Microsoft.Office.Tools.CustomTaskPane _SingleChoiceTaskPane = null;
         public Microsoft.Office.Tools.CustomTaskPane _FillTaskPane = null;
 
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
@@ -24,6 +26,11 @@ namespace Oke_teacher
             _JudgeTaskPane = CustomTaskPanes.Add(judgeTaskPane, "Judge Question");
             _JudgeTaskPane.Width = 200;
             _JudgeTaskPane.Visible = false;
+
+            SingleChoiceTaskPane singleChoiceTaskPane = new SingleChoiceTaskPane();
+            _SingleChoiceTaskPane = CustomTaskPanes.Add(singleChoiceTaskPane, "单选题");
+            _SingleChoiceTaskPane.Width = 250;
+            _SingleChoiceTaskPane.Visible = false;
 
             FillTaskPane taskPane = new FillTaskPane();
             _FillTaskPane = this.CustomTaskPanes.Add(taskPane, "Fill Question");

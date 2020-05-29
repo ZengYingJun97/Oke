@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Microsoft.Office.Core;
+using Microsoft.Office.Interop.PowerPoint;
 using Microsoft.Office.Tools.Ribbon;
 using Oke_teacher.WinForms;
 using MF = Microsoft.Vbe.Interop.Forms;
@@ -28,6 +29,8 @@ namespace Oke_teacher
             {
                 LoginButton.Visible = false;
                 InfoButton.Visible = true;
+                Upclassbtn.Visible = true;
+                Noupclassbtn.Visible = false;
             }
         }
         #endregion
@@ -35,11 +38,29 @@ namespace Oke_teacher
 
         private void Upclassbtn_Click(object sender, RibbonControlEventArgs e)
         {
+            UpclassForm upclassForm = new UpclassForm();
+            upclassForm.ShowDialog();
+            if (upclassForm.DialogResult == DialogResult.OK)
+            {
+                Nodownclassbtn.Visible = false;
+                Downclassbtn.Visible = true;
+            }
+            
+            
+
         }
 
 
         private void Downclassbtn_Click(object sender, RibbonControlEventArgs e)
         {
+            DownForm downForm = new DownForm();
+            downForm.ShowDialog();
+            if (downForm.DialogResult == DialogResult.OK)
+            {
+                Nodownclassbtn.Visible = true;
+                Downclassbtn.Visible = false;
+            }
+            
         }
 
 
@@ -340,5 +361,39 @@ namespace Oke_teacher
         }
         #endregion
 
+        private void singleChoice_Click(object sender, RibbonControlEventArgs e)
+        {
+            if (Globals.ThisAddIn._SingleChoiceTaskPane.Visible == false)
+            {
+                Globals.ThisAddIn._SingleChoiceTaskPane.Visible = true;
+            }
+
+            Presentation MyPres = Globals.ThisAddIn.Application.ActivePresentation;
+            Slide activeSlide = (Slide)Globals.ThisAddIn.Application.ActiveWindow.View.Slide;
+
+            int nowIndex = activeSlide.SlideIndex;
+            Slide singleChoiceSlide = MyPres.Slides.Add(nowIndex + 1, PpSlideLayout.ppLayoutBlank);
+
+            TextRange questionDescribe = null;
+            singleChoiceSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 91F, 50F, 777F, 60F);
+            questionDescribe = singleChoiceSlide.Shapes[1].TextFrame.TextRange;
+            questionDescribe.Text = "此处填写题目描述";
+
+            questionDescribe.Font.NameFarEast = "微软雅黑";
+            questionDescribe.Font.NameAscii = "Calibri";
+            questionDescribe.Font.Size = 24;
+            questionDescribe.Font.Bold = MsoTriState.msoFalse;
+
+            singleChoiceSlide.Shapes.AddShape(MsoAutoShapeType.msoShapeOval, 91F, 138F, 38F, 44F)
+                .Fill
+                .ForeColor.RGB = 92 + 173 * 256 + 255 * 256 * 256;
+                
+            singleChoiceSlide.Shapes[2].Line.ForeColor.RGB = 92 + 173 * 256 + 255 * 256 * 256;
+            singleChoiceSlide.Shapes[2].Line.Style = MsoLineStyle.msoLineSingle;
+            singleChoiceSlide.Shapes[2].Line.Weight = 1F;
+            singleChoiceSlide.Shapes[2].Fill.BackColor.RGB = 200 + 200 * 256 + 200 * 256 * 256;
+
+            singleChoiceSlide.Select();
+        }
     }
 }
