@@ -175,6 +175,7 @@
     <Compile Include="Entity\StudentAnswer.cs" />
     <Compile Include="Entity\Teacher.cs" />
     <Compile Include="Entity\User.cs" />
+    <Compile Include="Enums\CheckedEnum.cs" />
     <Compile Include="Enums\EnumExtend.cs" />
     <Compile Include="Enums\LoginEnum.cs" />
     <Compile Include="Enums\RegisterEnum.cs" />
@@ -188,6 +189,12 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TaskPane\JudgeTaskPane.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TaskPane\JudgeTaskPane.Designer.cs">
+      <DependentUpon>JudgeTaskPane.cs</DependentUpon>
     </Compile>
     <Compile Include="TaskPane\SingleChoiceTaskPane.cs">
       <SubType>UserControl</SubType>
@@ -215,12 +222,6 @@
     </Compile>
     <Compile Include="WinForms\InfoForm.Designer.cs">
       <DependentUpon>InfoForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="WinForms\JudgeTaskPane.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="WinForms\JudgeTaskPane.Designer.cs">
-      <DependentUpon>JudgeTaskPane.cs</DependentUpon>
     </Compile>
     <Compile Include="WinForms\LoginForm.cs">
       <SubType>Form</SubType>
@@ -276,6 +277,12 @@
     <Compile Include="WinForms\UpclassForm.Designer.cs">
       <DependentUpon>UpclassForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="WinForms\FillTaskPane.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WinForms\FillTaskPane.Designer.cs">
+      <DependentUpon>FillTaskPane.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="OkeRibbon.resx">
       <DependentUpon>OkeRibbon.cs</DependentUpon>
     </EmbeddedResource>
@@ -289,6 +296,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="TaskPane\JudgeTaskPane.resx">
+      <DependentUpon>JudgeTaskPane.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TaskPane\SingleChoiceTaskPane.resx">
       <DependentUpon>SingleChoiceTaskPane.cs</DependentUpon>
     </EmbeddedResource>
@@ -300,9 +310,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WinForms\InfoForm.resx">
       <DependentUpon>InfoForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="WinForms\JudgeTaskPane.resx">
-      <DependentUpon>JudgeTaskPane.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinForms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -330,6 +337,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WinForms\UpclassForm.resx">
       <DependentUpon>UpclassForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\FillTaskPane.resx">
+      <DependentUpon>FillTaskPane.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Oke_teacher_TemporaryKey.pfx" />
     <None Include="packages.config" />
@@ -373,6 +383,7 @@
     <None Include="Resources\Oke_scratchcard.png" />
     <None Include="Resources\Oke_dataout.bmp" />
     <None Include="Resources\Oke_dataout.png" />
+    <None Include="Resources\Oke_fillanswerdelete.png" />
     <Content Include="Resources\Oke_judge.png" />
     <None Include="Resources\Oke_SingleChoice.png" />
     <Content Include="Resources\upclassicon-08.png" />
