@@ -14,6 +14,8 @@ namespace Oke_teacher
     public partial class ThisAddIn
     {
         public Microsoft.Office.Tools.CustomTaskPane _JudgeTaskPane = null;
+        public Microsoft.Office.Tools.CustomTaskPane _FillTaskPane = null;
+
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
             //TaskPanetest taskPanetest = new TaskPanetest();测试
@@ -22,6 +24,11 @@ namespace Oke_teacher
             _JudgeTaskPane = CustomTaskPanes.Add(judgeTaskPane, "Judge Question");
             _JudgeTaskPane.Width = 200;
             _JudgeTaskPane.Visible = false;
+
+            FillTaskPane taskPane = new FillTaskPane();
+            _FillTaskPane = this.CustomTaskPanes.Add(taskPane, "Fill Question");
+            _FillTaskPane.Width = 200;
+            _FillTaskPane.Visible = false;
 
         }
 
