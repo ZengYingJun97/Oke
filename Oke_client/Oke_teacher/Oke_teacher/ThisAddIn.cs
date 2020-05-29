@@ -17,6 +17,8 @@ namespace Oke_teacher
     {
         public Microsoft.Office.Tools.CustomTaskPane _JudgeTaskPane = null;
         public Microsoft.Office.Tools.CustomTaskPane _SingleChoiceTaskPane = null;
+        public Microsoft.Office.Tools.CustomTaskPane _FillTaskPane = null;
+
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
             //TaskPanetest taskPanetest = new TaskPanetest();测试
@@ -31,6 +33,11 @@ namespace Oke_teacher
             _SingleChoiceTaskPane.Width = 250;
             _SingleChoiceTaskPane.Visible = false;
             Globals.ThisAddIn.Application.SlideSelectionChanged += new EApplication_SlideSelectionChangedEventHandler(isSingleChoicePPT);
+
+            FillTaskPane taskPane = new FillTaskPane();
+            _FillTaskPane = this.CustomTaskPanes.Add(taskPane, "Fill Question");
+            _FillTaskPane.Width = 200;
+            _FillTaskPane.Visible = false;
 
         }
 
