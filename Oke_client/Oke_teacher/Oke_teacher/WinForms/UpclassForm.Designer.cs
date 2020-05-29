@@ -28,14 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.cxFlatStatusBar1 = new CxFlatUI.CxFlatStatusBar();
             this.classTextBox1 = new CxFlatUI.CxFlatTextBox();
             this.classlabel = new System.Windows.Forms.Label();
-            this.classTextBox2 = new CxFlatUI.CxFlatTextBox();
             this.getclassbtn = new CxFlatUI.Controls.CxFlatButton();
-            this.label1 = new System.Windows.Forms.Label();
-            this.copybtn = new CxFlatUI.Controls.CxFlatButton();
             this.closebtn = new CxFlatUI.Controls.CxFlatButton();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.richTextBox3 = new System.Windows.Forms.RichTextBox();
+            this.richTextBox4 = new System.Windows.Forms.RichTextBox();
+            this.richTextBox5 = new System.Windows.Forms.RichTextBox();
+            this.richTextBox6 = new System.Windows.Forms.RichTextBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.cxFlatGroupBox1 = new CxFlatUI.CxFlatGroupBox();
             this.SuspendLayout();
             // 
             // cxFlatStatusBar1
@@ -56,7 +62,7 @@
             // 
             this.classTextBox1.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.classTextBox1.Hint = "";
-            this.classTextBox1.Location = new System.Drawing.Point(271, 135);
+            this.classTextBox1.Location = new System.Drawing.Point(238, 135);
             this.classTextBox1.MaxLength = 32767;
             this.classTextBox1.Multiline = false;
             this.classTextBox1.Name = "classTextBox1";
@@ -74,38 +80,19 @@
             // classlabel
             // 
             this.classlabel.AutoSize = true;
-            this.classlabel.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.classlabel.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.classlabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(173)))), ((int)(((byte)(255)))));
-            this.classlabel.Location = new System.Drawing.Point(121, 152);
+            this.classlabel.Location = new System.Drawing.Point(138, 145);
             this.classlabel.Name = "classlabel";
-            this.classlabel.Size = new System.Drawing.Size(115, 21);
+            this.classlabel.Size = new System.Drawing.Size(76, 28);
             this.classlabel.TabIndex = 2;
-            this.classlabel.Text = "请输入课程名:";
-            // 
-            // classTextBox2
-            // 
-            this.classTextBox2.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.classTextBox2.Hint = "";
-            this.classTextBox2.Location = new System.Drawing.Point(271, 219);
-            this.classTextBox2.MaxLength = 32767;
-            this.classTextBox2.Multiline = false;
-            this.classTextBox2.Name = "classTextBox2";
-            this.classTextBox2.PasswordChar = '\0';
-            this.classTextBox2.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.classTextBox2.SelectedText = "";
-            this.classTextBox2.SelectionLength = 0;
-            this.classTextBox2.SelectionStart = 0;
-            this.classTextBox2.Size = new System.Drawing.Size(220, 38);
-            this.classTextBox2.TabIndex = 3;
-            this.classTextBox2.TabStop = false;
-            this.classTextBox2.UseSystemPasswordChar = false;
-            this.classTextBox2.Click += new System.EventHandler(this.classTextBox2_Click);
+            this.classlabel.Text = "课程名:";
             // 
             // getclassbtn
             // 
             this.getclassbtn.ButtonType = CxFlatUI.ButtonType.Primary;
             this.getclassbtn.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.getclassbtn.Location = new System.Drawing.Point(224, 307);
+            this.getclassbtn.Location = new System.Drawing.Point(198, 307);
             this.getclassbtn.Name = "getclassbtn";
             this.getclassbtn.Size = new System.Drawing.Size(105, 37);
             this.getclassbtn.TabIndex = 4;
@@ -113,35 +100,12 @@
             this.getclassbtn.TextColor = System.Drawing.Color.White;
             this.getclassbtn.Click += new System.EventHandler(this.getclassbtn_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(173)))), ((int)(((byte)(255)))));
-            this.label1.Location = new System.Drawing.Point(172, 236);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 21);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "课程码:";
-            // 
-            // copybtn
-            // 
-            this.copybtn.ButtonType = CxFlatUI.ButtonType.Primary;
-            this.copybtn.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.copybtn.Location = new System.Drawing.Point(518, 234);
-            this.copybtn.Name = "copybtn";
-            this.copybtn.Size = new System.Drawing.Size(75, 23);
-            this.copybtn.TabIndex = 6;
-            this.copybtn.Text = "点击复制";
-            this.copybtn.TextColor = System.Drawing.Color.White;
-            this.copybtn.Click += new System.EventHandler(this.copybtn_Click);
-            // 
             // closebtn
             // 
             this.closebtn.ButtonType = CxFlatUI.ButtonType.Primary;
             this.closebtn.Enabled = false;
             this.closebtn.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.closebtn.Location = new System.Drawing.Point(427, 307);
+            this.closebtn.Location = new System.Drawing.Point(402, 307);
             this.closebtn.Name = "closebtn";
             this.closebtn.Size = new System.Drawing.Size(105, 37);
             this.closebtn.TabIndex = 7;
@@ -149,19 +113,100 @@
             this.closebtn.TextColor = System.Drawing.Color.White;
             this.closebtn.Click += new System.EventHandler(this.closebtn_Click);
             // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Enabled = false;
+            this.richTextBox1.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBox1.Location = new System.Drawing.Point(185, 240);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(40, 39);
+            this.richTextBox1.TabIndex = 8;
+            this.richTextBox1.Text = "";
+            // 
+            // richTextBox2
+            // 
+            this.richTextBox2.Enabled = false;
+            this.richTextBox2.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBox2.Location = new System.Drawing.Point(243, 240);
+            this.richTextBox2.Name = "richTextBox2";
+            this.richTextBox2.Size = new System.Drawing.Size(40, 39);
+            this.richTextBox2.TabIndex = 9;
+            this.richTextBox2.Text = "";
+            // 
+            // richTextBox3
+            // 
+            this.richTextBox3.Enabled = false;
+            this.richTextBox3.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBox3.Location = new System.Drawing.Point(306, 240);
+            this.richTextBox3.Name = "richTextBox3";
+            this.richTextBox3.Size = new System.Drawing.Size(40, 39);
+            this.richTextBox3.TabIndex = 10;
+            this.richTextBox3.Text = "";
+            // 
+            // richTextBox4
+            // 
+            this.richTextBox4.Enabled = false;
+            this.richTextBox4.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBox4.Location = new System.Drawing.Point(361, 240);
+            this.richTextBox4.Name = "richTextBox4";
+            this.richTextBox4.Size = new System.Drawing.Size(40, 39);
+            this.richTextBox4.TabIndex = 11;
+            this.richTextBox4.Text = "";
+            // 
+            // richTextBox5
+            // 
+            this.richTextBox5.Enabled = false;
+            this.richTextBox5.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBox5.Location = new System.Drawing.Point(418, 240);
+            this.richTextBox5.Name = "richTextBox5";
+            this.richTextBox5.Size = new System.Drawing.Size(40, 39);
+            this.richTextBox5.TabIndex = 12;
+            this.richTextBox5.Text = "";
+            // 
+            // richTextBox6
+            // 
+            this.richTextBox6.Enabled = false;
+            this.richTextBox6.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBox6.Location = new System.Drawing.Point(478, 240);
+            this.richTextBox6.Name = "richTextBox6";
+            this.richTextBox6.Size = new System.Drawing.Size(40, 39);
+            this.richTextBox6.TabIndex = 13;
+            this.richTextBox6.Text = "";
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // cxFlatGroupBox1
+            // 
+            this.cxFlatGroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cxFlatGroupBox1.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.cxFlatGroupBox1.Location = new System.Drawing.Point(0, 0);
+            this.cxFlatGroupBox1.Name = "cxFlatGroupBox1";
+            this.cxFlatGroupBox1.ShowText = false;
+            this.cxFlatGroupBox1.Size = new System.Drawing.Size(701, 450);
+            this.cxFlatGroupBox1.TabIndex = 15;
+            this.cxFlatGroupBox1.TabStop = false;
+            this.cxFlatGroupBox1.Text = "cxFlatGroupBox1";
+            this.cxFlatGroupBox1.ThemeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
+            // 
             // UpclassForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(701, 450);
+            this.Controls.Add(this.richTextBox6);
+            this.Controls.Add(this.richTextBox5);
+            this.Controls.Add(this.richTextBox4);
+            this.Controls.Add(this.richTextBox3);
+            this.Controls.Add(this.richTextBox2);
+            this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.closebtn);
-            this.Controls.Add(this.copybtn);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.getclassbtn);
-            this.Controls.Add(this.classTextBox2);
             this.Controls.Add(this.classlabel);
             this.Controls.Add(this.classTextBox1);
             this.Controls.Add(this.cxFlatStatusBar1);
+            this.Controls.Add(this.cxFlatGroupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1440, 860);
@@ -179,10 +224,15 @@
         private CxFlatUI.CxFlatStatusBar cxFlatStatusBar1;
         private CxFlatUI.CxFlatTextBox classTextBox1;
         private System.Windows.Forms.Label classlabel;
-        private CxFlatUI.CxFlatTextBox classTextBox2;
         private CxFlatUI.Controls.CxFlatButton getclassbtn;
-        private System.Windows.Forms.Label label1;
-        private CxFlatUI.Controls.CxFlatButton copybtn;
         private CxFlatUI.Controls.CxFlatButton closebtn;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox richTextBox2;
+        private System.Windows.Forms.RichTextBox richTextBox3;
+        private System.Windows.Forms.RichTextBox richTextBox4;
+        private System.Windows.Forms.RichTextBox richTextBox5;
+        private System.Windows.Forms.RichTextBox richTextBox6;
+        private System.Windows.Forms.Timer timer1;
+        private CxFlatUI.CxFlatGroupBox cxFlatGroupBox1;
     }
 }

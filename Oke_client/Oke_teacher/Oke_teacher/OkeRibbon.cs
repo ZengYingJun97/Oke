@@ -95,8 +95,8 @@ namespace Oke_teacher
             AllSlides = Globals.ThisAddIn.Application.ActivePresentation.Slides;//获取当前PPT中的所有幻灯片
             MySlide = Globals.ThisAddIn.Application.ActiveWindow.View.Slide;//获取选中幻灯片
             #region 插入判断题 题目类型
-            NewSlide = AllSlides.Add(MySlide.SlideIndex, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);//插入幻灯片
-
+            NewSlide = AllSlides.Add(MySlide.SlideIndex+1, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);//插入幻灯片
+            
             Microsoft.Office.Interop.PowerPoint.TextRange FillTextRng = null;//设置第一个文本框
 
             NewSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 40F, 100F, 30F);
@@ -111,6 +111,7 @@ namespace Oke_teacher
             FillTextRng.Font.Size = 24;//字体大小是24.
             FillTextRng.ParagraphFormat.Alignment = Microsoft.Office.Interop.PowerPoint.PpParagraphAlignment.ppAlignLeft;//文本对齐方式（水平方向）
             NewSlide.Shapes[1].TextFrame.VerticalAnchor = MsoVerticalAnchor.msoAnchorMiddle; //文本对齐方式（垂直方向）
+            NewSlide.Select();
             #endregion
             #region 插入判断题题目
             Microsoft.Office.Interop.PowerPoint.TextRange FQTextRng = null;
