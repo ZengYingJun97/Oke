@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,6 +7,7 @@ using System.Windows.Forms;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
 using Microsoft.Office.Tools.Ribbon;
+using Oke_teacher.Enums;
 using Oke_teacher.WinForms;
 using MF = Microsoft.Vbe.Interop.Forms;
 
@@ -13,6 +15,7 @@ namespace Oke_teacher
 {
     public partial class OkeRibbon
     {
+        private static long countSCPPT = 0;
 
         #region 登录按钮触发事件
         /// <summary>
@@ -351,39 +354,74 @@ namespace Oke_teacher
         }
         #endregion
 
+        private void addOption(Slide slide, string text, Single left1, Single top1, Single left2, Single top2)
+        {
+            slide.Shapes.AddShape(MsoAutoShapeType.msoShapeOval, left1, top1, 38F, 44F).Name = "option" + text + "Type";
+            slide.Shapes["option" + text + "Type"].Fill.ForeColor.RGB = (int) CheckedEnum.NOCHECKED;
+            slide.Shapes["option" + text + "Type"].TextFrame.TextRange.Text = text;
+            slide.Shapes["option" + text + "Type"].TextFrame.TextRange.Font.Size = 20;
+            slide.Shapes["option" + text + "Type"].TextFrame.HorizontalAnchor = MsoHorizontalAnchor.msoAnchorCenter;
+
+            slide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, left2, top2, 656F, 33F).Name = "option" + text + "Text";
+            slide.Shapes["option" + text + "Text"].TextFrame.TextRange.Text = "此处填写" + text +"选项描述";
+            slide.Shapes["option" + text + "Text"].TextFrame.TextRange.Font.NameFarEast = "微软雅黑";
+            slide.Shapes["option" + text + "Text"].TextFrame.TextRange.Font.NameAscii = "Calibri";
+            slide.Shapes["option" + text + "Text"].TextFrame.TextRange.Font.Size = 24;
+            slide.Shapes["option" + text + "Text"].TextFrame.TextRange.Font.Bold = MsoTriState.msoFalse;
+        }
+
         private void singleChoice_Click(object sender, RibbonControlEventArgs e)
         {
-            if (Globals.ThisAddIn._SingleChoiceTaskPane.Visible == false)
-            {
-                Globals.ThisAddIn._SingleChoiceTaskPane.Visible = true;
-            }
-
             Presentation MyPres = Globals.ThisAddIn.Application.ActivePresentation;
-            Slide activeSlide = (Slide)Globals.ThisAddIn.Application.ActiveWindow.View.Slide;
+            Slide activeSlide = (Slide) Globals.ThisAddIn.Application.ActiveWindow.View.Slide;
 
             int nowIndex = activeSlide.SlideIndex;
             Slide singleChoiceSlide = MyPres.Slides.Add(nowIndex + 1, PpSlideLayout.ppLayoutBlank);
+            singleChoiceSlide.Name = "SCPPT" + countSCPPT++;
+            //singleChoiceSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "singleChoicePPT";
+            //singleChoiceSlide.Shapes["singleChoicePPT"].Visible = MsoTriState.msoFalse;
 
             TextRange questionDescribe = null;
-            singleChoiceSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 91F, 50F, 777F, 60F);
-            questionDescribe = singleChoiceSlide.Shapes[1].TextFrame.TextRange;
+            singleChoiceSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 91F, 50F, 777F, 60F).Name = "questionDescribe";
+            questionDescribe = singleChoiceSlide.Shapes["questionDescribe"].TextFrame.TextRange;
             questionDescribe.Text = "此处填写题目描述";
-
             questionDescribe.Font.NameFarEast = "微软雅黑";
             questionDescribe.Font.NameAscii = "Calibri";
             questionDescribe.Font.Size = 24;
             questionDescribe.Font.Bold = MsoTriState.msoFalse;
 
-            singleChoiceSlide.Shapes.AddShape(MsoAutoShapeType.msoShapeOval, 91F, 138F, 38F, 44F)
-                .Fill
-                .ForeColor.RGB = 92 + 173 * 256 + 255 * 256 * 256;
-                
-            singleChoiceSlide.Shapes[2].Line.ForeColor.RGB = 92 + 173 * 256 + 255 * 256 * 256;
-            singleChoiceSlide.Shapes[2].Line.Style = MsoLineStyle.msoLineSingle;
-            singleChoiceSlide.Shapes[2].Line.Weight = 1F;
-            singleChoiceSlide.Shapes[2].Fill.BackColor.RGB = 200 + 200 * 256 + 200 * 256 * 256;
+            addOption(singleChoiceSlide, "A", 91F, 138F, 152F, 143F);
+            addOption(singleChoiceSlide, "B", 91F, 197F, 152F, 203F);
+            addOption(singleChoiceSlide, "C", 91F, 257F, 152F, 262F);
+            AddSubmitOleForm(singleChoiceSlide, 822F, 466F, 89F, 46F);
+            singleChoiceSlide.Shapes["optionAType"].Fill.ForeColor.RGB = (int) CheckedEnum.CHECKED;
 
             singleChoiceSlide.Select();
+        }
+
+        private void AddSubmitOleForm(Slide slide, Single left, Single top, Single width, Single height)
+        {
+            var oleControl = slide.Shapes.AddOLEObject(left, top, width, height, "Forms.CommandButton.1", "",
+            MsoTriState.msoFalse, "", 0, "", MsoTriState.msoFalse);
+            var obj = oleControl.OLEFormat.Object;
+            oleControl.Name = "Frame";
+
+            OLEFormat oleF = slide.Shapes.Range("Frame").OLEFormat;
+            MF.CommandButton button = (MF.CommandButton)oleF.Object;
+
+            button.BackColor = 92 + 173 * 256 + 255 * 256 * 256;
+            button.ForeColor = 255 + 255 * 256 + 255 * 256 * 256;
+
+            button.Caption = "发 布";
+            button.FontBold = true;
+            button.Click += sumbitClick;
+        }
+
+        private void sumbitClick()
+        {
+            //TODO
+            LoginForm loginForm = new LoginForm();
+            loginForm.Show();
         }
     }
 }

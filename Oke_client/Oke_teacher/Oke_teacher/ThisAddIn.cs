@@ -9,6 +9,7 @@ using Microsoft.Office.Core;
 using Oke_teacher.WinForms;
 using Oke_teacher.TaskPane;
 using Microsoft.Office.Tools;
+using Microsoft.Office.Interop.PowerPoint;
 
 namespace Oke_teacher
 {
@@ -29,7 +30,24 @@ namespace Oke_teacher
             _SingleChoiceTaskPane = CustomTaskPanes.Add(singleChoiceTaskPane, "单选题");
             _SingleChoiceTaskPane.Width = 250;
             _SingleChoiceTaskPane.Visible = false;
+            Globals.ThisAddIn.Application.SlideSelectionChanged += new EApplication_SlideSelectionChangedEventHandler(isSingleChoicePPT);
 
+        }
+
+        private void isSingleChoicePPT(SlideRange sldRange)
+        {
+            if (sldRange == null)
+            {
+                return;
+            }
+            if (sldRange.Name != null && sldRange.Name[0] == 'S' && sldRange.Name[1] == 'C' && sldRange.Name[2] == 'P' && sldRange.Name[3] == 'P'  && sldRange.Name[4] == 'T')
+            {
+                _SingleChoiceTaskPane.Visible = true;
+            }
+            else
+            {
+                _SingleChoiceTaskPane.Visible = false;
+            }
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
