@@ -178,6 +178,7 @@
     <Compile Include="Enums\EnumExtend.cs" />
     <Compile Include="Enums\LoginEnum.cs" />
     <Compile Include="Enums\RegisterEnum.cs" />
+    <Compile Include="Info\CourseInfo.cs" />
     <Compile Include="Info\LoginInfo.cs" />
     <Compile Include="OkeRibbon.cs">
       <SubType>Component</SubType>
@@ -202,6 +203,12 @@
     </Compile>
     <Compile Include="WinForms\DataoutForm.Designer.cs">
       <DependentUpon>DataoutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\DownForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\DownForm.Designer.cs">
+      <DependentUpon>DownForm.cs</DependentUpon>
     </Compile>
     <Compile Include="WinForms\InfoForm.cs">
       <SubType>Form</SubType>
@@ -263,6 +270,12 @@
     <Compile Include="WinForms\TeacherSetQuesForm.Designer.cs">
       <DependentUpon>TeacherSetQuesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="WinForms\UpclassForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\UpclassForm.Designer.cs">
+      <DependentUpon>UpclassForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="OkeRibbon.resx">
       <DependentUpon>OkeRibbon.cs</DependentUpon>
     </EmbeddedResource>
@@ -281,6 +294,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WinForms\DataoutForm.resx">
       <DependentUpon>DataoutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\DownForm.resx">
+      <DependentUpon>DownForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinForms\InfoForm.resx">
       <DependentUpon>InfoForm.cs</DependentUpon>
@@ -311,6 +327,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WinForms\TeacherSetQuesForm.resx">
       <DependentUpon>TeacherSetQuesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\UpclassForm.resx">
+      <DependentUpon>UpclassForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Oke_teacher_TemporaryKey.pfx" />
     <None Include="packages.config" />
