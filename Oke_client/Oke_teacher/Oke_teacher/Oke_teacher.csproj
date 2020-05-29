@@ -190,6 +190,12 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="TaskPane\JudgeTaskPane.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TaskPane\JudgeTaskPane.Designer.cs">
+      <DependentUpon>JudgeTaskPane.cs</DependentUpon>
+    </Compile>
     <Compile Include="TaskPane\SingleChoiceTaskPane.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -216,12 +222,6 @@
     </Compile>
     <Compile Include="WinForms\InfoForm.Designer.cs">
       <DependentUpon>InfoForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="WinForms\JudgeTaskPane.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="WinForms\JudgeTaskPane.Designer.cs">
-      <DependentUpon>JudgeTaskPane.cs</DependentUpon>
     </Compile>
     <Compile Include="WinForms\LoginForm.cs">
       <SubType>Form</SubType>
@@ -296,6 +296,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="TaskPane\JudgeTaskPane.resx">
+      <DependentUpon>JudgeTaskPane.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TaskPane\SingleChoiceTaskPane.resx">
       <DependentUpon>SingleChoiceTaskPane.cs</DependentUpon>
     </EmbeddedResource>
@@ -307,9 +310,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WinForms\InfoForm.resx">
       <DependentUpon>InfoForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="WinForms\JudgeTaskPane.resx">
-      <DependentUpon>JudgeTaskPane.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinForms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
