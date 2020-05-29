@@ -25,6 +25,8 @@ F:\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.csproj.CopyCompl
 F:\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.dll
 F:\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.pdb
 F:\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.csprojAssemblyReference.cache
+F:\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.WinForms.DataoutForm.resources
+F:\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.WinForms.JudgeTaskPane.resources
 F:\Oke\Oke\Oke_client\Oke_teacher\Oke_teacher\bin\Debug\Oke_teacher.dll
 F:\Oke\Oke\Oke_client\Oke_teacher\Oke_teacher\bin\Debug\Oke_teacher.pdb
 F:\Oke\Oke\Oke_client\Oke_teacher\Oke_teacher\bin\Debug\Oke_teacher.dll.manifest
@@ -33,9 +35,12 @@ F:\Oke\Oke\Oke_client\Oke_teacher\Oke_teacher\bin\Debug\Microsoft.Office.Tools.C
 F:\Oke\Oke\Oke_client\Oke_teacher\Oke_teacher\bin\Debug\Microsoft.Office.Tools.v4.0.Framework.dll
 F:\Oke\Oke\Oke_client\Oke_teacher\Oke_teacher\bin\Debug\Newtonsoft.Json.dll
 F:\Oke\Oke\Oke_client\Oke_teacher\Oke_teacher\bin\Debug\Newtonsoft.Json.xml
+F:\Oke\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.csprojAssemblyReference.cache
 F:\Oke\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.OkeRibbon.resources
 F:\Oke\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.Properties.Resources.resources
+F:\Oke\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.WinForms.DataoutForm.resources
 F:\Oke\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.WinForms.InfoForm.resources
+F:\Oke\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.WinForms.JudgeTaskPane.resources
 F:\Oke\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.WinForms.LoginForm.resources
 F:\Oke\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.WinForms.ManageInfoForm.resources
 F:\Oke\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.WinForms.QuesList.resources
@@ -49,8 +54,6 @@ F:\Oke\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.csproj.CoreC
 F:\Oke\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.csproj.CopyComplete
 F:\Oke\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.dll
 F:\Oke\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.pdb
-F:\Oke\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.csprojAssemblyReference.cache
-F:\Oke\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.WinForms.DataoutForm.resources
-F:\Oke\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.WinForms.JudgeTaskPane.resources
-F:\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.WinForms.DataoutForm.resources
-F:\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.WinForms.JudgeTaskPane.resources
+F:\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.TaskPane.SingleChoiceTaskPane.resources
+F:\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.WinForms.DownForm.resources
+F:\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.WinForms.UpclassForm.resources

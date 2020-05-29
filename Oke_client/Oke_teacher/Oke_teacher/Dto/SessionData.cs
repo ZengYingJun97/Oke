@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Oke_teacher.Entity;
 
 namespace Oke_teacher.Dto
 {
@@ -16,5 +17,10 @@ namespace Oke_teacher.Dto
         public string sessionId { set; get; }
 
         public T data { set; get; }
+
+        public static implicit operator SessionData<T>(Course v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
