@@ -10,6 +10,8 @@ using Oke_teacher.WinForms;
 using Oke_teacher.TaskPane;
 using Microsoft.Office.Tools;
 using Microsoft.Office.Interop.PowerPoint;
+using System.Collections;
+using Oke_teacher.Uitls;
 
 namespace Oke_teacher
 {
@@ -18,6 +20,8 @@ namespace Oke_teacher
         public Microsoft.Office.Tools.CustomTaskPane _JudgeTaskPane = null;
         public Microsoft.Office.Tools.CustomTaskPane _SingleChoiceTaskPane = null;
         public Microsoft.Office.Tools.CustomTaskPane _FillTaskPane = null;
+
+        private SingleChoiceTaskPane singleChoiceTaskPane = new SingleChoiceTaskPane();
 
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
@@ -28,7 +32,6 @@ namespace Oke_teacher
             _JudgeTaskPane.Width = 200;
             _JudgeTaskPane.Visible = false;
 
-            SingleChoiceTaskPane singleChoiceTaskPane = new SingleChoiceTaskPane();
             _SingleChoiceTaskPane = CustomTaskPanes.Add(singleChoiceTaskPane, "单选题");
             _SingleChoiceTaskPane.Width = 250;
             _SingleChoiceTaskPane.Visible = false;
@@ -41,21 +44,30 @@ namespace Oke_teacher
 
         }
 
+        #region 幻灯片监听事件
+        /// <summary>
+        /// 幻灯片监听事件
+        /// </summary>
+        /// <param name="sldRange"></param>
         private void isSingleChoicePPT(SlideRange sldRange)
         {
-            if (sldRange == null)
+            if (sldRange.SlideIndex == 0)
             {
+                _SingleChoiceTaskPane.Visible = false;
                 return;
             }
-            if (sldRange.Name != null && sldRange.Name[0] == 'S' && sldRange.Name[1] == 'C' && sldRange.Name[2] == 'P' && sldRange.Name[3] == 'P'  && sldRange.Name[4] == 'T')
+            Slide activeSlide = (Slide)Globals.ThisAddIn.Application.ActiveWindow.View.Slide;
+            if (ShapesUitls.IsExistedOfShape(activeSlide, "questionType") && activeSlide.Shapes["questionType"].TextFrame.TextRange.Text.Equals("0"))
             {
                 _SingleChoiceTaskPane.Visible = true;
+                singleChoiceTaskPane.load_slide();
             }
             else
             {
                 _SingleChoiceTaskPane.Visible = false;
             }
         }
+        #endregion
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
         {

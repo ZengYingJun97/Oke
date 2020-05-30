@@ -48,7 +48,7 @@
             // 
             this.scoreLabel.AutoSize = true;
             this.scoreLabel.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.scoreLabel.ForeColor = System.Drawing.Color.Black;
+            this.scoreLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(173)))), ((int)(((byte)(255)))));
             this.scoreLabel.Location = new System.Drawing.Point(17, 57);
             this.scoreLabel.Name = "scoreLabel";
             this.scoreLabel.Size = new System.Drawing.Size(65, 19);
@@ -57,16 +57,19 @@
             // 
             // scoreBox
             // 
+            this.scoreBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.scoreBox.Location = new System.Drawing.Point(87, 58);
             this.scoreBox.Name = "scoreBox";
             this.scoreBox.Size = new System.Drawing.Size(120, 21);
             this.scoreBox.TabIndex = 3;
+            this.scoreBox.TextChanged += new System.EventHandler(this.textBox_TextChanged);
+            this.scoreBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // questionAnswerLabel
             // 
             this.questionAnswerLabel.AutoSize = true;
             this.questionAnswerLabel.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.questionAnswerLabel.ForeColor = System.Drawing.Color.Black;
+            this.questionAnswerLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(173)))), ((int)(((byte)(255)))));
             this.questionAnswerLabel.Location = new System.Drawing.Point(17, 113);
             this.questionAnswerLabel.Name = "questionAnswerLabel";
             this.questionAnswerLabel.Size = new System.Drawing.Size(65, 19);
@@ -101,7 +104,7 @@
             // 
             this.questionLimitTimeLabel.AutoSize = true;
             this.questionLimitTimeLabel.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.questionLimitTimeLabel.ForeColor = System.Drawing.Color.Black;
+            this.questionLimitTimeLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(173)))), ((int)(((byte)(255)))));
             this.questionLimitTimeLabel.Location = new System.Drawing.Point(17, 242);
             this.questionLimitTimeLabel.Name = "questionLimitTimeLabel";
             this.questionLimitTimeLabel.Size = new System.Drawing.Size(65, 19);
@@ -119,6 +122,7 @@
             this.optionAButton.TabIndex = 18;
             this.optionAButton.Text = "A";
             this.optionAButton.UseVisualStyleBackColor = true;
+            this.optionAButton.CheckedChanged += new System.EventHandler(this.optionButton_CheckedChanged);
             // 
             // optionBButton
             // 
@@ -132,6 +136,7 @@
             this.optionBButton.TabStop = true;
             this.optionBButton.Text = "B";
             this.optionBButton.UseVisualStyleBackColor = true;
+            this.optionBButton.CheckedChanged += new System.EventHandler(this.optionButton_CheckedChanged);
             // 
             // optionCButton
             // 
@@ -145,6 +150,7 @@
             this.optionCButton.TabStop = true;
             this.optionCButton.Text = "C";
             this.optionCButton.UseVisualStyleBackColor = true;
+            this.optionCButton.CheckedChanged += new System.EventHandler(this.optionButton_CheckedChanged);
             // 
             // optionDButton
             // 
@@ -159,6 +165,7 @@
             this.optionDButton.Text = "D";
             this.optionDButton.UseVisualStyleBackColor = true;
             this.optionDButton.Visible = false;
+            this.optionDButton.CheckedChanged += new System.EventHandler(this.optionButton_CheckedChanged);
             // 
             // optionEButton
             // 
@@ -173,6 +180,7 @@
             this.optionEButton.Text = "E";
             this.optionEButton.UseVisualStyleBackColor = true;
             this.optionEButton.Visible = false;
+            this.optionEButton.CheckedChanged += new System.EventHandler(this.optionButton_CheckedChanged);
             // 
             // optionFButton
             // 
@@ -187,6 +195,7 @@
             this.optionFButton.Text = "F";
             this.optionFButton.UseVisualStyleBackColor = true;
             this.optionFButton.Visible = false;
+            this.optionFButton.CheckedChanged += new System.EventHandler(this.optionButton_CheckedChanged);
             // 
             // optionGButton
             // 
@@ -201,13 +210,17 @@
             this.optionGButton.Text = "G";
             this.optionGButton.UseVisualStyleBackColor = true;
             this.optionGButton.Visible = false;
+            this.optionGButton.CheckedChanged += new System.EventHandler(this.optionButton_CheckedChanged);
             // 
             // questionLimitTimeBox
             // 
+            this.questionLimitTimeBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.questionLimitTimeBox.Location = new System.Drawing.Point(87, 243);
             this.questionLimitTimeBox.Name = "questionLimitTimeBox";
             this.questionLimitTimeBox.Size = new System.Drawing.Size(120, 21);
             this.questionLimitTimeBox.TabIndex = 26;
+            this.questionLimitTimeBox.TextChanged += new System.EventHandler(this.textBox_TextChanged);
+            this.questionLimitTimeBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // SingleChoiceTaskPane
             // 
