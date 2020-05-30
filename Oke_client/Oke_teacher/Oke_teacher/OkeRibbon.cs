@@ -1,11 +1,16 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Resources;
 using System.Text;
 using System.Windows.Forms;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
 using Microsoft.Office.Tools.Ribbon;
+using Oke_teacher.Enums;
 using Oke_teacher.WinForms;
 using MF = Microsoft.Vbe.Interop.Forms;
 
@@ -13,6 +18,8 @@ namespace Oke_teacher
 {
     public partial class OkeRibbon
     {
+        private static long countSCPPT = 0;
+        private static long countJDPPT = 0;
 
         #region 登录按钮触发事件
         /// <summary>
@@ -79,6 +86,11 @@ namespace Oke_teacher
             {
                 InfoButton.Visible = false;
                 LoginButton.Visible = true;
+                Upclassbtn.Visible = false;
+                Downclassbtn.Visible = false;
+                Noupclassbtn.Visible = true;
+                Nodownclassbtn.Visible = true;
+
             }
         }
         #endregion
@@ -88,10 +100,10 @@ namespace Oke_teacher
 
         private void Judgquesbtn_Click(object sender, RibbonControlEventArgs e)
         {
-            if (Globals.ThisAddIn._JudgeTaskPane != null)
-            {
-                Globals.ThisAddIn._JudgeTaskPane.Visible = true;
-            }
+            //if (Globals.ThisAddIn._JudgeTaskPane != null)
+            //{
+            //    Globals.ThisAddIn._JudgeTaskPane.Visible = true;
+            //}
                 //SetQuestForm setQuestForm = new SetQuestForm();
                 //setQuestForm.Show();
             //Microsoft.Office.Interop.PowerPoint.Presentation MyPres = null;//ppt实例
@@ -100,9 +112,10 @@ namespace Oke_teacher
             Microsoft.Office.Interop.PowerPoint.Slide NewSlide = null;//新插入的幻灯片
             AllSlides = Globals.ThisAddIn.Application.ActivePresentation.Slides;//获取当前PPT中的所有幻灯片
             MySlide = Globals.ThisAddIn.Application.ActiveWindow.View.Slide;//获取选中幻灯片
+            
             #region 插入判断题 题目类型
-            NewSlide = AllSlides.Add(MySlide.SlideIndex, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);//插入幻灯片
-
+            NewSlide = AllSlides.Add(MySlide.SlideIndex+1, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);//插入幻灯片
+            
             Microsoft.Office.Interop.PowerPoint.TextRange FillTextRng = null;//设置第一个文本框
 
             NewSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 40F, 100F, 30F);
@@ -117,12 +130,17 @@ namespace Oke_teacher
             FillTextRng.Font.Size = 24;//字体大小是24.
             FillTextRng.ParagraphFormat.Alignment = Microsoft.Office.Interop.PowerPoint.PpParagraphAlignment.ppAlignLeft;//文本对齐方式（水平方向）
             NewSlide.Shapes[1].TextFrame.VerticalAnchor = MsoVerticalAnchor.msoAnchorMiddle; //文本对齐方式（垂直方向）
+            NewSlide.Select();
             #endregion
             #region 插入判断题题目
             Microsoft.Office.Interop.PowerPoint.TextRange FQTextRng = null;
 
             NewSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 150F, 400F, 300F);
-
+            
+            //添加True & False图片 从网上获取
+            NewSlide.Shapes.AddPicture("http://pic.616pic.com/ys_b_img/00/57/95/CLa3kvD1Kw.jpg", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoTrue, 21, 400, 70, 50);
+            NewSlide.Shapes.AddPicture("http://pic.616pic.com/ys_b_img/00/11/88/mktrxpmh8r.jpg", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoTrue, 200, 400, 70, 50);
+            NewSlide.Name = "JUDGE" + countJDPPT++;
             FQTextRng = NewSlide.Shapes[2].TextFrame.TextRange;//请注意此处Shapes的索引，由于文本框是第二个添加的Shapes，所以此处索引是2。
 
             FQTextRng.Font.NameFarEast = "微软雅黑";//文本框中，中文的字体                   
@@ -135,8 +153,8 @@ namespace Oke_teacher
             NewSlide.Shapes[2].TextFrame.VerticalAnchor = MsoVerticalAnchor.msoAnchorMiddle; //文本对齐方式（垂直方向）
             #endregion
             #region 添加对错按钮
-            AddOleForm1(NewSlide, 21.5F, 400F, 70F, 50F, "True", 1);
-            AddOleForm1(NewSlide, 200F, 400F, 70F, 50F, "False", 2);
+            //AddOleForm1(NewSlide, 21.5F, 400F, 70F, 50F, "True", 1);
+            //AddOleForm1(NewSlide, 200F, 400F, 70F, 50F, "False", 2);
 
             //Image image1 = Properties.Resources.Oke_true;
             //Image image2 = Properties.Resources.Oke_false;
@@ -361,39 +379,74 @@ namespace Oke_teacher
         }
         #endregion
 
+        private void addOption(Slide slide, string text, Single left1, Single top1, Single left2, Single top2)
+        {
+            slide.Shapes.AddShape(MsoAutoShapeType.msoShapeOval, left1, top1, 38F, 44F).Name = "option" + text + "Type";
+            slide.Shapes["option" + text + "Type"].Fill.ForeColor.RGB = (int) CheckedEnum.NOCHECKED;
+            slide.Shapes["option" + text + "Type"].TextFrame.TextRange.Text = text;
+            slide.Shapes["option" + text + "Type"].TextFrame.TextRange.Font.Size = 20;
+            slide.Shapes["option" + text + "Type"].TextFrame.HorizontalAnchor = MsoHorizontalAnchor.msoAnchorCenter;
+
+            slide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, left2, top2, 656F, 33F).Name = "option" + text + "Text";
+            slide.Shapes["option" + text + "Text"].TextFrame.TextRange.Text = "此处填写" + text +"选项描述";
+            slide.Shapes["option" + text + "Text"].TextFrame.TextRange.Font.NameFarEast = "微软雅黑";
+            slide.Shapes["option" + text + "Text"].TextFrame.TextRange.Font.NameAscii = "Calibri";
+            slide.Shapes["option" + text + "Text"].TextFrame.TextRange.Font.Size = 24;
+            slide.Shapes["option" + text + "Text"].TextFrame.TextRange.Font.Bold = MsoTriState.msoFalse;
+        }
+
         private void singleChoice_Click(object sender, RibbonControlEventArgs e)
         {
-            if (Globals.ThisAddIn._SingleChoiceTaskPane.Visible == false)
-            {
-                Globals.ThisAddIn._SingleChoiceTaskPane.Visible = true;
-            }
-
             Presentation MyPres = Globals.ThisAddIn.Application.ActivePresentation;
-            Slide activeSlide = (Slide)Globals.ThisAddIn.Application.ActiveWindow.View.Slide;
+            Slide activeSlide = (Slide) Globals.ThisAddIn.Application.ActiveWindow.View.Slide;
 
             int nowIndex = activeSlide.SlideIndex;
             Slide singleChoiceSlide = MyPres.Slides.Add(nowIndex + 1, PpSlideLayout.ppLayoutBlank);
+            singleChoiceSlide.Name = "SCPPT" + countSCPPT++;
+            //singleChoiceSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "singleChoicePPT";
+            //singleChoiceSlide.Shapes["singleChoicePPT"].Visible = MsoTriState.msoFalse;
 
             TextRange questionDescribe = null;
-            singleChoiceSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 91F, 50F, 777F, 60F);
-            questionDescribe = singleChoiceSlide.Shapes[1].TextFrame.TextRange;
+            singleChoiceSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 91F, 50F, 777F, 60F).Name = "questionDescribe";
+            questionDescribe = singleChoiceSlide.Shapes["questionDescribe"].TextFrame.TextRange;
             questionDescribe.Text = "此处填写题目描述";
-
             questionDescribe.Font.NameFarEast = "微软雅黑";
             questionDescribe.Font.NameAscii = "Calibri";
             questionDescribe.Font.Size = 24;
             questionDescribe.Font.Bold = MsoTriState.msoFalse;
 
-            singleChoiceSlide.Shapes.AddShape(MsoAutoShapeType.msoShapeOval, 91F, 138F, 38F, 44F)
-                .Fill
-                .ForeColor.RGB = 92 + 173 * 256 + 255 * 256 * 256;
-                
-            singleChoiceSlide.Shapes[2].Line.ForeColor.RGB = 92 + 173 * 256 + 255 * 256 * 256;
-            singleChoiceSlide.Shapes[2].Line.Style = MsoLineStyle.msoLineSingle;
-            singleChoiceSlide.Shapes[2].Line.Weight = 1F;
-            singleChoiceSlide.Shapes[2].Fill.BackColor.RGB = 200 + 200 * 256 + 200 * 256 * 256;
+            addOption(singleChoiceSlide, "A", 91F, 138F, 152F, 143F);
+            addOption(singleChoiceSlide, "B", 91F, 197F, 152F, 203F);
+            addOption(singleChoiceSlide, "C", 91F, 257F, 152F, 262F);
+            AddSubmitOleForm(singleChoiceSlide, 822F, 466F, 89F, 46F);
+            singleChoiceSlide.Shapes["optionAType"].Fill.ForeColor.RGB = (int) CheckedEnum.CHECKED;
 
             singleChoiceSlide.Select();
+        }
+
+        private void AddSubmitOleForm(Slide slide, Single left, Single top, Single width, Single height)
+        {
+            var oleControl = slide.Shapes.AddOLEObject(left, top, width, height, "Forms.CommandButton.1", "",
+            MsoTriState.msoFalse, "", 0, "", MsoTriState.msoFalse);
+            var obj = oleControl.OLEFormat.Object;
+            oleControl.Name = "Frame";
+
+            OLEFormat oleF = slide.Shapes.Range("Frame").OLEFormat;
+            MF.CommandButton button = (MF.CommandButton)oleF.Object;
+
+            button.BackColor = 92 + 173 * 256 + 255 * 256 * 256;
+            button.ForeColor = 255 + 255 * 256 + 255 * 256 * 256;
+
+            button.Caption = "发 布";
+            button.FontBold = true;
+            button.Click += sumbitClick;
+        }
+
+        private void sumbitClick()
+        {
+            //TODO
+            LoginForm loginForm = new LoginForm();
+            loginForm.Show();
         }
     }
 }

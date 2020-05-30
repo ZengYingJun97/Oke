@@ -9,6 +9,7 @@ using Microsoft.Office.Core;
 using Oke_teacher.WinForms;
 using Oke_teacher.TaskPane;
 using Microsoft.Office.Tools;
+using Microsoft.Office.Interop.PowerPoint;
 
 namespace Oke_teacher
 {
@@ -26,11 +27,15 @@ namespace Oke_teacher
             _JudgeTaskPane = CustomTaskPanes.Add(judgeTaskPane, "Judge Question");
             _JudgeTaskPane.Width = 200;
             _JudgeTaskPane.Visible = false;
+            Globals.ThisAddIn.Application.SlideSelectionChanged += new EApplication_SlideSelectionChangedEventHandler(isJudgeQuestionPPT);
+
+
 
             SingleChoiceTaskPane singleChoiceTaskPane = new SingleChoiceTaskPane();
             _SingleChoiceTaskPane = CustomTaskPanes.Add(singleChoiceTaskPane, "单选题");
             _SingleChoiceTaskPane.Width = 250;
             _SingleChoiceTaskPane.Visible = false;
+            Globals.ThisAddIn.Application.SlideSelectionChanged += new EApplication_SlideSelectionChangedEventHandler(isSingleChoicePPT);
 
             FillTaskPane taskPane = new FillTaskPane();
             _FillTaskPane = this.CustomTaskPanes.Add(taskPane, "Fill Question");
@@ -38,6 +43,40 @@ namespace Oke_teacher
             _FillTaskPane.Visible = false;
 
         }
+
+        private void isSingleChoicePPT(SlideRange sldRange)
+        {
+            if (sldRange == null)
+            {
+                return;
+            }
+            if (sldRange.Name != null && sldRange.Name[0] == 'S' && sldRange.Name[1] == 'C' && sldRange.Name[2] == 'P' && sldRange.Name[3] == 'P'  && sldRange.Name[4] == 'T')
+            {
+                _SingleChoiceTaskPane.Visible = true;
+            }
+            else
+            {
+                _SingleChoiceTaskPane.Visible = false;
+            }
+        }
+
+        private void isJudgeQuestionPPT(SlideRange sldRange)
+        {
+            if (sldRange == null)
+            {
+                return;
+            }
+            if (sldRange.Name != null && sldRange.Name[0] == 'J' && sldRange.Name[1] == 'U' && sldRange.Name[2] == 'D' && sldRange.Name[3] == 'G' && sldRange.Name[4] == 'E')
+            {
+                _JudgeTaskPane.Visible = true;
+            }
+            else
+            {
+                _JudgeTaskPane.Visible = false;
+            }
+        }
+
+
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
         {

@@ -13,6 +13,8 @@ namespace Oke_teacher.Info
 
         public Course data { set; get; }
 
+        public string classCode { set; get; }
+
         private static CourseInfo _CurrentUser;
 
         public static CourseInfo CurrentUser

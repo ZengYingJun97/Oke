@@ -41,7 +41,6 @@
             this.optionEButton = new CxFlatUI.CxFlatRadioButton();
             this.optionFButton = new CxFlatUI.CxFlatRadioButton();
             this.optionGButton = new CxFlatUI.CxFlatRadioButton();
-            this.optionHButton = new CxFlatUI.CxFlatRadioButton();
             this.questionLimitTimeBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
@@ -118,7 +117,6 @@
             this.optionAButton.Name = "optionAButton";
             this.optionAButton.Size = new System.Drawing.Size(40, 20);
             this.optionAButton.TabIndex = 18;
-            this.optionAButton.TabStop = true;
             this.optionAButton.Text = "A";
             this.optionAButton.UseVisualStyleBackColor = true;
             // 
@@ -204,20 +202,6 @@
             this.optionGButton.UseVisualStyleBackColor = true;
             this.optionGButton.Visible = false;
             // 
-            // optionHButton
-            // 
-            this.optionHButton.AutoSize = true;
-            this.optionHButton.CheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
-            this.optionHButton.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.optionHButton.Location = new System.Drawing.Point(176, 179);
-            this.optionHButton.Name = "optionHButton";
-            this.optionHButton.Size = new System.Drawing.Size(42, 20);
-            this.optionHButton.TabIndex = 25;
-            this.optionHButton.TabStop = true;
-            this.optionHButton.Text = "H";
-            this.optionHButton.UseVisualStyleBackColor = true;
-            this.optionHButton.Visible = false;
-            // 
             // questionLimitTimeBox
             // 
             this.questionLimitTimeBox.Location = new System.Drawing.Point(87, 243);
@@ -230,7 +214,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.questionLimitTimeBox);
-            this.Controls.Add(this.optionHButton);
             this.Controls.Add(this.optionGButton);
             this.Controls.Add(this.optionFButton);
             this.Controls.Add(this.optionEButton);
@@ -266,7 +249,6 @@
         private CxFlatUI.CxFlatRadioButton optionEButton;
         private CxFlatUI.CxFlatRadioButton optionFButton;
         private CxFlatUI.CxFlatRadioButton optionGButton;
-        private CxFlatUI.CxFlatRadioButton optionHButton;
         private System.Windows.Forms.TextBox questionLimitTimeBox;
     }
 }
