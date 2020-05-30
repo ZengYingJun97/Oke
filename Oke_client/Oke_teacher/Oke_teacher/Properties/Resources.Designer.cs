@@ -19,7 +19,7 @@ namespace Oke_teacher.Properties {
     // 类通过类似于 ResGen 或 Visual Studio 的工具自动生成的。
     // 若要添加或移除成员，请编辑 .ResX 文件，然后重新运行 ResGen
     // (以 /str 作为命令选项)，或重新生成 VS 项目。
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -175,6 +175,16 @@ namespace Oke_teacher.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap Oke_false {
+            get {
+                object obj = ResourceManager.GetObject("Oke_false", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap Oke_fillanswerdelete {
             get {
                 object obj = ResourceManager.GetObject("Oke_fillanswerdelete", resourceCulture);
@@ -265,9 +275,9 @@ namespace Oke_teacher.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap Oke_upclass1_08__1_ {
+        internal static System.Drawing.Bitmap Oke_SingleChoice {
             get {
-                object obj = ResourceManager.GetObject("Oke_upclass1-08 (1)", resourceCulture);
+                object obj = ResourceManager.GetObject("Oke_SingleChoice", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -275,9 +285,19 @@ namespace Oke_teacher.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap Oke_SingleChoice {
+        internal static System.Drawing.Bitmap Oke_true {
             get {
-                object obj = ResourceManager.GetObject("Oke_SingleChoice", resourceCulture);
+                object obj = ResourceManager.GetObject("Oke_true", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Oke_upclass1_08__1_ {
+            get {
+                object obj = ResourceManager.GetObject("Oke_upclass1-08 (1)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

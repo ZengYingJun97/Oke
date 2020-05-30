@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Resources;
 using System.Text;
 using System.Windows.Forms;
 using Microsoft.Office.Core;
@@ -18,6 +21,9 @@ namespace Oke_teacher
 {
     public partial class OkeRibbon
     {
+        private static long countSCPPT = 0;
+        private static long countJDPPT = 0;
+
         #region 登录按钮触发事件
         /// <summary>
         /// 登录按钮触发事件
@@ -97,10 +103,10 @@ namespace Oke_teacher
 
         private void Judgquesbtn_Click(object sender, RibbonControlEventArgs e)
         {
-            if (Globals.ThisAddIn._JudgeTaskPane != null)
-            {
-                Globals.ThisAddIn._JudgeTaskPane.Visible = true;
-            }
+            //if (Globals.ThisAddIn._JudgeTaskPane != null)
+            //{
+            //    Globals.ThisAddIn._JudgeTaskPane.Visible = true;
+            //}
                 //SetQuestForm setQuestForm = new SetQuestForm();
                 //setQuestForm.Show();
             //Microsoft.Office.Interop.PowerPoint.Presentation MyPres = null;//ppt实例
@@ -109,6 +115,7 @@ namespace Oke_teacher
             Microsoft.Office.Interop.PowerPoint.Slide NewSlide = null;//新插入的幻灯片
             AllSlides = Globals.ThisAddIn.Application.ActivePresentation.Slides;//获取当前PPT中的所有幻灯片
             MySlide = Globals.ThisAddIn.Application.ActiveWindow.View.Slide;//获取选中幻灯片
+            
             #region 插入判断题 题目类型
             NewSlide = AllSlides.Add(MySlide.SlideIndex+1, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);//插入幻灯片
             
@@ -132,7 +139,11 @@ namespace Oke_teacher
             Microsoft.Office.Interop.PowerPoint.TextRange FQTextRng = null;
 
             NewSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 150F, 400F, 300F);
-
+            
+            //添加True & False图片 从网上获取
+            NewSlide.Shapes.AddPicture("http://pic.616pic.com/ys_b_img/00/57/95/CLa3kvD1Kw.jpg", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoTrue, 21, 400, 70, 50);
+            NewSlide.Shapes.AddPicture("http://pic.616pic.com/ys_b_img/00/11/88/mktrxpmh8r.jpg", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoTrue, 200, 400, 70, 50);
+            NewSlide.Name = "JUDGE" + countJDPPT++;
             FQTextRng = NewSlide.Shapes[2].TextFrame.TextRange;//请注意此处Shapes的索引，由于文本框是第二个添加的Shapes，所以此处索引是2。
 
             FQTextRng.Font.NameFarEast = "微软雅黑";//文本框中，中文的字体                   
@@ -145,8 +156,8 @@ namespace Oke_teacher
             NewSlide.Shapes[2].TextFrame.VerticalAnchor = MsoVerticalAnchor.msoAnchorMiddle; //文本对齐方式（垂直方向）
             #endregion
             #region 添加对错按钮
-            AddOleForm1(NewSlide, 21.5F, 400F, 70F, 50F, "True", 1);
-            AddOleForm1(NewSlide, 200F, 400F, 70F, 50F, "False", 2);
+            //AddOleForm1(NewSlide, 21.5F, 400F, 70F, 50F, "True", 1);
+            //AddOleForm1(NewSlide, 200F, 400F, 70F, 50F, "False", 2);
 
             //Image image1 = Properties.Resources.Oke_true;
             //Image image2 = Properties.Resources.Oke_false;

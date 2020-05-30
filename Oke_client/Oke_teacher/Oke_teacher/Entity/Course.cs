@@ -16,9 +16,9 @@ namespace Oke_teacher.Entity
 
         public string courseName { set; get; }
 
-        public DateTime courseCreateTime { set; get; }
+        public DateTime? courseCreateTime { set; get; }
 
-        public DateTime courseEndTime { set; get; }
+        public DateTime? courseEndTime { set; get; }
 
         public Teacher teacher { set; get; }
     }
