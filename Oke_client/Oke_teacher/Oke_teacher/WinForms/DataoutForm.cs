@@ -12,6 +12,7 @@ using Microsoft.Office.Interop.Excel;
 using Newtonsoft.Json;
 using Oke_teacher.Dto;
 using Oke_teacher.Entity;
+using Oke_teacher.Info;
 using Oke_teacher.Properties;
 using Oke_teacher.Uitls;
 
@@ -19,8 +20,6 @@ namespace Oke_teacher.WinForms
 {
     public partial class DataoutForm : Form
     {
-
-        SessionData<Teacher> Teacher = null;//这个怎么弄?!!!!!!!!!!!!!
         List<Course> Classlist = null;
 
         public DataoutForm()
@@ -35,31 +34,47 @@ namespace Oke_teacher.WinForms
             //发送http请求,获取该教师教授的课程
             try
             {
+                SessionData<Teacher> sessionData = new SessionData<Teacher>
+                {
+                    sessionId = LoginInfo.CurrentUser.sessionId,
+                    data = LoginInfo.CurrentUser.data
+                };
+
                 string url = Resources.Server + Resources.CourseListUrl;
-                string data = JsonConvert.SerializeObject(Teacher);
-                string response = HttpUitls.POST(url, data);
+                string data = JsonConvert.SerializeObject(sessionData);
+                //MessageBox.Show(data);
+
+                string response = HttpUitls.POST(url, data);//返回的数据
+                //MessageBox.Show(response);
+                System.Diagnostics.Debug.WriteLine(response);
+
+                #region  获取数据Json转List（反序列化）
                 OkeResult<SessionData<List<Course>>> okeResult1 = JsonConvert.DeserializeObject<OkeResult<SessionData<List<Course>>>>(response);
+                //MessageBox.Show(okeResult1.data.data.ToString());
+                //System.Diagnostics.Debug.WriteLine(okeResult1.data.data.ToString());
+
+                #endregion
+
+
                 if (okeResult1.success)
                 {
-                    AddAlter("成功查询", CxFlatAlertBox.AlertType.Success);
-
+                    AddAlter("成功查询课程", CxFlatAlertBox.AlertType.Success);
                     Classlist = okeResult1.data.data;
 
-                    #region 动态创建item
-                    for (int i = 0; i < Classlist.Count; i++)
+                    foreach (Course p in Classlist)
                     {
-                        this.Classchoose.Items.Add(Classlist[i].courseName);
+                        this.Classchoose.Items.Add(p.courseName);
                     }
-                    #endregion
-
                 }
                 else
                 {
-                    AddAlter("查询出错，请重新选择", CxFlatAlertBox.AlertType.Error);
+                    AddAlter("查询课程出错，请重新选择", CxFlatAlertBox.AlertType.Error);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
+                System.Diagnostics.Debug.WriteLine(ex.Message);
                 AddAlter(Resources.ExceptionTip, CxFlatAlertBox.AlertType.Error);//弹出提示
             }
             #endregion
@@ -69,30 +84,37 @@ namespace Oke_teacher.WinForms
         #region 查询该课程所对应的学生名单
         private void Classcheckbutton_Click(object sender, EventArgs e)
         {
-
-            int choosenum = Classchoose.SelectedIndex;//获取下拉选择框选中的值
-            SessionData<Course> classsave = Classlist[choosenum];
-
             #region 发送http请求
             try
             {
-                string url = Resources.Server + Resources.CourseListUrl;
-                string data = JsonConvert.SerializeObject(classsave);
-                string response = HttpUitls.POST(url, data);
-                OkeResult<SessionData<List<CourseRecord>>> okeResult = JsonConvert.DeserializeObject<OkeResult<SessionData<List<CourseRecord>>>>(response);
-                if (okeResult.success)
+                SessionData<Course> sessionData = new SessionData<Course>
                 {
-                    AddAlter("成功查询", CxFlatAlertBox.AlertType.Success);
+                    sessionId = LoginInfo.CurrentUser.sessionId
+                };
+                Course course = new Course();
+                sessionData.data = course;
+                sessionData.data.courseName = Classchoose.Text.Trim();
+                //MessageBox.Show(Classchoose.Text.Trim());
+                sessionData.data.teacher = LoginInfo.CurrentUser.data;
+                string url = Resources.Server + Resources.OnlineStudentListUrl;
+                string data = JsonConvert.SerializeObject(sessionData);
+                string response = HttpUitls.POST(url, data);
+                //MessageBox.Show(response);
+
+                OkeResult<SessionData<List<CourseRecord>>> okeResult2 = JsonConvert.DeserializeObject<OkeResult<SessionData<List<CourseRecord>>>>(response);
+                if (okeResult2.success)
+                {
+                    AddAlter("成功查询学生名单", CxFlatAlertBox.AlertType.Success);
 
                     #region 把接受到的数据展示在datagridview
-                    List<CourseRecord> Studentlist = okeResult.data.data;
+                    List<CourseRecord> Studentlist = okeResult2.data.data;
                     studentdataview.DataSource = new BindingList<CourseRecord>(Studentlist);
                     #endregion
 
                 }
                 else
                 {
-                    AddAlter("查询出错，请重新选择", CxFlatAlertBox.AlertType.Error);
+                    AddAlter("查询学生名单出错，请重新选择课程", CxFlatAlertBox.AlertType.Error);
                 }
             }
             catch (Exception)
@@ -100,8 +122,6 @@ namespace Oke_teacher.WinForms
                 AddAlter(Resources.ExceptionTip, CxFlatAlertBox.AlertType.Error);//弹出提示
             }
             #endregion
-
-            
         }
         #endregion
 
@@ -188,6 +208,6 @@ namespace Oke_teacher.WinForms
         }
         #endregion
 
-        
+
     }
 }

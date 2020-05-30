@@ -112,6 +112,7 @@ namespace Oke_teacher.WinForms
                 //答案要干嘛？
                 #endregion
 
+                MessageBox.Show("成功发布，限定作答时间为：" + Ftt);
             }
 
         }

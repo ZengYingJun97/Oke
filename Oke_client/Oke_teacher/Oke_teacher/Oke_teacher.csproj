@@ -178,6 +178,7 @@
     <Compile Include="Enums\CheckedEnum.cs" />
     <Compile Include="Enums\EnumExtend.cs" />
     <Compile Include="Enums\LoginEnum.cs" />
+    <Compile Include="Enums\OperateEnum.cs" />
     <Compile Include="Enums\RegisterEnum.cs" />
     <Compile Include="Info\CourseInfo.cs" />
     <Compile Include="Info\LoginInfo.cs" />
@@ -204,6 +205,7 @@
     </Compile>
     <Compile Include="Uitls\DataUitls.cs" />
     <Compile Include="Uitls\HttpUitls.cs" />
+    <Compile Include="Uitls\ShapesUitls.cs" />
     <Compile Include="Uitls\UserUitls.cs" />
     <Compile Include="WinForms\DataoutForm.cs">
       <SubType>Form</SubType>
@@ -264,6 +266,12 @@
     </Compile>
     <Compile Include="WinForms\StudentGetQuesForm.Designer.cs">
       <DependentUpon>StudentGetQuesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\SubmitQuestionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\SubmitQuestionForm.Designer.cs">
+      <DependentUpon>SubmitQuestionForm.cs</DependentUpon>
     </Compile>
     <Compile Include="WinForms\TeacherSetQuesForm.cs">
       <SubType>Form</SubType>
@@ -331,6 +339,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WinForms\StudentGetQuesForm.resx">
       <DependentUpon>StudentGetQuesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\SubmitQuestionForm.resx">
+      <DependentUpon>SubmitQuestionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinForms\TeacherSetQuesForm.resx">
       <DependentUpon>TeacherSetQuesForm.cs</DependentUpon>

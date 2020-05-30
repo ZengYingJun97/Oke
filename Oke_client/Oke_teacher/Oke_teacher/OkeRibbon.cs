@@ -1,13 +1,19 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Resources;
 using System.Text;
 using System.Windows.Forms;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
 using Microsoft.Office.Tools.Ribbon;
+using Oke_teacher.Dto;
+using Oke_teacher.Entity;
 using Oke_teacher.Enums;
+using Oke_teacher.Uitls;
 using Oke_teacher.WinForms;
 using MF = Microsoft.Vbe.Interop.Forms;
 
@@ -16,6 +22,7 @@ namespace Oke_teacher
     public partial class OkeRibbon
     {
         private static long countSCPPT = 0;
+        private static long countJDPPT = 0;
 
         #region 登录按钮触发事件
         /// <summary>
@@ -96,10 +103,10 @@ namespace Oke_teacher
 
         private void Judgquesbtn_Click(object sender, RibbonControlEventArgs e)
         {
-            if (Globals.ThisAddIn._JudgeTaskPane != null)
-            {
-                Globals.ThisAddIn._JudgeTaskPane.Visible = true;
-            }
+            //if (Globals.ThisAddIn._JudgeTaskPane != null)
+            //{
+            //    Globals.ThisAddIn._JudgeTaskPane.Visible = true;
+            //}
                 //SetQuestForm setQuestForm = new SetQuestForm();
                 //setQuestForm.Show();
             //Microsoft.Office.Interop.PowerPoint.Presentation MyPres = null;//ppt实例
@@ -108,6 +115,7 @@ namespace Oke_teacher
             Microsoft.Office.Interop.PowerPoint.Slide NewSlide = null;//新插入的幻灯片
             AllSlides = Globals.ThisAddIn.Application.ActivePresentation.Slides;//获取当前PPT中的所有幻灯片
             MySlide = Globals.ThisAddIn.Application.ActiveWindow.View.Slide;//获取选中幻灯片
+            
             #region 插入判断题 题目类型
             NewSlide = AllSlides.Add(MySlide.SlideIndex+1, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);//插入幻灯片
             
@@ -131,7 +139,11 @@ namespace Oke_teacher
             Microsoft.Office.Interop.PowerPoint.TextRange FQTextRng = null;
 
             NewSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 150F, 400F, 300F);
-
+            
+            //添加True & False图片 从网上获取
+            NewSlide.Shapes.AddPicture("http://pic.616pic.com/ys_b_img/00/57/95/CLa3kvD1Kw.jpg", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoTrue, 21, 400, 70, 50);
+            NewSlide.Shapes.AddPicture("http://pic.616pic.com/ys_b_img/00/11/88/mktrxpmh8r.jpg", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoTrue, 200, 400, 70, 50);
+            NewSlide.Name = "JUDGE" + countJDPPT++;
             FQTextRng = NewSlide.Shapes[2].TextFrame.TextRange;//请注意此处Shapes的索引，由于文本框是第二个添加的Shapes，所以此处索引是2。
 
             FQTextRng.Font.NameFarEast = "微软雅黑";//文本框中，中文的字体                   
@@ -144,8 +156,8 @@ namespace Oke_teacher
             NewSlide.Shapes[2].TextFrame.VerticalAnchor = MsoVerticalAnchor.msoAnchorMiddle; //文本对齐方式（垂直方向）
             #endregion
             #region 添加对错按钮
-            AddOleForm1(NewSlide, 21.5F, 400F, 70F, 50F, "True", 1);
-            AddOleForm1(NewSlide, 200F, 400F, 70F, 50F, "False", 2);
+            //AddOleForm1(NewSlide, 21.5F, 400F, 70F, 50F, "True", 1);
+            //AddOleForm1(NewSlide, 200F, 400F, 70F, 50F, "False", 2);
 
             //Image image1 = Properties.Resources.Oke_true;
             //Image image2 = Properties.Resources.Oke_false;
@@ -191,11 +203,6 @@ namespace Oke_teacher
 
 
         #endregion
-
-
-        private void OkeRibbon_Load(object sender, RibbonUIEventArgs e)
-        {
-        }
 
 
         #region 填空题按钮的点击事件
@@ -370,10 +377,20 @@ namespace Oke_teacher
         }
         #endregion
 
+        #region 往幻灯片中添加选项Shape
+        /// <summary>
+        /// 往幻灯片中添加选项Shape
+        /// </summary>
+        /// <param name="slide"></param>
+        /// <param name="text"></param>
+        /// <param name="left1"></param>
+        /// <param name="top1"></param>
+        /// <param name="left2"></param>
+        /// <param name="top2"></param>
         private void addOption(Slide slide, string text, Single left1, Single top1, Single left2, Single top2)
         {
             slide.Shapes.AddShape(MsoAutoShapeType.msoShapeOval, left1, top1, 38F, 44F).Name = "option" + text + "Type";
-            slide.Shapes["option" + text + "Type"].Fill.ForeColor.RGB = (int) CheckedEnum.NOCHECKED;
+            slide.Shapes["option" + text + "Type"].Fill.ForeColor.RGB = (int) CheckedEnum.NOCHECKED; 
             slide.Shapes["option" + text + "Type"].TextFrame.TextRange.Text = text;
             slide.Shapes["option" + text + "Type"].TextFrame.TextRange.Font.Size = 20;
             slide.Shapes["option" + text + "Type"].TextFrame.HorizontalAnchor = MsoHorizontalAnchor.msoAnchorCenter;
@@ -385,7 +402,14 @@ namespace Oke_teacher
             slide.Shapes["option" + text + "Text"].TextFrame.TextRange.Font.Size = 24;
             slide.Shapes["option" + text + "Text"].TextFrame.TextRange.Font.Bold = MsoTriState.msoFalse;
         }
+        #endregion
 
+        #region 增加单选题幻灯片事件
+        /// <summary>
+        /// 增加单选题幻灯片事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void singleChoice_Click(object sender, RibbonControlEventArgs e)
         {
             Presentation MyPres = Globals.ThisAddIn.Application.ActivePresentation;
@@ -393,9 +417,20 @@ namespace Oke_teacher
 
             int nowIndex = activeSlide.SlideIndex;
             Slide singleChoiceSlide = MyPres.Slides.Add(nowIndex + 1, PpSlideLayout.ppLayoutBlank);
-            singleChoiceSlide.Name = "SCPPT" + countSCPPT++;
-            //singleChoiceSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "singleChoicePPT";
-            //singleChoiceSlide.Shapes["singleChoicePPT"].Visible = MsoTriState.msoFalse;
+
+            //往题目中添加标记
+            singleChoiceSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "questionType";
+            singleChoiceSlide.Shapes["questionType"].TextFrame.TextRange.Text = "0";
+            singleChoiceSlide.Shapes["questionType"].Visible = MsoTriState.msoFalse;
+            singleChoiceSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "questionScore";
+            singleChoiceSlide.Shapes["questionScore"].TextFrame.TextRange.Text = "0";
+            singleChoiceSlide.Shapes["questionScore"].Visible = MsoTriState.msoFalse;
+            singleChoiceSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "questionLimitTime";
+            singleChoiceSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text = "0";
+            singleChoiceSlide.Shapes["questionLimitTime"].Visible = MsoTriState.msoFalse;
+            singleChoiceSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "questionAnswer";
+            singleChoiceSlide.Shapes["questionAnswer"].TextFrame.TextRange.Text = "A;";
+            singleChoiceSlide.Shapes["questionAnswer"].Visible = MsoTriState.msoFalse;
 
             TextRange questionDescribe = null;
             singleChoiceSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 91F, 50F, 777F, 60F).Name = "questionDescribe";
@@ -409,12 +444,21 @@ namespace Oke_teacher
             addOption(singleChoiceSlide, "A", 91F, 138F, 152F, 143F);
             addOption(singleChoiceSlide, "B", 91F, 197F, 152F, 203F);
             addOption(singleChoiceSlide, "C", 91F, 257F, 152F, 262F);
-            AddSubmitOleForm(singleChoiceSlide, 822F, 466F, 89F, 46F);
-            singleChoiceSlide.Shapes["optionAType"].Fill.ForeColor.RGB = (int) CheckedEnum.CHECKED;
+            AddSubmitOleForm(singleChoiceSlide, 822F, 466F, 80F, 46F);
 
             singleChoiceSlide.Select();
         }
+        #endregion
 
+        #region 往幻灯片中添加按钮
+        /// <summary>
+        /// 往幻灯片中添加按钮
+        /// </summary>
+        /// <param name="slide"></param>
+        /// <param name="left"></param>
+        /// <param name="top"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
         private void AddSubmitOleForm(Slide slide, Single left, Single top, Single width, Single height)
         {
             var oleControl = slide.Shapes.AddOLEObject(left, top, width, height, "Forms.CommandButton.1", "",
@@ -431,13 +475,60 @@ namespace Oke_teacher
             button.Caption = "发 布";
             button.FontBold = true;
             button.Click += sumbitClick;
+
         }
+        #endregion
 
         private void sumbitClick()
         {
-            //TODO
-            LoginForm loginForm = new LoginForm();
-            loginForm.Show();
+            try
+            {
+                Slide activeSlide = Globals.ThisAddIn.Application.ActivePresentation.SlideShowWindow.View.Slide;
+
+                Question question = new Question();
+                question.questionType = int.Parse(activeSlide.Shapes["questionType"].TextFrame.TextRange.Text);
+                question.questionScore = int.Parse(activeSlide.Shapes["questionScore"].TextFrame.TextRange.Text);
+                question.questionLimitTime = int.Parse(activeSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text);
+                question.questionDescribe = activeSlide.Shapes["questionDescribe"].TextFrame.TextRange.Text;
+                question.questionAnswer = activeSlide.Shapes["questionAnswer"].TextFrame.TextRange.Text;
+                System.Diagnostics.Debug.WriteLine("test1");
+
+                List<Option> optionList = new List<Option>();
+
+                string chars = "ABCDEFG";
+
+                for (int i = 0; i < 7; i++)
+                {
+                    if (ShapesUitls.IsExistedOfShape(activeSlide, "option" + chars[i] + "Type"))
+                    {
+                        Option option = new Option();
+                        option.optionType = activeSlide.Shapes["option" + chars[i] + "Type"].TextFrame.TextRange.Text;
+                        option.optionDescribe = activeSlide.Shapes["option" + chars[i] + "Text"].TextFrame.TextRange.Text;
+                        optionList.Add(option);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                System.Diagnostics.Debug.WriteLine("test2");
+
+                QuestionData questionData = new QuestionData();
+                questionData.question = question;
+                questionData.optionList = optionList;
+                System.Diagnostics.Debug.WriteLine("test3");
+
+                SubmitQuestionForm submitQuestionForm = new SubmitQuestionForm();
+                submitQuestionForm.questionData = questionData;
+                submitQuestionForm.LoadText();
+                System.Diagnostics.Debug.WriteLine("test4");
+                submitQuestionForm.ShowDialog();
+                System.Diagnostics.Debug.WriteLine("test5");
+            }
+            catch (Exception e1)
+            {
+                System.Diagnostics.Debug.WriteLine(e1.Message);
+            }
         }
     }
 }

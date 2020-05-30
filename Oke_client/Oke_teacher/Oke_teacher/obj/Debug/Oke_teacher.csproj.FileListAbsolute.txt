@@ -59,3 +59,4 @@ F:\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.TaskPane.SingleC
 F:\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.WinForms.DownForm.resources
 F:\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.WinForms.UpclassForm.resources
 F:\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.WinForms.FillTaskPane.resources
+F:\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.WinForms.SubmitQuestionForm.resources
