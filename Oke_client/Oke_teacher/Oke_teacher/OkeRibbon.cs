@@ -22,7 +22,7 @@ namespace Oke_teacher
     public partial class OkeRibbon
     {
         private static long countSCPPT = 0;
-        private static long countJDPPT = 0;
+
 
         #region 登录按钮触发事件
         /// <summary>
@@ -45,7 +45,7 @@ namespace Oke_teacher
         }
         #endregion
 
-
+        #region 开始课程
         private void Upclassbtn_Click(object sender, RibbonControlEventArgs e)
         {
             UpclassForm upclassForm = new UpclassForm();
@@ -55,12 +55,10 @@ namespace Oke_teacher
                 Nodownclassbtn.Visible = false;
                 Downclassbtn.Visible = true;
             }
-            
-            
-
         }
+        #endregion
 
-
+        #region 结束课程
         private void Downclassbtn_Click(object sender, RibbonControlEventArgs e)
         {
             DownForm downForm = new DownForm();
@@ -72,6 +70,7 @@ namespace Oke_teacher
             }
             
         }
+        #endregion
 
 
         #region 我的信息按钮事件
@@ -121,9 +120,20 @@ namespace Oke_teacher
             
             Microsoft.Office.Interop.PowerPoint.TextRange FillTextRng = null;//设置第一个文本框
 
-            NewSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 40F, 100F, 30F);
+            NewSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 40F, 100F, 30F).Name="JudgeQuestion";
 
-            FillTextRng = NewSlide.Shapes[1].TextFrame.TextRange;//请注意此处Shapes的索引，由于文本框是第一个添加的Shapes，所以此处索引是1。
+            NewSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "JdquestionScore";
+            NewSlide.Shapes["JdquestionScore"].TextFrame.TextRange.Text = "0";
+            NewSlide.Shapes["JdquestionScore"].Visible = MsoTriState.msoFalse;
+            NewSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "JdquestionLimitTime";
+            NewSlide.Shapes["JdquestionLimitTime"].TextFrame.TextRange.Text = "0";
+            NewSlide.Shapes["JdquestionLimitTime"].Visible = MsoTriState.msoFalse;
+            NewSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "JdquestionAnswer";
+            NewSlide.Shapes["JdquestionAnswer"].TextFrame.TextRange.Text = "0";
+            NewSlide.Shapes["JdquestionAnswer"].Visible = MsoTriState.msoFalse;
+
+
+            FillTextRng = NewSlide.Shapes["JudgeQuestion"].TextFrame.TextRange;//请注意此处Shapes的索引，由于文本框是第一个添加的Shapes，所以此处索引是1。
 
             FillTextRng.Font.NameFarEast = "微软雅黑";//文本框中，中文的字体                   
             FillTextRng.Font.NameAscii = "Calibri";//文本框中，英文和数字的字体      
@@ -138,13 +148,12 @@ namespace Oke_teacher
             #region 插入判断题题目
             Microsoft.Office.Interop.PowerPoint.TextRange FQTextRng = null;
 
-            NewSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 150F, 400F, 300F);
+            NewSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 150F, 400F, 300F).Name= "JudgeQuestionDescribe";
             
             //添加True & False图片 从网上获取
             NewSlide.Shapes.AddPicture("http://pic.616pic.com/ys_b_img/00/57/95/CLa3kvD1Kw.jpg", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoTrue, 21, 400, 70, 50);
             NewSlide.Shapes.AddPicture("http://pic.616pic.com/ys_b_img/00/11/88/mktrxpmh8r.jpg", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoTrue, 200, 400, 70, 50);
-            NewSlide.Name = "JUDGE" + countJDPPT++;
-            FQTextRng = NewSlide.Shapes[2].TextFrame.TextRange;//请注意此处Shapes的索引，由于文本框是第二个添加的Shapes，所以此处索引是2。
+            FQTextRng = NewSlide.Shapes["JudgeQuestionDescribe"].TextFrame.TextRange;//请注意此处Shapes的索引，由于文本框是第二个添加的Shapes，所以此处索引是2。
 
             FQTextRng.Font.NameFarEast = "微软雅黑";//文本框中，中文的字体                   
             FQTextRng.Font.NameAscii = "Calibri";//文本框中，英文和数字的字体      
@@ -192,17 +201,7 @@ namespace Oke_teacher
         #endregion
 
 
-        #region 在PPT添加作答按钮
-        //添加Form窗体,窗体中添加Image控件,单击弹出"PPT"信息提示
-        //命名引用：using MF = Microsoft.Vbe.Interop.Forms;
-
-
-
-
-        //点击事件
-
-
-        #endregion
+        
 
 
         #region 填空题按钮的点击事件
