@@ -18,6 +18,7 @@ namespace Oke_teacher
         public Microsoft.Office.Tools.CustomTaskPane _JudgeTaskPane = null;
         public Microsoft.Office.Tools.CustomTaskPane _SingleChoiceTaskPane = null;
         public Microsoft.Office.Tools.CustomTaskPane _FillTaskPane = null;
+        public Microsoft.Office.Tools.CustomTaskPane _SimpleQuestionTaskPane = null;
 
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
@@ -29,19 +30,23 @@ namespace Oke_teacher
             _JudgeTaskPane.Visible = false;
             Globals.ThisAddIn.Application.SlideSelectionChanged += new EApplication_SlideSelectionChangedEventHandler(isJudgeQuestionPPT);
 
-
-
             SingleChoiceTaskPane singleChoiceTaskPane = new SingleChoiceTaskPane();
             _SingleChoiceTaskPane = CustomTaskPanes.Add(singleChoiceTaskPane, "单选题");
             _SingleChoiceTaskPane.Width = 250;
             _SingleChoiceTaskPane.Visible = false;
             Globals.ThisAddIn.Application.SlideSelectionChanged += new EApplication_SlideSelectionChangedEventHandler(isSingleChoicePPT);
 
-            FillTaskPane taskPane = new FillTaskPane();
-            _FillTaskPane = this.CustomTaskPanes.Add(taskPane, "Fill Question");
+            FillTaskPane FilltaskPane = new FillTaskPane();
+            _FillTaskPane = this.CustomTaskPanes.Add(FilltaskPane, "填空题");
             _FillTaskPane.Width = 200;
             _FillTaskPane.Visible = false;
+            Globals.ThisAddIn.Application.SlideSelectionChanged += new EApplication_SlideSelectionChangedEventHandler(IsFillQesttionPPT);
 
+            SimpleQuestionTaskPane SimpleQuestiontaskPane = new SimpleQuestionTaskPane();
+            _SimpleQuestionTaskPane = this.CustomTaskPanes.Add(SimpleQuestiontaskPane, "简答题");
+            _SimpleQuestionTaskPane.Width = 200;
+            _SimpleQuestionTaskPane.Visible = false;
+            Globals.ThisAddIn.Application.SlideSelectionChanged += new EApplication_SlideSelectionChangedEventHandler(IsSimpleQesttionPPT);
         }
 
         private void isSingleChoicePPT(SlideRange sldRange)
@@ -76,7 +81,37 @@ namespace Oke_teacher
             }
         }
 
+        private void IsFillQesttionPPT(SlideRange sldRange)
+        {
+            if (sldRange == null)
+            {
+                return;
+            }
+            if (sldRange.Name != null && sldRange.Name[0] == 'F' && sldRange.Name[1] == 'Q' && sldRange.Name[2] == 'P' && sldRange.Name[3] == 'P' && sldRange.Name[4] == 'T')
+            {
+                _FillTaskPane.Visible = true;
+            }
+            else
+            {
+                _FillTaskPane.Visible = false;
+            }
+        }
 
+        private void IsSimpleQesttionPPT(SlideRange sldRange)
+        {
+            if (sldRange == null)
+            {
+                return;
+            }
+            if (sldRange.Name != null && sldRange.Name[0] == 'S' && sldRange.Name[1] == 'Q' && sldRange.Name[2] == 'P' && sldRange.Name[3] == 'P' && sldRange.Name[4] == 'T')
+            {
+                _SimpleQuestionTaskPane.Visible = true;
+            }
+            else
+            {
+                _SimpleQuestionTaskPane.Visible = false;
+            }
+        }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
         {

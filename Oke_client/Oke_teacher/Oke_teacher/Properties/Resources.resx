@@ -132,6 +132,12 @@
     <value>/course/question/add</value>
     <comment>老师发布题目</comment>
   </data>
+  <data name="Oke_false" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Oke_false.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Oke_true" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Oke_true.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Oke_fillanswerdelete" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Oke_fillanswerdelete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -150,9 +156,6 @@
   </data>
   <data name="Oke_scratchcard" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Oke_scratchcard.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Oke_simpleanswer" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Oke_simpleanswer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Oke_logo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Oke_logo.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -210,6 +213,9 @@
     <value>/course/question/answerlist</value>
     <comment>获取学生答题情况</comment>
   </data>
+  <data name="Oke_simpleanswer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Oke_simpleanswer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="ExceptionTip" xml:space="preserve">
     <value>系统繁忙，稍等片刻</value>
     <comment>异常提示</comment>
@@ -218,10 +224,7 @@
     <value>http://120.25.193.138:8080/oke</value>
     <comment>服务器地址</comment>
   </data>
-  <data name="Oke_true" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Oke_true.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Oke_false" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Oke_false.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Oke_rollcall" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Oke_rollcall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
