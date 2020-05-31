@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Office.Core;
+using Microsoft.Office.Interop.PowerPoint;
 
 namespace Oke_teacher.WinForms
 {
@@ -15,11 +16,14 @@ namespace Oke_teacher.WinForms
     {
         public JudgeTaskPane()
         {
+            
             InitializeComponent();
+            cxFlatCheckBox1.Checked = true;
         }
 
         private void cxFlatCheckBox1_CheckedChanged(object sender, EventArgs e)
         {
+            
             if (cxFlatCheckBox1.Checked)
             {
                 cxFlatCheckBox2.Checked = false;
@@ -46,15 +50,58 @@ namespace Oke_teacher.WinForms
             MySlide = Globals.ThisAddIn.Application.ActiveWindow.View.Slide;//获取选中幻灯片
 
             Microsoft.Office.Interop.PowerPoint.TextRange FQTextRng = null;
-            FQTextRng = MySlide.Shapes[2].TextFrame.TextRange;
+            Microsoft.Office.Interop.PowerPoint.TextRange score = null;
+            Microsoft.Office.Interop.PowerPoint.TextRange limitime = null;
+            Microsoft.Office.Interop.PowerPoint.TextRange answer = null;
+            FQTextRng = MySlide.Shapes["JudgeQuestionDescribe"].TextFrame.TextRange;
+            score = MySlide.Shapes["JdquestionScore"].TextFrame.TextRange;
+            limitime = MySlide.Shapes["JdquestionLimitTime"].TextFrame.TextRange;
+            answer = MySlide.Shapes["JdquestionAnswer"].TextFrame.TextRange;
             FQTextRng.Font.NameFarEast = "微软雅黑";//文本框中，中文的字体                   
-            FQTextRng.Font.NameAscii = "Calibri";//文本框中，英文和数字的字体      
+            FQTextRng.Font.NameAscii = "Calibri";//文本框中，英文和数字的字体
+            
             FQTextRng.Text = JudegeQuestText.Text;//cxFlatTextArea1.Text;//显示的内容
+            score.Text = scoreBox2.Text;
+            limitime.Text = limitBox1.Text;
+            if (cxFlatCheckBox1.Checked == true)
+            {
+                answer.Text = "True";
+            }
+            else
+            {
+                answer.Text = "False";
+            }
+            
+            
+            
             FQTextRng.Font.Bold = MsoTriState.msoFalse;//是否加粗
             FQTextRng.Font.Color.RGB = 1 + 1 * 256 + 1 * 256 * 256;//字体颜色，其中ABC直接用自定义颜色中的数字代替即可。
             FQTextRng.Font.Size = 24;//字体大小是24.
             FQTextRng.ParagraphFormat.Alignment = Microsoft.Office.Interop.PowerPoint.PpParagraphAlignment.ppAlignLeft;//文本对齐方式（水平方向）
             MySlide.Shapes[2].TextFrame.VerticalAnchor = MsoVerticalAnchor.msoAnchorMiddle; //文本对齐方式（垂直方向）
+        }
+        public void load_slide()
+        {
+            
+            Slide NewSlide = (Slide)Globals.ThisAddIn.Application.ActiveWindow.View.Slide;
+            if(NewSlide.Shapes["JudgeQuestionDescribe"].TextFrame.TextRange.Text != "请编写题干")
+            {
+                changeButton1.Text = "修改";
+            }
+            JudegeQuestText.Text = NewSlide.Shapes["JudgeQuestionDescribe"].TextFrame.TextRange.Text;
+            scoreBox2.Text = NewSlide.Shapes["JdquestionScore"].TextFrame.TextRange.Text;
+            limitBox1.Text = NewSlide.Shapes["JdquestionLimitTime"].TextFrame.TextRange.Text;
+            if (NewSlide.Shapes["JdquestionAnswer"].TextFrame.TextRange.Text=="True")
+            {
+                cxFlatCheckBox2.Checked = false;
+                cxFlatCheckBox1.Checked = true;
+            }
+            else
+            {
+                cxFlatCheckBox2.Checked = true;
+                cxFlatCheckBox1.Checked = false;
+            }
+
         }
     }
 }

@@ -10,6 +10,8 @@ using Oke_teacher.WinForms;
 using Oke_teacher.TaskPane;
 using Microsoft.Office.Tools;
 using Microsoft.Office.Interop.PowerPoint;
+using System.Collections;
+using Oke_teacher.Uitls;
 
 namespace Oke_teacher
 {
@@ -20,17 +22,21 @@ namespace Oke_teacher
         public Microsoft.Office.Tools.CustomTaskPane _FillTaskPane = null;
         public Microsoft.Office.Tools.CustomTaskPane _SimpleQuestionTaskPane = null;
 
+        private SingleChoiceTaskPane singleChoiceTaskPane = new SingleChoiceTaskPane();
+        private JudgeTaskPane judgeTaskPane = new JudgeTaskPane();
+
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
             //TaskPanetest taskPanetest = new TaskPanetest();测试
 
-            JudgeTaskPane judgeTaskPane = new JudgeTaskPane();
+            //JudgeTaskPane judgeTaskPane = new JudgeTaskPane();
             _JudgeTaskPane = CustomTaskPanes.Add(judgeTaskPane, "Judge Question");
-            _JudgeTaskPane.Width = 200;
+            _JudgeTaskPane.Width = 250;
             _JudgeTaskPane.Visible = false;
             Globals.ThisAddIn.Application.SlideSelectionChanged += new EApplication_SlideSelectionChangedEventHandler(isJudgeQuestionPPT);
 
-            SingleChoiceTaskPane singleChoiceTaskPane = new SingleChoiceTaskPane();
+
+
             _SingleChoiceTaskPane = CustomTaskPanes.Add(singleChoiceTaskPane, "单选题");
             _SingleChoiceTaskPane.Width = 250;
             _SingleChoiceTaskPane.Visible = false;
@@ -49,31 +55,43 @@ namespace Oke_teacher
             Globals.ThisAddIn.Application.SlideSelectionChanged += new EApplication_SlideSelectionChangedEventHandler(IsSimpleQesttionPPT);
         }
 
+        #region 幻灯片监听事件
+        /// <summary>
+        /// 幻灯片监听事件
+        /// </summary>
+        /// <param name="sldRange"></param>
         private void isSingleChoicePPT(SlideRange sldRange)
         {
-            if (sldRange == null)
+            if (sldRange.SlideIndex == 0)
             {
+                _SingleChoiceTaskPane.Visible = false;
                 return;
             }
-            if (sldRange.Name != null && sldRange.Name[0] == 'S' && sldRange.Name[1] == 'C' && sldRange.Name[2] == 'P' && sldRange.Name[3] == 'P'  && sldRange.Name[4] == 'T')
+            Slide activeSlide = (Slide)Globals.ThisAddIn.Application.ActiveWindow.View.Slide;
+            if (ShapesUitls.IsExistedOfShape(activeSlide, "questionType") && activeSlide.Shapes["questionType"].TextFrame.TextRange.Text.Equals("0"))
             {
                 _SingleChoiceTaskPane.Visible = true;
+                singleChoiceTaskPane.load_slide();
             }
             else
             {
                 _SingleChoiceTaskPane.Visible = false;
             }
         }
+        #endregion
 
         private void isJudgeQuestionPPT(SlideRange sldRange)
         {
-            if (sldRange == null)
+            if (sldRange.SlideIndex == 0)
             {
+                _JudgeTaskPane.Visible = false;
                 return;
             }
-            if (sldRange.Name != null && sldRange.Name[0] == 'J' && sldRange.Name[1] == 'U' && sldRange.Name[2] == 'D' && sldRange.Name[3] == 'G' && sldRange.Name[4] == 'E')
+            Slide activeSlide = (Slide)Globals.ThisAddIn.Application.ActiveWindow.View.Slide;
+            if (ShapesUitls.IsExistedOfShape(activeSlide, "JudgeQuestion") )
             {
                 _JudgeTaskPane.Visible = true;
+                judgeTaskPane.load_slide();
             }
             else
             {
