@@ -462,11 +462,9 @@ namespace Oke_teacher
         private void AddSubmitOleForm(Slide slide, Single left, Single top, Single width, Single height)
         {
             var oleControl = slide.Shapes.AddOLEObject(left, top, width, height, "Forms.CommandButton.1", "",
-            MsoTriState.msoFalse, "", 0, "", MsoTriState.msoFalse);
-            var obj = oleControl.OLEFormat.Object;
-            oleControl.Name = "Frame";
+            MsoTriState.msoFalse, "", 0, "", MsoTriState.msoFalse).Name = "sumbitButton";
 
-            OLEFormat oleF = slide.Shapes.Range("Frame").OLEFormat;
+            OLEFormat oleF = slide.Shapes["sumbitButton"].OLEFormat;
             MF.CommandButton button = (MF.CommandButton)oleF.Object;
 
             button.BackColor = 92 + 173 * 256 + 255 * 256 * 256;
@@ -474,61 +472,49 @@ namespace Oke_teacher
 
             button.Caption = "发 布";
             button.FontBold = true;
-            button.Click += sumbitClick;
+            button.Click += sumbitButton_Click;
+        }
 
+        private void sumbitButton_Click()
+        {
+            System.Diagnostics.Debug.WriteLine("触发了");
+            Slide activeSlide = Globals.ThisAddIn.Application.ActivePresentation.SlideShowWindow.View.Slide;
+
+            Question question = new Question();
+            question.questionType = int.Parse(activeSlide.Shapes["questionType"].TextFrame.TextRange.Text);
+            question.questionScore = int.Parse(activeSlide.Shapes["questionScore"].TextFrame.TextRange.Text);
+            question.questionLimitTime = int.Parse(activeSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text);
+            question.questionDescribe = activeSlide.Shapes["questionDescribe"].TextFrame.TextRange.Text;
+            question.questionAnswer = activeSlide.Shapes["questionAnswer"].TextFrame.TextRange.Text;
+
+            List<Option> optionList = new List<Option>();
+
+            string chars = "ABCDEFG";
+
+            for (int i = 0; i < 7; i++)
+            {
+                if (ShapesUitls.IsExistedOfShape(activeSlide, "option" + chars[i] + "Type"))
+                {
+                    Option option = new Option();
+                    option.optionType = activeSlide.Shapes["option" + chars[i] + "Type"].TextFrame.TextRange.Text;
+                    option.optionDescribe = activeSlide.Shapes["option" + chars[i] + "Text"].TextFrame.TextRange.Text;
+                    optionList.Add(option);
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            QuestionData questionData = new QuestionData();
+            questionData.question = question;
+            questionData.optionList = optionList;
+
+            SubmitQuestionForm submitQuestionForm = new SubmitQuestionForm();
+            submitQuestionForm.questionData = questionData;
+            submitQuestionForm.LoadText();
+            submitQuestionForm.ShowDialog();
         }
         #endregion
-
-        private void sumbitClick()
-        {
-            try
-            {
-                Slide activeSlide = Globals.ThisAddIn.Application.ActivePresentation.SlideShowWindow.View.Slide;
-
-                Question question = new Question();
-                question.questionType = int.Parse(activeSlide.Shapes["questionType"].TextFrame.TextRange.Text);
-                question.questionScore = int.Parse(activeSlide.Shapes["questionScore"].TextFrame.TextRange.Text);
-                question.questionLimitTime = int.Parse(activeSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text);
-                question.questionDescribe = activeSlide.Shapes["questionDescribe"].TextFrame.TextRange.Text;
-                question.questionAnswer = activeSlide.Shapes["questionAnswer"].TextFrame.TextRange.Text;
-                System.Diagnostics.Debug.WriteLine("test1");
-
-                List<Option> optionList = new List<Option>();
-
-                string chars = "ABCDEFG";
-
-                for (int i = 0; i < 7; i++)
-                {
-                    if (ShapesUitls.IsExistedOfShape(activeSlide, "option" + chars[i] + "Type"))
-                    {
-                        Option option = new Option();
-                        option.optionType = activeSlide.Shapes["option" + chars[i] + "Type"].TextFrame.TextRange.Text;
-                        option.optionDescribe = activeSlide.Shapes["option" + chars[i] + "Text"].TextFrame.TextRange.Text;
-                        optionList.Add(option);
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-                System.Diagnostics.Debug.WriteLine("test2");
-
-                QuestionData questionData = new QuestionData();
-                questionData.question = question;
-                questionData.optionList = optionList;
-                System.Diagnostics.Debug.WriteLine("test3");
-
-                SubmitQuestionForm submitQuestionForm = new SubmitQuestionForm();
-                submitQuestionForm.questionData = questionData;
-                submitQuestionForm.LoadText();
-                System.Diagnostics.Debug.WriteLine("test4");
-                submitQuestionForm.ShowDialog();
-                System.Diagnostics.Debug.WriteLine("test5");
-            }
-            catch (Exception e1)
-            {
-                System.Diagnostics.Debug.WriteLine(e1.Message);
-            }
-        }
     }
 }
