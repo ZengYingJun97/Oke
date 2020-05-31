@@ -22,8 +22,6 @@ namespace Oke_teacher
 {
     public partial class OkeRibbon
     {
-        private static long countSCPPT = 0;
-        private static long countJDPPT = 0;
         private static long countFQPPT = 0;
         private static long countSQPPT = 0;
 
@@ -123,18 +121,25 @@ namespace Oke_teacher
             NewSlide = AllSlides.Add(MySlide.SlideIndex+1, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);//插入幻灯片
             
             Microsoft.Office.Interop.PowerPoint.TextRange FillTextRng = null;//设置第一个文本框
-
             NewSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 40F, 100F, 30F).Name="JudgeQuestion";
+            NewSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "questionType";
+            NewSlide.Shapes["questionType"].TextFrame.TextRange.Text = "1";
+            NewSlide.Shapes["questionType"].Visible = MsoTriState.msoFalse;
 
-            NewSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "JdquestionScore";
-            NewSlide.Shapes["JdquestionScore"].TextFrame.TextRange.Text = "0";
-            NewSlide.Shapes["JdquestionScore"].Visible = MsoTriState.msoFalse;
-            NewSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "JdquestionLimitTime";
-            NewSlide.Shapes["JdquestionLimitTime"].TextFrame.TextRange.Text = "0";
-            NewSlide.Shapes["JdquestionLimitTime"].Visible = MsoTriState.msoFalse;
-            NewSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "JdquestionAnswer";
-            NewSlide.Shapes["JdquestionAnswer"].TextFrame.TextRange.Text = "0";
-            NewSlide.Shapes["JdquestionAnswer"].Visible = MsoTriState.msoFalse;
+
+            
+
+
+
+            NewSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "questionScore";
+            NewSlide.Shapes["questionScore"].TextFrame.TextRange.Text = "0";
+            NewSlide.Shapes["questionScore"].Visible = MsoTriState.msoFalse;
+            NewSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "questionLimitTime";
+            NewSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text = "0";
+            NewSlide.Shapes["questionLimitTime"].Visible = MsoTriState.msoFalse;
+            NewSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "questionAnswer";
+            NewSlide.Shapes["questionAnswer"].TextFrame.TextRange.Text = "0";
+            NewSlide.Shapes["questionAnswer"].Visible = MsoTriState.msoFalse;
 
 
             FillTextRng = NewSlide.Shapes["JudgeQuestion"].TextFrame.TextRange;//请注意此处Shapes的索引，由于文本框是第一个添加的Shapes，所以此处索引是1。
@@ -152,12 +157,12 @@ namespace Oke_teacher
             #region 插入判断题题目
             Microsoft.Office.Interop.PowerPoint.TextRange FQTextRng = null;
 
-            NewSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 150F, 400F, 300F).Name= "JudgeQuestionDescribe";
+            NewSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 150F, 400F, 300F).Name= "questionDescribe";
             
             //添加True & False图片 从网上获取
             NewSlide.Shapes.AddPicture("http://pic.616pic.com/ys_b_img/00/57/95/CLa3kvD1Kw.jpg", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoTrue, 21, 400, 70, 50);
             NewSlide.Shapes.AddPicture("http://pic.616pic.com/ys_b_img/00/11/88/mktrxpmh8r.jpg", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoTrue, 200, 400, 70, 50);
-            FQTextRng = NewSlide.Shapes["JudgeQuestionDescribe"].TextFrame.TextRange;//请注意此处Shapes的索引，由于文本框是第二个添加的Shapes，所以此处索引是2。
+            FQTextRng = NewSlide.Shapes["questionDescribe"].TextFrame.TextRange;//请注意此处Shapes的索引，由于文本框是第二个添加的Shapes，所以此处索引是2。
 
             FQTextRng.Font.NameFarEast = "微软雅黑";//文本框中，中文的字体                   
             FQTextRng.Font.NameAscii = "Calibri";//文本框中，英文和数字的字体      
@@ -179,7 +184,58 @@ namespace Oke_teacher
             //MySlide.Shapes.AddPicture(image_path1, MsoTriState.msoFalse, MsoTriState.msoTrue, 27F, 24F, 665F, 333F);
 
             //presentation.Slides[0].Shapes[0].Line.FillFormat.SolidFillColor.Color = Color.FloralWhite;
+            AddSubmitOleForm1(NewSlide, 822F, 466F, 89F, 46F);
             #endregion
+
+        }
+        private void AddSubmitOleForm1(Slide slide, Single left, Single top, Single width, Single height)
+        {
+            var oleControl = slide.Shapes.AddOLEObject(left, top, width, height, "Forms.CommandButton.1", "",
+            MsoTriState.msoFalse, "", 0, "", MsoTriState.msoFalse).Name = "sumbitButton";
+
+            OLEFormat oleF = slide.Shapes["sumbitButton"].OLEFormat;
+            MF.CommandButton button = (MF.CommandButton)oleF.Object;
+
+            button.BackColor = 92 + 173 * 256 + 255 * 256 * 256;
+            button.ForeColor = 255 + 255 * 256 + 255 * 256 * 256;
+
+            button.Caption = "发 布";
+            button.FontBold = true;
+            button.Click += button_Click;
+        }
+        private void button_Click()
+        {
+            MessageBox.Show("Start Test！！");
+            System.Diagnostics.Debug.WriteLine("触发了");
+
+            Slide activeSlide = Globals.ThisAddIn.Application.ActivePresentation.SlideShowWindow.View.Slide;
+            Question question = new Question();
+            question.questionType = int.Parse(activeSlide.Shapes["questionType"].TextFrame.TextRange.Text);
+            question.questionScore = int.Parse(activeSlide.Shapes["questionScore"].TextFrame.TextRange.Text);
+            question.questionLimitTime = int.Parse(activeSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text);
+            question.questionDescribe = activeSlide.Shapes["questionDescribe"].TextFrame.TextRange.Text;
+            question.questionAnswer = activeSlide.Shapes["questionAnswer"].TextFrame.TextRange.Text;
+            System.Diagnostics.Debug.WriteLine("触发了!!");
+            List<Option> optionList = new List<Option>();
+
+            Option option = new Option();
+            option.optionType = activeSlide.Shapes["questionAnswer"].TextFrame.TextRange.Text;
+            option.optionDescribe = activeSlide.Shapes["questionDescribe"].TextFrame.TextRange.Text;
+            optionList.Add(option);
+
+            QuestionData questionData = new QuestionData();
+            questionData.question = question;
+            questionData.optionList = optionList;
+            System.Diagnostics.Debug.WriteLine("触发了!!!~~");
+            SubmitQuestionForm submitQuestionForm = new SubmitQuestionForm();
+            submitQuestionForm.questionData = questionData;
+            //submitQuestionForm.LoadText1(activeSlide.Shapes["questionScore"].TextFrame.TextRange.Text, activeSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text);
+            submitQuestionForm.LoadText();
+            submitQuestionForm.ShowDialog();
+
+
+
+
 
         }
         #endregion

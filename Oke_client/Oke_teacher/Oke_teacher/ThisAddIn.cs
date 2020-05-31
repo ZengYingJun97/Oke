@@ -30,7 +30,7 @@ namespace Oke_teacher
             //TaskPanetest taskPanetest = new TaskPanetest();测试
 
             //JudgeTaskPane judgeTaskPane = new JudgeTaskPane();
-            _JudgeTaskPane = CustomTaskPanes.Add(judgeTaskPane, "Judge Question");
+            _JudgeTaskPane = CustomTaskPanes.Add(judgeTaskPane, "判断题");
             _JudgeTaskPane.Width = 250;
             _JudgeTaskPane.Visible = false;
             Globals.ThisAddIn.Application.SlideSelectionChanged += new EApplication_SlideSelectionChangedEventHandler(isJudgeQuestionPPT);
@@ -80,6 +80,7 @@ namespace Oke_teacher
         }
         #endregion
 
+        #region 判断题监听
         private void isJudgeQuestionPPT(SlideRange sldRange)
         {
             if (sldRange.SlideIndex == 0)
@@ -98,6 +99,7 @@ namespace Oke_teacher
                 _JudgeTaskPane.Visible = false;
             }
         }
+        #endregion
 
         private void IsFillQesttionPPT(SlideRange sldRange)
         {
