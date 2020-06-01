@@ -299,7 +299,7 @@ namespace Oke_teacher
             NewFillQuestionSlide.Shapes[2].TextFrame.VerticalAnchor = MsoVerticalAnchor.msoAnchorMiddle; //文本对齐方式（垂直方向）
             #endregion
 
-            AddSubmitOleForm(NewFillQuestionSlide, 822F, 466F, 89F, 46F);//插入发布按钮
+            AddSubmitOleForm(NewFillQuestionSlide, 822F, 466F, 89F, 46F, EnumExtend.GetDisplayText(ButtonNameEnum.SUMBIT), "sumbitButton");//插入发布按钮
 
             NewFillQuestionSlide.Select();
         }
@@ -350,7 +350,7 @@ namespace Oke_teacher
             NewSimpleQuestionSlide.Shapes[2].TextFrame.VerticalAnchor = MsoVerticalAnchor.msoAnchorMiddle; //文本对齐方式（垂直方向）
             #endregion
 
-            AddSubmitOleForm(NewSimpleQuestionSlide, 822F, 466F, 89F, 46F);//插入发布按钮
+            AddSubmitOleForm(NewSimpleQuestionSlide, 822F, 466F, 89F, 46F, EnumExtend.GetDisplayText(ButtonNameEnum.SUMBIT), "sumbitButton");//插入发布按钮
 
             NewSimpleQuestionSlide.Select();
         }
