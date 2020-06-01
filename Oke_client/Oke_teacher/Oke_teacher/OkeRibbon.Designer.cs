@@ -49,7 +49,7 @@
             this.simleanswerbutton = this.Factory.CreateRibbonButton();
             this.Judgquesbtn = this.Factory.CreateRibbonButton();
             this.interactgroup = this.Factory.CreateRibbonGroup();
-            this.scratchbutton = this.Factory.CreateRibbonButton();
+            this.Rollcallbutton = this.Factory.CreateRibbonButton();
             this.datagroup = this.Factory.CreateRibbonGroup();
             this.dataoutbutton = this.Factory.CreateRibbonButton();
             this.OkeTab.SuspendLayout();
@@ -189,18 +189,18 @@
             // 
             // interactgroup
             // 
-            this.interactgroup.Items.Add(this.scratchbutton);
+            this.interactgroup.Items.Add(this.Rollcallbutton);
             this.interactgroup.Label = "课堂互动";
             this.interactgroup.Name = "interactgroup";
             // 
-            // scratchbutton
+            // Rollcallbutton
             // 
-            this.scratchbutton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.scratchbutton.Image = global::Oke_teacher.Properties.Resources.Oke_scratchcard;
-            this.scratchbutton.Label = "刮奖\n";
-            this.scratchbutton.Name = "scratchbutton";
-            this.scratchbutton.ShowImage = true;
-            this.scratchbutton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Scratchbutton_Click);
+            this.Rollcallbutton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.Rollcallbutton.Image = global::Oke_teacher.Properties.Resources.Oke_rollcall;
+            this.Rollcallbutton.Label = "随机点名\n";
+            this.Rollcallbutton.Name = "Rollcallbutton";
+            this.Rollcallbutton.ShowImage = true;
+            this.Rollcallbutton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Rollcallbutton_Click);
             // 
             // datagroup
             // 
@@ -252,7 +252,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton simleanswerbutton;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton fillbutton;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup interactgroup;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton scratchbutton;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton Rollcallbutton;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup datagroup;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton dataoutbutton;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton Noupclassbtn;

@@ -26,6 +26,7 @@ namespace Oke_teacher
         public Microsoft.Office.Tools.CustomTaskPane _JudgeTaskPane = null;
         public Microsoft.Office.Tools.CustomTaskPane _SingleChoiceTaskPane = null;
         public Microsoft.Office.Tools.CustomTaskPane _FillTaskPane = null;
+        public Microsoft.Office.Tools.CustomTaskPane _SimpleQuestionTaskPane = null;
 
         private SingleChoiceTaskPane singleChoiceTaskPane = new SingleChoiceTaskPane();
         private JudgeTaskPane judgeTaskPane = new JudgeTaskPane();
@@ -36,7 +37,7 @@ namespace Oke_teacher
             //TaskPanetest taskPanetest = new TaskPanetest();测试
 
             //JudgeTaskPane judgeTaskPane = new JudgeTaskPane();
-            _JudgeTaskPane = CustomTaskPanes.Add(judgeTaskPane, "Judge Question");
+            _JudgeTaskPane = CustomTaskPanes.Add(judgeTaskPane, "判断题");
             _JudgeTaskPane.Width = 250;
             _JudgeTaskPane.Visible = false;
             Globals.ThisAddIn.Application.SlideSelectionChanged += new EApplication_SlideSelectionChangedEventHandler(isJudgeQuestionPPT);
@@ -50,11 +51,17 @@ namespace Oke_teacher
             Globals.ThisAddIn.Application.SlideShowBegin += SingleChoice_SlideShowNextSlide;
             Globals.ThisAddIn.Application.SlideShowEnd += SingleChoice_SlideShowEnd;
 
-            FillTaskPane taskPane = new FillTaskPane();
-            _FillTaskPane = this.CustomTaskPanes.Add(taskPane, "Fill Question");
+            FillTaskPane FilltaskPane = new FillTaskPane();
+            _FillTaskPane = this.CustomTaskPanes.Add(FilltaskPane, "填空题");
             _FillTaskPane.Width = 200;
             _FillTaskPane.Visible = false;
+            Globals.ThisAddIn.Application.SlideSelectionChanged += new EApplication_SlideSelectionChangedEventHandler(IsFillQesttionPPT);
 
+            SimpleQuestionTaskPane SimpleQuestiontaskPane = new SimpleQuestionTaskPane();
+            _SimpleQuestionTaskPane = this.CustomTaskPanes.Add(SimpleQuestiontaskPane, "简答题");
+            _SimpleQuestionTaskPane.Width = 200;
+            _SimpleQuestionTaskPane.Visible = false;
+            Globals.ThisAddIn.Application.SlideSelectionChanged += new EApplication_SlideSelectionChangedEventHandler(IsSimpleQesttionPPT);
         }
 
         #region 结束放映，对所有单选题幻灯片初始化
@@ -194,6 +201,7 @@ namespace Oke_teacher
         }
         #endregion
 
+        #region 判断题监听
         private void isJudgeQuestionPPT(SlideRange sldRange)
         {
             if (sldRange.Count > 1 || sldRange.SlideIndex == 0)
@@ -212,8 +220,39 @@ namespace Oke_teacher
                 _JudgeTaskPane.Visible = false;
             }
         }
+        #endregion
 
+        private void IsFillQesttionPPT(SlideRange sldRange)
+        {
+            if (sldRange == null)
+            {
+                return;
+            }
+            if (sldRange.Name != null && sldRange.Name[0] == 'F' && sldRange.Name[1] == 'Q' && sldRange.Name[2] == 'P' && sldRange.Name[3] == 'P' && sldRange.Name[4] == 'T')
+            {
+                _FillTaskPane.Visible = true;
+            }
+            else
+            {
+                _FillTaskPane.Visible = false;
+            }
+        }
 
+        private void IsSimpleQesttionPPT(SlideRange sldRange)
+        {
+            if (sldRange == null)
+            {
+                return;
+            }
+            if (sldRange.Name != null && sldRange.Name[0] == 'S' && sldRange.Name[1] == 'Q' && sldRange.Name[2] == 'P' && sldRange.Name[3] == 'P' && sldRange.Name[4] == 'T')
+            {
+                _SimpleQuestionTaskPane.Visible = true;
+            }
+            else
+            {
+                _SimpleQuestionTaskPane.Visible = false;
+            }
+        }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
         {

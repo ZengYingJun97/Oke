@@ -256,11 +256,23 @@
     <Compile Include="WinForms\RegisterForm.Designer.cs">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="WinForms\RollcallForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\RollcallForm.Designer.cs">
+      <DependentUpon>RollcallForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="WinForms\SetQuestForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="WinForms\SetQuestForm.Designer.cs">
       <DependentUpon>SetQuestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\SimpleQuestionTaskPane.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WinForms\SimpleQuestionTaskPane.Designer.cs">
+      <DependentUpon>SimpleQuestionTaskPane.cs</DependentUpon>
     </Compile>
     <Compile Include="WinForms\StudentGetQuesForm.cs">
       <SubType>Form</SubType>
@@ -335,8 +347,14 @@
     <EmbeddedResource Include="WinForms\RegisterForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\RollcallForm.resx">
+      <DependentUpon>RollcallForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WinForms\SetQuestForm.resx">
       <DependentUpon>SetQuestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\SimpleQuestionTaskPane.resx">
+      <DependentUpon>SimpleQuestionTaskPane.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinForms\StudentGetQuesForm.resx">
       <DependentUpon>StudentGetQuesForm.cs</DependentUpon>
@@ -366,6 +384,7 @@
     <Compile Include="ThisAddIn.cs">
       <SubType>Code</SubType>
     </Compile>
+    <None Include="Resources\教学 PPT.ppt" />
     <None Include="ThisAddIn.Designer.xml">
       <DependentUpon>ThisAddIn.cs</DependentUpon>
     </None>
@@ -398,6 +417,7 @@
     <None Include="Resources\Oke_fillanswerdelete.png" />
     <Content Include="Resources\Oke_judge.png" />
     <None Include="Resources\Oke_SingleChoice.png" />
+    <None Include="Resources\Oke_rollcall.png" />
     <Content Include="Resources\upclassicon-08.png" />
     <Content Include="Resources\upclassicon-081.png" />
   </ItemGroup>
