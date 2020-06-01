@@ -78,7 +78,7 @@
             this.submitButton.Location = new System.Drawing.Point(25, 231);
             this.submitButton.Name = "submitButton";
             this.submitButton.Size = new System.Drawing.Size(200, 38);
-            this.submitButton.TabIndex = 4;
+            this.submitButton.TabIndex = 3;
             this.submitButton.Text = "发布";
             this.submitButton.TextColor = System.Drawing.Color.White;
             this.submitButton.Click += new System.EventHandler(this.submitButton_Click);
@@ -97,11 +97,11 @@
             this.questionLimitTimeBox.SelectionLength = 0;
             this.questionLimitTimeBox.SelectionStart = 0;
             this.questionLimitTimeBox.Size = new System.Drawing.Size(200, 38);
-            this.questionLimitTimeBox.TabIndex = 3;
+            this.questionLimitTimeBox.TabIndex = 2;
             this.questionLimitTimeBox.TabStop = false;
             this.questionLimitTimeBox.UseSystemPasswordChar = false;
             this.questionLimitTimeBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
-            this.questionLimitTimeBox.TextChanged += new System.EventHandler(this.textBox_TextChanged);
+            this.questionLimitTimeBox.TextChanged += new System.EventHandler(this.questionLimitTimeBox_TextChanged);
             // 
             // questionLimitTimeLabel
             // 
@@ -131,7 +131,7 @@
             this.questionScoreBox.TabStop = false;
             this.questionScoreBox.UseSystemPasswordChar = false;
             this.questionScoreBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
-            this.questionScoreBox.TextChanged += new System.EventHandler(this.textBox_TextChanged);
+            this.questionScoreBox.TextChanged += new System.EventHandler(this.questionScoreBox_TextChanged);
             // 
             // questionScoreLabel
             // 
