@@ -28,12 +28,17 @@ namespace Oke_teacher.WinForms
             InitializeComponent();
         }
 
+        #region 加载输入框数据
+        /// <summary>
+        /// 加载输入框数据
+        /// </summary>
         public void LoadText()
         {
             Slide activeSlide = Globals.ThisAddIn.Application.ActivePresentation.SlideShowWindow.View.Slide;
             questionScoreBox.Text = activeSlide.Shapes["questionScore"].TextFrame.TextRange.Text;
             questionLimitTimeBox.Text = activeSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text;
         }
+        #endregion
 
         #region 锁住发布按钮
         /// <summary>
@@ -100,24 +105,30 @@ namespace Oke_teacher.WinForms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void textBox_TextChanged(object sender, EventArgs e)
+        private void questionScoreBox_TextChanged(object sender, EventArgs e)
         {
-            TextBox textBox = (TextBox)sender;
+            TextBox textBox = (TextBox) sender;
+            string textBoxText = textBox.Text;
             if (textBox.Text.Equals(""))
             {
-                textBox.Text = "0";
+                textBoxText = "0";
             }
             Slide activeSlide = Globals.ThisAddIn.Application.ActivePresentation.SlideShowWindow.View.Slide;
-            if (textBox.Name.Equals("questionScoreBox"))
+            activeSlide.Shapes["questionScore"].TextFrame.TextRange.Text = textBoxText;
+            questionData.question.questionScore = int.Parse(textBoxText);
+        }
+
+        private void questionLimitTimeBox_TextChanged(object sender, EventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            string textBoxText = textBox.Text;
+            if (textBox.Text.Equals(""))
             {
-                activeSlide.Shapes["questionScore"].TextFrame.TextRange.Text = textBox.Text;
-                questionData.question.questionScore = int.Parse(textBox.Text);
+                textBoxText = "0";
             }
-            if (textBox.Name.Equals("questionLimitTimeBox"))
-            {
-                questionData.question.questionLimitTime = int.Parse(textBox.Text);
-                activeSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text = textBox.Text;
-            }
+            Slide activeSlide = Globals.ThisAddIn.Application.ActivePresentation.SlideShowWindow.View.Slide;
+            activeSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text = textBoxText;
+            questionData.question.questionLimitTime = int.Parse(textBoxText);
         }
         #endregion
 
@@ -146,6 +157,12 @@ namespace Oke_teacher.WinForms
         }
         #endregion
 
+        #region 发布按钮事件(未完成)
+        /// <summary>
+        /// 发布按钮事件(未完成)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void submitButton_Click(object sender, EventArgs e)
         {
             lockButton();
@@ -186,5 +203,6 @@ namespace Oke_teacher.WinForms
                 unlockButton();
             }
         }
+        #endregion
     }
 }

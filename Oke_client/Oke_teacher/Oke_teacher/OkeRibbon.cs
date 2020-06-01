@@ -7,9 +7,11 @@ using System.Reflection;
 using System.Resources;
 using System.Text;
 using System.Windows.Forms;
+using CxFlatUI.Controls;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
 using Microsoft.Office.Tools.Ribbon;
+using Microsoft.Vbe.Interop.Forms;
 using Oke_teacher.Dto;
 using Oke_teacher.Entity;
 using Oke_teacher.Enums;
@@ -443,7 +445,8 @@ namespace Oke_teacher
             addOption(singleChoiceSlide, "A", 91F, 138F, 152F, 143F);
             addOption(singleChoiceSlide, "B", 91F, 197F, 152F, 203F);
             addOption(singleChoiceSlide, "C", 91F, 257F, 152F, 262F);
-            AddSubmitOleForm(singleChoiceSlide, 822F, 466F, 80F, 46F);
+            AddSubmitOleForm(singleChoiceSlide, 727F, 466F, 80F, 46F, EnumExtend.GetDisplayText(ButtonNameEnum.GETANS), "answerButton");
+            AddSubmitOleForm(singleChoiceSlide, 822F, 466F, 80F, 46F, EnumExtend.GetDisplayText(ButtonNameEnum.SUMBIT), "sumbitButton");
 
             singleChoiceSlide.Select();
         }
@@ -458,61 +461,19 @@ namespace Oke_teacher
         /// <param name="top"></param>
         /// <param name="width"></param>
         /// <param name="height"></param>
-        private void AddSubmitOleForm(Slide slide, Single left, Single top, Single width, Single height)
+        private void AddSubmitOleForm(Slide slide, Single left, Single top, Single width, Single height, string buttonName, string shapeName)
         {
             var oleControl = slide.Shapes.AddOLEObject(left, top, width, height, "Forms.CommandButton.1", "",
-            MsoTriState.msoFalse, "", 0, "", MsoTriState.msoFalse).Name = "sumbitButton";
+            MsoTriState.msoFalse, "", 0, "", MsoTriState.msoFalse).Name = shapeName;
 
-            OLEFormat oleF = slide.Shapes["sumbitButton"].OLEFormat;
-            MF.CommandButton button = (MF.CommandButton)oleF.Object;
+            OLEFormat oleF = slide.Shapes[shapeName].OLEFormat;
+            CommandButton button = (CommandButton) oleF.Object;
 
             button.BackColor = 92 + 173 * 256 + 255 * 256 * 256;
             button.ForeColor = 255 + 255 * 256 + 255 * 256 * 256;
 
-            button.Caption = "发 布";
+            button.Caption = buttonName;
             button.FontBold = true;
-            button.Click += sumbitButton_Click;
-        }
-
-        private void sumbitButton_Click()
-        {
-            System.Diagnostics.Debug.WriteLine("触发了");
-            Slide activeSlide = Globals.ThisAddIn.Application.ActivePresentation.SlideShowWindow.View.Slide;
-
-            Question question = new Question();
-            question.questionType = int.Parse(activeSlide.Shapes["questionType"].TextFrame.TextRange.Text);
-            question.questionScore = int.Parse(activeSlide.Shapes["questionScore"].TextFrame.TextRange.Text);
-            question.questionLimitTime = int.Parse(activeSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text);
-            question.questionDescribe = activeSlide.Shapes["questionDescribe"].TextFrame.TextRange.Text;
-            question.questionAnswer = activeSlide.Shapes["questionAnswer"].TextFrame.TextRange.Text;
-
-            List<Option> optionList = new List<Option>();
-
-            string chars = "ABCDEFG";
-
-            for (int i = 0; i < 7; i++)
-            {
-                if (ShapesUitls.IsExistedOfShape(activeSlide, "option" + chars[i] + "Type"))
-                {
-                    Option option = new Option();
-                    option.optionType = activeSlide.Shapes["option" + chars[i] + "Type"].TextFrame.TextRange.Text;
-                    option.optionDescribe = activeSlide.Shapes["option" + chars[i] + "Text"].TextFrame.TextRange.Text;
-                    optionList.Add(option);
-                }
-                else
-                {
-                    break;
-                }
-            }
-
-            QuestionData questionData = new QuestionData();
-            questionData.question = question;
-            questionData.optionList = optionList;
-
-            SubmitQuestionForm submitQuestionForm = new SubmitQuestionForm();
-            submitQuestionForm.questionData = questionData;
-            submitQuestionForm.LoadText();
-            submitQuestionForm.ShowDialog();
         }
         #endregion
     }
