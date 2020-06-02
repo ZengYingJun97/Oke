@@ -161,6 +161,7 @@
     can be found.
   -->
   <ItemGroup>
+    <Compile Include="Dto\AnswerData.cs" />
     <Compile Include="Dto\OkeResult.cs" />
     <Compile Include="Dto\QuestionData.cs" />
     <Compile Include="Dto\SessionData.cs" />
@@ -209,6 +210,12 @@
     <Compile Include="Uitls\HttpUitls.cs" />
     <Compile Include="Uitls\ShapesUitls.cs" />
     <Compile Include="Uitls\UserUitls.cs" />
+    <Compile Include="WinForms\AnswerSituationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\AnswerSituationForm.Designer.cs">
+      <DependentUpon>AnswerSituationForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="WinForms\DataoutForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -323,6 +330,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TaskPane\SingleChoiceTaskPane.resx">
       <DependentUpon>SingleChoiceTaskPane.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\AnswerSituationForm.resx">
+      <DependentUpon>AnswerSituationForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinForms\DataoutForm.resx">
       <DependentUpon>DataoutForm.cs</DependentUpon>
