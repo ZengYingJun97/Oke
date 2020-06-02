@@ -188,6 +188,9 @@ namespace Oke_teacher.WinForms
                 {
                     addAlter(EnumExtend.GetDisplayText(OperateEnum.OP_SUCC), CxFlatAlertBox.AlertType.Success);
                     timer.Stop();
+                    AnswerSituationForm answerSituationForm = new AnswerSituationForm();
+                    answerSituationForm.load(questionData.question);
+                    answerSituationForm.ShowDialog();
                     timer.Tick += formClose_Tick;
                     timer.Start();
                 }

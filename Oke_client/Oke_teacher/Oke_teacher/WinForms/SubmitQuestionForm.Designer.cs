@@ -32,11 +32,14 @@
             this.titleBar = new CxFlatUI.CxFlatStatusBar();
             this.MainGroupBox = new CxFlatUI.CxFlatGroupBox();
             this.submitButton = new CxFlatUI.CxFlatRoundButton();
-            this.questionLimitTimeBox = new CxFlatUI.CxFlatTextBox();
+            this.questionLimitTimeBg = new CxFlatUI.CxFlatTextBox();
             this.questionLimitTimeLabel = new System.Windows.Forms.Label();
-            this.questionScoreBox = new CxFlatUI.CxFlatTextBox();
+            this.questionScoreBg = new CxFlatUI.CxFlatTextBox();
             this.questionScoreLabel = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.questionScoreBox = new System.Windows.Forms.TextBox();
+            this.questionLimitTimeBox = new System.Windows.Forms.TextBox();
             this.MainGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,10 +58,13 @@
             // MainGroupBox
             // 
             this.MainGroupBox.BackColor = System.Drawing.Color.White;
-            this.MainGroupBox.Controls.Add(this.submitButton);
             this.MainGroupBox.Controls.Add(this.questionLimitTimeBox);
-            this.MainGroupBox.Controls.Add(this.questionLimitTimeLabel);
             this.MainGroupBox.Controls.Add(this.questionScoreBox);
+            this.MainGroupBox.Controls.Add(this.textBox1);
+            this.MainGroupBox.Controls.Add(this.submitButton);
+            this.MainGroupBox.Controls.Add(this.questionLimitTimeBg);
+            this.MainGroupBox.Controls.Add(this.questionLimitTimeLabel);
+            this.MainGroupBox.Controls.Add(this.questionScoreBg);
             this.MainGroupBox.Controls.Add(this.questionScoreLabel);
             this.MainGroupBox.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.MainGroupBox.Font = new System.Drawing.Font("Segoe UI", 12F);
@@ -83,25 +89,24 @@
             this.submitButton.TextColor = System.Drawing.Color.White;
             this.submitButton.Click += new System.EventHandler(this.submitButton_Click);
             // 
-            // questionLimitTimeBox
+            // questionLimitTimeBg
             // 
-            this.questionLimitTimeBox.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.questionLimitTimeBox.Hint = "";
-            this.questionLimitTimeBox.Location = new System.Drawing.Point(25, 161);
-            this.questionLimitTimeBox.MaxLength = 32767;
-            this.questionLimitTimeBox.Multiline = false;
-            this.questionLimitTimeBox.Name = "questionLimitTimeBox";
-            this.questionLimitTimeBox.PasswordChar = '\0';
-            this.questionLimitTimeBox.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.questionLimitTimeBox.SelectedText = "";
-            this.questionLimitTimeBox.SelectionLength = 0;
-            this.questionLimitTimeBox.SelectionStart = 0;
-            this.questionLimitTimeBox.Size = new System.Drawing.Size(200, 38);
-            this.questionLimitTimeBox.TabIndex = 2;
-            this.questionLimitTimeBox.TabStop = false;
-            this.questionLimitTimeBox.UseSystemPasswordChar = false;
-            this.questionLimitTimeBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
-            this.questionLimitTimeBox.TextChanged += new System.EventHandler(this.questionLimitTimeBox_TextChanged);
+            this.questionLimitTimeBg.Enabled = false;
+            this.questionLimitTimeBg.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.questionLimitTimeBg.Hint = "";
+            this.questionLimitTimeBg.Location = new System.Drawing.Point(25, 161);
+            this.questionLimitTimeBg.MaxLength = 32767;
+            this.questionLimitTimeBg.Multiline = false;
+            this.questionLimitTimeBg.Name = "questionLimitTimeBg";
+            this.questionLimitTimeBg.PasswordChar = '\0';
+            this.questionLimitTimeBg.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.questionLimitTimeBg.SelectedText = "";
+            this.questionLimitTimeBg.SelectionLength = 0;
+            this.questionLimitTimeBg.SelectionStart = 0;
+            this.questionLimitTimeBg.Size = new System.Drawing.Size(200, 38);
+            this.questionLimitTimeBg.TabIndex = 2;
+            this.questionLimitTimeBg.TabStop = false;
+            this.questionLimitTimeBg.UseSystemPasswordChar = false;
             // 
             // questionLimitTimeLabel
             // 
@@ -113,25 +118,24 @@
             this.questionLimitTimeLabel.TabIndex = 2;
             this.questionLimitTimeLabel.Text = "题目限时";
             // 
-            // questionScoreBox
+            // questionScoreBg
             // 
-            this.questionScoreBox.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.questionScoreBox.Hint = "";
-            this.questionScoreBox.Location = new System.Drawing.Point(25, 84);
-            this.questionScoreBox.MaxLength = 32767;
-            this.questionScoreBox.Multiline = false;
-            this.questionScoreBox.Name = "questionScoreBox";
-            this.questionScoreBox.PasswordChar = '\0';
-            this.questionScoreBox.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.questionScoreBox.SelectedText = "";
-            this.questionScoreBox.SelectionLength = 0;
-            this.questionScoreBox.SelectionStart = 0;
-            this.questionScoreBox.Size = new System.Drawing.Size(200, 38);
-            this.questionScoreBox.TabIndex = 1;
-            this.questionScoreBox.TabStop = false;
-            this.questionScoreBox.UseSystemPasswordChar = false;
-            this.questionScoreBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
-            this.questionScoreBox.TextChanged += new System.EventHandler(this.questionScoreBox_TextChanged);
+            this.questionScoreBg.Enabled = false;
+            this.questionScoreBg.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.questionScoreBg.Hint = "";
+            this.questionScoreBg.Location = new System.Drawing.Point(25, 84);
+            this.questionScoreBg.MaxLength = 32767;
+            this.questionScoreBg.Multiline = false;
+            this.questionScoreBg.Name = "questionScoreBg";
+            this.questionScoreBg.PasswordChar = '\0';
+            this.questionScoreBg.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.questionScoreBg.SelectedText = "";
+            this.questionScoreBg.SelectionLength = 0;
+            this.questionScoreBg.SelectionStart = 0;
+            this.questionScoreBg.Size = new System.Drawing.Size(200, 38);
+            this.questionScoreBg.TabIndex = 1;
+            this.questionScoreBg.TabStop = false;
+            this.questionScoreBg.UseSystemPasswordChar = false;
             // 
             // questionScoreLabel
             // 
@@ -146,6 +150,33 @@
             // timer
             // 
             this.timer.Interval = 2000;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(-15, -15);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 29);
+            this.textBox1.TabIndex = 4;
+            // 
+            // questionScoreBox
+            // 
+            this.questionScoreBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.questionScoreBox.Location = new System.Drawing.Point(37, 92);
+            this.questionScoreBox.Name = "questionScoreBox";
+            this.questionScoreBox.Size = new System.Drawing.Size(176, 22);
+            this.questionScoreBox.TabIndex = 5;
+            this.questionScoreBox.TextChanged += new System.EventHandler(this.questionScoreBox_TextChanged);
+            this.questionScoreBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            // 
+            // questionLimitTimeBox
+            // 
+            this.questionLimitTimeBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.questionLimitTimeBox.Location = new System.Drawing.Point(37, 169);
+            this.questionLimitTimeBox.Name = "questionLimitTimeBox";
+            this.questionLimitTimeBox.Size = new System.Drawing.Size(176, 22);
+            this.questionLimitTimeBox.TabIndex = 6;
+            this.questionLimitTimeBox.TextChanged += new System.EventHandler(this.questionLimitTimeBox_TextChanged);
+            this.questionLimitTimeBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // SubmitQuestionForm
             // 
@@ -172,10 +203,13 @@
         private CxFlatUI.CxFlatStatusBar titleBar;
         private CxFlatUI.CxFlatGroupBox MainGroupBox;
         private CxFlatUI.CxFlatRoundButton submitButton;
-        private CxFlatUI.CxFlatTextBox questionLimitTimeBox;
+        private CxFlatUI.CxFlatTextBox questionLimitTimeBg;
         private System.Windows.Forms.Label questionLimitTimeLabel;
-        private CxFlatUI.CxFlatTextBox questionScoreBox;
+        private CxFlatUI.CxFlatTextBox questionScoreBg;
         private System.Windows.Forms.Label questionScoreLabel;
         private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.TextBox questionScoreBox;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox questionLimitTimeBox;
     }
 }
