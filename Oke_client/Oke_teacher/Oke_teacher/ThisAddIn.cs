@@ -41,6 +41,9 @@ namespace Oke_teacher
             _JudgeTaskPane.Width = 250;
             _JudgeTaskPane.Visible = false;
             Globals.ThisAddIn.Application.SlideSelectionChanged += new EApplication_SlideSelectionChangedEventHandler(isJudgeQuestionPPT);
+            Globals.ThisAddIn.Application.SlideShowNextSlide += JudgeQuestion_SlideShowNextSlide;
+            Globals.ThisAddIn.Application.SlideShowBegin += JudgeQuestion_SlideShowNextSlide;
+            Globals.ThisAddIn.Application.SlideShowEnd += JudgeQuestion_SlideShowEnd;
 
             //单选题必要
             _SingleChoiceTaskPane = CustomTaskPanes.Add(singleChoiceTaskPane, "单选题");
@@ -173,6 +176,7 @@ namespace Oke_teacher
             submitQuestionForm.questionData = questionData;
             submitQuestionForm.LoadText();
             submitQuestionForm.ShowDialog();
+
         }
         #endregion
 
@@ -201,6 +205,75 @@ namespace Oke_teacher
         }
         #endregion
 
+        #region 判断题提交事件
+        private void sumbitJudgeQuestion_Click()
+        {
+            if (buttonClickCount == 0)
+            {
+                return;
+            }
+            buttonClickCount = 0;
+            Slide activeSlide = Globals.ThisAddIn.Application.ActivePresentation.SlideShowWindow.View.Slide;
+            MF.CommandButton button = (MF.CommandButton)activeSlide.Shapes["sumbitButton"].OLEFormat.Object;
+            button.Enabled = false;
+            //MessageBox.Show("Start Test！！");
+            System.Diagnostics.Debug.WriteLine("触发了");
+
+            //Slide activeSlide = Globals.ThisAddIn.Application.ActivePresentation.SlideShowWindow.View.Slide;
+            Question question = new Question();
+            question.questionType = int.Parse(activeSlide.Shapes["questionType"].TextFrame.TextRange.Text);
+            question.questionScore = int.Parse(activeSlide.Shapes["questionScore"].TextFrame.TextRange.Text);
+            question.questionLimitTime = int.Parse(activeSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text);
+            question.questionDescribe = activeSlide.Shapes["questionDescribe"].TextFrame.TextRange.Text;
+            question.questionAnswer = activeSlide.Shapes["questionAnswer"].TextFrame.TextRange.Text;
+            System.Diagnostics.Debug.WriteLine("触发了!!");
+            List<Option> optionList = new List<Option>();
+
+            Option option = new Option();
+            option.optionType = activeSlide.Shapes["questionAnswer"].TextFrame.TextRange.Text;
+            option.optionDescribe = activeSlide.Shapes["questionDescribe"].TextFrame.TextRange.Text;
+            optionList.Add(option);
+
+            QuestionData questionData = new QuestionData();
+            questionData.question = question;
+            questionData.optionList = optionList;
+            System.Diagnostics.Debug.WriteLine("触发了!!!~~");
+            SubmitQuestionForm submitQuestionForm = new SubmitQuestionForm();
+            submitQuestionForm.questionData = questionData;
+            //submitQuestionForm.LoadText1(activeSlide.Shapes["questionScore"].TextFrame.TextRange.Text, activeSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text);
+            submitQuestionForm.LoadText();
+            submitQuestionForm.ShowDialog();
+
+
+
+
+
+        }
+        #endregion
+        #region 判断题答案显示
+        #region 判断题答案按钮事件
+        /// <summary>
+        /// 单选题答案按钮事件
+        /// </summary>
+        private void answerJudgeQuestion_Click()
+        {
+            Slide activeSlide = Globals.ThisAddIn.Application.ActivePresentation.SlideShowWindow.View.Slide;
+            MF.CommandButton button = (MF.CommandButton)activeSlide.Shapes["answerButton"].OLEFormat.Object;
+            button.Enabled = false;
+            string answerText = activeSlide.Shapes["questionAnswer"].TextFrame.TextRange.Text;
+            //activeSlide.Shapes["option" + answerText[0] + "Type"].Fill.ForeColor.RGB = (int)CheckedEnum.CHECKED;
+            if (answerText == "True")
+            {
+                activeSlide.Shapes["answerisTrue"].Visible = MsoTriState.msoTrue;
+                activeSlide.Shapes["answerisFalse"].Visible = MsoTriState.msoFalse;
+            }
+            else
+            {
+                activeSlide.Shapes["answerisFalse"].Visible = MsoTriState.msoTrue;
+            }
+        }
+        #endregion
+        #endregion
         #region 判断题监听
         private void isJudgeQuestionPPT(SlideRange sldRange)
         {
@@ -220,6 +293,48 @@ namespace Oke_teacher
                 _JudgeTaskPane.Visible = false;
             }
         }
+        #endregion
+        #region 放映结束,对判断题幻灯片初始化
+        private void JudgeQuestion_SlideShowEnd(Presentation Pres)
+        {
+            Slides slides = Pres.Slides;
+            foreach (Slide slide in slides)
+            {
+                if (ShapesUitls.IsExistedOfShape(slide, "questionType") && slide.Shapes["questionType"].TextFrame.TextRange.Text.Equals("1"))
+                {
+                    //ShapesUitls.ChoiceOptionNoChecked(slide);
+                    slide.Shapes["answerisTrue"].Visible = MsoTriState.msoTrue;
+                    slide.Shapes["answerisFalse"].Visible = MsoTriState.msoTrue;
+
+                }
+            }
+        }
+        private void JudgeQuestion_SlideShowNextSlide(SlideShowWindow Wn)
+        {
+            Slide slide = Wn.View.Slide;
+            if (ShapesUitls.IsExistedOfShape(slide, "questionType") && slide.Shapes["questionType"].TextFrame.TextRange.Text.Equals("1"))
+            {
+                slide.Shapes["answerisTrue"].Visible = MsoTriState.msoFalse;
+                slide.Shapes["answerisFalse"].Visible = MsoTriState.msoFalse;
+                MF.CommandButton sumbitButton = (MF.CommandButton)slide.Shapes["sumbitButton"].OLEFormat.Object;
+                sumbitButton.Click -= sumbitJudgeQuestion_Click;
+                sumbitButton.Click += sumbitJudgeQuestion_Click;
+                
+                sumbitButton.TakeFocusOnClick = false;
+                sumbitButton.Enabled = true;
+                buttonClickCount = 1;
+
+                MF.CommandButton answerButton = (MF.CommandButton)slide.Shapes["answerButton"].OLEFormat.Object;
+                answerButton.Click -= answerJudgeQuestion_Click;
+                answerButton.Click += answerJudgeQuestion_Click;
+                answerButton.TakeFocusOnClick = false;
+                answerButton.Enabled = true;
+                slide.Shapes["answerisTrue"].Visible = MsoTriState.msoFalse;
+                slide.Shapes["answerisFalse"].Visible = MsoTriState.msoFalse;
+                //ShapesUitls.ChoiceOptionNoChecked(slide);
+            }
+        }
+
         #endregion
 
         private void IsFillQesttionPPT(SlideRange sldRange)

@@ -162,8 +162,10 @@ namespace Oke_teacher
             NewSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 150F, 400F, 300F).Name= "questionDescribe";
             
             //添加True & False图片 从网上获取
-            NewSlide.Shapes.AddPicture("http://pic.616pic.com/ys_b_img/00/57/95/CLa3kvD1Kw.jpg", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoTrue, 21, 400, 70, 50);
-            NewSlide.Shapes.AddPicture("http://pic.616pic.com/ys_b_img/00/11/88/mktrxpmh8r.jpg", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoTrue, 200, 400, 70, 50);
+            NewSlide.Shapes.AddPicture("http://pic.616pic.com/ys_b_img/00/57/95/CLa3kvD1Kw.jpg", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoTrue, 21, 400, 70, 50).Name = "answerisTrue";
+            NewSlide.Shapes.AddPicture("http://pic.616pic.com/ys_b_img/00/11/88/mktrxpmh8r.jpg", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoTrue, 200, 400, 70, 50).Name = "answerisFalse";
+            NewSlide.Shapes["answerisTrue"].Visible = MsoTriState.msoTrue;
+            NewSlide.Shapes["answerisFalse"].Visible = MsoTriState.msoTrue;
             FQTextRng = NewSlide.Shapes["questionDescribe"].TextFrame.TextRange;//请注意此处Shapes的索引，由于文本框是第二个添加的Shapes，所以此处索引是2。
 
             FQTextRng.Font.NameFarEast = "微软雅黑";//文本框中，中文的字体                   
@@ -186,7 +188,10 @@ namespace Oke_teacher
             //MySlide.Shapes.AddPicture(image_path1, MsoTriState.msoFalse, MsoTriState.msoTrue, 27F, 24F, 665F, 333F);
 
             //presentation.Slides[0].Shapes[0].Line.FillFormat.SolidFillColor.Color = Color.FloralWhite;
-            AddSubmitOleForm1(NewSlide, 822F, 466F, 89F, 46F);
+            //AddSubmitOleForm1(NewSlide, 822F, 466F, 89F, 46F);
+            AddSubmitOleForm(NewSlide, 727F, 466F, 80F, 46F, EnumExtend.GetDisplayText(ButtonNameEnum.GETANS), "answerButton");
+            AddSubmitOleForm(NewSlide, 822F, 466F, 80F, 46F, EnumExtend.GetDisplayText(ButtonNameEnum.SUMBIT), "sumbitButton");
+
             #endregion
 
         }
@@ -205,35 +210,38 @@ namespace Oke_teacher
             button.FontBold = true;
             button.Click += button_Click;
         }
+
         private void button_Click()
         {
-            MessageBox.Show("Start Test！！");
-            System.Diagnostics.Debug.WriteLine("触发了");
+            TeacherSetQuesForm teacherSetQuesForm = new TeacherSetQuesForm();
+            teacherSetQuesForm.ShowDialog();
+            //MessageBox.Show("Start Test！！");
+            //System.Diagnostics.Debug.WriteLine("触发了");
 
-            Slide activeSlide = Globals.ThisAddIn.Application.ActivePresentation.SlideShowWindow.View.Slide;
-            Question question = new Question();
-            question.questionType = int.Parse(activeSlide.Shapes["questionType"].TextFrame.TextRange.Text);
-            question.questionScore = int.Parse(activeSlide.Shapes["questionScore"].TextFrame.TextRange.Text);
-            question.questionLimitTime = int.Parse(activeSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text);
-            question.questionDescribe = activeSlide.Shapes["questionDescribe"].TextFrame.TextRange.Text;
-            question.questionAnswer = activeSlide.Shapes["questionAnswer"].TextFrame.TextRange.Text;
-            System.Diagnostics.Debug.WriteLine("触发了!!");
-            List<Option> optionList = new List<Option>();
+            //Slide activeSlide = Globals.ThisAddIn.Application.ActivePresentation.SlideShowWindow.View.Slide;
+            //Question question = new Question();
+            //question.questionType = int.Parse(activeSlide.Shapes["questionType"].TextFrame.TextRange.Text);
+            //question.questionScore = int.Parse(activeSlide.Shapes["questionScore"].TextFrame.TextRange.Text);
+            //question.questionLimitTime = int.Parse(activeSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text);
+            //question.questionDescribe = activeSlide.Shapes["questionDescribe"].TextFrame.TextRange.Text;
+            //question.questionAnswer = activeSlide.Shapes["questionAnswer"].TextFrame.TextRange.Text;
+            //System.Diagnostics.Debug.WriteLine("触发了!!");
+            //List<Option> optionList = new List<Option>();
 
-            Option option = new Option();
-            option.optionType = activeSlide.Shapes["questionAnswer"].TextFrame.TextRange.Text;
-            option.optionDescribe = activeSlide.Shapes["questionDescribe"].TextFrame.TextRange.Text;
-            optionList.Add(option);
+            //Option option = new Option();
+            //option.optionType = activeSlide.Shapes["questionAnswer"].TextFrame.TextRange.Text;
+            //option.optionDescribe = activeSlide.Shapes["questionDescribe"].TextFrame.TextRange.Text;
+            //optionList.Add(option);
 
-            QuestionData questionData = new QuestionData();
-            questionData.question = question;
-            questionData.optionList = optionList;
-            System.Diagnostics.Debug.WriteLine("触发了!!!~~");
-            SubmitQuestionForm submitQuestionForm = new SubmitQuestionForm();
-            submitQuestionForm.questionData = questionData;
-            //submitQuestionForm.LoadText1(activeSlide.Shapes["questionScore"].TextFrame.TextRange.Text, activeSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text);
-            submitQuestionForm.LoadText();
-            submitQuestionForm.ShowDialog();
+            //QuestionData questionData = new QuestionData();
+            //questionData.question = question;
+            //questionData.optionList = optionList;
+            //System.Diagnostics.Debug.WriteLine("触发了!!!~~");
+            //SubmitQuestionForm submitQuestionForm = new SubmitQuestionForm();
+            //submitQuestionForm.questionData = questionData;
+            ////submitQuestionForm.LoadText1(activeSlide.Shapes["questionScore"].TextFrame.TextRange.Text, activeSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text);
+            //submitQuestionForm.LoadText();
+            //submitQuestionForm.ShowDialog();
 
 
 
@@ -471,5 +479,10 @@ namespace Oke_teacher
             button.FontBold = true;
         }
         #endregion
+
+        private void Votebutton_Click(object sender, RibbonControlEventArgs e)
+        {
+
+        }
     }
 }
