@@ -16,6 +16,8 @@ public class VoteStudent implements Serializable {
 
 	private Vote vote;
 
+	private VoteChoice voteChoice;
+
 	public Student getStudent() {
 		return student;
 	}
@@ -32,11 +34,20 @@ public class VoteStudent implements Serializable {
 		this.vote = vote;
 	}
 
+	public VoteChoice getVoteChoice() {
+		return voteChoice;
+	}
+
+	public void setVoteChoice(VoteChoice voteChoice) {
+		this.voteChoice = voteChoice;
+	}
+
 	@Override
 	public String toString() {
 		return "VoteStudent{" +
 				"student=" + student +
 				", vote=" + vote +
+				", voteChoice=" + voteChoice +
 				'}';
 	}
 }

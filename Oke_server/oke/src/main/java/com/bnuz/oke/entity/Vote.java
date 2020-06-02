@@ -52,12 +52,14 @@ public class Vote implements Serializable {
 		this.voteLimitTime = voteLimitTime;
 	}
 
+
 	@Override
 	public String toString() {
 		return "Vote{" +
 				"voteId=" + voteId +
 				", course=" + course +
 				", voteDescribe='" + voteDescribe + '\'' +
+				", voteLimitTime=" + voteLimitTime +
 				'}';
 	}
 }
