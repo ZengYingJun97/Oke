@@ -100,8 +100,9 @@
   -->
   <ItemGroup>
     <Reference Include="Accessibility" />
-    <Reference Include="CxFlatUI">
-      <HintPath>..\..\..\..\CxFlatUI-master\CxFlatUI\bin\Debug\CxFlatUI.dll</HintPath>
+    <Reference Include="CxFlatUI, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\csq\Desktop\CxFlatUI.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
