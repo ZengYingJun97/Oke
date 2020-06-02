@@ -157,4 +157,19 @@ public class CourseServiceImpl implements CourseService {
 	public List<StudentAnswer> questionAnswerList(int questionId) {
 		return studentAnswerDao.queryByQuestionId(questionId);
 	}
+
+	@Override
+	public Vote addVote(Vote vote, List<VoteChoice> voteChoiceList) {
+		return null;
+	}
+
+	@Override
+	public boolean studentVote(VoteStudent voteStudent) {
+		return false;
+	}
+
+	@Override
+	public List<VoteStudent> getVoteStudentList(Vote vote) {
+		return null;
+	}
 }

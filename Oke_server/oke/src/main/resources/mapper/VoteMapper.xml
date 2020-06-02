@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bnuz.oke.dao.VoteDao">
+
+    <select id="queryByCourseNumber" resultType="com.bnuz.oke.entity.Vote">
+        select
+            vote_id, vote_describe, vote_limit_time,
+            c.course_number as "course.courseNumber", course_name as "course.courseName", course_create_time as "course.courseCreateTime", course_end_time as "course.courseEndTime"
+        from vote v, course c
+        where c.course_number = v.course_number and v.course_number = #{courseNumber}
+    </select>
+
+    <select id="queryByVoteId" resultType="com.bnuz.oke.entity.Vote">
+        select
+            vote_id, vote_describe, vote_limit_time,
+            c.course_number as "course.courseNumber", course_name as "course.courseName", course_create_time as "course.courseCreateTime", course_end_time as "course.courseEndTime"
+        from vote v, course c
+        where c.course_number = v.course_number and v.vote_id = #{voteId}
+    </select>
+
+    <insert id="insertVote" parameterType="com.bnuz.oke.entity.Vote">
+        insert into
+            vote(course_number, vote_describe, vote_limit_time)
+        value
+            (#{course.courseNumber}, #{voteDescribe}, #{voteLimitTime})
+    </insert>
+
+    <update id="updateVote" parameterType="com.bnuz.oke.entity.Vote">
+        update vote
+        <set>
+            <if test="voteDescribe != null">vote_describe = #{voteDescribe},</if>
+            <if test="voteLimitTime != null">vote_limit_time = #{voteLimitTime},</if>
+        </set>
+        where vote_id = #{voteId}
+    </update>
+</mapper>

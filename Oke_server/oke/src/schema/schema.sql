@@ -107,3 +107,32 @@ create table prize (
     primary key (prize_id),
     foreign key (scratcher_id) references scratcher(scratcher_id)
 ) engine = innodb charset = utf8 comment = '奖品表';
+
+##创建vote表
+create table vote (
+    vote_id int(11) auto_increment not null comment '投票id',
+    course_number varchar(255) not null comment '课程号',
+    vote_describe varchar(255) not null comment '投票描述',
+    vote_limit_time int(11) not null comment '投票限制时间'
+    primary key (vote_id),
+    foreign key (course_number) references course(course_number)
+) engine = innodb charset = utf8 comment = '投票表';
+
+##创建vote_choice表
+create table vote_choice (
+    vote_choice_id  int(11) auto_increment not null comment '投票选择id',
+    vote_id int(11) not null comment '投票id',
+    vote_choice_type varchar(255) not null comment '投票选择符号',
+    vote_choice_describe varchar(255) not null comment '投票选择描述',
+    primary key (vote_choice_id),
+    foreign key (vote_id) references vote(vote_id)
+) engine = innodb charset = utf8 comment = '投票选择表';
+
+##创建vote_student表
+create table vote_student (
+    student_id int(11) not null comment '学生id',
+    vote_id int(11) not null comment '投票id',
+    primary key (student_id, vote_id),
+    foreign key (student_id) references student(student_id),
+    foreign key (vote_id) references vote(vote_id)
+) engine = innodb charset = utf8 comment = '学生投票表';

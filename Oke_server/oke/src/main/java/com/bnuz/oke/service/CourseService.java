@@ -31,4 +31,12 @@ public interface CourseService {
 	StudentAnswer isTrueStudentAnswer(StudentAnswer studentAnswer);
 
 	List<StudentAnswer> questionAnswerList(int questionId);
+
+	Vote addVote(Vote vote, List<VoteChoice> voteChoiceList);
+
+	boolean studentVote(VoteStudent voteStudent);
+
+	List<VoteStudent> getVoteStudentList(Vote vote);
+
+
 }

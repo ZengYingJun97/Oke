@@ -2,6 +2,7 @@ package com.bnuz.oke.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.bnuz.oke.api.WebSocketServer;
+import com.bnuz.oke.dto.AnswerData;
 import com.bnuz.oke.dto.OkeResult;
 import com.bnuz.oke.dto.QuestionData;
 import com.bnuz.oke.dto.SessionData;
@@ -191,10 +192,9 @@ public class CourseController {
 					question.setCourse(course);
 					courseService.addQuestion(question, optionList);
 
-					redisTemplate.opsForValue().set("answerQuestion:" + question.getQuestionId(), "0:0");
-
 					List<Student> studentList = redisTemplate.opsForList().range("courseStudent:" + course.getCourseNumber(), 0, -1);
 					String jsonString = JSON.toJSONString(sessionData.getData());
+					redisTemplate.opsForValue().set("answerQuestion:" + question.getQuestionId(), "0:0:" + studentList.size() );
 
 					for (Student student: studentList) {
 						WebSocketServer.sendInfo(jsonString, student.getStudentId() + "");
@@ -238,7 +238,7 @@ public class CourseController {
 					if (studentAnswer.getAnswerCorrect() == 1) {
 						correct++;
 					}
-					redisTemplate.opsForValue().set("answerQuestion:" + studentAnswer.getQuestion().getQuestionId(), correct + ":" + sum);
+					redisTemplate.opsForValue().set("answerQuestion:" + studentAnswer.getQuestion().getQuestionId(), correct + ":" + sum + ":" + tmp[2]);
 				}
 
 				result = new OkeResult<>(true, CourseStateEnum.SUCCESS_OP.getStateInfo());
@@ -269,7 +269,20 @@ public class CourseController {
 		} else {
 			try {
 				String answerQuestion = (String) redisTemplate.opsForValue().get("answerQuestion:" + sessionData.getData().getQuestionId());
-				SessionData<String> stringSessionData = new SessionData<>(sessionId, answerQuestion);
+				String[] tmps = answerQuestion.split(":");
+				AnswerData answerData = new AnswerData();
+				int total = Integer.parseInt(tmps[2]);
+				int correct = Integer.parseInt(tmps[0]);
+				int error = Integer.parseInt(tmps[1]) - Integer.parseInt(tmps[0]);
+				int unCommitted = total - Integer.parseInt(tmps[1]);
+
+				answerData.setTotal(Integer.parseInt(tmps[3]));
+				answerData.setTotal(total);
+				answerData.setCorrect(correct);
+				answerData.setError(error);
+				answerData.setUnCommited(unCommitted);
+
+				SessionData<AnswerData> stringSessionData = new SessionData<>(sessionId, answerData);
 				result = new OkeResult<>(true, stringSessionData);
 			} catch (Exception e) {
 				result = new OkeResult<>(false, OkeStateEnum.EXCEPTION_SERVER.getStateInfo());
@@ -340,11 +353,51 @@ public class CourseController {
 				} else {
 					String courseRandom = (String) redisTemplate.opsForValue().get("sessionCourse:" + sessionId);
 					Course course = (Course) redisTemplate.opsForValue().get(courseRandom);
+					for (int i = courseList.size() - 1; i >= 0; i--) {
+						if (courseList.get(i).getCourseNumber().equals(course.getCourseNumber())) {
+							courseList.remove(i);
+							break;
+						}
+					}
 					courseSessionData = new SessionData<>(sessionId, courseList);
 					result = new OkeResult<>(true, courseSessionData);
 				}
 			} catch (Exception e) {
 				result = new OkeResult<>(false, OkeStateEnum.EXCEPTION_SERVER.getStateInfo());
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * 获得在线学生
+	 * @date 2020/06/02 13:36:21
+	 * @author handsome
+	 * @param sessionData
+	 * @return com.bnuz.oke.dto.OkeResult<com.bnuz.oke.dto.SessionData>
+	 */        
+	@RequestMapping(value = "/course/student/online",
+			method = RequestMethod.POST,
+			produces = {"application/json;charset=UTF-8"})
+	@ResponseBody
+	public OkeResult<SessionData> getOnlineStudent(@RequestBody SessionData<String> sessionData) {
+		OkeResult<SessionData> result;
+		String sessionId = sessionData.getSessionId();
+		String value = (String) redisTemplate.opsForValue().get("session:" + sessionId);
+		if (value == null) {
+			result = new OkeResult<>(false, LoginStateEnum.INVALID_OP.getStateInfo());
+		} else {
+			Course course = (Course) redisTemplate.opsForValue().get("course:" + sessionData.getData());
+			if (course == null) {
+				result = new OkeResult<>(false, CourseStateEnum.NULL_COURSE.getStateInfo());
+			} else {
+				try {
+					List<Student> studentList = redisTemplate.opsForList().range("courseStudent:" + course.getCourseNumber(), 0, -1);
+					SessionData<List<Student>> listSessionData = new SessionData<>(sessionId, studentList);
+					result = new OkeResult<>(true, listSessionData);
+				} catch (Exception e) {
+					result = new OkeResult<>(false, OkeStateEnum.EXCEPTION_SERVER.getStateInfo());
+				}
 			}
 		}
 		return result;

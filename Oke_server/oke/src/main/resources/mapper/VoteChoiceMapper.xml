@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bnuz.oke.dao.VoteChoiceDao">
+
+    <select id="queryByVoteId" resultType="com.bnuz.oke.entity.VoteChoice">
+        select
+            vote_choice_id, vote_choice_type, vote_choice_describe,
+            v.vote_id as "vote.voteId", course_number as "vote.course.course_number", vote_describe as "vote.voteDescribe", vote_limit_time as "vote.voteLimitTime"
+        from vote_choice vc, vote v
+        where v.vote_id = vc.vote_id and vc.vote_id = #{voteId}
+    </select>
+
+    <select id="queryByVoteChoiceId" resultType="com.bnuz.oke.entity.VoteChoice">
+        select
+            vote_choice_id, vote_choice_type, vote_choice_describe,
+            v.vote_id as "vote.voteId", course_number as "vote.course.course_number", vote_describe as "vote.voteDescribe", vote_limit_time as "vote.voteLimitTime"
+        from vote_choice vc, vote v
+        where v.vote_id = vc.vote_id and vc.vote_choice_id = #{voteChoiceId}
+    </select>
+
+    <insert id="insertVoteChoice" parameterType="com.bnuz.oke.entity.VoteChoice">
+        insert into
+            vote_choice(vote_id, vote_choice_type, vote_choice_describe)
+        value
+            (#{vote.voteId}, #{voteChoiceType}, #{voteChoiceDescribe})
+    </insert>
+
+    <update id="updateVoteChoice" parameterType="com.bnuz.oke.entity.VoteChoice">
+        update vote_choice
+        <set>
+            <if test="voteChoiceType != null">vote_choice_type = #{voteChoiceType},</if>
+            <if test="voteChoiceDescribe != null">vote_choice_describe = #{voteChoiceDescribe},</if>
+        </set>
+        where vote_choice_id = #{voteChoiceId}
+    </update>
+</mapper>
