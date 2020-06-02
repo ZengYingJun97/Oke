@@ -1,5 +1,6 @@
 package com.bnuz.oke.service;
 
+import com.bnuz.oke.dto.VoteData;
 import com.bnuz.oke.entity.*;
 
 import java.util.List;
@@ -32,11 +33,9 @@ public interface CourseService {
 
 	List<StudentAnswer> questionAnswerList(int questionId);
 
-	Vote addVote(Vote vote, List<VoteChoice> voteChoiceList);
+	VoteData addVote(Vote vote, List<VoteChoice> voteChoiceList);
 
 	boolean studentVote(VoteStudent voteStudent);
 
 	List<VoteStudent> getVoteStudentList(Vote vote);
-
-
 }

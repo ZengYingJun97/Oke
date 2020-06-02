@@ -18,7 +18,8 @@
         where c.course_number = v.course_number and v.vote_id = #{voteId}
     </select>
 
-    <insert id="insertVote" parameterType="com.bnuz.oke.entity.Vote">
+    <insert id="insertVote" parameterType="com.bnuz.oke.entity.Vote"
+            useGeneratedKeys="true" keyProperty="voteId" keyColumn="vote_id">
         insert into
             vote(course_number, vote_describe, vote_limit_time)
         value
