@@ -118,5 +118,10 @@ namespace Oke_teacher.WinForms
                 confirmButton.Enabled = true;
             }
         }
+
+        private void confirmButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -93,6 +93,7 @@
             this.confirmButton.TabIndex = 13;
             this.confirmButton.Text = "确认";
             this.confirmButton.TextColor = System.Drawing.Color.White;
+            this.confirmButton.Click += new System.EventHandler(this.confirmButton_Click);
             // 
             // unCommitBox
             // 
