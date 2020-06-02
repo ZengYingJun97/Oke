@@ -61,6 +61,7 @@
             // 
             // MainGroupBox
             // 
+            this.MainGroupBox.Controls.Add(this.timeBar);
             this.MainGroupBox.Controls.Add(this.confirmButton);
             this.MainGroupBox.Controls.Add(this.unCommitBox);
             this.MainGroupBox.Controls.Add(this.unCommitLabel);
@@ -71,7 +72,6 @@
             this.MainGroupBox.Controls.Add(this.totalBox);
             this.MainGroupBox.Controls.Add(this.totalLabel);
             this.MainGroupBox.Controls.Add(this.accuracyBar);
-            this.MainGroupBox.Controls.Add(this.timeBar);
             this.MainGroupBox.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.MainGroupBox.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.MainGroupBox.Location = new System.Drawing.Point(0, -50);
@@ -87,7 +87,7 @@
             // 
             this.confirmButton.ButtonType = CxFlatUI.ButtonType.Primary;
             this.confirmButton.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.confirmButton.Location = new System.Drawing.Point(125, 291);
+            this.confirmButton.Location = new System.Drawing.Point(125, 280);
             this.confirmButton.Name = "confirmButton";
             this.confirmButton.Size = new System.Drawing.Size(100, 33);
             this.confirmButton.TabIndex = 13;
@@ -164,7 +164,6 @@
             // 
             // totalBox
             // 
-            this.totalBox.AutoSize = true;
             this.totalBox.Font = new System.Drawing.Font("Segoe UI", 20F);
             this.totalBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(173)))), ((int)(((byte)(255)))));
             this.totalBox.Location = new System.Drawing.Point(200, 107);
