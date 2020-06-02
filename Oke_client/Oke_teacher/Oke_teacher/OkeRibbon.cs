@@ -247,7 +247,6 @@ namespace Oke_teacher
         }
         #endregion
 
-
         #region 简答题按钮的点击事件
         private void Simpleanswerbutton_Click(object sender, RibbonControlEventArgs e)
         {
