@@ -81,7 +81,11 @@ namespace Oke_teacher.WinForms
         {
             questionLimitTime--;
 
-            int tmp = questionLimitTime * 100 / sumTime;
+            int tmp = 0;
+            if (sumTime != 0)
+            {
+                tmp = questionLimitTime * 100 / sumTime;
+            }
             timeBar.ValueNumber = tmp;
 
             if (tmp == 0)
