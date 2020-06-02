@@ -22,8 +22,6 @@ namespace Oke_teacher.TaskPane
         {
             InitializeComponent();
 
-            //默认A选项为答案
-            optionAButton.Checked = true;
         }
 
         #region 往幻灯片中添加选项Shape
@@ -203,6 +201,7 @@ namespace Oke_teacher.TaskPane
             }
             else
             {
+                optionAButton.Visible = false;
                 return;
             }
             if (ShapesUitls.IsExistedOfShape(activeSlide, "optionBType"))
@@ -215,6 +214,7 @@ namespace Oke_teacher.TaskPane
             }
             else
             {
+                optionBButton.Visible = false;
                 return;
             }
             if (ShapesUitls.IsExistedOfShape(activeSlide, "optionCType"))
@@ -224,9 +224,12 @@ namespace Oke_teacher.TaskPane
                     optionCButton.Checked = true;
                 }
                 optionCButton.Visible = true;
+                subOptionButton.Enabled = false;
+                addOptionButton.Enabled = true;
             }
             else
             {
+                optionCButton.Visible = false;
                 return;
             }
             if (ShapesUitls.IsExistedOfShape(activeSlide, "optionDType"))
@@ -236,9 +239,15 @@ namespace Oke_teacher.TaskPane
                     optionDButton.Checked = true;
                 }
                 optionDButton.Visible = true;
+                subOptionButton.Enabled = true;
+                addOptionButton.Enabled = true;
             }
             else
             {
+                optionDButton.Visible = false;
+                optionEButton.Visible = false;
+                optionFButton.Visible = false;
+                optionGButton.Visible = false;
                 return;
             }
             if (ShapesUitls.IsExistedOfShape(activeSlide, "optionEType"))
@@ -248,9 +257,14 @@ namespace Oke_teacher.TaskPane
                     optionEButton.Checked = true;
                 }
                 optionEButton.Visible = true;
+                subOptionButton.Enabled = true;
+                addOptionButton.Enabled = true;
             }
             else
             {
+                optionEButton.Visible = false;
+                optionFButton.Visible = false;
+                optionGButton.Visible = false;
                 return;
             }
             if (ShapesUitls.IsExistedOfShape(activeSlide, "optionFType"))
@@ -260,9 +274,13 @@ namespace Oke_teacher.TaskPane
                     optionFButton.Checked = true;
                 }
                 optionFButton.Visible = true;
+                subOptionButton.Enabled = true;
+                addOptionButton.Enabled = true;
             }
             else
             {
+                optionFButton.Visible = false;
+                optionGButton.Visible = false;
                 return;
             }
             if (ShapesUitls.IsExistedOfShape(activeSlide, "optionGType"))
@@ -272,9 +290,12 @@ namespace Oke_teacher.TaskPane
                     optionGButton.Checked = true;
                 }
                 optionGButton.Visible = true;
+                subOptionButton.Enabled = true;
+                addOptionButton.Enabled = false;
             }
             else
             {
+                optionGButton.Visible = false;
                 return;
             }
         }
@@ -289,12 +310,10 @@ namespace Oke_teacher.TaskPane
         private void optionButton_CheckedChanged(object sender, EventArgs e)
         {
             CxFlatRadioButton optionButon = (CxFlatRadioButton)sender;
-
             if (Globals.ThisAddIn == null || !optionButon.Checked)
             {
                 return;
             }
-
             Slide activeSlide = (Slide)Globals.ThisAddIn.Application.ActiveWindow.View.Slide;
 
             string chars = "ABCDEFG";
@@ -378,18 +397,19 @@ namespace Oke_teacher.TaskPane
         private void textBox_TextChanged(object sender, EventArgs e)
         {
             TextBox textBox = (TextBox)sender;
+            string textBoxText = textBox.Text;
             if (textBox.Text.Equals(""))
             {
-                textBox.Text = "0";
+                textBoxText = "0";
             }
             Slide activeSlide = (Slide)Globals.ThisAddIn.Application.ActiveWindow.View.Slide;
             if (textBox.Name.Equals("scoreBox"))
             {
-                activeSlide.Shapes["questionScore"].TextFrame.TextRange.Text = textBox.Text;
+                activeSlide.Shapes["questionScore"].TextFrame.TextRange.Text = textBoxText;
             }
             if (textBox.Name.Equals("questionLimitTimeBox"))
             {
-                activeSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text = textBox.Text;
+                activeSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text = textBoxText;
             }
         }
         #endregion

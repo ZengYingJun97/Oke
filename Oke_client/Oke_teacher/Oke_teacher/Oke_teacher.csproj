@@ -175,6 +175,7 @@
     <Compile Include="Entity\StudentAnswer.cs" />
     <Compile Include="Entity\Teacher.cs" />
     <Compile Include="Entity\User.cs" />
+    <Compile Include="Enums\ButtonNameEnum.cs" />
     <Compile Include="Enums\CheckedEnum.cs" />
     <Compile Include="Enums\EnumExtend.cs" />
     <Compile Include="Enums\LoginEnum.cs" />
