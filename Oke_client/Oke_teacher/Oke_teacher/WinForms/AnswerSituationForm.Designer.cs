@@ -120,7 +120,6 @@
             // 
             // unCommitLabel
             // 
-            this.unCommitLabel.AutoSize = true;
             this.unCommitLabel.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.unCommitLabel.ForeColor = System.Drawing.Color.Black;
             this.unCommitLabel.Location = new System.Drawing.Point(200, 229);
@@ -233,7 +232,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AnswerSituationForm";
             this.MainGroupBox.ResumeLayout(false);
-            this.MainGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
