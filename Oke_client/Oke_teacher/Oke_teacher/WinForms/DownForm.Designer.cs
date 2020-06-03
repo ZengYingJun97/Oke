@@ -44,6 +44,7 @@
             // 
             // downclassGroupBox1
             // 
+            this.downclassGroupBox1.BackColor = System.Drawing.Color.White;
             this.downclassGroupBox1.Controls.Add(this.cxFlatButton2);
             this.downclassGroupBox1.Controls.Add(this.cxFlatButton1);
             this.downclassGroupBox1.Controls.Add(this.label1);

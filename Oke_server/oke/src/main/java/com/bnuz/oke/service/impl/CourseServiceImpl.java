@@ -1,6 +1,8 @@
 package com.bnuz.oke.service.impl;
 
 import com.bnuz.oke.dao.*;
+import com.bnuz.oke.dto.CourseRecordData;
+import com.bnuz.oke.dto.VoteData;
 import com.bnuz.oke.entity.*;
 import com.bnuz.oke.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +37,15 @@ public class CourseServiceImpl implements CourseService {
 
 	@Autowired
 	private StudentAnswerDao studentAnswerDao;
+
+	@Autowired
+	private VoteDao voteDao;
+
+	@Autowired
+	private VoteChoiceDao voteChoiceDao;
+
+	@Autowired
+	private VoteStudentDao voteStudentDao;
 
 	@Override
 	@Transactional
@@ -92,8 +103,8 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public List<CourseRecord> getStudentRecord(Course course) {
-		List<CourseRecord> courseRecordList = courseRecordDao.queryByCourseNumber(course.getCourseNumber());
+	public List<CourseRecordData> getStudentRecord(Course course) {
+		List<CourseRecordData> courseRecordList = courseRecordDao.queryByCourseNumberWithScore(course.getCourseNumber());
 		return courseRecordList;
 	}
 
@@ -106,7 +117,6 @@ public class CourseServiceImpl implements CourseService {
 	@Transactional
 	public Question addQuestion(Question question, List<Option> optionList) {
 		int insertCount = questionDao.insertQuestion(question);
-		System.out.println(question.getQuestionId());
 		Question resultQuestion = null;
 		if (insertCount != 0) {
 			for (Option option: optionList) {
@@ -156,5 +166,52 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public List<StudentAnswer> questionAnswerList(int questionId) {
 		return studentAnswerDao.queryByQuestionId(questionId);
+	}
+
+	@Override
+	@Transactional
+	public VoteData addVote(Vote vote, List<VoteChoice> voteChoiceList) {
+		int insertCount = voteDao.insertVote(vote);
+		System.out.println(vote);
+		VoteData voteData = null;
+		if (insertCount != 0) {
+			for (VoteChoice voteChoice: voteChoiceList) {
+				voteChoice.setVote(vote);
+				insertCount = voteChoiceDao.insertVoteChoice(voteChoice);
+				if (insertCount == 0) {
+					TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+					return voteData;
+				}
+			}
+			voteData = new VoteData();
+			voteData.setVote(vote);
+			voteData.setVoteChoiceList(voteChoiceList);
+		} else {
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+			return voteData;
+		}
+		return voteData;
+	}
+
+	@Override
+	@Transactional
+	public boolean studentVote(VoteStudent voteStudent) {
+		int insertCount = voteStudentDao.insertVoteStudent(voteStudent);
+		if (insertCount != 0) {
+			return true;
+		} else {
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+			return false;
+		}
+	}
+
+	@Override
+	public List<VoteStudent> getVoteStudentList(Vote vote) {
+		return voteStudentDao.queryByVoteId(vote.getVoteId());
+	}
+
+	@Override
+	public List<Vote> getVoteList(Course course) {
+		return voteDao.queryByCourseNumber(course.getCourseNumber());
 	}
 }

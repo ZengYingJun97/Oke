@@ -110,26 +110,26 @@ namespace Oke_teacher
             //{
             //    Globals.ThisAddIn._JudgeTaskPane.Visible = true;
             //}
-                //SetQuestForm setQuestForm = new SetQuestForm();
-                //setQuestForm.Show();
+            //SetQuestForm setQuestForm = new SetQuestForm();
+            //setQuestForm.Show();
             //Microsoft.Office.Interop.PowerPoint.Presentation MyPres = null;//ppt实例
             Microsoft.Office.Interop.PowerPoint.Slides AllSlides = null;//PPT中所有的幻灯片
             Microsoft.Office.Interop.PowerPoint.Slide MySlide = null;//当前幻灯片
             Microsoft.Office.Interop.PowerPoint.Slide NewSlide = null;//新插入的幻灯片
             AllSlides = Globals.ThisAddIn.Application.ActivePresentation.Slides;//获取当前PPT中的所有幻灯片
             MySlide = Globals.ThisAddIn.Application.ActiveWindow.View.Slide;//获取选中幻灯片
-            
+
             #region 插入判断题 题目类型
-            NewSlide = AllSlides.Add(MySlide.SlideIndex+1, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);//插入幻灯片
-            
+            NewSlide = AllSlides.Add(MySlide.SlideIndex + 1, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);//插入幻灯片
+
             Microsoft.Office.Interop.PowerPoint.TextRange FillTextRng = null;//设置第一个文本框
-            NewSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 40F, 100F, 30F).Name="JudgeQuestion";
+            NewSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 40F, 100F, 30F).Name = "JudgeQuestion";
             NewSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "questionType";
             NewSlide.Shapes["questionType"].TextFrame.TextRange.Text = "1";
             NewSlide.Shapes["questionType"].Visible = MsoTriState.msoFalse;
 
 
-            
+
 
 
 
@@ -159,11 +159,13 @@ namespace Oke_teacher
             #region 插入判断题题目
             Microsoft.Office.Interop.PowerPoint.TextRange FQTextRng = null;
 
-            NewSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 150F, 400F, 300F).Name= "questionDescribe";
-            
+            NewSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 150F, 400F, 300F).Name = "questionDescribe";
+
             //添加True & False图片 从网上获取
-            NewSlide.Shapes.AddPicture("http://pic.616pic.com/ys_b_img/00/57/95/CLa3kvD1Kw.jpg", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoTrue, 21, 400, 70, 50);
-            NewSlide.Shapes.AddPicture("http://pic.616pic.com/ys_b_img/00/11/88/mktrxpmh8r.jpg", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoTrue, 200, 400, 70, 50);
+            NewSlide.Shapes.AddPicture("http://pic.616pic.com/ys_b_img/00/57/95/CLa3kvD1Kw.jpg", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoTrue, 21, 400, 70, 50).Name = "answerisTrue";
+            NewSlide.Shapes.AddPicture("http://pic.616pic.com/ys_b_img/00/11/88/mktrxpmh8r.jpg", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoTrue, 200, 400, 70, 50).Name = "answerisFalse";
+            NewSlide.Shapes["answerisTrue"].Visible = MsoTriState.msoTrue;
+            NewSlide.Shapes["answerisFalse"].Visible = MsoTriState.msoTrue;
             FQTextRng = NewSlide.Shapes["questionDescribe"].TextFrame.TextRange;//请注意此处Shapes的索引，由于文本框是第二个添加的Shapes，所以此处索引是2。
 
             FQTextRng.Font.NameFarEast = "微软雅黑";//文本框中，中文的字体                   
@@ -186,10 +188,15 @@ namespace Oke_teacher
             //MySlide.Shapes.AddPicture(image_path1, MsoTriState.msoFalse, MsoTriState.msoTrue, 27F, 24F, 665F, 333F);
 
             //presentation.Slides[0].Shapes[0].Line.FillFormat.SolidFillColor.Color = Color.FloralWhite;
-            AddSubmitOleForm1(NewSlide, 822F, 466F, 89F, 46F);
+            //AddSubmitOleForm1(NewSlide, 822F, 466F, 89F, 46F);
+            AddSubmitOleForm(NewSlide, 727F, 466F, 80F, 46F, EnumExtend.GetDisplayText(ButtonNameEnum.GETANS), "answerButton");
+            AddSubmitOleForm(NewSlide, 822F, 466F, 80F, 46F, EnumExtend.GetDisplayText(ButtonNameEnum.SUMBIT), "sumbitButton");
+
             #endregion
 
-        }
+        
+
+    }
         private void AddSubmitOleForm1(Slide slide, Single left, Single top, Single width, Single height)
         {
             var oleControl = slide.Shapes.AddOLEObject(left, top, width, height, "Forms.CommandButton.1", "",
