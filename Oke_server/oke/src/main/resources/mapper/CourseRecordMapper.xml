@@ -2,6 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bnuz.oke.dao.CourseRecordDao">
 
+    <select id="queryByCourseNumberWithScore" resultType="com.bnuz.oke.dto.CourseRecordData">
+        select
+            cr.online_time as "courseRecord.onlineTime", cr.offline_time as "courseRecord.offlineTime",
+            c.course_number as "courseRecord.course.courseNumber", course_name as "courseRecord.course.courseName", course_create_time as "courseRecord.course.courseCreateTime", course_end_time as "course.courseEndTime", teacher_id as "course.teacher.teacherId",
+            s.student_id as "courseRecord.student.studentId", student_number as "courseRecord.student.studentNumber", student_name as "courseRecord.student.studentName", student_class as "courseRecord.student.studentClass", username as "courseRecord.student.user.username",
+            sum(sa.answer_correct * q.question_score) as "score"
+        from course_record cr, course c, student s, student_answer sa, question q
+        where cr.course_number = c.course_number and cr.student_id = s.student_id and sa.student_id = cr.student_id and sa.question_id = q.question_id and cr.course_number = #{courseNumber}
+        group by cr.student_id
+    </select>
+
     <select id="queryByCourseNumberAndStudentId" resultType="com.bnuz.oke.entity.CourseRecord">
         select
             cr.online_time, cr.offline_time,

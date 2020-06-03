@@ -1,6 +1,7 @@
 package com.bnuz.oke.service.impl;
 
 import com.bnuz.oke.dao.*;
+import com.bnuz.oke.dto.CourseRecordData;
 import com.bnuz.oke.dto.VoteData;
 import com.bnuz.oke.entity.*;
 import com.bnuz.oke.service.CourseService;
@@ -102,8 +103,8 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public List<CourseRecord> getStudentRecord(Course course) {
-		List<CourseRecord> courseRecordList = courseRecordDao.queryByCourseNumber(course.getCourseNumber());
+	public List<CourseRecordData> getStudentRecord(Course course) {
+		List<CourseRecordData> courseRecordList = courseRecordDao.queryByCourseNumberWithScore(course.getCourseNumber());
 		return courseRecordList;
 	}
 
@@ -207,5 +208,10 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public List<VoteStudent> getVoteStudentList(Vote vote) {
 		return voteStudentDao.queryByVoteId(vote.getVoteId());
+	}
+
+	@Override
+	public List<Vote> getVoteList(Course course) {
+		return voteDao.queryByCourseNumber(course.getCourseNumber());
 	}
 }
