@@ -63,15 +63,16 @@ namespace Oke_teacher.WinForms
         }
         #endregion
 
-        public void load(Question question)
+        public void load(Question _question)
         {
             accuracyBar.ValueNumber = 0;
             totalBox.Text = "0";
             correctBox.Text = "0";
             unCommitBox.Text = "0";
             errorBox.Text = "0";
-            questionLimitTime = question.questionLimitTime + 1;
-            sumTime = question.questionLimitTime;
+            question = _question;
+            questionLimitTime = _question.questionLimitTime * 10 + 2;
+            sumTime = _question.questionLimitTime * 10;
             timeBar.ValueNumber = 100;
             confirmButton.Enabled = false;
             time_Timer.Start();
@@ -103,7 +104,14 @@ namespace Oke_teacher.WinForms
                     if (okeResult.success)
                     {
                         addAlter(EnumExtend.GetDisplayText(OperateEnum.OP_SUCC), CxFlatAlertBox.AlertType.Success);
-                        accuracyBar.ValueNumber = okeResult.data.data.correct * 100 / okeResult.data.data.total;
+                        if (okeResult.data.data.total == 0)
+                        {
+                            accuracyBar.ValueNumber = 100;
+                        }
+                        else
+                        {
+                            accuracyBar.ValueNumber = okeResult.data.data.correct * 100 / okeResult.data.data.total;
+                        }
                         totalBox.Text = okeResult.data.data.total.ToString();
                         correctBox.Text = okeResult.data.data.correct.ToString();
                         unCommitBox.Text = okeResult.data.data.unCommitted.ToString();
