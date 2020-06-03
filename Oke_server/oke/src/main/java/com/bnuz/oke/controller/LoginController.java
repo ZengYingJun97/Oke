@@ -87,7 +87,6 @@ public class LoginController {
 				redisTemplate.opsForValue().set("teacher:" + teacher.getTeacherId(), teacher, 60 * 60 * 24, TimeUnit.SECONDS);
 
 				teacher.getUser().setPassword(null);
-				logger.info("sessionId = {}", session.getId());
 				result = new OkeResult<>(true, sessionData);
 			} else {
 				result = new OkeResult<>(false, LoginStateEnum.FAIL_LOGIN.getStateInfo());

@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.titleBar = new CxFlatUI.CxFlatStatusBar();
             this.MainGroupBox = new CxFlatUI.CxFlatGroupBox();
+            this.timeBar = new CxFlatUI.CxFlatProgressBar();
             this.confirmButton = new CxFlatUI.CxFlatRoundButton();
             this.unCommitBox = new System.Windows.Forms.Label();
             this.unCommitLabel = new System.Windows.Forms.Label();
@@ -41,7 +42,6 @@
             this.totalBox = new System.Windows.Forms.Label();
             this.totalLabel = new System.Windows.Forms.Label();
             this.accuracyBar = new CxFlatUI.CxFlatRoundProgressBar();
-            this.timeBar = new CxFlatUI.CxFlatProgressBar();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.time_Timer = new System.Windows.Forms.Timer(this.components);
             this.MainGroupBox.SuspendLayout();
@@ -61,6 +61,7 @@
             // 
             // MainGroupBox
             // 
+            this.MainGroupBox.Controls.Add(this.timeBar);
             this.MainGroupBox.Controls.Add(this.confirmButton);
             this.MainGroupBox.Controls.Add(this.unCommitBox);
             this.MainGroupBox.Controls.Add(this.unCommitLabel);
@@ -71,7 +72,6 @@
             this.MainGroupBox.Controls.Add(this.totalBox);
             this.MainGroupBox.Controls.Add(this.totalLabel);
             this.MainGroupBox.Controls.Add(this.accuracyBar);
-            this.MainGroupBox.Controls.Add(this.timeBar);
             this.MainGroupBox.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.MainGroupBox.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.MainGroupBox.Location = new System.Drawing.Point(0, -50);
@@ -83,16 +83,29 @@
             this.MainGroupBox.Text = "cxFlatGroupBox1";
             this.MainGroupBox.ThemeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
             // 
+            // timeBar
+            // 
+            this.timeBar.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.timeBar.IsError = false;
+            this.timeBar.Location = new System.Drawing.Point(2, 316);
+            this.timeBar.Name = "timeBar";
+            this.timeBar.ProgressBarStyle = CxFlatUI.CxFlatProgressBar.Style.ToolTip;
+            this.timeBar.Size = new System.Drawing.Size(346, 32);
+            this.timeBar.TabIndex = 12;
+            this.timeBar.Text = "cxFlatProgressBar1";
+            this.timeBar.ValueNumber = 99;
+            // 
             // confirmButton
             // 
             this.confirmButton.ButtonType = CxFlatUI.ButtonType.Primary;
             this.confirmButton.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.confirmButton.Location = new System.Drawing.Point(125, 291);
+            this.confirmButton.Location = new System.Drawing.Point(125, 280);
             this.confirmButton.Name = "confirmButton";
             this.confirmButton.Size = new System.Drawing.Size(100, 33);
             this.confirmButton.TabIndex = 13;
             this.confirmButton.Text = "确认";
             this.confirmButton.TextColor = System.Drawing.Color.White;
+            this.confirmButton.Click += new System.EventHandler(this.confirmButton_Click);
             // 
             // unCommitBox
             // 
@@ -107,7 +120,6 @@
             // 
             // unCommitLabel
             // 
-            this.unCommitLabel.AutoSize = true;
             this.unCommitLabel.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.unCommitLabel.ForeColor = System.Drawing.Color.Black;
             this.unCommitLabel.Location = new System.Drawing.Point(200, 229);
@@ -163,7 +175,6 @@
             // 
             // totalBox
             // 
-            this.totalBox.AutoSize = true;
             this.totalBox.Font = new System.Drawing.Font("Segoe UI", 20F);
             this.totalBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(173)))), ((int)(((byte)(255)))));
             this.totalBox.Location = new System.Drawing.Point(200, 107);
@@ -195,18 +206,6 @@
             this.accuracyBar.Text = "accuracyBar";
             this.accuracyBar.ValueNumber = 66;
             // 
-            // timeBar
-            // 
-            this.timeBar.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.timeBar.IsError = false;
-            this.timeBar.Location = new System.Drawing.Point(2, 316);
-            this.timeBar.Name = "timeBar";
-            this.timeBar.ProgressBarStyle = CxFlatUI.CxFlatProgressBar.Style.ToolTip;
-            this.timeBar.Size = new System.Drawing.Size(346, 32);
-            this.timeBar.TabIndex = 12;
-            this.timeBar.Text = "cxFlatProgressBar1";
-            this.timeBar.ValueNumber = 99;
-            // 
             // timer
             // 
             this.timer.Interval = 1000;
@@ -214,7 +213,6 @@
             // 
             // time_Timer
             // 
-            this.time_Timer.Interval = 1000;
             this.time_Timer.Tick += new System.EventHandler(this.time_Timer_Tick);
             // 
             // AnswerSituationForm
@@ -234,7 +232,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AnswerSituationForm";
             this.MainGroupBox.ResumeLayout(false);
-            this.MainGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }

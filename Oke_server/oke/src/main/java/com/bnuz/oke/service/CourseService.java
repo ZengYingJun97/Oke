@@ -1,5 +1,7 @@
 package com.bnuz.oke.service;
 
+import com.bnuz.oke.dto.CourseRecordData;
+import com.bnuz.oke.dto.VoteData;
 import com.bnuz.oke.entity.*;
 
 import java.util.List;
@@ -22,7 +24,7 @@ public interface CourseService {
 
 	boolean onlineStudent(CourseRecord courseRecord);
 
-	List<CourseRecord> getStudentRecord(Course course);
+	List<CourseRecordData> getStudentRecord(Course course);
 
 	CourseRecord getStudentRecordId(Course course, Student student);
 
@@ -31,4 +33,12 @@ public interface CourseService {
 	StudentAnswer isTrueStudentAnswer(StudentAnswer studentAnswer);
 
 	List<StudentAnswer> questionAnswerList(int questionId);
+
+	VoteData addVote(Vote vote, List<VoteChoice> voteChoiceList);
+
+	boolean studentVote(VoteStudent voteStudent);
+
+	List<VoteStudent> getVoteStudentList(Vote vote);
+
+	List<Vote> getVoteList(Course course);
 }

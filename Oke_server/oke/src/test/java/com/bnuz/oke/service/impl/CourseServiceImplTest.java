@@ -1,5 +1,7 @@
 package com.bnuz.oke.service.impl;
 
+import com.bnuz.oke.dto.CourseRecordData;
+import com.bnuz.oke.dto.VoteData;
 import com.bnuz.oke.entity.*;
 import com.bnuz.oke.service.CourseService;
 import org.junit.jupiter.api.Test;
@@ -65,7 +67,7 @@ class CourseServiceImplTest {
 	void getStudentRecord() {
 		Course course = new Course();
 		course.setCourseNumber("7185B207543E44CD8CE6F719F46DBD53");
-		List<CourseRecord> courseRecordList = courseService.getStudentRecord(course);
+		List<CourseRecordData> courseRecordList = courseService.getStudentRecord(course);
 		logger.info("courseRecordList = {}", courseRecordList);
 	}
 
@@ -131,5 +133,50 @@ class CourseServiceImplTest {
 		int teacherId = 1;
 		List<Course> courseList = courseService.getCourseByTeacherId(teacherId);
 		logger.info("courseList = {}", courseList);
+	}
+
+	@Test
+	void addVote() {
+		Course course = new Course();
+		course.setCourseNumber("3384CBB8AAC34A2C9895F0A6DE27AB3C");
+		Vote vote = new Vote();
+		vote.setCourse(course);
+		vote.setVoteDescribe("曾小课想上班吗");
+		vote.setVoteLimitTime(60);
+		List<VoteChoice> voteChoiceList = new ArrayList<>();
+		VoteChoice voteChoiceA = new VoteChoice();
+		voteChoiceA.setVoteChoiceType("A");
+		voteChoiceA.setVoteChoiceDescribe("是");
+		VoteChoice voteChoiceB = new VoteChoice();
+		voteChoiceB.setVoteChoiceType("B");
+		voteChoiceB.setVoteChoiceDescribe("否");
+		voteChoiceList.add(voteChoiceA);
+		voteChoiceList.add(voteChoiceB);
+		VoteData voteData = courseService.addVote(vote, voteChoiceList);
+		logger.info("voteData = {}", voteData);
+	}
+
+	@Test
+	void studentVote() {
+		Student student = new Student();
+		student.setStudentId(1);
+		Vote vote = new Vote();
+		vote.setVoteId(4);
+		VoteChoice voteChoice = new VoteChoice();
+		voteChoice.setVoteChoiceId(5);
+		VoteStudent voteStudent = new VoteStudent();
+		voteStudent.setStudent(student);
+		voteStudent.setVote(vote);
+		voteStudent.setVoteChoice(voteChoice);
+		boolean isOk = courseService.studentVote(voteStudent);
+		logger.info("isOk = {}", isOk);
+	}
+
+	@Test
+	void getVoteStudentList() {
+		Vote vote = new Vote();
+		vote.setVoteId(4);
+		List<VoteStudent> voteStudentList = courseService.getVoteStudentList(vote);
+		logger.info("voteStudentList = {}", voteStudentList);
 	}
 }

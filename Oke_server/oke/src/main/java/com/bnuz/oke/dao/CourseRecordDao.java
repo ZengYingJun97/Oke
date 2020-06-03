@@ -1,5 +1,6 @@
 package com.bnuz.oke.dao;
 
+import com.bnuz.oke.dto.CourseRecordData;
 import com.bnuz.oke.entity.CourseRecord;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
@@ -15,6 +16,8 @@ import java.util.List;
 @Mapper
 @Component
 public interface CourseRecordDao {
+
+	List<CourseRecordData> queryByCourseNumberWithScore(String courseNumber);
 
 	List<CourseRecord> queryByCourseNumber(String courseNumber);
 
