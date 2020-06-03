@@ -1,5 +1,6 @@
 package com.bnuz.oke.service.impl;
 
+import com.bnuz.oke.dto.CourseRecordData;
 import com.bnuz.oke.dto.VoteData;
 import com.bnuz.oke.entity.*;
 import com.bnuz.oke.service.CourseService;
@@ -66,7 +67,7 @@ class CourseServiceImplTest {
 	void getStudentRecord() {
 		Course course = new Course();
 		course.setCourseNumber("7185B207543E44CD8CE6F719F46DBD53");
-		List<CourseRecord> courseRecordList = courseService.getStudentRecord(course);
+		List<CourseRecordData> courseRecordList = courseService.getStudentRecord(course);
 		logger.info("courseRecordList = {}", courseRecordList);
 	}
 
