@@ -204,6 +204,12 @@
     <Compile Include="TaskPane\JudgeTaskPane.Designer.cs">
       <DependentUpon>JudgeTaskPane.cs</DependentUpon>
     </Compile>
+    <Compile Include="TaskPane\MultipleChoiceTaskPane.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TaskPane\MultipleChoiceTaskPane.Designer.cs">
+      <DependentUpon>MultipleChoiceTaskPane.cs</DependentUpon>
+    </Compile>
     <Compile Include="TaskPane\SingleChoiceTaskPane.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -332,6 +338,9 @@
     <EmbeddedResource Include="TaskPane\JudgeTaskPane.resx">
       <DependentUpon>JudgeTaskPane.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TaskPane\MultipleChoiceTaskPane.resx">
+      <DependentUpon>MultipleChoiceTaskPane.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TaskPane\SingleChoiceTaskPane.resx">
       <DependentUpon>SingleChoiceTaskPane.cs</DependentUpon>
     </EmbeddedResource>
@@ -433,6 +442,7 @@
     <Content Include="Resources\Oke_judge.png" />
     <None Include="Resources\Oke_SingleChoice.png" />
     <None Include="Resources\Oke_rollcall.png" />
+    <None Include="Resources\Oke_MultipleChoice.png" />
     <Content Include="Resources\upclassicon-08.png" />
     <Content Include="Resources\upclassicon-081.png" />
   </ItemGroup>

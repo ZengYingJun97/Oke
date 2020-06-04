@@ -27,8 +27,10 @@ namespace Oke_teacher
         public Microsoft.Office.Tools.CustomTaskPane _SingleChoiceTaskPane = null;
         public Microsoft.Office.Tools.CustomTaskPane _FillTaskPane = null;
         public Microsoft.Office.Tools.CustomTaskPane _SimpleQuestionTaskPane = null;
+        public Microsoft.Office.Tools.CustomTaskPane _MultipleChoiceTaskPane = null;
 
         private SingleChoiceTaskPane singleChoiceTaskPane = new SingleChoiceTaskPane();
+        private MultipleChoiceTaskPane multipleChoiceTaskPane = new MultipleChoiceTaskPane();
         private JudgeTaskPane judgeTaskPane = new JudgeTaskPane();
         private int buttonClickCount = 0;
 
@@ -50,9 +52,15 @@ namespace Oke_teacher
             _SingleChoiceTaskPane.Width = 250;
             _SingleChoiceTaskPane.Visible = false;
             Globals.ThisAddIn.Application.SlideSelectionChanged += new EApplication_SlideSelectionChangedEventHandler(isSingleChoicePPT);
-            Globals.ThisAddIn.Application.SlideShowNextSlide += SingleChoice_SlideShowNextSlide;
-            Globals.ThisAddIn.Application.SlideShowBegin += SingleChoice_SlideShowNextSlide;
-            Globals.ThisAddIn.Application.SlideShowEnd += SingleChoice_SlideShowEnd;
+            Globals.ThisAddIn.Application.SlideShowNextSlide += Choice_SlideShowNextSlide;
+            Globals.ThisAddIn.Application.SlideShowBegin += Choice_SlideShowNextSlide;
+            Globals.ThisAddIn.Application.SlideShowEnd += Choice_SlideShowEnd;
+
+            //多选题必要
+            _MultipleChoiceTaskPane = CustomTaskPanes.Add(multipleChoiceTaskPane, "多选题");
+            _MultipleChoiceTaskPane.Width = 250;
+            _MultipleChoiceTaskPane.Visible = false;
+            Globals.ThisAddIn.Application.SlideSelectionChanged += new EApplication_SlideSelectionChangedEventHandler(isMultipleChoicePPT);
 
             FillTaskPane FilltaskPane = new FillTaskPane();
             _FillTaskPane = this.CustomTaskPanes.Add(FilltaskPane, "填空题");
@@ -67,44 +75,51 @@ namespace Oke_teacher
             Globals.ThisAddIn.Application.SlideSelectionChanged += new EApplication_SlideSelectionChangedEventHandler(IsSimpleQesttionPPT);
         }
 
-        #region 结束放映，对所有单选题幻灯片初始化
+        #region 结束放映，对所有选择题幻灯片初始化
         /// <summary>
         /// 结束放映，对所有单选题幻灯片初始化
         /// </summary>
         /// <param name="Pres"></param>
-        private void SingleChoice_SlideShowEnd(Presentation Pres)
+        private void Choice_SlideShowEnd(Presentation Pres)
         {
             Slides slides = Pres.Slides;
             foreach (Slide slide in slides)
             {
-                if (ShapesUitls.IsExistedOfShape(slide, "questionType") && slide.Shapes["questionType"].TextFrame.TextRange.Text.Equals("0"))
+                if (ShapesUitls.IsExistedOfShape(slide, "questionType") && slide.Shapes["questionType"].TextFrame.TextRange.Text.Equals("0") && slide.Shapes["questionType"].TextFrame.TextRange.Text.Equals("1"))
                 {
                     ShapesUitls.ChoiceOptionNoChecked(slide);
+                    MF.CommandButton sumbitButton = (MF.CommandButton)slide.Shapes["sumbitButton"].OLEFormat.Object;
+                    sumbitButton.Enabled = true;
+                    buttonClickCount = 1;
+
+                    MF.CommandButton answerButton = (MF.CommandButton)slide.Shapes["answerButton"].OLEFormat.Object;
+                    answerButton.Enabled = true;
                 }
             }
         }
         #endregion
 
-        #region 对放映的幻灯片是否为单选题初始化
+        #region 对放映的幻灯片是否为选择题初始化
         /// <summary>
-        /// 对放映的幻灯片是否为单选题初始化
+        /// 对放映的幻灯片是否为选择题初始化
         /// </summary>
         /// <param name="Wn"></param>
-        private void SingleChoice_SlideShowNextSlide(SlideShowWindow Wn)
+        private void Choice_SlideShowNextSlide(SlideShowWindow Wn)
         {
             Slide slide = Wn.View.Slide;
-            if (ShapesUitls.IsExistedOfShape(slide, "questionType") && slide.Shapes["questionType"].TextFrame.TextRange.Text.Equals("0"))
+            if (ShapesUitls.IsExistedOfShape(slide, "questionType")
+                && (slide.Shapes["questionType"].TextFrame.TextRange.Text.Equals("0") || slide.Shapes["questionType"].TextFrame.TextRange.Text.Equals("1")))
             {
                 MF.CommandButton sumbitButton = (MF.CommandButton)slide.Shapes["sumbitButton"].OLEFormat.Object;
-                sumbitButton.Click -= sumbitSingleChocie_Click;
-                sumbitButton.Click += sumbitSingleChocie_Click;
+                sumbitButton.Click -= sumbitChocie_Click;
+                sumbitButton.Click += sumbitChocie_Click;
                 sumbitButton.TakeFocusOnClick = false;
                 sumbitButton.Enabled = true;
                 buttonClickCount = 1;
 
                 MF.CommandButton answerButton = (MF.CommandButton)slide.Shapes["answerButton"].OLEFormat.Object;
-                answerButton.Click -= answerSingleChocie_Click;
-                answerButton.Click += answerSingleChocie_Click;
+                answerButton.Click -= answerChocie_Click;
+                answerButton.Click += answerChocie_Click;
                 answerButton.TakeFocusOnClick = false;
                 answerButton.Enabled = true;
 
@@ -117,13 +132,17 @@ namespace Oke_teacher
         /// <summary>
         /// 单选题答案按钮事件
         /// </summary>
-        private void answerSingleChocie_Click()
+        private void answerChocie_Click()
         {
             Slide activeSlide = Globals.ThisAddIn.Application.ActivePresentation.SlideShowWindow.View.Slide;
             MF.CommandButton button = (MF.CommandButton)activeSlide.Shapes["answerButton"].OLEFormat.Object;
             button.Enabled = false;
             string answerText = activeSlide.Shapes["questionAnswer"].TextFrame.TextRange.Text;
-            activeSlide.Shapes["option" + answerText[0] + "Type"].Fill.ForeColor.RGB = (int) CheckedEnum.CHECKED;
+            string[] tmp = answerText.Split(';');
+            for (int i = 0; i < tmp.Length - 1; i++)
+            {
+                activeSlide.Shapes["option" + tmp[i] + "Type"].Fill.ForeColor.RGB = (int)CheckedEnum.CHECKED;
+            }
         }
         #endregion
 
@@ -131,7 +150,7 @@ namespace Oke_teacher
         /// <summary>
         /// 单选题提交按钮事件
         /// </summary>
-        private void sumbitSingleChocie_Click()
+        private void sumbitChocie_Click()
         {
             if (buttonClickCount == 0)
             {
@@ -180,7 +199,7 @@ namespace Oke_teacher
         }
         #endregion
 
-        #region 幻灯片监听事件
+        #region 单选题幻灯片监听事件
         /// <summary>
         /// 幻灯片监听事件
         /// </summary>
@@ -201,6 +220,31 @@ namespace Oke_teacher
             else
             {
                 _SingleChoiceTaskPane.Visible = false;
+            }
+        }
+        #endregion
+
+        #region 多选题幻灯片监听事件
+        /// <summary>
+        /// 幻灯片监听事件
+        /// </summary>
+        /// <param name="sldRange"></param>
+        private void isMultipleChoicePPT(SlideRange sldRange)
+        {
+            if (sldRange.Count > 1 || sldRange.SlideIndex == 0)
+            {
+                _MultipleChoiceTaskPane.Visible = false;
+                return;
+            }
+            Slide activeSlide = (Slide)Globals.ThisAddIn.Application.ActiveWindow.View.Slide;
+            if (ShapesUitls.IsExistedOfShape(activeSlide, "questionType") && activeSlide.Shapes["questionType"].TextFrame.TextRange.Text.Equals("1"))
+            {
+                _MultipleChoiceTaskPane.Visible = true;
+                multipleChoiceTaskPane.load_slide();
+            }
+            else
+            {
+                _MultipleChoiceTaskPane.Visible = false;
             }
         }
         #endregion
@@ -300,7 +344,7 @@ namespace Oke_teacher
             Slides slides = Pres.Slides;
             foreach (Slide slide in slides)
             {
-                if (ShapesUitls.IsExistedOfShape(slide, "questionType") && slide.Shapes["questionType"].TextFrame.TextRange.Text.Equals("1"))
+                if (ShapesUitls.IsExistedOfShape(slide, "questionType") && slide.Shapes["questionType"].TextFrame.TextRange.Text.Equals("2"))
                 {
                     //ShapesUitls.ChoiceOptionNoChecked(slide);
                     slide.Shapes["answerisTrue"].Visible = MsoTriState.msoTrue;
@@ -312,7 +356,7 @@ namespace Oke_teacher
         private void JudgeQuestion_SlideShowNextSlide(SlideShowWindow Wn)
         {
             Slide slide = Wn.View.Slide;
-            if (ShapesUitls.IsExistedOfShape(slide, "questionType") && slide.Shapes["questionType"].TextFrame.TextRange.Text.Equals("1"))
+            if (ShapesUitls.IsExistedOfShape(slide, "questionType") && slide.Shapes["questionType"].TextFrame.TextRange.Text.Equals("2"))
             {
                 slide.Shapes["answerisTrue"].Visible = MsoTriState.msoFalse;
                 slide.Shapes["answerisFalse"].Visible = MsoTriState.msoFalse;
