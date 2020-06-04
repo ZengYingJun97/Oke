@@ -30,6 +30,7 @@ namespace Oke_teacher.WinForms
             //MessageBox.Show(testList.Count().ToString());
             #endregion
 
+
             #region 加载抽奖名单到panel2
             int count = 0;
             foreach (string s in testList)
