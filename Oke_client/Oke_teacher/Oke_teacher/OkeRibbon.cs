@@ -122,7 +122,7 @@ namespace Oke_teacher
             #region 插入判断题 题目类型
             NewSlide = AllSlides.Add(MySlide.SlideIndex + 1, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);//插入幻灯片
 
-            Microsoft.Office.Interop.PowerPoint.TextRange FillTextRng = null;//设置第一个文本框
+            Microsoft.Office.Interop.PowerPoint.TextRange JudgeTextRng = null;//设置第一个文本框
             NewSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 40F, 100F, 30F).Name = "JudgeQuestion";
             NewSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "questionType";
             NewSlide.Shapes["questionType"].TextFrame.TextRange.Text = "1";
@@ -144,20 +144,20 @@ namespace Oke_teacher
             NewSlide.Shapes["questionAnswer"].Visible = MsoTriState.msoFalse;
 
 
-            FillTextRng = NewSlide.Shapes["JudgeQuestion"].TextFrame.TextRange;//请注意此处Shapes的索引，由于文本框是第一个添加的Shapes，所以此处索引是1。
+            JudgeTextRng = NewSlide.Shapes["JudgeQuestion"].TextFrame.TextRange;//请注意此处Shapes的索引，由于文本框是第一个添加的Shapes，所以此处索引是1。
 
-            FillTextRng.Font.NameFarEast = "微软雅黑";//文本框中，中文的字体                   
-            FillTextRng.Font.NameAscii = "Calibri";//文本框中，英文和数字的字体      
-            FillTextRng.Text = "判断题";//显示的内容
-            FillTextRng.Font.Bold = MsoTriState.msoTrue;//是否加粗
-            FillTextRng.Font.Color.RGB = 1 + 1 * 256 + 1 * 256 * 256;//字体颜色，其中ABC直接用自定义颜色中的数字代替即可。
-            FillTextRng.Font.Size = 24;//字体大小是24.
-            FillTextRng.ParagraphFormat.Alignment = Microsoft.Office.Interop.PowerPoint.PpParagraphAlignment.ppAlignLeft;//文本对齐方式（水平方向）
+            JudgeTextRng.Font.NameFarEast = "微软雅黑";//文本框中，中文的字体                   
+            JudgeTextRng.Font.NameAscii = "Calibri";//文本框中，英文和数字的字体      
+            JudgeTextRng.Text = "判断题";//显示的内容
+            JudgeTextRng.Font.Bold = MsoTriState.msoTrue;//是否加粗
+            JudgeTextRng.Font.Color.RGB = 1 + 1 * 256 + 1 * 256 * 256;//字体颜色，其中ABC直接用自定义颜色中的数字代替即可。
+            JudgeTextRng.Font.Size = 24;//字体大小是24.
+            JudgeTextRng.ParagraphFormat.Alignment = Microsoft.Office.Interop.PowerPoint.PpParagraphAlignment.ppAlignLeft;//文本对齐方式（水平方向）
             NewSlide.Shapes[1].TextFrame.VerticalAnchor = MsoVerticalAnchor.msoAnchorMiddle; //文本对齐方式（垂直方向）
             NewSlide.Select();
             #endregion
             #region 插入判断题题目
-            Microsoft.Office.Interop.PowerPoint.TextRange FQTextRng = null;
+            Microsoft.Office.Interop.PowerPoint.TextRange JQTextRng = null;
 
             NewSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 150F, 400F, 300F).Name = "questionDescribe";
 
@@ -166,15 +166,15 @@ namespace Oke_teacher
             NewSlide.Shapes.AddPicture("http://pic.616pic.com/ys_b_img/00/11/88/mktrxpmh8r.jpg", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoTrue, 200, 400, 70, 50).Name = "answerisFalse";
             NewSlide.Shapes["answerisTrue"].Visible = MsoTriState.msoTrue;
             NewSlide.Shapes["answerisFalse"].Visible = MsoTriState.msoTrue;
-            FQTextRng = NewSlide.Shapes["questionDescribe"].TextFrame.TextRange;//请注意此处Shapes的索引，由于文本框是第二个添加的Shapes，所以此处索引是2。
+            JQTextRng = NewSlide.Shapes["questionDescribe"].TextFrame.TextRange;//请注意此处Shapes的索引，由于文本框是第二个添加的Shapes，所以此处索引是2。
 
-            FQTextRng.Font.NameFarEast = "微软雅黑";//文本框中，中文的字体                   
-            FQTextRng.Font.NameAscii = "Calibri";//文本框中，英文和数字的字体      
-            FQTextRng.Text = "请编写题干";//cxFlatTextArea1.Text;//显示的内容
-            FQTextRng.Font.Bold = MsoTriState.msoFalse;//是否加粗
-            FQTextRng.Font.Color.RGB = 1 + 1 * 256 + 1 * 256 * 256;//字体颜色，其中ABC直接用自定义颜色中的数字代替即可。
-            FQTextRng.Font.Size = 24;//字体大小是24.
-            FQTextRng.ParagraphFormat.Alignment = Microsoft.Office.Interop.PowerPoint.PpParagraphAlignment.ppAlignLeft;//文本对齐方式（水平方向）
+            JQTextRng.Font.NameFarEast = "微软雅黑";//文本框中，中文的字体                   
+            JQTextRng.Font.NameAscii = "Calibri";//文本框中，英文和数字的字体      
+            JQTextRng.Text = "请编写题干";//cxFlatTextArea1.Text;//显示的内容
+            JQTextRng.Font.Bold = MsoTriState.msoFalse;//是否加粗
+            JQTextRng.Font.Color.RGB = 1 + 1 * 256 + 1 * 256 * 256;//字体颜色，其中ABC直接用自定义颜色中的数字代替即可。
+            JQTextRng.Font.Size = 24;//字体大小是24.
+            JQTextRng.ParagraphFormat.Alignment = Microsoft.Office.Interop.PowerPoint.PpParagraphAlignment.ppAlignLeft;//文本对齐方式（水平方向）
             NewSlide.Shapes[2].TextFrame.VerticalAnchor = MsoVerticalAnchor.msoAnchorMiddle; //文本对齐方式（垂直方向）
             #endregion
             #region 添加对错按钮
@@ -520,5 +520,55 @@ namespace Oke_teacher
             multipleChoiceSlide.Select();
         }
         #endregion
+
+        private void votebutton_Click(object sender, RibbonControlEventArgs e)
+        {
+            Presentation MyPres = Globals.ThisAddIn.Application.ActivePresentation;
+            Slide activeSlide = (Slide)Globals.ThisAddIn.Application.ActiveWindow.View.Slide;
+
+            int nowIndex = activeSlide.SlideIndex;
+            Slide voteSlide = MyPres.Slides.Add(nowIndex + 1, PpSlideLayout.ppLayoutBlank);
+            voteSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 40F, 100F, 30F).Name = "VoteQuestion";
+            voteSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "questionType";
+            voteSlide.Shapes["questionType"].TextFrame.TextRange.Text = "4";
+            voteSlide.Shapes["questionType"].Visible = MsoTriState.msoFalse;
+            voteSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "questionLimitTime";
+            voteSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text = "0";
+            voteSlide.Shapes["questionLimitTime"].Visible = MsoTriState.msoFalse;
+            voteSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "questionAnswer";
+            voteSlide.Shapes["questionAnswer"].TextFrame.TextRange.Text = "A;";
+            voteSlide.Shapes["questionAnswer"].Visible = MsoTriState.msoFalse;
+
+            TextRange questionDescribe = null;
+            voteSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 91F, 50F, 777F, 60F).Name = "questionDescribe";
+            questionDescribe = voteSlide.Shapes["questionDescribe"].TextFrame.TextRange;
+            questionDescribe.Text = "此处填写投票内容";
+            questionDescribe.Font.NameFarEast = "微软雅黑";
+            questionDescribe.Font.NameAscii = "Calibri";
+            questionDescribe.Font.Size = 24;
+            questionDescribe.Font.Bold = MsoTriState.msoFalse;
+
+
+            Microsoft.Office.Interop.PowerPoint.TextRange VoteTextRng = null;//设置第一个文本框
+            VoteTextRng = voteSlide.Shapes["VoteQuestion"].TextFrame.TextRange;//请注意此处Shapes的索引，由于文本框是第一个添加的Shapes，所以此处索引是1。
+
+            VoteTextRng.Font.NameFarEast = "微软雅黑";//文本框中，中文的字体                   
+            VoteTextRng.Font.NameAscii = "Calibri";//文本框中，英文和数字的字体      
+            VoteTextRng.Text = "投票";//显示的内容
+            VoteTextRng.Font.Bold = MsoTriState.msoTrue;//是否加粗
+            VoteTextRng.Font.Color.RGB = 1 + 1 * 256 + 1 * 256 * 256;//字体颜色，其中ABC直接用自定义颜色中的数字代替即可。
+            VoteTextRng.Font.Size = 24;//字体大小是24.
+            VoteTextRng.ParagraphFormat.Alignment = Microsoft.Office.Interop.PowerPoint.PpParagraphAlignment.ppAlignLeft;//文本对齐方式（水平方向）
+
+            addOption(voteSlide, "A", 91F, 138F, 152F, 143F);
+            addOption(voteSlide, "B", 91F, 197F, 152F, 203F);
+            addOption(voteSlide, "C", 91F, 257F, 152F, 262F);
+            //AddSubmitOleForm(voteSlide, 727F, 466F, 80F, 46F, EnumExtend.GetDisplayText(ButtonNameEnum.GETANS), "answerButton");
+            AddSubmitOleForm(voteSlide, 822F, 466F, 80F, 46F, EnumExtend.GetDisplayText(ButtonNameEnum.SUMBIT), "sumbitButton");
+
+            voteSlide.Select();
+
+
+        }
     }
 }
