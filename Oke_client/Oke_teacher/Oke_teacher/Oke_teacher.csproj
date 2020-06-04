@@ -70,6 +70,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
     <DefineConstants>$(DefineConstants);DEBUG;TRACE</DefineConstants>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>GlobalizationRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <!--
     This section defines properties that are set when the "Release" configuration is selected.
@@ -198,17 +199,34 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Properties\Resources1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="TaskPane\JudgeTaskPane.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="TaskPane\JudgeTaskPane.Designer.cs">
       <DependentUpon>JudgeTaskPane.cs</DependentUpon>
     </Compile>
+    <Compile Include="TaskPane\MultipleChoiceTaskPane.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TaskPane\MultipleChoiceTaskPane.Designer.cs">
+      <DependentUpon>MultipleChoiceTaskPane.cs</DependentUpon>
+    </Compile>
     <Compile Include="TaskPane\SingleChoiceTaskPane.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="TaskPane\SingleChoiceTaskPane.Designer.cs">
       <DependentUpon>SingleChoiceTaskPane.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TaskPane\VoteTaskPane.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TaskPane\VoteTaskPane.Designer.cs">
+      <DependentUpon>VoteTaskPane.cs</DependentUpon>
     </Compile>
     <Compile Include="Uitls\DataUitls.cs" />
     <Compile Include="Uitls\HttpUitls.cs" />
@@ -322,18 +340,19 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
-      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="TaskPane\JudgeTaskPane.resx">
       <DependentUpon>JudgeTaskPane.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TaskPane\MultipleChoiceTaskPane.resx">
+      <DependentUpon>MultipleChoiceTaskPane.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TaskPane\SingleChoiceTaskPane.resx">
       <DependentUpon>SingleChoiceTaskPane.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TaskPane\VoteTaskPane.resx">
+      <DependentUpon>VoteTaskPane.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinForms\AnswerSituationForm.resx">
       <DependentUpon>AnswerSituationForm.cs</DependentUpon>
@@ -433,6 +452,7 @@
     <Content Include="Resources\Oke_judge.png" />
     <None Include="Resources\Oke_SingleChoice.png" />
     <None Include="Resources\Oke_rollcall.png" />
+    <None Include="Resources\Oke_MultipleChoice.png" />
     <Content Include="Resources\upclassicon-08.png" />
     <Content Include="Resources\upclassicon-081.png" />
   </ItemGroup>
