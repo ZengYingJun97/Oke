@@ -27,9 +27,11 @@ namespace Oke_teacher
         public Microsoft.Office.Tools.CustomTaskPane _SingleChoiceTaskPane = null;
         public Microsoft.Office.Tools.CustomTaskPane _FillTaskPane = null;
         public Microsoft.Office.Tools.CustomTaskPane _SimpleQuestionTaskPane = null;
+        public Microsoft.Office.Tools.CustomTaskPane _VoteTaskPane = null;
 
         private SingleChoiceTaskPane singleChoiceTaskPane = new SingleChoiceTaskPane();
         private JudgeTaskPane judgeTaskPane = new JudgeTaskPane();
+        private VoteTaskPane voteTaskPane = new VoteTaskPane();
         private int buttonClickCount = 0;
 
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
@@ -65,6 +67,14 @@ namespace Oke_teacher
             _SimpleQuestionTaskPane.Width = 200;
             _SimpleQuestionTaskPane.Visible = false;
             Globals.ThisAddIn.Application.SlideSelectionChanged += new EApplication_SlideSelectionChangedEventHandler(IsSimpleQesttionPPT);
+
+            _VoteTaskPane = CustomTaskPanes.Add(voteTaskPane, "投票");
+            _VoteTaskPane.Width = 250;
+            _VoteTaskPane.Visible = false;
+            Globals.ThisAddIn.Application.SlideSelectionChanged += new EApplication_SlideSelectionChangedEventHandler(isVotePPT);
+            Globals.ThisAddIn.Application.SlideShowNextSlide += Vote_SlideShowNextSlide;
+            Globals.ThisAddIn.Application.SlideShowBegin += Vote_SlideShowNextSlide;
+            Globals.ThisAddIn.Application.SlideShowEnd += Vote_SlideShowEnd;
         }
 
         #region 结束放映，对所有单选题幻灯片初始化
@@ -335,6 +345,119 @@ namespace Oke_teacher
             }
         }
 
+        #endregion
+
+        #region 放映结束 初始化
+        private void Vote_SlideShowEnd(Presentation Pres)
+        {
+            Slides slides = Pres.Slides;
+            foreach (Slide slide in slides)
+            {
+                if (ShapesUitls.IsExistedOfShape(slide, "questionType") && slide.Shapes["questionType"].TextFrame.TextRange.Text.Equals("4"))
+                {
+                    ShapesUitls.ChoiceOptionNoChecked(slide);
+                }
+            }
+        }
+        private void Vote_SlideShowNextSlide(SlideShowWindow Wn)
+        {
+            Slide slide = Wn.View.Slide;
+            if (ShapesUitls.IsExistedOfShape(slide, "questionType") && slide.Shapes["questionType"].TextFrame.TextRange.Text.Equals("4"))
+            {
+                MF.CommandButton sumbitButton = (MF.CommandButton)slide.Shapes["sumbitButton"].OLEFormat.Object;
+                sumbitButton.Click -= sumbitVote_Click;
+                sumbitButton.Click += sumbitVote_Click;
+                sumbitButton.TakeFocusOnClick = false;
+                sumbitButton.Enabled = true;
+                buttonClickCount = 1;
+
+                //MF.CommandButton answerButton = (MF.CommandButton)slide.Shapes["answerButton"].OLEFormat.Object;
+                //answerButton.Click -= answerSingleChocie_Click;
+                //answerButton.Click += answerSingleChocie_Click;
+                //answerButton.TakeFocusOnClick = false;
+                //answerButton.Enabled = true;
+
+                ShapesUitls.ChoiceOptionNoChecked(slide);
+            }
+        }
+
+        #endregion
+        #region 投票发布按钮事件
+        private void sumbitVote_Click()
+        {
+            if (buttonClickCount == 0)
+            {
+                return;
+            }
+            buttonClickCount = 0;
+            Slide activeSlide = Globals.ThisAddIn.Application.ActivePresentation.SlideShowWindow.View.Slide;
+            MF.CommandButton button = (MF.CommandButton)activeSlide.Shapes["sumbitButton"].OLEFormat.Object;
+            button.Enabled = false;
+
+            //Question question = new Question();
+            //question.questionType = int.Parse(activeSlide.Shapes["questionType"].TextFrame.TextRange.Text);
+            //question.questionScore = int.Parse(activeSlide.Shapes["questionScore"].TextFrame.TextRange.Text);
+            //question.questionLimitTime = int.Parse(activeSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text);
+            //question.questionDescribe = activeSlide.Shapes["questionDescribe"].TextFrame.TextRange.Text;
+            //question.questionAnswer = activeSlide.Shapes["questionAnswer"].TextFrame.TextRange.Text;
+            //Vote vote = new Vote();
+            //vote.voteType = int.Parse(activeSlide.Shapes["questionType"].TextFrame.TextRange.Text);
+            //vote.voteLimitTime = int.Parse(activeSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text);
+            //vote.voteDescribe = activeSlide.Shapes["questionDescribe"].TextFrame.TextRange.Text;
+
+            List<Option> optionList = new List<Option>();
+
+            string chars = "ABCDEFG";
+
+            for (int i = 0; i < 7; i++)
+            {
+                if (ShapesUitls.IsExistedOfShape(activeSlide, "option" + chars[i] + "Type"))
+                {
+                    Option option = new Option();
+                    option.optionType = activeSlide.Shapes["option" + chars[i] + "Type"].TextFrame.TextRange.Text;
+                    option.optionDescribe = activeSlide.Shapes["option" + chars[i] + "Text"].TextFrame.TextRange.Text;
+                    optionList.Add(option);
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            //QuestionData questionData = new QuestionData();
+            //questionData.question = question;
+            //questionData.optionList = optionList;
+            //VoteData voteData = new VoteData();
+            //voteData.vote = vote;
+            //voteData.optionList = optionList;
+
+            //SubmitQuestionForm submitQuestionForm = new SubmitQuestionForm();
+            //submitQuestionForm.questionData = questionData;
+            //submitQuestionForm.LoadText();
+            //submitQuestionForm.ShowDialog();
+
+        }
+        #endregion
+
+        #region 投票监听
+        private void isVotePPT(SlideRange sldRange)
+        {
+            if (sldRange.Count > 1 || sldRange.SlideIndex == 0)
+            {
+                _JudgeTaskPane.Visible = false;
+                return;
+            }
+            Slide activeSlide = (Slide)Globals.ThisAddIn.Application.ActiveWindow.View.Slide;
+            if (ShapesUitls.IsExistedOfShape(activeSlide, "VoteQuestion"))
+            {
+                _VoteTaskPane.Visible = true;
+                judgeTaskPane.load_slide();
+            }
+            else
+            {
+                _VoteTaskPane.Visible = false;
+            }
+        }
         #endregion
 
         private void IsFillQesttionPPT(SlideRange sldRange)

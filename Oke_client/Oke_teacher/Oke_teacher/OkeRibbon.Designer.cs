@@ -50,6 +50,7 @@
             this.Judgquesbtn = this.Factory.CreateRibbonButton();
             this.interactgroup = this.Factory.CreateRibbonGroup();
             this.Rollcallbutton = this.Factory.CreateRibbonButton();
+            this.votebutton = this.Factory.CreateRibbonButton();
             this.datagroup = this.Factory.CreateRibbonGroup();
             this.dataoutbutton = this.Factory.CreateRibbonButton();
             this.OkeTab.SuspendLayout();
@@ -102,6 +103,7 @@
             this.group1.Items.Add(this.Downclassbtn);
             this.group1.Items.Add(this.Noupclassbtn);
             this.group1.Items.Add(this.Nodownclassbtn);
+            this.group1.Label = "课堂教学";
             this.group1.Name = "group1";
             // 
             // Upclassbtn
@@ -190,6 +192,7 @@
             // interactgroup
             // 
             this.interactgroup.Items.Add(this.Rollcallbutton);
+            this.interactgroup.Items.Add(this.votebutton);
             this.interactgroup.Label = "课堂互动";
             this.interactgroup.Name = "interactgroup";
             // 
@@ -201,6 +204,15 @@
             this.Rollcallbutton.Name = "Rollcallbutton";
             this.Rollcallbutton.ShowImage = true;
             this.Rollcallbutton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Rollcallbutton_Click);
+            // 
+            // votebutton
+            // 
+            this.votebutton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.votebutton.Image = global::Oke_teacher.Properties.Resources.Oke_vote__2_;
+            this.votebutton.Label = "投票\n";
+            this.votebutton.Name = "votebutton";
+            this.votebutton.ShowImage = true;
+            this.votebutton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.votebutton_Click);
             // 
             // datagroup
             // 
@@ -258,6 +270,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton Noupclassbtn;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton Nodownclassbtn;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton singleChoice;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton votebutton;
     }
 
     partial class ThisRibbonCollection
