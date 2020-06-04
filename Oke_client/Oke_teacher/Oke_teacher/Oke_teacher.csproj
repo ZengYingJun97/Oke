@@ -161,11 +161,13 @@
   -->
   <ItemGroup>
     <Compile Include="Dto\AnswerData.cs" />
+    <Compile Include="Dto\CourseRecordData.cs" />
     <Compile Include="Dto\OkeResult.cs" />
     <Compile Include="Dto\QuestionData.cs" />
     <Compile Include="Dto\SessionData.cs" />
     <Compile Include="Dto\UpdateUserData.cs" />
     <Compile Include="Dto\UserData.cs" />
+    <Compile Include="Dto\VoteData.cs" />
     <Compile Include="Entity\Course.cs" />
     <Compile Include="Entity\CourseRecord.cs" />
     <Compile Include="Entity\Option.cs" />
@@ -176,6 +178,9 @@
     <Compile Include="Entity\StudentAnswer.cs" />
     <Compile Include="Entity\Teacher.cs" />
     <Compile Include="Entity\User.cs" />
+    <Compile Include="Entity\Vote.cs" />
+    <Compile Include="Entity\VoteChoice.cs" />
+    <Compile Include="Entity\VoteStudent.cs" />
     <Compile Include="Enums\ButtonNameEnum.cs" />
     <Compile Include="Enums\CheckedEnum.cs" />
     <Compile Include="Enums\EnumExtend.cs" />

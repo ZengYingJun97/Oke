@@ -63,6 +63,11 @@ namespace Oke_teacher.WinForms
         }
         #endregion
 
+        #region 加载数据
+        /// <summary>
+        /// 加载数据
+        /// </summary>
+        /// <param name="_question"></param>
         public void load(Question _question)
         {
             accuracyBar.ValueNumber = 0;
@@ -77,7 +82,14 @@ namespace Oke_teacher.WinForms
             confirmButton.Enabled = false;
             time_Timer.Start();
         }
+        #endregion
 
+        #region time_Timer触发事件
+        /// <summary>
+        /// time_Timer触发事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void time_Timer_Tick(object sender, EventArgs e)
         {
             questionLimitTime--;
@@ -130,10 +142,18 @@ namespace Oke_teacher.WinForms
                 confirmButton.Enabled = true;
             }
         }
+        #endregion
 
+        #region 确认按钮事件
+        /// <summary>
+        /// 确认按钮事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void confirmButton_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+        #endregion
     }
 }
