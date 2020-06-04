@@ -250,11 +250,6 @@ namespace Oke_teacher
         #endregion
 
 
-        private void OkeRibbon_Load(object sender, RibbonUIEventArgs e)
-        {
-        }
-
-
         #region 填空题按钮的点击事件
         private void Fillinbutton_Click(object sender, RibbonControlEventArgs e)
         {
@@ -475,6 +470,53 @@ namespace Oke_teacher
 
             button.Caption = buttonName;
             button.FontBold = true;
+        }
+        #endregion
+
+        #region 增加多选题幻灯片事件
+        /// <summary>
+        /// 增加多选题幻灯片事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void multipleChoice_Click(object sender, RibbonControlEventArgs e)
+        {
+            Presentation MyPres = Globals.ThisAddIn.Application.ActivePresentation;
+            Slide activeSlide = (Slide)Globals.ThisAddIn.Application.ActiveWindow.View.Slide;
+
+            int nowIndex = activeSlide.SlideIndex;
+            Slide multipleChoiceSlide = MyPres.Slides.Add(nowIndex + 1, PpSlideLayout.ppLayoutBlank);
+
+            //往题目中添加标记
+            multipleChoiceSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "questionType";
+            multipleChoiceSlide.Shapes["questionType"].TextFrame.TextRange.Text = "1";
+            multipleChoiceSlide.Shapes["questionType"].Visible = MsoTriState.msoFalse;
+            multipleChoiceSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "questionScore";
+            multipleChoiceSlide.Shapes["questionScore"].TextFrame.TextRange.Text = "0";
+            multipleChoiceSlide.Shapes["questionScore"].Visible = MsoTriState.msoFalse;
+            multipleChoiceSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "questionLimitTime";
+            multipleChoiceSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text = "0";
+            multipleChoiceSlide.Shapes["questionLimitTime"].Visible = MsoTriState.msoFalse;
+            multipleChoiceSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "questionAnswer";
+            multipleChoiceSlide.Shapes["questionAnswer"].TextFrame.TextRange.Text = "A;";
+            multipleChoiceSlide.Shapes["questionAnswer"].Visible = MsoTriState.msoFalse;
+
+            TextRange questionDescribe = null;
+            multipleChoiceSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 91F, 50F, 777F, 60F).Name = "questionDescribe";
+            questionDescribe = multipleChoiceSlide.Shapes["questionDescribe"].TextFrame.TextRange;
+            questionDescribe.Text = "此处填写题目描述";
+            questionDescribe.Font.NameFarEast = "微软雅黑";
+            questionDescribe.Font.NameAscii = "Calibri";
+            questionDescribe.Font.Size = 24;
+            questionDescribe.Font.Bold = MsoTriState.msoFalse;
+
+            addOption(multipleChoiceSlide, "A", 91F, 138F, 152F, 143F);
+            addOption(multipleChoiceSlide, "B", 91F, 197F, 152F, 203F);
+            addOption(multipleChoiceSlide, "C", 91F, 257F, 152F, 262F);
+            AddSubmitOleForm(multipleChoiceSlide, 727F, 466F, 80F, 46F, EnumExtend.GetDisplayText(ButtonNameEnum.GETANS), "answerButton");
+            AddSubmitOleForm(multipleChoiceSlide, 822F, 466F, 80F, 46F, EnumExtend.GetDisplayText(ButtonNameEnum.SUMBIT), "sumbitButton");
+
+            multipleChoiceSlide.Select();
         }
         #endregion
     }

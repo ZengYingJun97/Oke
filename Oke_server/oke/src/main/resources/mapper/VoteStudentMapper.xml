@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bnuz.oke.dao.VoteStudentDao">
+
+    <select id="queryByVoteId" resultType="com.bnuz.oke.entity.VoteStudent">
+        select
+            v.vote_id as "vote.voteId", v.course_number as "vote.course.courseNumber", v.vote_describe as "vote.voteDescribe", v.vote_limit_time as "vote.voteLimitTime",
+            s.student_id as "student.studentId", s.student_number as "student.studentNumber", s.student_name as "student.studentName", s.student_class as "student.studentClass", s.username as "student.user.username",
+            vc.vote_choice_id as "voteChoice.voteChoiceId", vc.vote_choice_type as "voteChoice.voteChoiceType", vc.vote_choice_describe as "voteChoice.voteChoiceDescribe"
+        from vote_student vs, vote v, student s, vote_choice vc
+        where vs.vote_id = v.vote_id and vs.student_id = s.student_id and vs.vote_choice_id = vc.vote_choice_id and vs.vote_id = #{voteId}
+    </select>
+
+    <select id="queryByStudentId" resultType="com.bnuz.oke.entity.VoteStudent">
+        select
+            v.vote_id as "vote.voteId", v.course_number as "vote.course.courseNumber", v.vote_describe as "vote.voteDescribe", v.vote_limit_time as "vote.voteLimitTime",
+            s.student_id as "student.studentId", s.student_number as "student.studentNumber", s.student_name as "student.studentName", s.student_class as "student.studentClass", s.username as "student.user.username",
+            vc.vote_choice_id as "voteChoice.voteChoiceId", vc.vote_choice_type as "voteChoice.voteChoiceType", vc.vote_choice_describe as "voteChoice.voteChoiceDescribe"
+        from vote_student vs, vote v, student s, vote_choice vc
+        where vs.vote_id = v.vote_id and vs.student_id = s.student_id and vs.vote_choice_id = vc.vote_choice_id and vs.student_id = #{studentId}
+    </select>
+
+    <insert id="insertVoteStudent" parameterType="com.bnuz.oke.entity.VoteStudent">
+        insert into
+            vote_student(student_id, vote_id, vote_choice_id)
+        value
+            (#{student.studentId}, #{vote.voteId}, #{voteChoice.voteChoiceId})
+    </insert>
+</mapper>

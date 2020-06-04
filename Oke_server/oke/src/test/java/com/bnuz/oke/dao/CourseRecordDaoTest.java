@@ -1,5 +1,6 @@
 package com.bnuz.oke.dao;
 
+import com.bnuz.oke.dto.CourseRecordData;
 import com.bnuz.oke.entity.Course;
 import com.bnuz.oke.entity.CourseRecord;
 import com.bnuz.oke.entity.Student;
@@ -70,4 +71,11 @@ class CourseRecordDaoTest {
 		CourseRecord courseRecord = courseRecordDao.queryByCourseNumberAndStudentId(courseNumber, studentId);
 		logger.info("courseRecord = {}", courseRecord);
 	}
+
+	@Test
+	void queryByCourseNumberWithScore() {
+		String courseNumber = "B089E222B33146E98210ACA687EB5D9D";
+		List<CourseRecordData> courseRecordDataList = courseRecordDao.queryByCourseNumberWithScore(courseNumber);
+		logger.info("courseRecordDataList = {}", courseRecordDataList);
+ 	}
 }

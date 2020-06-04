@@ -157,9 +157,9 @@ namespace Oke_teacher.WinForms
         }
         #endregion
 
-        #region 发布按钮事件(未完成)
+        #region 发布按钮事件
         /// <summary>
-        /// 发布按钮事件(未完成)
+        /// 发布按钮事件
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -176,7 +176,6 @@ namespace Oke_teacher.WinForms
             SessionData<QuestionData> sessionData = new SessionData<QuestionData>();
             sessionData.sessionId = LoginInfo.CurrentUser.sessionId;
             sessionData.data = questionData;
-
             //发送HTTP请求访问服务器
             try
             {
@@ -188,6 +187,7 @@ namespace Oke_teacher.WinForms
                 {
                     addAlter(EnumExtend.GetDisplayText(OperateEnum.OP_SUCC), CxFlatAlertBox.AlertType.Success);
                     timer.Stop();
+                    questionData.question.questionId = int.Parse(okeResult.error);
                     AnswerSituationForm answerSituationForm = new AnswerSituationForm();
                     answerSituationForm.load(questionData.question);
                     answerSituationForm.ShowDialog();
@@ -205,6 +205,8 @@ namespace Oke_teacher.WinForms
                 addAlter(Resources.ExceptionTip, CxFlatAlertBox.AlertType.Error);
                 unlockButton();
             }
+           
+            unlockButton();
         }
         #endregion
     }

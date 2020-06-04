@@ -63,20 +63,33 @@ namespace Oke_teacher.WinForms
         }
         #endregion
 
-        public void load(Question question)
+        #region 加载数据
+        /// <summary>
+        /// 加载数据
+        /// </summary>
+        /// <param name="_question"></param>
+        public void load(Question _question)
         {
             accuracyBar.ValueNumber = 0;
             totalBox.Text = "0";
             correctBox.Text = "0";
             unCommitBox.Text = "0";
             errorBox.Text = "0";
-            questionLimitTime = question.questionLimitTime + 1;
-            sumTime = question.questionLimitTime;
+            question = _question;
+            questionLimitTime = _question.questionLimitTime * 10 + 2;
+            sumTime = _question.questionLimitTime * 10;
             timeBar.ValueNumber = 100;
             confirmButton.Enabled = false;
             time_Timer.Start();
         }
+        #endregion
 
+        #region time_Timer触发事件
+        /// <summary>
+        /// time_Timer触发事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void time_Timer_Tick(object sender, EventArgs e)
         {
             questionLimitTime--;
@@ -103,7 +116,14 @@ namespace Oke_teacher.WinForms
                     if (okeResult.success)
                     {
                         addAlter(EnumExtend.GetDisplayText(OperateEnum.OP_SUCC), CxFlatAlertBox.AlertType.Success);
-                        accuracyBar.ValueNumber = okeResult.data.data.correct * 100 / okeResult.data.data.total;
+                        if (okeResult.data.data.total == 0)
+                        {
+                            accuracyBar.ValueNumber = 100;
+                        }
+                        else
+                        {
+                            accuracyBar.ValueNumber = okeResult.data.data.correct * 100 / okeResult.data.data.total;
+                        }
                         totalBox.Text = okeResult.data.data.total.ToString();
                         correctBox.Text = okeResult.data.data.correct.ToString();
                         unCommitBox.Text = okeResult.data.data.unCommitted.ToString();
@@ -122,10 +142,18 @@ namespace Oke_teacher.WinForms
                 confirmButton.Enabled = true;
             }
         }
+        #endregion
 
+        #region 确认按钮事件
+        /// <summary>
+        /// 确认按钮事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void confirmButton_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+        #endregion
     }
 }

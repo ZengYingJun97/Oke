@@ -116,6 +116,7 @@
             // 
             // richTextBox1
             // 
+            this.richTextBox1.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.richTextBox1.Enabled = false;
             this.richTextBox1.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBox1.Location = new System.Drawing.Point(185, 240);
@@ -126,6 +127,7 @@
             // 
             // richTextBox2
             // 
+            this.richTextBox2.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.richTextBox2.Enabled = false;
             this.richTextBox2.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBox2.Location = new System.Drawing.Point(243, 240);
@@ -136,6 +138,7 @@
             // 
             // richTextBox3
             // 
+            this.richTextBox3.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.richTextBox3.Enabled = false;
             this.richTextBox3.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBox3.Location = new System.Drawing.Point(306, 240);
@@ -146,6 +149,7 @@
             // 
             // richTextBox4
             // 
+            this.richTextBox4.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.richTextBox4.Enabled = false;
             this.richTextBox4.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBox4.Location = new System.Drawing.Point(361, 240);
@@ -156,6 +160,7 @@
             // 
             // richTextBox5
             // 
+            this.richTextBox5.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.richTextBox5.Enabled = false;
             this.richTextBox5.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBox5.Location = new System.Drawing.Point(418, 240);
@@ -166,6 +171,7 @@
             // 
             // richTextBox6
             // 
+            this.richTextBox6.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.richTextBox6.Enabled = false;
             this.richTextBox6.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBox6.Location = new System.Drawing.Point(478, 240);
@@ -180,6 +186,7 @@
             // 
             // cxFlatGroupBox1
             // 
+            this.cxFlatGroupBox1.BackColor = System.Drawing.Color.White;
             this.cxFlatGroupBox1.Controls.Add(this.classTextBox1);
             this.cxFlatGroupBox1.Controls.Add(this.classlabel);
             this.cxFlatGroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;

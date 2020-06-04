@@ -34,6 +34,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OkeRibbon));
             this.OkeTab = this.Factory.CreateRibbonTab();
             this.LoginGroup = this.Factory.CreateRibbonGroup();
             this.LoginButton = this.Factory.CreateRibbonButton();
@@ -45,9 +46,10 @@
             this.Nodownclassbtn = this.Factory.CreateRibbonButton();
             this.group2 = this.Factory.CreateRibbonGroup();
             this.singleChoice = this.Factory.CreateRibbonButton();
+            this.multipleChoice = this.Factory.CreateRibbonButton();
+            this.Judgquesbtn = this.Factory.CreateRibbonButton();
             this.fillbutton = this.Factory.CreateRibbonButton();
             this.simleanswerbutton = this.Factory.CreateRibbonButton();
-            this.Judgquesbtn = this.Factory.CreateRibbonButton();
             this.interactgroup = this.Factory.CreateRibbonGroup();
             this.Rollcallbutton = this.Factory.CreateRibbonButton();
             this.datagroup = this.Factory.CreateRibbonGroup();
@@ -117,7 +119,7 @@
             // Downclassbtn
             // 
             this.Downclassbtn.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.Downclassbtn.Image = global::Oke_teacher.Properties.Resources.downclassicon_09;
+            this.Downclassbtn.Image = ((System.Drawing.Image)(resources.GetObject("Downclassbtn.Image")));
             this.Downclassbtn.Label = "下课\n";
             this.Downclassbtn.Name = "Downclassbtn";
             this.Downclassbtn.ShowImage = true;
@@ -145,9 +147,10 @@
             // group2
             // 
             this.group2.Items.Add(this.singleChoice);
+            this.group2.Items.Add(this.multipleChoice);
+            this.group2.Items.Add(this.Judgquesbtn);
             this.group2.Items.Add(this.fillbutton);
             this.group2.Items.Add(this.simleanswerbutton);
-            this.group2.Items.Add(this.Judgquesbtn);
             this.group2.Label = "题目";
             this.group2.Name = "group2";
             // 
@@ -159,6 +162,24 @@
             this.singleChoice.Name = "singleChoice";
             this.singleChoice.ShowImage = true;
             this.singleChoice.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.singleChoice_Click);
+            // 
+            // multipleChoice
+            // 
+            this.multipleChoice.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.multipleChoice.Image = global::Oke_teacher.Properties.Resources.Oke_MultipleChoice;
+            this.multipleChoice.Label = "多选题";
+            this.multipleChoice.Name = "multipleChoice";
+            this.multipleChoice.ShowImage = true;
+            this.multipleChoice.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.multipleChoice_Click);
+            // 
+            // Judgquesbtn
+            // 
+            this.Judgquesbtn.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.Judgquesbtn.Image = global::Oke_teacher.Properties.Resources.Oke_judge;
+            this.Judgquesbtn.Label = "判断题\n";
+            this.Judgquesbtn.Name = "Judgquesbtn";
+            this.Judgquesbtn.ShowImage = true;
+            this.Judgquesbtn.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Judgquesbtn_Click);
             // 
             // fillbutton
             // 
@@ -177,15 +198,6 @@
             this.simleanswerbutton.Name = "simleanswerbutton";
             this.simleanswerbutton.ShowImage = true;
             this.simleanswerbutton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Simpleanswerbutton_Click);
-            // 
-            // Judgquesbtn
-            // 
-            this.Judgquesbtn.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.Judgquesbtn.Image = global::Oke_teacher.Properties.Resources.Oke_judge;
-            this.Judgquesbtn.Label = "判断题\n";
-            this.Judgquesbtn.Name = "Judgquesbtn";
-            this.Judgquesbtn.ShowImage = true;
-            this.Judgquesbtn.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Judgquesbtn_Click);
             // 
             // interactgroup
             // 
@@ -258,6 +270,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton Noupclassbtn;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton Nodownclassbtn;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton singleChoice;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton multipleChoice;
     }
 
     partial class ThisRibbonCollection
