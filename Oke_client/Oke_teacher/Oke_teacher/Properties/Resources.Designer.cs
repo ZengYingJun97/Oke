@@ -8,11 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Oke_teacher.Properties
-{
+namespace Oke_teacher.Properties {
     using System;
-
-
+    
+    
     /// <summary>
     ///   一个强类型的资源类，用于查找本地化的字符串等。
     /// </summary>
@@ -23,510 +22,422 @@ namespace Oke_teacher.Properties
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources
-    {
-
+    internal class Resources {
+        
         private static global::System.Resources.ResourceManager resourceMan;
-
+        
         private static global::System.Globalization.CultureInfo resourceCulture;
-
+        
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources()
-        {
+        internal Resources() {
         }
-
+        
         /// <summary>
         ///   返回此类使用的缓存的 ResourceManager 实例。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager
-        {
-            get
-            {
-                if (object.ReferenceEquals(resourceMan, null))
-                {
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Oke_teacher.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-
+        
         /// <summary>
         ///   重写当前线程的 CurrentUICulture 属性
         ///   重写当前线程的 CurrentUICulture 属性。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture
-        {
-            get
-            {
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
                 return resourceCulture;
             }
-            set
-            {
+            set {
                 resourceCulture = value;
             }
         }
-
+        
         /// <summary>
         ///   查找类似 /course/question/add 的本地化字符串。
         /// </summary>
-        internal static string AddQuestionUrl
-        {
-            get
-            {
+        internal static string AddQuestionUrl {
+            get {
                 return ResourceManager.GetString("AddQuestionUrl", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似 /course/vote/add 的本地化字符串。
         /// </summary>
-        internal static string AddVoteUrl
-        {
-            get
-            {
+        internal static string AddVoteUrl {
+            get {
                 return ResourceManager.GetString("AddVoteUrl", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似 /course/question/answerlist 的本地化字符串。
         /// </summary>
-        internal static string AnswerListUrl
-        {
-            get
-            {
+        internal static string AnswerListUrl {
+            get {
                 return ResourceManager.GetString("AnswerListUrl", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似 /course/begin 的本地化字符串。
         /// </summary>
-        internal static string BeginCourseUrl
-        {
-            get
-            {
+        internal static string BeginCourseUrl {
+            get {
                 return ResourceManager.GetString("BeginCourseUrl", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似 /course/list 的本地化字符串。
         /// </summary>
-        internal static string CourseListUrl
-        {
-            get
-            {
+        internal static string CourseListUrl {
+            get {
                 return ResourceManager.GetString("CourseListUrl", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似 /course/student/online 的本地化字符串。
         /// </summary>
-        internal static string CourseOnlineStudentUrl
-        {
-            get
-            {
+        internal static string CourseOnlineStudentUrl {
+            get {
                 return ResourceManager.GetString("CourseOnlineStudentUrl", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap downclassicon_09
-        {
-            get
-            {
+        internal static System.Drawing.Bitmap downclassicon_09 {
+            get {
                 object obj = ResourceManager.GetObject("downclassicon_09", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
         ///   查找类似 /course/end 的本地化字符串。
         /// </summary>
-        internal static string EndCourseUrl
-        {
-            get
-            {
+        internal static string EndCourseUrl {
+            get {
                 return ResourceManager.GetString("EndCourseUrl", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似 系统繁忙，稍等片刻 的本地化字符串。
         /// </summary>
-        internal static string ExceptionTip
-        {
-            get
-            {
+        internal static string ExceptionTip {
+            get {
                 return ResourceManager.GetString("ExceptionTip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似 /teacher/login 的本地化字符串。
         /// </summary>
-        internal static string LoginUrl
-        {
-            get
-            {
+        internal static string LoginUrl {
+            get {
                 return ResourceManager.GetString("LoginUrl", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似 /teacher/logout 的本地化字符串。
         /// </summary>
-        internal static string LogoutUrl
-        {
-            get
-            {
+        internal static string LogoutUrl {
+            get {
                 return ResourceManager.GetString("LogoutUrl", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap MyInfo
-        {
-            get
-            {
+        internal static System.Drawing.Bitmap MyInfo {
+            get {
                 object obj = ResourceManager.GetObject("MyInfo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap Oke_dataout
-        {
-            get
-            {
+        internal static System.Drawing.Bitmap Oke_dataout {
+            get {
                 object obj = ResourceManager.GetObject("Oke_dataout", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap Oke_downclass1_09
-        {
-            get
-            {
+        internal static System.Drawing.Bitmap Oke_downclass1_09 {
+            get {
                 object obj = ResourceManager.GetObject("Oke_downclass1-09", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap Oke_false
-        {
-            get
-            {
+        internal static System.Drawing.Bitmap Oke_false {
+            get {
                 object obj = ResourceManager.GetObject("Oke_false", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap Oke_fillanswerdelete
-        {
-            get
-            {
+        internal static System.Drawing.Bitmap Oke_fillanswerdelete {
+            get {
                 object obj = ResourceManager.GetObject("Oke_fillanswerdelete", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap Oke_fillinblank
-        {
-            get
-            {
+        internal static System.Drawing.Bitmap Oke_fillinblank {
+            get {
                 object obj = ResourceManager.GetObject("Oke_fillinblank", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap Oke_judge
-        {
-            get
-            {
+        internal static System.Drawing.Bitmap Oke_judge {
+            get {
                 object obj = ResourceManager.GetObject("Oke_judge", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap Oke_loginBg
-        {
-            get
-            {
+        internal static System.Drawing.Bitmap Oke_loginBg {
+            get {
                 object obj = ResourceManager.GetObject("Oke_loginBg", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap Oke_loginBg1
-        {
-            get
-            {
+        internal static System.Drawing.Bitmap Oke_loginBg1 {
+            get {
                 object obj = ResourceManager.GetObject("Oke_loginBg1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap Oke_logo
-        {
-            get
-            {
+        internal static System.Drawing.Bitmap Oke_logo {
+            get {
                 object obj = ResourceManager.GetObject("Oke_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
         ///   查找类似于 (图标) 的 System.Drawing.Icon 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Icon Oke_logo1
-        {
-            get
-            {
+        internal static System.Drawing.Icon Oke_logo1 {
+            get {
                 object obj = ResourceManager.GetObject("Oke_logo1", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
-
+        
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap Oke_MultipleChoice
-        {
-            get
-            {
+        internal static System.Drawing.Bitmap Oke_MultipleChoice {
+            get {
                 object obj = ResourceManager.GetObject("Oke_MultipleChoice", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap Oke_rollcall
-        {
-            get
-            {
+        internal static System.Drawing.Bitmap Oke_rollcall {
+            get {
                 object obj = ResourceManager.GetObject("Oke_rollcall", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap Oke_scratchcard
-        {
-            get
-            {
+        internal static System.Drawing.Bitmap Oke_scratchcard {
+            get {
                 object obj = ResourceManager.GetObject("Oke_scratchcard", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap Oke_simpleanswer
-        {
-            get
-            {
+        internal static System.Drawing.Bitmap Oke_simpleanswer {
+            get {
                 object obj = ResourceManager.GetObject("Oke_simpleanswer", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap Oke_SingleChoice
-        {
-            get
-            {
+        internal static System.Drawing.Bitmap Oke_SingleChoice {
+            get {
                 object obj = ResourceManager.GetObject("Oke_SingleChoice", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap Oke_true
-        {
-            get
-            {
+        internal static System.Drawing.Bitmap Oke_true {
+            get {
                 object obj = ResourceManager.GetObject("Oke_true", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap Oke_upclass1_08__1_
-        {
-            get
-            {
+        internal static System.Drawing.Bitmap Oke_upclass1_08__1_ {
+            get {
                 object obj = ResourceManager.GetObject("Oke_upclass1-08 (1)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap Oke_vote
-        {
-            get
-            {
+        internal static System.Drawing.Bitmap Oke_vote {
+            get {
                 object obj = ResourceManager.GetObject("Oke_vote", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap Oke_vote__2_
-        {
-            get
-            {
+        internal static System.Drawing.Bitmap Oke_vote__2_ {
+            get {
                 object obj = ResourceManager.GetObject("Oke_vote (2)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
         ///   查找类似 /course/record/list 的本地化字符串。
         /// </summary>
-        internal static string OnlineStudentListUrl
-        {
-            get
-            {
+        internal static string OnlineStudentListUrl {
+            get {
                 return ResourceManager.GetString("OnlineStudentListUrl", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似 /teacher/register 的本地化字符串。
         /// </summary>
-        internal static string RegisterUrl
-        {
-            get
-            {
+        internal static string RegisterUrl {
+            get {
                 return ResourceManager.GetString("RegisterUrl", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似 http://120.25.193.138:8080/oke 的本地化字符串。
         /// </summary>
-        internal static string Server
-        {
-            get
-            {
+        internal static string Server {
+            get {
                 return ResourceManager.GetString("Server", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似 /course/student/vote 的本地化字符串。
         /// </summary>
-        internal static string StudentVoteUrl
-        {
-            get
-            {
+        internal static string StudentVoteUrl {
+            get {
                 return ResourceManager.GetString("StudentVoteUrl", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap upclassicon_08
-        {
-            get
-            {
+        internal static System.Drawing.Bitmap upclassicon_08 {
+            get {
                 object obj = ResourceManager.GetObject("upclassicon_08", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
         ///   查找类似 /teacher/info/update 的本地化字符串。
         /// </summary>
-        internal static string UpdateInfoUrl
-        {
-            get
-            {
+        internal static string UpdateInfoUrl {
+            get {
                 return ResourceManager.GetString("UpdateInfoUrl", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似 /teacher/user/update 的本地化字符串。
         /// </summary>
-        internal static string UpdateUserUrl
-        {
-            get
-            {
+        internal static string UpdateUserUrl {
+            get {
                 return ResourceManager.GetString("UpdateUserUrl", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似 /course/vote/situation/anonymity 的本地化字符串。
         /// </summary>
-        internal static string VoteSituAnonUrl
-        {
-            get
-            {
+        internal static string VoteSituAnonUrl {
+            get {
                 return ResourceManager.GetString("VoteSituAnonUrl", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   查找类似 /course/vote/situation 的本地化字符串。
         /// </summary>
-        internal static string VoteSituUrl
-        {
-            get
-            {
+        internal static string VoteSituUrl {
+            get {
                 return ResourceManager.GetString("VoteSituUrl", resourceCulture);
             }
         }
