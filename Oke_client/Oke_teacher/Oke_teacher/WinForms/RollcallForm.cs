@@ -1,5 +1,11 @@
 ﻿using CxFlatUI;
 using CxFlatUI.Controls;
+using Newtonsoft.Json;
+using Oke_teacher.Dto;
+using Oke_teacher.Entity;
+using Oke_teacher.Info;
+using Oke_teacher.Properties;
+using Oke_teacher.Uitls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +20,8 @@ namespace Oke_teacher.WinForms
 {
     public partial class RollcallForm : Form
     {
-        List<string> testList = null;
+        List<Student> Studentlist = null;
+        int num = 0;
 
         public RollcallForm()
         {
@@ -23,30 +30,55 @@ namespace Oke_teacher.WinForms
 
         private void RollcallForm_Load(object sender, EventArgs e)
         {
-            #region 获取参与抽奖的名单<未完成>
-            string[] temArr = { "Ha", "Hunter", "Tom", "Lily", "Jay", "Jim", "Kuku", "Locu" };
-            //MessageBox.Show(temArr[1]);
-            testList = new List<string>(temArr);
-            //MessageBox.Show(testList.Count().ToString());
-            #endregion
 
-
-            #region 加载抽奖名单到panel2
-            int count = 0;
-            foreach (string s in testList)
+            #region 发送http请求
+            try
             {
-                Button btn = new Button
+                SessionData<string> sessionData = new SessionData<string>
                 {
-                    Name = "Rollallstudent" + count.ToString(),
-                    Text = s,//把名字写在按钮上
-                    Location = new Point(8 + (count % 5) * 80, 25 * ((count + 5) / 5)),
-                    Font = new Font("微软雅黑", 10.5f, FontStyle.Bold),
-                    BackColor = Color.FromArgb(92, 173, 255)
+                    data = CourseInfo.CurrentUser.classCode//获取当前课程码
                 };
-                panel2.Controls.Add(btn);
-                count++;
+
+                string url = Resources.Server + Resources.CourseOnlineStudentUrl;
+                string data = JsonConvert.SerializeObject(sessionData);
+                string response = HttpUitls.POST(url, data);
+                MessageBox.Show(response);
+
+                OkeResult<SessionData<List<Student>>> okeResult2 = JsonConvert.DeserializeObject<OkeResult<SessionData<List<Student>>>>(response);
+                if (okeResult2.success)
+                {
+                    AddAlter("成功查询学生名单", CxFlatAlertBox.AlertType.Success);
+
+                    List<Student> Studentlist = okeResult2.data.data;//获取抽奖名单
+
+                    #region 加载抽奖名单到panel2
+                    foreach (Student s in Studentlist)
+                    {
+                        Button btn = new Button
+                        {
+                            Name = "Rollallstudent" + num.ToString(),
+                            Text = s.studentName,//把名字写在按钮上
+                            Location = new Point(8 + (num % 5) * 80, 25 * ((num + 5) / 5)),
+                            Font = new Font("微软雅黑", 10.5f, FontStyle.Bold),
+                            BackColor = Color.FromArgb(92, 173, 255)
+                        };
+                        panel2.Controls.Add(btn);
+                        num++;
+                    }
+                    #endregion
+
+                }
+                else
+                {
+                    AddAlter("查询出错（可能未登录）", CxFlatAlertBox.AlertType.Error);
+                }
+            }
+            catch (Exception)
+            {
+                AddAlter(Resources.ExceptionTip, CxFlatAlertBox.AlertType.Error);//弹出提示
             }
             #endregion
+
         }
 
         #region 开始抽奖的点击事件（有bug——短时间里面一直点会产生相同的随机数）
@@ -66,7 +98,7 @@ namespace Oke_teacher.WinForms
                         Button btn = new Button
                         {
                             Name = "Rollinstudent" + i.ToString(),
-                            Text = testList[ran.Next(0, testList.Count() - 1)],//把抽取到的名字写在按钮上
+                            Text = Studentlist[ran.Next(0, Studentlist.Count() - 1)].studentName,//把抽取到的名字写在按钮上
                             Location = new Point(8 + i * 80, 8),
                             Font = new Font("微软雅黑", 10.5f, FontStyle.Bold),
                             BackColor = Color.FromArgb(255, 255, 255)
