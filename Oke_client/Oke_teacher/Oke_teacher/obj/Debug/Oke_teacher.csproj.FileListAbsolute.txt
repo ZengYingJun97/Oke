@@ -66,3 +66,4 @@ F:\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.dll
 F:\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.pdb
 F:\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.TaskPane.MultipleChoiceTaskPane.resources
 F:\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.TaskPane.VoteTaskPane.resources
+F:\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.WinForms.SubmitVoteForm.resources

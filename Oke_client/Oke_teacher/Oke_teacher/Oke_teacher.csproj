@@ -199,7 +199,7 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Resources1.Designer.cs">
+    <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -316,6 +316,12 @@
     <Compile Include="WinForms\SubmitQuestionForm.Designer.cs">
       <DependentUpon>SubmitQuestionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="WinForms\SubmitVoteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\SubmitVoteForm.Designer.cs">
+      <DependentUpon>SubmitVoteForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="WinForms\TeacherSetQuesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -395,6 +401,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WinForms\SubmitQuestionForm.resx">
       <DependentUpon>SubmitQuestionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\SubmitVoteForm.resx">
+      <DependentUpon>SubmitVoteForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinForms\TeacherSetQuesForm.resx">
       <DependentUpon>TeacherSetQuesForm.cs</DependentUpon>

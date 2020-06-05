@@ -10,6 +10,9 @@ using System.Windows.Forms;
 using Microsoft.Office.Interop.PowerPoint;
 using Microsoft.Office.Core;
 using Oke_teacher.Uitls;
+using Oke_teacher.Entity;
+using Oke_teacher.Dto;
+using Oke_teacher.WinForms;
 
 namespace Oke_teacher.TaskPane
 {
@@ -264,6 +267,68 @@ namespace Oke_teacher.TaskPane
                 optionGButton.Visible = false;
                 return;
             }
+        }
+
+        private void textBox_TextChanged(object sender, EventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            string textBoxText = textBox.Text;
+            if (textBox.Text.Equals(""))
+            {
+                textBoxText = "0";
+            }
+            Slide activeSlide = (Slide)Globals.ThisAddIn.Application.ActiveWindow.View.Slide;
+            
+            if (textBox.Name.Equals("questionLimitTimeBox"))
+            {
+                activeSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text = textBoxText;
+            }
+        }
+
+        private void questionLimitTimeBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void submitButton1_Click(object sender, EventArgs e)
+        {
+            Slide activeSlide = (Slide)Globals.ThisAddIn.Application.ActiveWindow.View.Slide;
+            Vote vote = new Vote();
+            //vote.voteType = int.Parse(activeSlide.Shapes["questionType"].TextFrame.TextRange.Text);
+            vote.voteLimitTime = int.Parse(activeSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text);
+            vote.voteDescribe = activeSlide.Shapes["questionDescribe"].TextFrame.TextRange.Text;
+
+            List<VoteChoice> voteList = new List<VoteChoice>();
+
+            string chars = "ABCDEFG";
+
+            for (int i = 0; i < 7; i++)
+            {
+                if (ShapesUitls.IsExistedOfShape(activeSlide, "option" + chars[i] + "Type"))
+                {
+                    // Option option = new Option();
+                    VoteChoice voteChoice = new VoteChoice();
+                    voteChoice.voteChoiceType = activeSlide.Shapes["option" + chars[i] + "Type"].TextFrame.TextRange.Text;
+                    voteChoice.voteChoiceDescribe = activeSlide.Shapes["option" + chars[i] + "Text"].TextFrame.TextRange.Text;
+                    voteList.Add(voteChoice);
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            //QuestionData questionData = new QuestionData();
+            //questionData.question = question;
+            //questionData.optionList = optionList;
+            VoteData voteData = new VoteData();
+            voteData.vote = vote;
+            voteData.voteChoiceList = voteList;
+
+            SubmitVoteForm submitVoteForm = new SubmitVoteForm();
+            submitVoteForm.voteData = voteData;
+            submitVoteForm.LoadText1();
+            submitVoteForm.ShowDialog();
         }
     }
 }

@@ -104,6 +104,7 @@
             this.group1.Items.Add(this.Downclassbtn);
             this.group1.Items.Add(this.Noupclassbtn);
             this.group1.Items.Add(this.Nodownclassbtn);
+            this.group1.Label = "课堂教学";
             this.group1.Name = "group1";
             // 
             // Upclassbtn
@@ -151,7 +152,7 @@
             this.group2.Items.Add(this.Judgquesbtn);
             this.group2.Items.Add(this.fillbutton);
             this.group2.Items.Add(this.simleanswerbutton);
-            this.group2.Label = "题目";
+            this.group2.Label = "插入题目";
             this.group2.Name = "group2";
             // 
             // singleChoice
