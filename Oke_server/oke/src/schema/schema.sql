@@ -113,7 +113,7 @@ create table vote (
     vote_id int(11) auto_increment not null comment '投票id',
     course_number varchar(255) not null comment '课程号',
     vote_describe varchar(255) not null comment '投票描述',
-    vote_limit_time int(11) not null comment '投票限制时间'
+    vote_limit_time int(11) not null comment '投票限制时间',
     primary key (vote_id),
     foreign key (course_number) references course(course_number)
 ) engine = innodb charset = utf8 comment = '投票表';

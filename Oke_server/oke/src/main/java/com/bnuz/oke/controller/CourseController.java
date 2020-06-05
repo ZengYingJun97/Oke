@@ -65,6 +65,7 @@ public class CourseController {
 					String courseRandom = RandomUitl.getRandom();
 
 					redisTemplate.opsForValue().set("sessionCourse:" + sessionId, "course:" + courseRandom, 60 * 60 * 24, TimeUnit.SECONDS);
+					redisTemplate.opsForValue().set("copyKey:course:" + courseRandom, course.getCourseNumber());
 					redisTemplate.opsForValue().set("course:" + courseRandom, course, 60 * 60 * 24, TimeUnit.SECONDS);
 
 					stringSessionData = new SessionData<>(sessionId, courseRandom);
@@ -105,6 +106,7 @@ public class CourseController {
 				try {
 					courseService.endCourse(course);
 					redisTemplate.delete("sessionCourse:" + sessionId);
+					redisTemplate.delete("copyKey:course:" + sessionData.getData());
 					redisTemplate.delete("course:" + sessionData.getData());
 					redisTemplate.delete("courseStudent:" + course.getCourseNumber());
 

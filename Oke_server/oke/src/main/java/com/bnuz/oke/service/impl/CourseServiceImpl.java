@@ -119,12 +119,14 @@ public class CourseServiceImpl implements CourseService {
 		int insertCount = questionDao.insertQuestion(question);
 		Question resultQuestion = null;
 		if (insertCount != 0) {
-			for (Option option: optionList) {
-				option.setQuestion(question);
-				insertCount = optionDao.insertOption(option);
-				if (insertCount == 0) {
-					TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-					return null;
+			if (optionList != null) {
+				for (Option option: optionList) {
+					option.setQuestion(question);
+					insertCount = optionDao.insertOption(option);
+					if (insertCount == 0) {
+						TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+						return null;
+					}
 				}
 			}
 			resultQuestion = questionDao.queryByQuestionId(question.getQuestionId());
