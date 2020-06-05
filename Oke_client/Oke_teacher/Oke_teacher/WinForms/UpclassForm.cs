@@ -130,6 +130,7 @@ namespace Oke_teacher.WinForms
                             //MessageBox.Show("ok!");
                             pictureBox1.Image = b;
                             getclassbtn.Text = "复制上课码";
+                            classTextBox1.Enabled = false;
                             this.closebtn.Enabled = true;
 
                         }
