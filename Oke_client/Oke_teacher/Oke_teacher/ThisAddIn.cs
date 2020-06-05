@@ -405,7 +405,7 @@ namespace Oke_teacher
             Slides slides = Pres.Slides;
             foreach (Slide slide in slides)
             {
-                if (ShapesUitls.IsExistedOfShape(slide, "questionType") && slide.Shapes["questionType"].TextFrame.TextRange.Text.Equals("4"))
+                if (ShapesUitls.IsExistedOfShape(slide, "questionType") && slide.Shapes["questionType"].TextFrame.TextRange.Text.Equals("5"))
                 {
                     ShapesUitls.ChoiceOptionNoChecked(slide);
                 }
@@ -414,7 +414,7 @@ namespace Oke_teacher
         private void Vote_SlideShowNextSlide(SlideShowWindow Wn)
         {
             Slide slide = Wn.View.Slide;
-            if (ShapesUitls.IsExistedOfShape(slide, "questionType") && slide.Shapes["questionType"].TextFrame.TextRange.Text.Equals("4"))
+            if (ShapesUitls.IsExistedOfShape(slide, "questionType") && slide.Shapes["questionType"].TextFrame.TextRange.Text.Equals("5"))
             {
                 MF.CommandButton sumbitButton = (MF.CommandButton)slide.Shapes["sumbitButton"].OLEFormat.Object;
                 sumbitButton.Click -= sumbitVote_Click;
@@ -452,12 +452,12 @@ namespace Oke_teacher
             //question.questionLimitTime = int.Parse(activeSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text);
             //question.questionDescribe = activeSlide.Shapes["questionDescribe"].TextFrame.TextRange.Text;
             //question.questionAnswer = activeSlide.Shapes["questionAnswer"].TextFrame.TextRange.Text;
-            //Vote vote = new Vote();
+            Vote vote = new Vote();
             //vote.voteType = int.Parse(activeSlide.Shapes["questionType"].TextFrame.TextRange.Text);
-            //vote.voteLimitTime = int.Parse(activeSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text);
-            //vote.voteDescribe = activeSlide.Shapes["questionDescribe"].TextFrame.TextRange.Text;
+            vote.voteLimitTime = int.Parse(activeSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text);
+            vote.voteDescribe = activeSlide.Shapes["questionDescribe"].TextFrame.TextRange.Text;
 
-            List<Option> optionList = new List<Option>();
+            List<VoteChoice> voteList = new List<VoteChoice>();
 
             string chars = "ABCDEFG";
 
@@ -465,10 +465,11 @@ namespace Oke_teacher
             {
                 if (ShapesUitls.IsExistedOfShape(activeSlide, "option" + chars[i] + "Type"))
                 {
-                    Option option = new Option();
-                    option.optionType = activeSlide.Shapes["option" + chars[i] + "Type"].TextFrame.TextRange.Text;
-                    option.optionDescribe = activeSlide.Shapes["option" + chars[i] + "Text"].TextFrame.TextRange.Text;
-                    optionList.Add(option);
+                   // Option option = new Option();
+                    VoteChoice voteChoice = new VoteChoice();
+                    voteChoice.voteChoiceType = activeSlide.Shapes["option" + chars[i] + "Type"].TextFrame.TextRange.Text;
+                    voteChoice.voteChoiceDescribe = activeSlide.Shapes["option" + chars[i] + "Text"].TextFrame.TextRange.Text;
+                    voteList.Add(voteChoice);
                 }
                 else
                 {
@@ -479,14 +480,14 @@ namespace Oke_teacher
             //QuestionData questionData = new QuestionData();
             //questionData.question = question;
             //questionData.optionList = optionList;
-            //VoteData voteData = new VoteData();
-            //voteData.vote = vote;
-            //voteData.optionList = optionList;
+            VoteData voteData = new VoteData();
+            voteData.vote = vote;
+            voteData.voteChoiceList = voteList;
 
-            //SubmitQuestionForm submitQuestionForm = new SubmitQuestionForm();
-            //submitQuestionForm.questionData = questionData;
-            //submitQuestionForm.LoadText();
-            //submitQuestionForm.ShowDialog();
+            SubmitVoteForm submitVoteForm = new SubmitVoteForm();
+            submitVoteForm.voteData = voteData;
+            submitVoteForm.LoadText();
+            submitVoteForm.ShowDialog();
 
         }
         #endregion
@@ -496,14 +497,14 @@ namespace Oke_teacher
         {
             if (sldRange.Count > 1 || sldRange.SlideIndex == 0)
             {
-                _JudgeTaskPane.Visible = false;
+                _VoteTaskPane.Visible = false;
                 return;
             }
             Slide activeSlide = (Slide)Globals.ThisAddIn.Application.ActiveWindow.View.Slide;
             if (ShapesUitls.IsExistedOfShape(activeSlide, "VoteQuestion"))
             {
                 _VoteTaskPane.Visible = true;
-                judgeTaskPane.load_slide();
+                voteTaskPane.load_slide();
             }
             else
             {

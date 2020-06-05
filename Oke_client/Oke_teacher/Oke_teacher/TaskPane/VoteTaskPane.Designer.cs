@@ -41,6 +41,7 @@
             this.addOptionButton = new CxFlatUI.CxFlatSimpleButton();
             this.questionAnswerLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.resultButton1 = new CxFlatUI.Controls.CxFlatButton();
             this.SuspendLayout();
             // 
             // questionLimitTimeBox
@@ -50,6 +51,7 @@
             this.questionLimitTimeBox.Name = "questionLimitTimeBox";
             this.questionLimitTimeBox.Size = new System.Drawing.Size(120, 21);
             this.questionLimitTimeBox.TabIndex = 38;
+            this.questionLimitTimeBox.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             // 
             // optionGButton
             // 
@@ -205,10 +207,22 @@
             this.panel1.Size = new System.Drawing.Size(200, 100);
             this.panel1.TabIndex = 39;
             // 
+            // resultButton1
+            // 
+            this.resultButton1.ButtonType = CxFlatUI.ButtonType.Primary;
+            this.resultButton1.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.resultButton1.Location = new System.Drawing.Point(135, 347);
+            this.resultButton1.Name = "resultButton1";
+            this.resultButton1.Size = new System.Drawing.Size(75, 23);
+            this.resultButton1.TabIndex = 41;
+            this.resultButton1.Text = "投票结果";
+            this.resultButton1.TextColor = System.Drawing.Color.White;
+            // 
             // VoteTaskPane
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.resultButton1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.questionLimitTimeBox);
             this.Controls.Add(this.optionGButton);
@@ -244,5 +258,6 @@
         private CxFlatUI.CxFlatSimpleButton addOptionButton;
         private System.Windows.Forms.Label questionAnswerLabel;
         private System.Windows.Forms.Panel panel1;
+        private CxFlatUI.Controls.CxFlatButton resultButton1;
     }
 }

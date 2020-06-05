@@ -101,7 +101,7 @@ namespace Oke_teacher.WinForms
             }
             timeBar.ValueNumber = tmp;
 
-            if (tmp == 0)
+            if (questionLimitTime % 100 == 0)
             {
                 SessionData<Question> sessionData = new SessionData<Question>();
                 sessionData.sessionId = LoginInfo.CurrentUser.sessionId;
@@ -115,7 +115,6 @@ namespace Oke_teacher.WinForms
                     OkeResult<SessionData<AnswerData>> okeResult = JsonConvert.DeserializeObject<OkeResult<SessionData<AnswerData>>>(response);
                     if (okeResult.success)
                     {
-                        addAlter(EnumExtend.GetDisplayText(OperateEnum.OP_SUCC), CxFlatAlertBox.AlertType.Success);
                         if (okeResult.data.data.total == 0)
                         {
                             accuracyBar.ValueNumber = 100;
@@ -129,17 +128,15 @@ namespace Oke_teacher.WinForms
                         unCommitBox.Text = okeResult.data.data.unCommitted.ToString();
                         errorBox.Text = okeResult.data.data.error.ToString();
                     }
-                    else
-                    {
-                        addAlter(EnumExtend.GetDisplayText(OperateEnum.OP_FAIL), CxFlatAlertBox.AlertType.Error);
-                    }
                 }
                 catch (Exception)
                 {
-                    addAlter(Resources.ExceptionTip, CxFlatAlertBox.AlertType.Error);
                 }
-                time_Timer.Stop();
+            }
+            if (tmp == 0)
+            {
                 confirmButton.Enabled = true;
+                time_Timer.Stop();
             }
         }
         #endregion
