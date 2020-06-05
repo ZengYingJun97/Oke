@@ -19,6 +19,7 @@ namespace Oke_teacher.WinForms
 {
     public partial class UpclassForm : Form
     {
+       
         public UpclassForm()
         {
             InitializeComponent();
@@ -34,6 +35,10 @@ namespace Oke_teacher.WinForms
                 richTextBox5.Text = CourseInfo.CurrentUser.classCode.Substring(4, 1);
                 richTextBox6.Text = CourseInfo.CurrentUser.classCode.Substring(5, 1);
                 this.closebtn.Enabled = true;
+                MyQRUitls myqr = new MyQRUitls();
+                Bitmap b = MyQRUitls.BarcodeImage(CourseInfo.CurrentUser.classCode);
+                //MessageBox.Show("ok!");
+                pictureBox1.Image = b;
             }
             
             this.richTextBox1.SelectionAlignment = HorizontalAlignment.Center;
@@ -107,6 +112,7 @@ namespace Oke_teacher.WinForms
                             CourseInfo.CurrentUser.classCode = okeResult.data.data;
                             CourseInfo.CurrentUser.data = course;
                             CourseInfo.CurrentUser.data.courseName = classTextBox1.Text;
+                            
                             //classTextBox2.Text = okeResult.data.data;
                             richTextBox1.Text = okeResult.data.data.Substring(0, 1);
                             richTextBox2.Text = okeResult.data.data.Substring(1, 1);
@@ -119,6 +125,10 @@ namespace Oke_teacher.WinForms
                             timer1.Interval = 1000;
                             timer1.Enabled = true;
                             timer1.Start();
+                            MyQRUitls myqr = new MyQRUitls();
+                            Bitmap b = MyQRUitls.BarcodeImage(CourseInfo.CurrentUser.classCode);
+                            //MessageBox.Show("ok!");
+                            pictureBox1.Image = b;
                             getclassbtn.Text = "复制上课码";
                             this.closebtn.Enabled = true;
 
@@ -226,10 +236,10 @@ namespace Oke_teacher.WinForms
         {
             CxFlatAlertBox alert = new CxFlatAlertBox();
             
-            alert.Location = new Point(271, 191);
+            alert.Location = new Point(278, 167);
             alert.Name = "alert";
             alert.Text = alterText;
-            alert.Size = new Size(151, 34);
+            alert.Size = new Size(169, 161);
             alert.Type = alertType;
             cxFlatGroupBox1.Controls.Add(alert);
             alert.BringToFront();

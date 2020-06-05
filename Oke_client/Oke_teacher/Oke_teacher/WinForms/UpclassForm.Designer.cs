@@ -42,7 +42,9 @@
             this.richTextBox6 = new System.Windows.Forms.RichTextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.cxFlatGroupBox1 = new CxFlatUI.CxFlatGroupBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.cxFlatGroupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // cxFlatStatusBar1
@@ -63,7 +65,7 @@
             // 
             this.classTextBox1.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.classTextBox1.Hint = "";
-            this.classTextBox1.Location = new System.Drawing.Point(287, 135);
+            this.classTextBox1.Location = new System.Drawing.Point(305, 69);
             this.classTextBox1.MaxLength = 32767;
             this.classTextBox1.Multiline = false;
             this.classTextBox1.Name = "classTextBox1";
@@ -83,7 +85,7 @@
             this.classlabel.AutoSize = true;
             this.classlabel.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.classlabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(173)))), ((int)(((byte)(255)))));
-            this.classlabel.Location = new System.Drawing.Point(180, 145);
+            this.classlabel.Location = new System.Drawing.Point(189, 69);
             this.classlabel.Name = "classlabel";
             this.classlabel.Size = new System.Drawing.Size(76, 28);
             this.classlabel.TabIndex = 2;
@@ -93,7 +95,7 @@
             // 
             this.getclassbtn.ButtonType = CxFlatUI.ButtonType.Primary;
             this.getclassbtn.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.getclassbtn.Location = new System.Drawing.Point(198, 307);
+            this.getclassbtn.Location = new System.Drawing.Point(194, 124);
             this.getclassbtn.Name = "getclassbtn";
             this.getclassbtn.Size = new System.Drawing.Size(105, 37);
             this.getclassbtn.TabIndex = 4;
@@ -106,7 +108,7 @@
             this.closebtn.ButtonType = CxFlatUI.ButtonType.Primary;
             this.closebtn.Enabled = false;
             this.closebtn.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.closebtn.Location = new System.Drawing.Point(402, 307);
+            this.closebtn.Location = new System.Drawing.Point(420, 124);
             this.closebtn.Name = "closebtn";
             this.closebtn.Size = new System.Drawing.Size(105, 37);
             this.closebtn.TabIndex = 7;
@@ -119,7 +121,7 @@
             this.richTextBox1.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.richTextBox1.Enabled = false;
             this.richTextBox1.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox1.Location = new System.Drawing.Point(185, 240);
+            this.richTextBox1.Location = new System.Drawing.Point(194, 386);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(40, 39);
             this.richTextBox1.TabIndex = 8;
@@ -130,7 +132,7 @@
             this.richTextBox2.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.richTextBox2.Enabled = false;
             this.richTextBox2.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox2.Location = new System.Drawing.Point(243, 240);
+            this.richTextBox2.Location = new System.Drawing.Point(250, 386);
             this.richTextBox2.Name = "richTextBox2";
             this.richTextBox2.Size = new System.Drawing.Size(40, 39);
             this.richTextBox2.TabIndex = 9;
@@ -141,7 +143,7 @@
             this.richTextBox3.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.richTextBox3.Enabled = false;
             this.richTextBox3.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox3.Location = new System.Drawing.Point(306, 240);
+            this.richTextBox3.Location = new System.Drawing.Point(305, 386);
             this.richTextBox3.Name = "richTextBox3";
             this.richTextBox3.Size = new System.Drawing.Size(40, 39);
             this.richTextBox3.TabIndex = 10;
@@ -152,7 +154,7 @@
             this.richTextBox4.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.richTextBox4.Enabled = false;
             this.richTextBox4.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox4.Location = new System.Drawing.Point(361, 240);
+            this.richTextBox4.Location = new System.Drawing.Point(362, 386);
             this.richTextBox4.Name = "richTextBox4";
             this.richTextBox4.Size = new System.Drawing.Size(40, 39);
             this.richTextBox4.TabIndex = 11;
@@ -163,7 +165,7 @@
             this.richTextBox5.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.richTextBox5.Enabled = false;
             this.richTextBox5.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox5.Location = new System.Drawing.Point(418, 240);
+            this.richTextBox5.Location = new System.Drawing.Point(425, 386);
             this.richTextBox5.Name = "richTextBox5";
             this.richTextBox5.Size = new System.Drawing.Size(40, 39);
             this.richTextBox5.TabIndex = 12;
@@ -174,7 +176,7 @@
             this.richTextBox6.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.richTextBox6.Enabled = false;
             this.richTextBox6.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox6.Location = new System.Drawing.Point(478, 240);
+            this.richTextBox6.Location = new System.Drawing.Point(485, 386);
             this.richTextBox6.Name = "richTextBox6";
             this.richTextBox6.Size = new System.Drawing.Size(40, 39);
             this.richTextBox6.TabIndex = 13;
@@ -187,8 +189,17 @@
             // cxFlatGroupBox1
             // 
             this.cxFlatGroupBox1.BackColor = System.Drawing.Color.White;
+            this.cxFlatGroupBox1.Controls.Add(this.pictureBox1);
+            this.cxFlatGroupBox1.Controls.Add(this.richTextBox6);
+            this.cxFlatGroupBox1.Controls.Add(this.richTextBox5);
             this.cxFlatGroupBox1.Controls.Add(this.classTextBox1);
+            this.cxFlatGroupBox1.Controls.Add(this.richTextBox4);
             this.cxFlatGroupBox1.Controls.Add(this.classlabel);
+            this.cxFlatGroupBox1.Controls.Add(this.richTextBox3);
+            this.cxFlatGroupBox1.Controls.Add(this.richTextBox2);
+            this.cxFlatGroupBox1.Controls.Add(this.richTextBox1);
+            this.cxFlatGroupBox1.Controls.Add(this.getclassbtn);
+            this.cxFlatGroupBox1.Controls.Add(this.closebtn);
             this.cxFlatGroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cxFlatGroupBox1.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.cxFlatGroupBox1.Location = new System.Drawing.Point(0, 0);
@@ -200,19 +211,22 @@
             this.cxFlatGroupBox1.Text = "cxFlatGroupBox1";
             this.cxFlatGroupBox1.ThemeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Location = new System.Drawing.Point(286, 201);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(150, 150);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 14;
+            this.pictureBox1.TabStop = false;
+            // 
             // UpclassForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(701, 450);
-            this.Controls.Add(this.richTextBox6);
-            this.Controls.Add(this.richTextBox5);
-            this.Controls.Add(this.richTextBox4);
-            this.Controls.Add(this.richTextBox3);
-            this.Controls.Add(this.richTextBox2);
-            this.Controls.Add(this.richTextBox1);
-            this.Controls.Add(this.closebtn);
-            this.Controls.Add(this.getclassbtn);
             this.Controls.Add(this.cxFlatStatusBar1);
             this.Controls.Add(this.cxFlatGroupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -224,6 +238,7 @@
             this.Text = "UpclassForm";
             this.cxFlatGroupBox1.ResumeLayout(false);
             this.cxFlatGroupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -243,5 +258,6 @@
         private System.Windows.Forms.RichTextBox richTextBox6;
         private System.Windows.Forms.Timer timer1;
         private CxFlatUI.CxFlatGroupBox cxFlatGroupBox1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
