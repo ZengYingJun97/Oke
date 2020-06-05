@@ -125,7 +125,7 @@ namespace Oke_teacher
             Microsoft.Office.Interop.PowerPoint.TextRange FillTextRng = null;//设置第一个文本框
             NewSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 40F, 100F, 30F).Name = "JudgeQuestion";
             NewSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "questionType";
-            NewSlide.Shapes["questionType"].TextFrame.TextRange.Text = "1";
+            NewSlide.Shapes["questionType"].TextFrame.TextRange.Text = "2";
             NewSlide.Shapes["questionType"].Visible = MsoTriState.msoFalse;
 
 
@@ -520,5 +520,82 @@ namespace Oke_teacher
             multipleChoiceSlide.Select();
         }
         #endregion
+
+        #region 增加投票模块
+        private void votebutton_Click(object sender, RibbonControlEventArgs e)
+        {
+            Presentation MyPres = Globals.ThisAddIn.Application.ActivePresentation;
+            Slide activeSlide = (Slide)Globals.ThisAddIn.Application.ActiveWindow.View.Slide;
+
+            int nowIndex = activeSlide.SlideIndex;
+            Slide voteSlide = MyPres.Slides.Add(nowIndex + 1, PpSlideLayout.ppLayoutBlank);
+            voteSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 40F, 100F, 30F).Name = "VoteQuestion";
+            voteSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "questionType";
+            voteSlide.Shapes["questionType"].TextFrame.TextRange.Text = "5";
+            voteSlide.Shapes["questionType"].Visible = MsoTriState.msoFalse;
+            voteSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "questionLimitTime";
+            voteSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text = "0";
+            voteSlide.Shapes["questionLimitTime"].Visible = MsoTriState.msoFalse;
+            voteSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "questionAnswer";
+            voteSlide.Shapes["questionAnswer"].TextFrame.TextRange.Text = "A;";
+            voteSlide.Shapes["questionAnswer"].Visible = MsoTriState.msoFalse;
+
+            TextRange questionDescribe = null;
+            voteSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 91F, 50F, 777F, 60F).Name = "questionDescribe";
+            questionDescribe = voteSlide.Shapes["questionDescribe"].TextFrame.TextRange;
+            questionDescribe.Text = "此处填写投票内容";
+            questionDescribe.Font.NameFarEast = "微软雅黑";
+            questionDescribe.Font.NameAscii = "Calibri";
+            questionDescribe.Font.Size = 24;
+            questionDescribe.Font.Bold = MsoTriState.msoFalse;
+
+
+            Microsoft.Office.Interop.PowerPoint.TextRange VoteTextRng = null;//设置第一个文本框
+            VoteTextRng = voteSlide.Shapes["VoteQuestion"].TextFrame.TextRange;//请注意此处Shapes的索引，由于文本框是第一个添加的Shapes，所以此处索引是1。
+
+            VoteTextRng.Font.NameFarEast = "微软雅黑";//文本框中，中文的字体                   
+            VoteTextRng.Font.NameAscii = "Calibri";//文本框中，英文和数字的字体      
+            VoteTextRng.Text = "投票";//显示的内容
+            VoteTextRng.Font.Bold = MsoTriState.msoTrue;//是否加粗
+            VoteTextRng.Font.Color.RGB = 1 + 1 * 256 + 1 * 256 * 256;//字体颜色，其中ABC直接用自定义颜色中的数字代替即可。
+            VoteTextRng.Font.Size = 24;//字体大小是24.
+            VoteTextRng.ParagraphFormat.Alignment = Microsoft.Office.Interop.PowerPoint.PpParagraphAlignment.ppAlignLeft;//文本对齐方式（水平方向）
+
+            addVoteChoice(voteSlide, "A", 91F, 138F, 152F, 143F);
+            addVoteChoice(voteSlide, "B", 91F, 197F, 152F, 203F);
+            addVoteChoice(voteSlide, "C", 91F, 257F, 152F, 262F);
+            //AddSubmitOleForm(voteSlide, 727F, 466F, 80F, 46F, EnumExtend.GetDisplayText(ButtonNameEnum.GETANS), "answerButton");
+            AddSubmitOleForm(voteSlide, 822F, 466F, 80F, 46F, EnumExtend.GetDisplayText(ButtonNameEnum.SUMBIT), "sumbitButton");
+
+            voteSlide.Select();
+        }
+        #endregion
+        #region 投票选项 添加shape
+        /// <summary>
+        /// 投票选项 添加shape
+        /// </summary>
+        /// <param name="slide"></param>
+        /// <param name="text"></param>
+        /// <param name="left1"></param>
+        /// <param name="top1"></param>
+        /// <param name="left2"></param>
+        /// <param name="top2"></param>
+        private void addVoteChoice(Slide slide, string text, Single left1, Single top1, Single left2, Single top2)
+        {
+            slide.Shapes.AddShape(MsoAutoShapeType.msoShapeRectangle, left1, top1, 38F, 44F).Name = "option" + text + "Type";
+            slide.Shapes["option" + text + "Type"].Fill.ForeColor.RGB = (int)CheckedEnum.NOCHECKED;
+            slide.Shapes["option" + text + "Type"].TextFrame.TextRange.Text = text;
+            slide.Shapes["option" + text + "Type"].TextFrame.TextRange.Font.Size = 20;
+            slide.Shapes["option" + text + "Type"].TextFrame.HorizontalAnchor = MsoHorizontalAnchor.msoAnchorCenter;
+
+            slide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, left2, top2, 656F, 33F).Name = "option" + text + "Text";
+            slide.Shapes["option" + text + "Text"].TextFrame.TextRange.Text = "此处填写" + text + "选项描述";
+            slide.Shapes["option" + text + "Text"].TextFrame.TextRange.Font.NameFarEast = "微软雅黑";
+            slide.Shapes["option" + text + "Text"].TextFrame.TextRange.Font.NameAscii = "Calibri";
+            slide.Shapes["option" + text + "Text"].TextFrame.TextRange.Font.Size = 24;
+            slide.Shapes["option" + text + "Text"].TextFrame.TextRange.Font.Bold = MsoTriState.msoFalse;
+        }
+        #endregion
     }
+
 }
