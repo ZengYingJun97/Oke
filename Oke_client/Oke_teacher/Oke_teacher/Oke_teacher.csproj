@@ -101,8 +101,9 @@
   -->
   <ItemGroup>
     <Reference Include="Accessibility" />
-    <Reference Include="CxFlatUI">
-      <HintPath>..\..\..\..\CxFlatUI-master\CxFlatUI\bin\Debug\CxFlatUI.dll</HintPath>
+    <Reference Include="CxFlatUI, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\csq\Desktop\CxFlatUI.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -250,6 +251,12 @@
     <Compile Include="WinForms\DownForm.Designer.cs">
       <DependentUpon>DownForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="WinForms\FillAnswerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\FillAnswerForm.Designer.cs">
+      <DependentUpon>FillAnswerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="WinForms\InfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -298,10 +305,10 @@
     <Compile Include="WinForms\SetQuestForm.Designer.cs">
       <DependentUpon>SetQuestForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="WinForms\SimpleQuestionTaskPane.cs">
+    <Compile Include="TaskPane\SimpleQuestionTaskPane.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="WinForms\SimpleQuestionTaskPane.Designer.cs">
+    <Compile Include="TaskPane\SimpleQuestionTaskPane.Designer.cs">
       <DependentUpon>SimpleQuestionTaskPane.cs</DependentUpon>
     </Compile>
     <Compile Include="WinForms\StudentGetQuesForm.cs">
@@ -334,10 +341,10 @@
     <Compile Include="WinForms\UpclassForm.Designer.cs">
       <DependentUpon>UpclassForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="WinForms\FillTaskPane.cs">
+    <Compile Include="TaskPane\FillTaskPane.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="WinForms\FillTaskPane.Designer.cs">
+    <Compile Include="TaskPane\FillTaskPane.Designer.cs">
       <DependentUpon>FillTaskPane.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="OkeRibbon.resx">
@@ -369,6 +376,9 @@
     <EmbeddedResource Include="WinForms\DownForm.resx">
       <DependentUpon>DownForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\FillAnswerForm.resx">
+      <DependentUpon>FillAnswerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WinForms\InfoForm.resx">
       <DependentUpon>InfoForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -393,7 +403,7 @@
     <EmbeddedResource Include="WinForms\SetQuestForm.resx">
       <DependentUpon>SetQuestForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WinForms\SimpleQuestionTaskPane.resx">
+    <EmbeddedResource Include="TaskPane\SimpleQuestionTaskPane.resx">
       <DependentUpon>SimpleQuestionTaskPane.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinForms\StudentGetQuesForm.resx">
@@ -411,7 +421,7 @@
     <EmbeddedResource Include="WinForms\UpclassForm.resx">
       <DependentUpon>UpclassForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WinForms\FillTaskPane.resx">
+    <EmbeddedResource Include="TaskPane\FillTaskPane.resx">
       <DependentUpon>FillTaskPane.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Oke_teacher_TemporaryKey.pfx" />

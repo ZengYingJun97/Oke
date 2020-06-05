@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CxFlatUI;
 using System.Reflection;
+using Microsoft.Office.Interop.PowerPoint;
 
 namespace Oke_teacher.WinForms
 {
@@ -36,8 +37,8 @@ namespace Oke_teacher.WinForms
             {
                 Name = "Fillanswer" + count,
                 Text = namet + count,
-                Font = new Font("微软雅黑", 10, FontStyle.Bold),
-                Location = new Point(12, (count - 1) * 30)
+                Font = new System.Drawing.Font("微软雅黑", 10, FontStyle.Bold),
+                Location = new System.Drawing.Point(12, (count - 1) * 30)
             };
             Fagb.Controls.Add(txt);
             #endregion
@@ -49,7 +50,7 @@ namespace Oke_teacher.WinForms
                 Name = named + count,
                 Size = new Size(20, 20),
                 Image = Oke_teacher.Properties.Resources.Oke_fillanswerdelete,
-                Location = new Point(120, (count - 1) * 30),
+                Location = new System.Drawing.Point(120, (count - 1) * 30),
             };
             p.Click += new System.EventHandler(this.Deletebutton_Click);
             Fagb.Controls.Add(p);
@@ -91,12 +92,13 @@ namespace Oke_teacher.WinForms
                 #region 设置PPT文本框的内容
                 string fillstr = FillquestionText.Text;//获取输入框里面的内容
                 Microsoft.Office.Interop.PowerPoint.Slide MySlide = Globals.ThisAddIn.Application.ActiveWindow.View.Slide;//获取当前选择的PPT
-                MySlide.Shapes[2].TextFrame.TextRange.Text = fillstr;//设置到PPT的文本框里面
+                MySlide.Shapes["questionDescribe"].TextFrame.TextRange.Text = fillstr;//设置到PPT的文本框里面
                 #endregion
 
                 #region 题目分值的总合
                 allscore = count * int.Parse(EfillscoreText.Text);
-                //分值要干嘛？
+
+                MySlide.Shapes["questionScore"].TextFrame.TextRange.Text = allscore.ToString();//传递总分值
                 #endregion
 
                 #region 把答案整合成string（答案1;答案2;.....）
@@ -109,7 +111,11 @@ namespace Oke_teacher.WinForms
                         answstr += temp.Text + ";";
                     }
                 }
-                //答案要干嘛？
+                MySlide.Shapes["questionAnswer"].TextFrame.TextRange.Text = answstr;//传递答案
+                #endregion
+
+                #region 传递作答时间
+                MySlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text = Ftt;
                 #endregion
 
                 MessageBox.Show("成功发布，限定作答时间为：" + Ftt);
@@ -140,7 +146,7 @@ namespace Oke_teacher.WinForms
 
                 BindClick(buttonc);//删除按钮
 
-                #region 删除后其他控件往上移(这个不行)——一个是查询条件有问题
+                #region 删除后其他控件往上移
                 int i = num + 1, j = num + 1;
                 foreach (Control c in Fagb.Controls)
                 {
@@ -148,14 +154,14 @@ namespace Oke_teacher.WinForms
                     {
                         TextBox temp = c as TextBox;
                         //MessageBox.Show("文框上移");
-                        temp.Location = new Point(temp.Location.X, temp.Location.Y - 30);
+                        temp.Location = new System.Drawing.Point(temp.Location.X, temp.Location.Y - 30);
                         i++;
                     }
                     else if (c is PictureBox && c.Name == "Deletebutton" + j.ToString())
                     {
                         PictureBox temp2 = c as PictureBox;
                         //MessageBox.Show(gnamet + "按钮上移");
-                        temp2.Location = new Point(temp2.Location.X, temp2.Location.Y - 30);
+                        temp2.Location = new System.Drawing.Point(temp2.Location.X, temp2.Location.Y - 30);
                         j++;
                     }
                 }
@@ -188,6 +194,19 @@ namespace Oke_teacher.WinForms
             }
         }
 
+
+        public void load_slide()
+        {
+            Slide NewSlide = (Slide)Globals.ThisAddIn.Application.ActiveWindow.View.Slide;
+            if (NewSlide.Shapes["questionDescribe"].TextFrame.TextRange.Text != "请编写题干")
+            {
+                Setbutton.Text = "修改";
+            }
+            FillquestionText.Text = NewSlide.Shapes["questionDescribe"].TextFrame.TextRange.Text;
+            EfillscoreText.Text = NewSlide.Shapes["questionScore"].TextFrame.TextRange.Text;
+            FatimeText.Text = NewSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text;
+
+        }
 
         #region 增加提示框
         /// <summary>

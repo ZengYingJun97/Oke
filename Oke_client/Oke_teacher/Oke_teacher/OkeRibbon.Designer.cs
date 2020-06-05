@@ -169,7 +169,7 @@
             // 
             this.multipleChoice.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
             this.multipleChoice.Image = global::Oke_teacher.Properties.Resources.Oke_MultipleChoice;
-            this.multipleChoice.Label = "多选题";
+            this.multipleChoice.Label = "多选题\n";
             this.multipleChoice.Name = "multipleChoice";
             this.multipleChoice.ShowImage = true;
             this.multipleChoice.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.multipleChoice_Click);

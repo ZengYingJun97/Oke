@@ -24,10 +24,6 @@ namespace Oke_teacher
 {
     public partial class OkeRibbon
     {
-        private static long countFQPPT = 0;
-        private static long countSQPPT = 0;
-
-
         #region 登录按钮触发事件
         /// <summary>
         /// 登录按钮触发事件
@@ -130,7 +126,7 @@ namespace Oke_teacher
 
 
 
-
+   
 
 
             NewSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "questionScore";
@@ -265,12 +261,25 @@ namespace Oke_teacher
             //slides = Globals.ThisAddIn.Application.ActivePresentation.Slides;//获取当前PPT中的所有幻灯片
             Microsoft.Office.Interop.PowerPoint.Slide MySlide = Globals.ThisAddIn.Application.ActiveWindow.View.Slide;  //获取当前选中的幻灯片
             Microsoft.Office.Interop.PowerPoint.Slide NewFillQuestionSlide = MyPres.Slides.Add(MySlide.SlideIndex + 1, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);//插入新的幻灯片
-            NewFillQuestionSlide.Name = "FQPPT" + countFQPPT++;
 
             #region 插入填空题题目类型
             Microsoft.Office.Interop.PowerPoint.TextRange FillTextRng = null;
 
-            NewFillQuestionSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 40F, 100F, 30F);
+            NewFillQuestionSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 40F, 100F, 30F).Name = "FillQuestion";
+            NewFillQuestionSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "questionType";
+            NewFillQuestionSlide.Shapes["questionType"].TextFrame.TextRange.Text = "3";
+            NewFillQuestionSlide.Shapes["questionType"].Visible = MsoTriState.msoFalse;
+
+            NewFillQuestionSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "questionScore";
+            NewFillQuestionSlide.Shapes["questionScore"].TextFrame.TextRange.Text = "0";
+            NewFillQuestionSlide.Shapes["questionScore"].Visible = MsoTriState.msoFalse;
+            NewFillQuestionSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "questionLimitTime";
+            NewFillQuestionSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text = "0";
+            NewFillQuestionSlide.Shapes["questionLimitTime"].Visible = MsoTriState.msoFalse;
+            NewFillQuestionSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "questionAnswer";
+            NewFillQuestionSlide.Shapes["questionAnswer"].TextFrame.TextRange.Text = "0";
+            NewFillQuestionSlide.Shapes["questionAnswer"].Visible = MsoTriState.msoFalse;
+
 
             FillTextRng = NewFillQuestionSlide.Shapes[1].TextFrame.TextRange;//请注意此处Shapes的索引，由于文本框是第一个添加的Shapes，所以此处索引是1。
 
@@ -286,14 +295,12 @@ namespace Oke_teacher
 
             #region 插入填空题题目
             Microsoft.Office.Interop.PowerPoint.TextRange FQTextRng = null;
-
-            NewFillQuestionSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 150F, 400F, 300F);
-
-            FQTextRng = NewFillQuestionSlide.Shapes[2].TextFrame.TextRange;//请注意此处Shapes的索引，由于文本框是第二个添加的Shapes，所以此处索引是2。
+            NewFillQuestionSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 150F, 400F, 300F).Name = "questionDescribe";
+            FQTextRng = NewFillQuestionSlide.Shapes["questionDescribe"].TextFrame.TextRange;//请注意此处Shapes的索引，由于文本框是第二个添加的Shapes，所以此处索引是2。
 
             FQTextRng.Font.NameFarEast = "微软雅黑";//文本框中，中文的字体                   
             FQTextRng.Font.NameAscii = "Calibri";//文本框中，英文和数字的字体      
-            FQTextRng.Text = "请您编写题干";//显示的内容
+            FQTextRng.Text = "请编写题干";//显示的内容
             FQTextRng.Font.Bold = MsoTriState.msoFalse;//是否加粗
             FQTextRng.Font.Color.RGB = 1 + 1 * 256 + 1 * 256 * 256;//字体颜色，其中ABC直接用自定义颜色中的数字代替即可。
             FQTextRng.Font.Size = 24;//字体大小是24.
@@ -302,11 +309,10 @@ namespace Oke_teacher
             #endregion
 
             AddSubmitOleForm(NewFillQuestionSlide, 822F, 466F, 89F, 46F, EnumExtend.GetDisplayText(ButtonNameEnum.SUMBIT), "sumbitButton");//插入发布按钮
-
+            AddSubmitOleForm(NewFillQuestionSlide, 727F, 466F, 80F, 46F, EnumExtend.GetDisplayText(ButtonNameEnum.GETANS), "answerButton");//插入答案按钮
             NewFillQuestionSlide.Select();
         }
         #endregion
-
 
         #region 简答题按钮的点击事件
         private void Simpleanswerbutton_Click(object sender, RibbonControlEventArgs e)
@@ -316,12 +322,11 @@ namespace Oke_teacher
             //slides = Globals.ThisAddIn.Application.ActivePresentation.Slides;//获取当前PPT中的所有幻灯片
             Microsoft.Office.Interop.PowerPoint.Slide MySlide = Globals.ThisAddIn.Application.ActiveWindow.View.Slide;  //获取当前选中的幻灯片
             Microsoft.Office.Interop.PowerPoint.Slide NewSimpleQuestionSlide = MyPres.Slides.Add(MySlide.SlideIndex + 1, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);//插入新的幻灯片
-            NewSimpleQuestionSlide.Name = "SQPPT" + countSQPPT++;
 
             #region 插入简答题题目类型
             Microsoft.Office.Interop.PowerPoint.TextRange SATextRng = null;
 
-            NewSimpleQuestionSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 40F, 100F, 30F);
+            NewSimpleQuestionSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 40F, 100F, 30F).Name = "SimpleAnswerQuestion";
 
             SATextRng = NewSimpleQuestionSlide.Shapes[1].TextFrame.TextRange;//请注意此处Shapes的索引，由于文本框是第一个添加的Shapes，所以此处索引是1。
 
@@ -338,13 +343,28 @@ namespace Oke_teacher
             #region 插入简答题题目
             Microsoft.Office.Interop.PowerPoint.TextRange SQTextRng = null;
 
-            NewSimpleQuestionSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 150F, 400F, 300F);
+            NewSimpleQuestionSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 150F, 400F, 300F).Name = "SimpleAnswerQuestion";
+            NewSimpleQuestionSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "questionType";
+            NewSimpleQuestionSlide.Shapes["questionType"].TextFrame.TextRange.Text = "4";
+            NewSimpleQuestionSlide.Shapes["questionType"].Visible = MsoTriState.msoFalse;
+
+            NewSimpleQuestionSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "questionScore";
+            NewSimpleQuestionSlide.Shapes["questionScore"].TextFrame.TextRange.Text = "0";
+            NewSimpleQuestionSlide.Shapes["questionScore"].Visible = MsoTriState.msoFalse;
+            NewSimpleQuestionSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "questionLimitTime";
+            NewSimpleQuestionSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text = "0";
+            NewSimpleQuestionSlide.Shapes["questionLimitTime"].Visible = MsoTriState.msoFalse;
+            NewSimpleQuestionSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "questionAnswer";
+            NewSimpleQuestionSlide.Shapes["questionAnswer"].TextFrame.TextRange.Text = "0";
+            NewSimpleQuestionSlide.Shapes["questionAnswer"].Visible = MsoTriState.msoFalse;
+
+            NewSimpleQuestionSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 150F, 400F, 300F).Name = "questionDescribe";
 
             SQTextRng = NewSimpleQuestionSlide.Shapes[2].TextFrame.TextRange;//请注意此处Shapes的索引，由于文本框是第二个添加的Shapes，所以此处索引是2。
 
             SQTextRng.Font.NameFarEast = "微软雅黑";//文本框中，中文的字体                   
             SQTextRng.Font.NameAscii = "Calibri";//文本框中，英文和数字的字体      
-            SQTextRng.Text = "请您编写题干";//显示的内容
+            SQTextRng.Text = "请编写题干";//显示的内容
             SQTextRng.Font.Bold = MsoTriState.msoFalse;//是否加粗
             SQTextRng.Font.Color.RGB = 1 + 1 * 256 + 1 * 256 * 256;//字体颜色，其中ABC直接用自定义颜色中的数字代替即可。
             SQTextRng.Font.Size = 24;//字体大小是24.
