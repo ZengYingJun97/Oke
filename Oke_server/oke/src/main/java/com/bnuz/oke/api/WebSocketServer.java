@@ -103,7 +103,6 @@ public class WebSocketServer {
 	 * @return void
 	 */
 	public static void sendInfo(String message, @PathParam("studentId") String studentId) throws IOException {
-		logger.info("发送消息到:" + studentId + "，报文:" + message);
 		if(webSocketMap.containsKey(studentId)){
 			webSocketMap.get(studentId).sendMessage(message);
 		}else{
