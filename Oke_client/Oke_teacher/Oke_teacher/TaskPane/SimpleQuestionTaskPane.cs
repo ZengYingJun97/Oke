@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CxFlatUI;
+using Microsoft.Office.Interop.PowerPoint;
 
 namespace Oke_teacher.WinForms
 {
@@ -21,6 +22,7 @@ namespace Oke_teacher.WinForms
             InitializeComponent();
         }
 
+        #region 设置按钮的点击事件
         private void SetSQbutton_Click(object sender, EventArgs e)
         {
             string Fqt = SimplequestionText.Text.Trim();//题目
@@ -63,6 +65,20 @@ namespace Oke_teacher.WinForms
 
                 MessageBox.Show("成功发布，限定作答时间为：" + Ftt);
             }
+        }
+        #endregion
+
+        public void load_slide()
+        {
+            Slide NewSlide = (Slide)Globals.ThisAddIn.Application.ActiveWindow.View.Slide;
+            if (NewSlide.Shapes["questionDescribe"].TextFrame.TextRange.Text != "请编写题干")
+            {
+                SetSQbutton.Text = "修改";
+            }
+            SimplequestionText.Text = NewSlide.Shapes["questionDescribe"].TextFrame.TextRange.Text;
+            SQscoreText.Text = NewSlide.Shapes["questionScore"].TextFrame.TextRange.Text;
+            SQAtimeText.Text = NewSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text;
+
         }
 
         #region 增加提示框

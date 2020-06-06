@@ -34,6 +34,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OkeRibbon));
             this.OkeTab = this.Factory.CreateRibbonTab();
             this.LoginGroup = this.Factory.CreateRibbonGroup();
             this.LoginButton = this.Factory.CreateRibbonButton();
@@ -45,11 +46,13 @@
             this.Nodownclassbtn = this.Factory.CreateRibbonButton();
             this.group2 = this.Factory.CreateRibbonGroup();
             this.singleChoice = this.Factory.CreateRibbonButton();
+            this.multipleChoice = this.Factory.CreateRibbonButton();
+            this.Judgquesbtn = this.Factory.CreateRibbonButton();
             this.fillbutton = this.Factory.CreateRibbonButton();
             this.simleanswerbutton = this.Factory.CreateRibbonButton();
-            this.Judgquesbtn = this.Factory.CreateRibbonButton();
             this.interactgroup = this.Factory.CreateRibbonGroup();
             this.Rollcallbutton = this.Factory.CreateRibbonButton();
+            this.votebutton = this.Factory.CreateRibbonButton();
             this.datagroup = this.Factory.CreateRibbonGroup();
             this.dataoutbutton = this.Factory.CreateRibbonButton();
             this.OkeTab.SuspendLayout();
@@ -102,6 +105,7 @@
             this.group1.Items.Add(this.Downclassbtn);
             this.group1.Items.Add(this.Noupclassbtn);
             this.group1.Items.Add(this.Nodownclassbtn);
+            this.group1.Label = "课堂教学";
             this.group1.Name = "group1";
             // 
             // Upclassbtn
@@ -117,7 +121,7 @@
             // Downclassbtn
             // 
             this.Downclassbtn.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.Downclassbtn.Image = global::Oke_teacher.Properties.Resources.downclassicon_09;
+            this.Downclassbtn.Image = ((System.Drawing.Image)(resources.GetObject("Downclassbtn.Image")));
             this.Downclassbtn.Label = "下课\n";
             this.Downclassbtn.Name = "Downclassbtn";
             this.Downclassbtn.ShowImage = true;
@@ -145,10 +149,11 @@
             // group2
             // 
             this.group2.Items.Add(this.singleChoice);
+            this.group2.Items.Add(this.multipleChoice);
+            this.group2.Items.Add(this.Judgquesbtn);
             this.group2.Items.Add(this.fillbutton);
             this.group2.Items.Add(this.simleanswerbutton);
-            this.group2.Items.Add(this.Judgquesbtn);
-            this.group2.Label = "题目";
+            this.group2.Label = "插入题目";
             this.group2.Name = "group2";
             // 
             // singleChoice
@@ -159,6 +164,24 @@
             this.singleChoice.Name = "singleChoice";
             this.singleChoice.ShowImage = true;
             this.singleChoice.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.singleChoice_Click);
+            // 
+            // multipleChoice
+            // 
+            this.multipleChoice.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.multipleChoice.Image = global::Oke_teacher.Properties.Resources.Oke_MultipleChoice;
+            this.multipleChoice.Label = "多选题\n";
+            this.multipleChoice.Name = "multipleChoice";
+            this.multipleChoice.ShowImage = true;
+            this.multipleChoice.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.multipleChoice_Click);
+            // 
+            // Judgquesbtn
+            // 
+            this.Judgquesbtn.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.Judgquesbtn.Image = global::Oke_teacher.Properties.Resources.Oke_judge;
+            this.Judgquesbtn.Label = "判断题\n";
+            this.Judgquesbtn.Name = "Judgquesbtn";
+            this.Judgquesbtn.ShowImage = true;
+            this.Judgquesbtn.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Judgquesbtn_Click);
             // 
             // fillbutton
             // 
@@ -178,18 +201,10 @@
             this.simleanswerbutton.ShowImage = true;
             this.simleanswerbutton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Simpleanswerbutton_Click);
             // 
-            // Judgquesbtn
-            // 
-            this.Judgquesbtn.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.Judgquesbtn.Image = global::Oke_teacher.Properties.Resources.Oke_judge;
-            this.Judgquesbtn.Label = "判断题\n";
-            this.Judgquesbtn.Name = "Judgquesbtn";
-            this.Judgquesbtn.ShowImage = true;
-            this.Judgquesbtn.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Judgquesbtn_Click);
-            // 
             // interactgroup
             // 
             this.interactgroup.Items.Add(this.Rollcallbutton);
+            this.interactgroup.Items.Add(this.votebutton);
             this.interactgroup.Label = "课堂互动";
             this.interactgroup.Name = "interactgroup";
             // 
@@ -201,6 +216,15 @@
             this.Rollcallbutton.Name = "Rollcallbutton";
             this.Rollcallbutton.ShowImage = true;
             this.Rollcallbutton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Rollcallbutton_Click);
+            // 
+            // votebutton
+            // 
+            this.votebutton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.votebutton.Image = global::Oke_teacher.Properties.Resources.Oke_vote__2_;
+            this.votebutton.Label = "投票\n";
+            this.votebutton.Name = "votebutton";
+            this.votebutton.ShowImage = true;
+            this.votebutton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.votebutton_Click);
             // 
             // datagroup
             // 
@@ -258,6 +282,8 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton Noupclassbtn;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton Nodownclassbtn;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton singleChoice;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton multipleChoice;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton votebutton;
     }
 
     partial class ThisRibbonCollection

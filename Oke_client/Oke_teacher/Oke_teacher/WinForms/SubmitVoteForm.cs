@@ -1,4 +1,10 @@
-﻿using System;
+﻿using CxFlatUI;
+using CxFlatUI.Properties;
+using Microsoft.Office.Interop.PowerPoint;
+using Oke_teacher.Dto;
+using Oke_teacher.Enums;
+using Oke_teacher.Info;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -6,41 +12,34 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
-using CxFlatUI;
-using Microsoft.Office.Interop.PowerPoint;
-using Newtonsoft.Json;
-using Oke_teacher.Dto;
-using Oke_teacher.Entity;
-using Oke_teacher.Enums;
-using Oke_teacher.Info;
 using Oke_teacher.Properties;
-using Oke_teacher.Uitls;
+using System.Windows.Forms;
 using Point = System.Drawing.Point;
+using Newtonsoft.Json;
+using Oke_teacher.Uitls;
 
 namespace Oke_teacher.WinForms
 {
-    public partial class SubmitQuestionForm : Form
+    public partial class SubmitVoteForm : Form
     {
-        public QuestionData questionData { set; get; }
-        public SubmitQuestionForm()
+        public VoteData voteData { set; get; }
+        public SubmitVoteForm()
         {
             InitializeComponent();
         }
-
-        #region 加载输入框数据
-        /// <summary>
-        /// 加载输入框数据
-        /// </summary>
         public void LoadText()
         {
             Slide activeSlide = Globals.ThisAddIn.Application.ActivePresentation.SlideShowWindow.View.Slide;
-            questionScoreBox.Text = activeSlide.Shapes["questionScore"].TextFrame.TextRange.Text;
+            //questionScoreBox.Text = activeSlide.Shapes["questionScore"].TextFrame.TextRange.Text;
             questionLimitTimeBox.Text = activeSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text;
         }
-        #endregion
+        public void LoadText1()
+        {
+            Slide activeSlide = (Slide)Globals.ThisAddIn.Application.ActiveWindow.View.Slide;
+            //questionScoreBox.Text = activeSlide.Shapes["questionScore"].TextFrame.TextRange.Text;
+            questionLimitTimeBox.Text = activeSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text;
+        }
 
-        #region 锁住发布按钮
         /// <summary>
         /// 锁住发布按钮
         /// </summary>
@@ -48,9 +47,6 @@ namespace Oke_teacher.WinForms
         {
             submitButton.Enabled = false;
         }
-        #endregion
-
-        #region 解锁发布按钮
         /// <summary>
         /// 解锁发布按钮
         /// </summary>
@@ -58,8 +54,6 @@ namespace Oke_teacher.WinForms
         {
             submitButton.Enabled = true;
         }
-        #endregion
-
         #region 增加提示框
         /// <summary>
         /// 增加提示框
@@ -79,7 +73,6 @@ namespace Oke_teacher.WinForms
             timer.Start();
         }
         #endregion
-
         #region 输入框输入事件
         /// <summary>
         /// 输入框输入事件
@@ -97,27 +90,16 @@ namespace Oke_teacher.WinForms
             {
             }
         }
-        #endregion
 
+
+
+        #endregion
         #region 输入框改变事件
         /// <summary>
         /// 输入框改变事件
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void questionScoreBox_TextChanged(object sender, EventArgs e)
-        {
-            TextBox textBox = (TextBox) sender;
-            string textBoxText = textBox.Text;
-            if (textBox.Text.Equals(""))
-            {
-                textBoxText = "0";
-            }
-            Slide activeSlide = Globals.ThisAddIn.Application.ActivePresentation.SlideShowWindow.View.Slide;
-            activeSlide.Shapes["questionScore"].TextFrame.TextRange.Text = textBoxText;
-            questionData.question.questionScore = int.Parse(textBoxText);
-        }
-
         private void questionLimitTimeBox_TextChanged(object sender, EventArgs e)
         {
             TextBox textBox = (TextBox)sender;
@@ -127,11 +109,11 @@ namespace Oke_teacher.WinForms
                 textBoxText = "0";
             }
             Slide activeSlide = Globals.ThisAddIn.Application.ActivePresentation.SlideShowWindow.View.Slide;
+            //Slide activeSlide = (Slide)Globals.ThisAddIn.Application.ActiveWindow.View.Slide;
             activeSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text = textBoxText;
-            questionData.question.questionLimitTime = int.Parse(textBoxText);
+            voteData.vote.voteLimitTime = int.Parse(textBoxText);
         }
         #endregion
-
         #region timer触发事件
         /// <summary>
         /// timer触发事件
@@ -166,47 +148,37 @@ namespace Oke_teacher.WinForms
         private void submitButton_Click(object sender, EventArgs e)
         {
             lockButton();
-            
-            //未登录或未开启课堂
             if (LoginInfo.CurrentUser.sessionId == null || CourseInfo.CurrentUser.classCode == null)
             {
                 addAlter(EnumExtend.GetDisplayText(OperateEnum.NO_COURSE), CxFlatAlertBox.AlertType.Error);
                 return;
             }
-            SessionData<QuestionData> sessionData = new SessionData<QuestionData>();
+            SessionData<VoteData> sessionData = new SessionData<VoteData>();
             sessionData.sessionId = LoginInfo.CurrentUser.sessionId;
-            sessionData.data = questionData;
-            //发送HTTP请求访问服务器
+            sessionData.data = voteData;
             try
             {
-                string url = Resources.Server + Resources.AddQuestionUrl;
+                string url = Properties.Resources.Server + Properties.Resources.AddVoteUrl;
                 string data = JsonConvert.SerializeObject(sessionData);
-                System.Diagnostics.Debug.WriteLine(data);//测试
-               string response = HttpUitls.POST(url, data);
+                string response = HttpUitls.POST(url, data);
+                System.Diagnostics.Debug.WriteLine(response+"触发了");
                 OkeResult<SessionData<string>> okeResult = JsonConvert.DeserializeObject<OkeResult<SessionData<string>>>(response);
                 if (okeResult.success)
                 {
                     addAlter(EnumExtend.GetDisplayText(OperateEnum.OP_SUCC), CxFlatAlertBox.AlertType.Success);
                     timer.Stop();
-                    questionData.question.questionId = int.Parse(okeResult.error);
-                    AnswerSituationForm answerSituationForm = new AnswerSituationForm();
-                    answerSituationForm.load(questionData.question);
-                    answerSituationForm.ShowDialog();
+                    //voteData.vote.voteId = int.Parse(okeResult.error);
+                    //VoteSituationForm voteSituationForm = new VoteSituationForm();
+                    //voteSituationForm.ShowDialog();
                     timer.Tick += formClose_Tick;
                     timer.Start();
-                }
-                else
-                {
-                    addAlter(EnumExtend.GetDisplayText(OperateEnum.OP_FAIL), CxFlatAlertBox.AlertType.Error);
-                    unlockButton();
                 }
             }
             catch (Exception)
             {
-                addAlter(Resources.ExceptionTip, CxFlatAlertBox.AlertType.Error);
+                addAlter(EnumExtend.GetDisplayText(OperateEnum.OP_FAIL), CxFlatAlertBox.AlertType.Error);
                 unlockButton();
             }
-           
             unlockButton();
         }
         #endregion

@@ -70,6 +70,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
     <DefineConstants>$(DefineConstants);DEBUG;TRACE</DefineConstants>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>GlobalizationRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <!--
     This section defines properties that are set when the "Release" configuration is selected.
@@ -100,8 +101,9 @@
   -->
   <ItemGroup>
     <Reference Include="Accessibility" />
-    <Reference Include="CxFlatUI">
-      <HintPath>..\..\..\..\CxFlatUI-master\CxFlatUI\bin\Debug\CxFlatUI.dll</HintPath>
+    <Reference Include="CxFlatUI, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\csq\Desktop\CxFlatUI.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -138,6 +140,9 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="ThoughtWorks.QRCode, Version=1.0.4778.30637, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ThoughtWorks.QRCode.1.1.0\lib\ThoughtWorks.QRCode.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualStudio.Tools.Applications.Runtime, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -161,11 +166,13 @@
   -->
   <ItemGroup>
     <Compile Include="Dto\AnswerData.cs" />
+    <Compile Include="Dto\CourseRecordData.cs" />
     <Compile Include="Dto\OkeResult.cs" />
     <Compile Include="Dto\QuestionData.cs" />
     <Compile Include="Dto\SessionData.cs" />
     <Compile Include="Dto\UpdateUserData.cs" />
     <Compile Include="Dto\UserData.cs" />
+    <Compile Include="Dto\VoteData.cs" />
     <Compile Include="Entity\Course.cs" />
     <Compile Include="Entity\CourseRecord.cs" />
     <Compile Include="Entity\Option.cs" />
@@ -176,6 +183,9 @@
     <Compile Include="Entity\StudentAnswer.cs" />
     <Compile Include="Entity\Teacher.cs" />
     <Compile Include="Entity\User.cs" />
+    <Compile Include="Entity\Vote.cs" />
+    <Compile Include="Entity\VoteChoice.cs" />
+    <Compile Include="Entity\VoteStudent.cs" />
     <Compile Include="Enums\ButtonNameEnum.cs" />
     <Compile Include="Enums\CheckedEnum.cs" />
     <Compile Include="Enums\EnumExtend.cs" />
@@ -193,11 +203,22 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="TaskPane\JudgeTaskPane.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="TaskPane\JudgeTaskPane.Designer.cs">
       <DependentUpon>JudgeTaskPane.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TaskPane\MultipleChoiceTaskPane.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TaskPane\MultipleChoiceTaskPane.Designer.cs">
+      <DependentUpon>MultipleChoiceTaskPane.cs</DependentUpon>
     </Compile>
     <Compile Include="TaskPane\SingleChoiceTaskPane.cs">
       <SubType>UserControl</SubType>
@@ -205,8 +226,15 @@
     <Compile Include="TaskPane\SingleChoiceTaskPane.Designer.cs">
       <DependentUpon>SingleChoiceTaskPane.cs</DependentUpon>
     </Compile>
+    <Compile Include="TaskPane\VoteTaskPane.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TaskPane\VoteTaskPane.Designer.cs">
+      <DependentUpon>VoteTaskPane.cs</DependentUpon>
+    </Compile>
     <Compile Include="Uitls\DataUitls.cs" />
     <Compile Include="Uitls\HttpUitls.cs" />
+    <Compile Include="Uitls\MyQRUitls.cs" />
     <Compile Include="Uitls\ShapesUitls.cs" />
     <Compile Include="Uitls\UserUitls.cs" />
     <Compile Include="WinForms\AnswerSituationForm.cs">
@@ -226,6 +254,12 @@
     </Compile>
     <Compile Include="WinForms\DownForm.Designer.cs">
       <DependentUpon>DownForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\FillAnswerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\FillAnswerForm.Designer.cs">
+      <DependentUpon>FillAnswerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="WinForms\InfoForm.cs">
       <SubType>Form</SubType>
@@ -275,10 +309,10 @@
     <Compile Include="WinForms\SetQuestForm.Designer.cs">
       <DependentUpon>SetQuestForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="WinForms\SimpleQuestionTaskPane.cs">
+    <Compile Include="TaskPane\SimpleQuestionTaskPane.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="WinForms\SimpleQuestionTaskPane.Designer.cs">
+    <Compile Include="TaskPane\SimpleQuestionTaskPane.Designer.cs">
       <DependentUpon>SimpleQuestionTaskPane.cs</DependentUpon>
     </Compile>
     <Compile Include="WinForms\StudentGetQuesForm.cs">
@@ -293,6 +327,12 @@
     <Compile Include="WinForms\SubmitQuestionForm.Designer.cs">
       <DependentUpon>SubmitQuestionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="WinForms\SubmitVoteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\SubmitVoteForm.Designer.cs">
+      <DependentUpon>SubmitVoteForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="WinForms\TeacherSetQuesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -305,10 +345,10 @@
     <Compile Include="WinForms\UpclassForm.Designer.cs">
       <DependentUpon>UpclassForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="WinForms\FillTaskPane.cs">
+    <Compile Include="TaskPane\FillTaskPane.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="WinForms\FillTaskPane.Designer.cs">
+    <Compile Include="TaskPane\FillTaskPane.Designer.cs">
       <DependentUpon>FillTaskPane.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="OkeRibbon.resx">
@@ -316,19 +356,20 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="TaskPane\JudgeTaskPane.resx">
       <DependentUpon>JudgeTaskPane.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TaskPane\MultipleChoiceTaskPane.resx">
+      <DependentUpon>MultipleChoiceTaskPane.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TaskPane\SingleChoiceTaskPane.resx">
       <DependentUpon>SingleChoiceTaskPane.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TaskPane\VoteTaskPane.resx">
+      <DependentUpon>VoteTaskPane.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinForms\AnswerSituationForm.resx">
       <DependentUpon>AnswerSituationForm.cs</DependentUpon>
@@ -338,6 +379,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WinForms\DownForm.resx">
       <DependentUpon>DownForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\FillAnswerForm.resx">
+      <DependentUpon>FillAnswerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinForms\InfoForm.resx">
       <DependentUpon>InfoForm.cs</DependentUpon>
@@ -363,7 +407,7 @@
     <EmbeddedResource Include="WinForms\SetQuestForm.resx">
       <DependentUpon>SetQuestForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WinForms\SimpleQuestionTaskPane.resx">
+    <EmbeddedResource Include="TaskPane\SimpleQuestionTaskPane.resx">
       <DependentUpon>SimpleQuestionTaskPane.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinForms\StudentGetQuesForm.resx">
@@ -372,13 +416,16 @@
     <EmbeddedResource Include="WinForms\SubmitQuestionForm.resx">
       <DependentUpon>SubmitQuestionForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\SubmitVoteForm.resx">
+      <DependentUpon>SubmitVoteForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WinForms\TeacherSetQuesForm.resx">
       <DependentUpon>TeacherSetQuesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinForms\UpclassForm.resx">
       <DependentUpon>UpclassForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WinForms\FillTaskPane.resx">
+    <EmbeddedResource Include="TaskPane\FillTaskPane.resx">
       <DependentUpon>FillTaskPane.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Oke_teacher_TemporaryKey.pfx" />
@@ -428,6 +475,7 @@
     <Content Include="Resources\Oke_judge.png" />
     <None Include="Resources\Oke_SingleChoice.png" />
     <None Include="Resources\Oke_rollcall.png" />
+    <None Include="Resources\Oke_MultipleChoice.png" />
     <Content Include="Resources\upclassicon-08.png" />
     <Content Include="Resources\upclassicon-081.png" />
   </ItemGroup>
