@@ -216,4 +216,9 @@ public class CourseServiceImpl implements CourseService {
 	public List<Vote> getVoteList(Course course) {
 		return voteDao.queryByCourseNumber(course.getCourseNumber());
 	}
+
+	@Override
+	public List<CourseRecord> getCourseList(int studentId) {
+		return courseRecordDao.queryByStudentId(studentId);
+	}
 }

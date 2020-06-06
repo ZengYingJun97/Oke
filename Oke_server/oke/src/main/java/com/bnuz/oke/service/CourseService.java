@@ -41,4 +41,6 @@ public interface CourseService {
 	List<VoteStudent> getVoteStudentList(Vote vote);
 
 	List<Vote> getVoteList(Course course);
+
+	List<CourseRecord> getCourseList(int studentId);
 }
