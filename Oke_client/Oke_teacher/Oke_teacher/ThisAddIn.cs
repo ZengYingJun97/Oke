@@ -289,16 +289,16 @@ namespace Oke_teacher
             question.questionDescribe = activeSlide.Shapes["questionDescribe"].TextFrame.TextRange.Text;
             question.questionAnswer = activeSlide.Shapes["questionAnswer"].TextFrame.TextRange.Text;
             System.Diagnostics.Debug.WriteLine("触发了!!");
-            List<Option> optionList = new List<Option>();
+            //List<Option> optionList = new List<Option>();
 
-            Option option = new Option();
-            option.optionType = activeSlide.Shapes["questionAnswer"].TextFrame.TextRange.Text;
-            option.optionDescribe = activeSlide.Shapes["questionDescribe"].TextFrame.TextRange.Text;
-            optionList.Add(option);
+            //Option option = new Option();
+            //option.optionType = activeSlide.Shapes["questionAnswer"].TextFrame.TextRange.Text;
+            //option.optionDescribe = activeSlide.Shapes["questionDescribe"].TextFrame.TextRange.Text;
+            //optionList.Add(option);
 
             QuestionData questionData = new QuestionData();
             questionData.question = question;
-            questionData.optionList = optionList;
+            //questionData.optionList = optionList;
             System.Diagnostics.Debug.WriteLine("触发了!!!~~");
             SubmitQuestionForm submitQuestionForm = new SubmitQuestionForm();
             submitQuestionForm.questionData = questionData;
