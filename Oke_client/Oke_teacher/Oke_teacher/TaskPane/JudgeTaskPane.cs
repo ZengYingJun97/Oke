@@ -69,13 +69,13 @@ namespace Oke_teacher.WinForms
 
             if (cxFlatCheckBox1.Checked == true)
             {
-                answer.Text = "True";
-                MySlide.Shapes["questionAnswer"].TextFrame.TextRange.Text = "True";
+                answer.Text = "True;";
+                MySlide.Shapes["questionAnswer"].TextFrame.TextRange.Text = "True;";
             }
             else
             {
-                answer.Text = "False";
-                MySlide.Shapes["questionAnswer"].TextFrame.TextRange.Text = "False";
+                answer.Text = "False;";
+                MySlide.Shapes["questionAnswer"].TextFrame.TextRange.Text = "False;";
             }
             System.Diagnostics.Debug.WriteLine(MySlide.Shapes["questionScore"].TextFrame.TextRange.Text+"xixixix");
             System.Diagnostics.Debug.WriteLine(MySlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text + "xixixix");
@@ -99,7 +99,7 @@ namespace Oke_teacher.WinForms
             JudegeQuestText.Text = NewSlide.Shapes["questionDescribe"].TextFrame.TextRange.Text;
             scoreBox2.Text = NewSlide.Shapes["questionScore"].TextFrame.TextRange.Text;
             limitBox1.Text = NewSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text;
-            if (NewSlide.Shapes["questionAnswer"].TextFrame.TextRange.Text=="True")
+            if (NewSlide.Shapes["questionAnswer"].TextFrame.TextRange.Text=="True;")
             {
                 cxFlatCheckBox2.Checked = false;
                 cxFlatCheckBox1.Checked = true;
