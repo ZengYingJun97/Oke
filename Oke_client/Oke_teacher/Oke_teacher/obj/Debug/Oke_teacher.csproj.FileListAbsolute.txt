@@ -31,7 +31,6 @@ F:\Oke\Oke_client\Oke_teacher\Oke_teacher\bin\Debug\Oke_teacher.dll
 F:\Oke\Oke_client\Oke_teacher\Oke_teacher\bin\Debug\Oke_teacher.pdb
 F:\Oke\Oke_client\Oke_teacher\Oke_teacher\bin\Debug\Oke_teacher.dll.manifest
 F:\Oke\Oke_client\Oke_teacher\Oke_teacher\bin\Debug\Oke_teacher.vsto
-F:\Oke\Oke_client\Oke_teacher\Oke_teacher\bin\Debug\CxFlatUI.dll
 F:\Oke\Oke_client\Oke_teacher\Oke_teacher\bin\Debug\Microsoft.Office.Tools.Common.v4.0.Utilities.dll
 F:\Oke\Oke_client\Oke_teacher\Oke_teacher\bin\Debug\Microsoft.Office.Tools.v4.0.Framework.dll
 F:\Oke\Oke_client\Oke_teacher\Oke_teacher\bin\Debug\Newtonsoft.Json.dll
@@ -67,3 +66,5 @@ F:\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.pdb
 F:\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.TaskPane.MultipleChoiceTaskPane.resources
 F:\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.TaskPane.VoteTaskPane.resources
 F:\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.WinForms.SubmitVoteForm.resources
+F:\Oke\Oke_client\Oke_teacher\Oke_teacher\obj\Debug\Oke_teacher.WinForms.FillAnswerForm.resources
+F:\Oke\Oke_client\Oke_teacher\Oke_teacher\bin\Debug\ThoughtWorks.QRCode.dll
