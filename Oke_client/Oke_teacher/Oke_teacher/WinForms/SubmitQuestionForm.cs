@@ -181,7 +181,8 @@ namespace Oke_teacher.WinForms
             {
                 string url = Resources.Server + Resources.AddQuestionUrl;
                 string data = JsonConvert.SerializeObject(sessionData);
-                string response = HttpUitls.POST(url, data);
+                System.Diagnostics.Debug.WriteLine(data);//测试
+               string response = HttpUitls.POST(url, data);
                 OkeResult<SessionData<string>> okeResult = JsonConvert.DeserializeObject<OkeResult<SessionData<string>>>(response);
                 if (okeResult.success)
                 {

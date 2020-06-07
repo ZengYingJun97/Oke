@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -94,21 +95,36 @@ namespace Oke_teacher.WinForms
                 Course course = new Course();
                 sessionData.data = course;
                 sessionData.data.courseName = Classchoose.Text.Trim();
-                //MessageBox.Show(Classchoose.Text.Trim());
+                MessageBox.Show(Classchoose.Text.Trim());
                 sessionData.data.teacher = LoginInfo.CurrentUser.data;
                 string url = Resources.Server + Resources.OnlineStudentListUrl;
                 string data = JsonConvert.SerializeObject(sessionData);
                 string response = HttpUitls.POST(url, data);
-                //MessageBox.Show(response);
+                MessageBox.Show(response);
 
-                OkeResult<SessionData<List<CourseRecord>>> okeResult2 = JsonConvert.DeserializeObject<OkeResult<SessionData<List<CourseRecord>>>>(response);
+                OkeResult<SessionData<List<CourseRecordData>>> okeResult2 = JsonConvert.DeserializeObject<OkeResult<SessionData<List<CourseRecordData>>>>(response);
                 if (okeResult2.success)
                 {
                     AddAlter("成功查询学生名单", CxFlatAlertBox.AlertType.Success);
 
                     #region 把接受到的数据展示在datagridview
-                    List<CourseRecord> Studentlist = okeResult2.data.data;
-                    studentdataview.DataSource = new BindingList<CourseRecord>(Studentlist);
+                    List<CourseRecordData> Alllist = okeResult2.data.data;
+                    int[] scorelist = Alllist.Select(x => x.score).ToArray();
+                    List<CourseRecord> CAlllist = Alllist.Select(x => x.courseRecord).ToList();
+
+                    //把上面读出来的数据加入datatable
+                    System.Data.DataTable studentinfo = new System.Data.DataTable();
+                    studentinfo = (System.Data.DataTable)ToDataTable(CAlllist);
+                    studentinfo.Columns.Add("score", typeof(string));
+                    int j = 0;
+                    foreach (DataRow dr in studentinfo.Rows)
+                    {
+                        dr["score"] = scorelist[j];
+                        j++;
+                    }
+
+                    //studentdataview.DataSource = new BindingList<CourseRecord>(CAlllist);
+                    studentdataview.DataSource = studentinfo;
                     #endregion
 
                 }
@@ -208,6 +224,63 @@ namespace Oke_teacher.WinForms
         }
         #endregion
 
+        #region list<t>转datatable
+        private System.Data.DataTable ToDataTable<T>(List<T> items)
+        {
+            var tb = new System.Data.DataTable(typeof(T).Name);
 
+            System.Reflection.PropertyInfo[] props = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+
+            foreach (System.Reflection.PropertyInfo prop in props)
+            {
+                Type t = GetCoreType(prop.PropertyType);
+                tb.Columns.Add(prop.Name, t);
+            }
+
+            foreach (T item in items)
+            {
+                var values = new object[props.Length];
+
+                for (int i = 0; i < props.Length; i++)
+                {
+                    values[i] = props[i].GetValue(item, null);
+                }
+
+                tb.Rows.Add(values);
+            }
+
+            return tb;
+        }
+
+        /// <summary>
+        /// Determine of specified type is nullable
+        /// </summary>
+        public static bool IsNullable(Type t)
+        {
+            return !t.IsValueType || (t.IsGenericType && t.GetGenericTypeDefinition() == typeof(Nullable<>));
+        }
+
+        /// <summary>
+        /// Return underlying type if type is Nullable otherwise return the type
+        /// </summary>
+        public static Type GetCoreType(Type t)
+        {
+            if (t != null && IsNullable(t))
+            {
+                if (!t.IsValueType)
+                {
+                    return t;
+                }
+                else
+                {
+                    return Nullable.GetUnderlyingType(t);
+                }
+            }
+            else
+            {
+                return t;
+            }
+        }
+        #endregion
     }
 }
