@@ -1,0 +1,113 @@
+.common-bg {
+    margin-top: 60px;
+}
+
+.login-logo-bg {
+    background-color: #bbdefb;
+}
+.logo-size {
+    width: 30%;
+}
+.logo-size2 {
+    width: 70%;
+}
+.boardtop-left {
+    color: white;
+    background: #54aff9;
+    border-radius: 0 10px 0 0;
+    box-shadow: 0 0 5px 0px #969696;
+    position: relative;
+    text-align: center;
+}
+.boardtop-right {
+    color: white;
+    background: #54aff9;
+    border-radius: 10px 0 0 0px;
+    box-shadow: 0 0 5px 0px #969696;
+    position: relative;
+    text-align: center;
+}
+.left-menu {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    background-color: #31364d;
+    width: 10%;
+    max-width: 10%;
+    min-width: 10%;
+    height: 100vh;
+    z-index: 2000;
+    position: relative;
+}
+.right-menu {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    width: 90%;
+    max-width: 90%;
+    min-width: 90%;
+    height: 100vh;
+    z-index: 2000;
+    position: relative;
+}
+.black-bg {
+    background-color: #31364d;
+    width: 10%;
+}
+.margin-bottom {
+    padding: 10px 0 10px 0;
+}
+.margin-top {
+    margin-top: 15px;
+}
+.margin-bottom2 {
+    margin-bottom: 20px;
+}
+.white {
+    color: #ffffff;
+    text-decoration: none;
+}
+.white:hover {
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #6a7191;
+}
+.a-block {
+    color: #ffffff;
+    text-decoration: none;
+    display: block;
+}
+.a-block:hover {
+    color: #ffffff;
+    text-decoration: none;
+    display: block;
+}
+.abs-bottom {
+    overflow-y: scroll;
+}
+.padding-top {
+    padding-top: 15px;
+}
+.card-link {
+    display: block;
+}
+.card-link:hover {
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+}
+.padding-bottom {
+    padding-bottom: 15px;
+}

@@ -1,6 +1,7 @@
 package com.bnuz.oke.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.bnuz.oke.api.WebSocketServer;
 import com.bnuz.oke.dto.*;
 import com.bnuz.oke.entity.*;
@@ -65,6 +66,7 @@ public class CourseController {
 					String courseRandom = RandomUitl.getRandom();
 
 					redisTemplate.opsForValue().set("sessionCourse:" + sessionId, "course:" + courseRandom, 60 * 60 * 24, TimeUnit.SECONDS);
+					redisTemplate.opsForValue().set("copyKey:course:" + courseRandom, course.getCourseNumber());
 					redisTemplate.opsForValue().set("course:" + courseRandom, course, 60 * 60 * 24, TimeUnit.SECONDS);
 
 					stringSessionData = new SessionData<>(sessionId, courseRandom);
@@ -105,6 +107,7 @@ public class CourseController {
 				try {
 					courseService.endCourse(course);
 					redisTemplate.delete("sessionCourse:" + sessionId);
+					redisTemplate.delete("copyKey:course:" + sessionData.getData());
 					redisTemplate.delete("course:" + sessionData.getData());
 					redisTemplate.delete("courseStudent:" + course.getCourseNumber());
 
@@ -192,7 +195,7 @@ public class CourseController {
 					courseService.addQuestion(question, optionList);
 
 					List<Student> studentList = redisTemplate.opsForList().range("courseStudent:" + course.getCourseNumber(), 0, -1);
-					String jsonString = JSON.toJSONString(sessionData.getData());
+					String jsonString = JSON.toJSONString(sessionData.getData(), SerializerFeature.DisableCircularReferenceDetect);
 					redisTemplate.opsForValue().set("answerQuestion:" + question.getQuestionId(), "0:0:" + studentList.size() );
 
 					for (Student student: studentList) {
@@ -278,7 +281,7 @@ public class CourseController {
 				answerData.setTotal(total);
 				answerData.setCorrect(correct);
 				answerData.setError(error);
-				answerData.setUnCommited(unCommitted);
+				answerData.setUnCommitted(unCommitted);
 
 				SessionData<AnswerData> stringSessionData = new SessionData<>(sessionId, answerData);
 				result = new OkeResult<>(true, stringSessionData);
@@ -438,7 +441,7 @@ public class CourseController {
 						studentVote += "0";
 					}
 					List<Student> studentList = redisTemplate.opsForList().range("courseStudent:" + course.getCourseNumber(), 0, -1);
-					String jsonString = JSON.toJSONString(sessionData.getData());
+					String jsonString = JSON.toJSONString(sessionData.getData(), SerializerFeature.DisableCircularReferenceDetect);
 					redisTemplate.opsForValue().set("studentVote:" + vote.getVoteId(), studentVote + ":" + studentList.size(), 60 * 60 * 24, TimeUnit.SECONDS);
 
 					for (Student student: studentList) {
@@ -557,6 +560,35 @@ public class CourseController {
 					ints.add(Integer.parseInt(s));
 				}
 				SessionData<List<Integer>> listSessionData = new SessionData<>(sessionId, ints);
+				result = new OkeResult<>(true, listSessionData);
+			} catch (Exception e) {
+				result = new OkeResult<>(false, OkeStateEnum.EXCEPTION_SERVER.getStateInfo());
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * 学生的课程列表 
+	 * @date 2020/06/06 16:04:31
+	 * @author handsome
+	 * @param 
+	 * @return com.bnuz.oke.dto.OkeResult<com.bnuz.oke.entity.CourseRecord>
+	 */        
+	@RequestMapping(value = "/student/course/list",
+			method = RequestMethod.POST,
+			produces = {"application/json;charset=UTF-8"})
+	@ResponseBody
+	public OkeResult<SessionData> getCourseList(@RequestBody SessionData<Student> sessionData) {
+		OkeResult<SessionData> result;
+		String sessionId = sessionData.getSessionId();
+		String value = (String) redisTemplate.opsForValue().get("session:" + sessionId);
+		if (value == null) {
+			result = new OkeResult<>(false, LoginStateEnum.INVALID_OP.getStateInfo());
+		} else {
+			try {
+				List<CourseRecord> courseRecordList = courseService.getCourseList(sessionData.getData().getStudentId());
+				SessionData<List> listSessionData = new SessionData<>(sessionId, courseRecordList);
 				result = new OkeResult<>(true, listSessionData);
 			} catch (Exception e) {
 				result = new OkeResult<>(false, OkeStateEnum.EXCEPTION_SERVER.getStateInfo());

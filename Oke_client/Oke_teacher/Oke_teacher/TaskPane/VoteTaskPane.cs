@@ -23,9 +23,9 @@ namespace Oke_teacher.TaskPane
             InitializeComponent();
             
         }
-        private void addOption(Slide slide, string text, Single left1, Single top1, Single left2, Single top2)
+        private void addVoteChoice(Slide slide, string text, Single left1, Single top1, Single left2, Single top2)
         {
-            slide.Shapes.AddShape(MsoAutoShapeType.msoShapeOval, left1, top1, 38F, 44F).Name = "option" + text + "Type";
+            slide.Shapes.AddShape(MsoAutoShapeType.msoShapeRectangle, left1, top1, 38F, 44F).Name = "option" + text + "Type";
             slide.Shapes["option" + text + "Type"].Fill.ForeColor.RGB = 211 + 211 * 256 + 211 * 256 * 256;
             slide.Shapes["option" + text + "Type"].TextFrame.TextRange.Text = text;
             slide.Shapes["option" + text + "Type"].TextFrame.TextRange.Font.Size = 20;
@@ -47,7 +47,7 @@ namespace Oke_teacher.TaskPane
                 optionDButton.Visible = true;
                 if (!ShapesUitls.IsExistedOfShape(activeSlide, "optionDType"))
                 {
-                    addOption(activeSlide, "D", 91F, 316F, 152F, 322F);
+                    addVoteChoice(activeSlide, "D", 91F, 316F, 152F, 322F);
                 }
                 subOptionButton.Enabled = true;
                 return;
@@ -57,7 +57,7 @@ namespace Oke_teacher.TaskPane
                 optionEButton.Visible = true;
                 if (!ShapesUitls.IsExistedOfShape(activeSlide, "optionEType"))
                 {
-                    addOption(activeSlide, "E", 91F, 378F, 152F, 381F);
+                    addVoteChoice(activeSlide, "E", 91F, 378F, 152F, 381F);
                 }
                 subOptionButton.Enabled = true;
                 return;
@@ -67,7 +67,7 @@ namespace Oke_teacher.TaskPane
                 optionFButton.Visible = true;
                 if (!ShapesUitls.IsExistedOfShape(activeSlide, "optionFType"))
                 {
-                    addOption(activeSlide, "F", 91F, 435F, 152F, 440F);
+                    addVoteChoice(activeSlide, "F", 91F, 435F, 152F, 440F);
                 }
                 subOptionButton.Enabled = true;
                 return;
@@ -77,7 +77,7 @@ namespace Oke_teacher.TaskPane
                 optionGButton.Visible = true;
                 if (!ShapesUitls.IsExistedOfShape(activeSlide, "optionGType"))
                 {
-                    addOption(activeSlide, "G", 91F, 494F, 152F, 500F);
+                    addVoteChoice(activeSlide, "G", 91F, 494F, 152F, 500F);
                 }
                 subOptionButton.Enabled = true;
                 addOptionButton.Enabled = false;
