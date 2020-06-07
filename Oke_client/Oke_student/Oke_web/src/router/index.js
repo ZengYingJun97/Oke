@@ -5,6 +5,7 @@ import login from '@/page/login'
 import studentIndex from '@/page/index'
 import courseList from '@/page/course/courseList'
 import course from '@/page/course/course'
+import personalInfo from '@/page/personalInfo/personalInfo'
 
 Vue.use(Router)
 
@@ -27,7 +28,8 @@ export default new Router({
       component: studentIndex,
       children: [
         {path: 'course/list', name: 'courseList', component: courseList,meta:{requireAuth: false}},
-        {path: 'course', name: 'course', component: course,meta:{requireAuth: false}}
+        {path: 'course', name: 'course', component: course,meta:{requireAuth: false}},
+        {path: 'info', name: 'personalInfo', component: personalInfo,meta:{requireAuth: false}}
       ]
     }
   ]

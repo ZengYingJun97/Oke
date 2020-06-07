@@ -1,6 +1,7 @@
 package com.bnuz.oke.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.bnuz.oke.api.WebSocketServer;
 import com.bnuz.oke.dto.*;
 import com.bnuz.oke.entity.*;
@@ -194,7 +195,7 @@ public class CourseController {
 					courseService.addQuestion(question, optionList);
 
 					List<Student> studentList = redisTemplate.opsForList().range("courseStudent:" + course.getCourseNumber(), 0, -1);
-					String jsonString = JSON.toJSONString(sessionData.getData());
+					String jsonString = JSON.toJSONString(sessionData.getData(), SerializerFeature.DisableCircularReferenceDetect);
 					redisTemplate.opsForValue().set("answerQuestion:" + question.getQuestionId(), "0:0:" + studentList.size() );
 
 					for (Student student: studentList) {
@@ -280,7 +281,7 @@ public class CourseController {
 				answerData.setTotal(total);
 				answerData.setCorrect(correct);
 				answerData.setError(error);
-				answerData.setUnCommited(unCommitted);
+				answerData.setUnCommitted(unCommitted);
 
 				SessionData<AnswerData> stringSessionData = new SessionData<>(sessionId, answerData);
 				result = new OkeResult<>(true, stringSessionData);
@@ -440,7 +441,7 @@ public class CourseController {
 						studentVote += "0";
 					}
 					List<Student> studentList = redisTemplate.opsForList().range("courseStudent:" + course.getCourseNumber(), 0, -1);
-					String jsonString = JSON.toJSONString(sessionData.getData());
+					String jsonString = JSON.toJSONString(sessionData.getData(), SerializerFeature.DisableCircularReferenceDetect);
 					redisTemplate.opsForValue().set("studentVote:" + vote.getVoteId(), studentVote + ":" + studentList.size(), 60 * 60 * 24, TimeUnit.SECONDS);
 
 					for (Student student: studentList) {

@@ -8,7 +8,7 @@
         </nav>
         <div class="h-100 abs-bottom">
             <div class="container padding-top" >
-                <div class="row ">
+                <div class="row">
                     <div class="col-sm-4 margin-bottom2" data-spy="scroll" data-offset="0" v-for="item in courseRecordList" :key="item.courseNumber">
                         <router-link :to="{name: 'course', params: {course: item}}" class="card-link text-dark">
                             <div class="card">
