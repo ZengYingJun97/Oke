@@ -191,8 +191,8 @@ namespace Oke_teacher.WinForms
                     AnswerSituationForm answerSituationForm = new AnswerSituationForm();
                     answerSituationForm.load(questionData.question);
                     answerSituationForm.ShowDialog();
-                    timer.Tick += formClose_Tick;
-                    timer.Start();
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
                 }
                 else
                 {

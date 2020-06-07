@@ -379,7 +379,7 @@ namespace Oke_teacher.Properties {
         }
         
         /// <summary>
-        ///   查找类似 http://120.25.193.138:8080/oke 的本地化字符串。
+        ///   查找类似 http://192.168.3.18:8080/oke 的本地化字符串。
         /// </summary>
         internal static string Server {
             get {
