@@ -15,6 +15,7 @@ using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 using System.Windows.Forms;
 
 namespace Oke_teacher.WinForms
@@ -103,21 +104,24 @@ namespace Oke_teacher.WinForms
                 //发送HTTP请求访问服务器
                 try
                 {
-                    string url = Resources.Server + Resources.VoteSituUrl;
+                    string url = Resources.Server + Resources.VoteSituAnonUrl;
                     string data = JsonConvert.SerializeObject(sessionData);
                     string response = HttpUitls.POST(url, data);
+                    System.Diagnostics.Debug.WriteLine(data + "hahxxxi");
                     System.Diagnostics.Debug.WriteLine(response + "hahaahahxxxi");
-                    OkeResult<SessionData<VoteResultData>> okeResult = JsonConvert.DeserializeObject<OkeResult<SessionData<VoteResultData>>>(response);
+                    OkeResult<SessionData<List<int>>> okeResult = JsonConvert.DeserializeObject<OkeResult<SessionData<List<int>>>>(response);
                     if (okeResult.success)
                     {
-                        int number;
-                        totalBox.Text = okeResult.data.data.total.ToString();
-                        number = int.Parse(totalBox.Text);
+                        int number=0;
+                        totalBox.Text = okeResult.data.data.Last().ToString();
+                        //System.Diagnostics.Debug.WriteLine(okeResult.data.data.total.ToString() + "hahaahahxxxi");
+                        //number = int.Parse(totalBox.Text);
                         //correctBox.Text = okeResult.data.data.correct.ToString();
                         //unCommitBox.Text = okeResult.data.data.unCommitted.ToString();
 
                         //errorBox.Text = okeResult.data.data.error.ToString();
-                        int[] xixi = okeResult.data.data.ints.ToArray();
+                        number = okeResult.data.data.Last();
+                        int[] xixi = okeResult.data.data.ToArray();
                         for(int i = 0; i < votecount; i++)
                         {
                             number -= xixi[i];
@@ -130,11 +134,19 @@ namespace Oke_teacher.WinForms
                         
                         string[] tt = new string[count];
                         Array.ConstrainedCopy(xData, 0, tt, 0, count);
-                        
+                        int[] xx = new int[count];
+                        Array.ConstrainedCopy(xixi, 0, xx, 0, count);
+
 
                         chart1.Series[0]["PieLabelStyle"] = "Outside";//将文字移到外侧
                         chart1.Series[0]["PieLineColor"] = "Black";//绘制黑色的连线。
-                        chart1.Series[0].Points.DataBindXY(tt, xixi);
+                        chart1.ChartAreas[0].AxisY.MajorGrid.Enabled = false;//隐藏网格
+                        chart1.ChartAreas[0].AxisX.MajorGrid.Enabled = false;//隐藏网格
+                        chart1.ChartAreas[0].AxisY.LabelStyle.Format = "0%";//格式化，为了显示百分号
+                        //chart1.ChartAreas[0].AxisX.Minimum = 0.5;//设置最小值，为了让第一个柱紧挨坐标轴
+                        chart1.Series[0].Label = "#VAL{P}";
+                        chart1.Series[0].IsValueShownAsLabel = true;//显示标签
+                        chart1.Series[0].Points.DataBindXY(tt, xx);
                     }
                     else
                     {
@@ -149,6 +161,9 @@ namespace Oke_teacher.WinForms
 
                         chart1.Series[0]["PieLabelStyle"] = "Outside";//将文字移到外侧
                         chart1.Series[0]["PieLineColor"] = "Black";//绘制黑色的连线。
+                        chart1.ChartAreas[0].AxisY.MajorGrid.Enabled = false;//隐藏网格
+                        chart1.ChartAreas[0].AxisY.LabelStyle.Format = "0%";//格式化，为了显示百分号
+                        chart1.ChartAreas[0].AxisX.Minimum = 0.5;//设置最小值，为了让第一个柱紧挨坐标轴
                         chart1.Series[0].Points.DataBindXY(tt, xx);
                     }
                 }
