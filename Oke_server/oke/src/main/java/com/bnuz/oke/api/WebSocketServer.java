@@ -46,12 +46,6 @@ public class WebSocketServer {
 			webSocketMap.put(studentId, this);
 		}
 		logger.info("学生连接:" + studentId);
-
-		try {
-			sendMessage("连接成功");
-		} catch (IOException e) {
-			logger.error("学生:" + studentId + ", 网络异常!!!!!!");
-		}
 	}
 
 	/**

@@ -295,7 +295,7 @@ namespace Oke_teacher
 
             #region 插入填空题题目
             Microsoft.Office.Interop.PowerPoint.TextRange FQTextRng = null;
-            NewFillQuestionSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 150F, 400F, 300F).Name = "questionDescribe";
+            NewFillQuestionSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 150F, 777F, 300F).Name = "questionDescribe";
             FQTextRng = NewFillQuestionSlide.Shapes["questionDescribe"].TextFrame.TextRange;//请注意此处Shapes的索引，由于文本框是第二个添加的Shapes，所以此处索引是2。
 
             FQTextRng.Font.NameFarEast = "微软雅黑";//文本框中，中文的字体                   
@@ -358,7 +358,7 @@ namespace Oke_teacher
             NewSimpleQuestionSlide.Shapes["questionAnswer"].TextFrame.TextRange.Text = "0";
             NewSimpleQuestionSlide.Shapes["questionAnswer"].Visible = MsoTriState.msoFalse;
 
-            NewSimpleQuestionSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 150F, 400F, 300F).Name = "questionDescribe";
+            NewSimpleQuestionSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 150F, 777F, 300F).Name = "questionDescribe";
 
             SQTextRng = NewSimpleQuestionSlide.Shapes[2].TextFrame.TextRange;//请注意此处Shapes的索引，由于文本框是第二个添加的Shapes，所以此处索引是2。
 
