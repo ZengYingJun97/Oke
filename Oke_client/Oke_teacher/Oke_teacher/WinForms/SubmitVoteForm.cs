@@ -168,8 +168,12 @@ namespace Oke_teacher.WinForms
                     addAlter(EnumExtend.GetDisplayText(OperateEnum.OP_SUCC), CxFlatAlertBox.AlertType.Success);
                     timer.Stop();
                     //voteData.vote.voteId = int.Parse(okeResult.error);
-                    //VoteSituationForm voteSituationForm = new VoteSituationForm();
-                    //voteSituationForm.ShowDialog();
+                    VoteSituationForm voteSituationForm = new VoteSituationForm();
+                    //voteSituationForm.voteData = voteData;
+                    voteSituationForm.votecount = voteData.voteChoiceList.Count;
+                    voteSituationForm.load(voteData.vote);
+                    System.Diagnostics.Debug.WriteLine(voteData.voteChoiceList.Count + "hahaha");
+                    voteSituationForm.ShowDialog();
                     timer.Tick += formClose_Tick;
                     timer.Start();
                 }
