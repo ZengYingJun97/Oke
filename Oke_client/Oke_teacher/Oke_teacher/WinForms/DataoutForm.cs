@@ -96,12 +96,12 @@ namespace Oke_teacher.WinForms
                 Course course = new Course();
                 sessionData.data = course;
                 sessionData.data.courseNumber = Classlist[Classchoose.SelectedIndex].courseNumber;//获取下拉框里面选中的索引值，在classlist里面查找其课程码
-                MessageBox.Show(Classchoose.Text.Trim());
+                //MessageBox.Show(Classchoose.Text.Trim());
                 sessionData.data.teacher = LoginInfo.CurrentUser.data;
                 string url = Resources.Server + Resources.OnlineStudentListUrl;
                 string data = JsonConvert.SerializeObject(sessionData);
                 string response = HttpUitls.POST(url, data);
-                MessageBox.Show(response);
+                //MessageBox.Show(response);
 
                 OkeResult<SessionData<List<CourseRecordData>>> okeResult2 = JsonConvert.DeserializeObject<OkeResult<SessionData<List<CourseRecordData>>>>(response);
                 if (okeResult2.success)
@@ -110,7 +110,7 @@ namespace Oke_teacher.WinForms
 
                     #region 把接受到的数据展示在datagridview
                     List<CourseRecordData> Alllist = okeResult2.data.data;
-                    MessageBox.Show(Alllist.ToString());
+                    //MessageBox.Show(Alllist.ToString());
                     int[] scorelist = Alllist.Select(x => x.score).ToArray();//读出score列
 
                     List<CourseRecord> CAlllist = Alllist.Select(x => x.courseRecord).ToList();//读出CourseRecord的内容
