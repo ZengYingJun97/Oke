@@ -66,6 +66,7 @@ namespace Oke_teacher.WinForms
                     {
                         this.Classchoose.Items.Add(p.courseName);
                     }
+                    AdjustComboBoxDropDownListWidth(Classchoose);
                 }
                 else
                 {
@@ -95,12 +96,12 @@ namespace Oke_teacher.WinForms
                 Course course = new Course();
                 sessionData.data = course;
                 sessionData.data.courseNumber = Classlist[Classchoose.SelectedIndex].courseNumber;//获取下拉框里面选中的索引值，在classlist里面查找其课程码
-                MessageBox.Show(Classchoose.Text.Trim());
+                //MessageBox.Show(Classchoose.Text.Trim());
                 sessionData.data.teacher = LoginInfo.CurrentUser.data;
                 string url = Resources.Server + Resources.OnlineStudentListUrl;
                 string data = JsonConvert.SerializeObject(sessionData);
                 string response = HttpUitls.POST(url, data);
-                MessageBox.Show(response);
+                //MessageBox.Show(response);
 
                 OkeResult<SessionData<List<CourseRecordData>>> okeResult2 = JsonConvert.DeserializeObject<OkeResult<SessionData<List<CourseRecordData>>>>(response);
                 if (okeResult2.success)
@@ -109,7 +110,7 @@ namespace Oke_teacher.WinForms
 
                     #region 把接受到的数据展示在datagridview
                     List<CourseRecordData> Alllist = okeResult2.data.data;
-                    MessageBox.Show(Alllist.ToString());
+                    //MessageBox.Show(Alllist.ToString());
                     int[] scorelist = Alllist.Select(x => x.score).ToArray();//读出score列
 
                     List<CourseRecord> CAlllist = Alllist.Select(x => x.courseRecord).ToList();//读出CourseRecord的内容
@@ -302,6 +303,54 @@ namespace Oke_teacher.WinForms
             else
             {
                 return t;
+            }
+        }
+        #endregion
+
+        #region 调整下拉框宽度
+        private void AdjustComboBoxDropDownListWidth(object comboBox)
+        {
+            Graphics g = null;
+            System.Drawing.Font font = null;
+            try
+            {
+                ComboBox senderComboBox = null;
+                if (comboBox is ComboBox)
+                    senderComboBox = (ComboBox)comboBox;
+                else if (comboBox is ToolStripComboBox)
+                    senderComboBox = ((ToolStripComboBox)comboBox).ComboBox;
+                else
+                    return;
+
+                int width = senderComboBox.Width;
+                g = senderComboBox.CreateGraphics();
+                font = senderComboBox.Font;
+
+                //checks if a scrollbar will be displayed.
+                //If yes, then get its width to adjust the size of the drop down list.
+                int vertScrollBarWidth =
+                    (senderComboBox.Items.Count > senderComboBox.MaxDropDownItems)
+                    ? SystemInformation.VerticalScrollBarWidth : 0;
+
+                int newWidth;
+                foreach (object s in senderComboBox.Items)  //Loop through list items and check size of each items.
+                {
+                    if (s != null)
+                    {
+                        newWidth = (int)g.MeasureString(s.ToString().Trim(), font).Width
+                            + vertScrollBarWidth;
+                        if (width < newWidth)
+                            width = newWidth;   //set the width of the drop down list to the width of the largest item.
+                    }
+                }
+                senderComboBox.DropDownWidth = width;
+            }
+            catch
+            { }
+            finally
+            {
+                if (g != null)
+                    g.Dispose();
             }
         }
         #endregion
