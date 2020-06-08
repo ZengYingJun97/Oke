@@ -224,7 +224,7 @@
     <comment>异常提示</comment>
   </data>
   <data name="Server" xml:space="preserve">
-    <value>http://www.microoke.xyz:8080/oke</value>
+    <value>http://120.25.193.138:8080/oke</value>
     <comment>服务器地址</comment>
   </data>
   <data name="Oke_vote (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
