@@ -450,6 +450,13 @@ namespace Oke_teacher
             singleChoiceSlide.Shapes["questionAnswer"].TextFrame.TextRange.Text = "A;";
             singleChoiceSlide.Shapes["questionAnswer"].Visible = MsoTriState.msoFalse;
 
+            singleChoiceSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 91F, 16F, 82F, 33F).Name = "questionTypeText";
+            singleChoiceSlide.Shapes["questionTypeText"].TextFrame.TextRange.Text = "单选题";
+            singleChoiceSlide.Shapes["questionTypeText"].TextFrame.TextRange.Font.NameFarEast = "微软雅黑";
+            singleChoiceSlide.Shapes["questionTypeText"].TextFrame.TextRange.Font.NameAscii = "Calibri";
+            singleChoiceSlide.Shapes["questionTypeText"].TextFrame.TextRange.Font.Size = 24;
+            singleChoiceSlide.Shapes["questionTypeText"].TextFrame.TextRange.Font.Bold = MsoTriState.msoCTrue;
+
             TextRange questionDescribe = null;
             singleChoiceSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 91F, 50F, 777F, 60F).Name = "questionDescribe";
             questionDescribe = singleChoiceSlide.Shapes["questionDescribe"].TextFrame.TextRange;
@@ -521,6 +528,13 @@ namespace Oke_teacher
             multipleChoiceSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "questionAnswer";
             multipleChoiceSlide.Shapes["questionAnswer"].TextFrame.TextRange.Text = "A;";
             multipleChoiceSlide.Shapes["questionAnswer"].Visible = MsoTriState.msoFalse;
+
+            multipleChoiceSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 91F, 16F, 82F, 33F).Name = "questionTypeText";
+            multipleChoiceSlide.Shapes["questionTypeText"].TextFrame.TextRange.Text = "多选题";
+            multipleChoiceSlide.Shapes["questionTypeText"].TextFrame.TextRange.Font.NameFarEast = "微软雅黑";
+            multipleChoiceSlide.Shapes["questionTypeText"].TextFrame.TextRange.Font.NameAscii = "Calibri";
+            multipleChoiceSlide.Shapes["questionTypeText"].TextFrame.TextRange.Font.Size = 24;
+            multipleChoiceSlide.Shapes["questionTypeText"].TextFrame.TextRange.Font.Bold = MsoTriState.msoCTrue;
 
             TextRange questionDescribe = null;
             multipleChoiceSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 91F, 50F, 777F, 60F).Name = "questionDescribe";
