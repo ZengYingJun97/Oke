@@ -66,6 +66,7 @@ namespace Oke_teacher.WinForms
                     {
                         this.Classchoose.Items.Add(p.courseName);
                     }
+                    AdjustComboBoxDropDownListWidth(Classchoose);
                 }
                 else
                 {
@@ -302,6 +303,54 @@ namespace Oke_teacher.WinForms
             else
             {
                 return t;
+            }
+        }
+        #endregion
+
+        #region 调整下拉框宽度
+        private void AdjustComboBoxDropDownListWidth(object comboBox)
+        {
+            Graphics g = null;
+            System.Drawing.Font font = null;
+            try
+            {
+                ComboBox senderComboBox = null;
+                if (comboBox is ComboBox)
+                    senderComboBox = (ComboBox)comboBox;
+                else if (comboBox is ToolStripComboBox)
+                    senderComboBox = ((ToolStripComboBox)comboBox).ComboBox;
+                else
+                    return;
+
+                int width = senderComboBox.Width;
+                g = senderComboBox.CreateGraphics();
+                font = senderComboBox.Font;
+
+                //checks if a scrollbar will be displayed.
+                //If yes, then get its width to adjust the size of the drop down list.
+                int vertScrollBarWidth =
+                    (senderComboBox.Items.Count > senderComboBox.MaxDropDownItems)
+                    ? SystemInformation.VerticalScrollBarWidth : 0;
+
+                int newWidth;
+                foreach (object s in senderComboBox.Items)  //Loop through list items and check size of each items.
+                {
+                    if (s != null)
+                    {
+                        newWidth = (int)g.MeasureString(s.ToString().Trim(), font).Width
+                            + vertScrollBarWidth;
+                        if (width < newWidth)
+                            width = newWidth;   //set the width of the drop down list to the width of the largest item.
+                    }
+                }
+                senderComboBox.DropDownWidth = width;
+            }
+            catch
+            { }
+            finally
+            {
+                if (g != null)
+                    g.Dispose();
             }
         }
         #endregion
