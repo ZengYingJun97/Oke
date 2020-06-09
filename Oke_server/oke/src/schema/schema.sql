@@ -133,8 +133,19 @@ create table vote_student (
     student_id int(11) not null comment '学生id',
     vote_id int(11) not null comment '投票id',
     vote_choice_id  int(11) not null comment '投票选择id',
-    primary key (student_id, vote_id, vote_choice_id),
     foreign key (student_id) references student(student_id),
     foreign key (vote_id) references vote(vote_id),
     foreign key (vote_choice_id) references vote_choice(vote_choice_id)
 ) engine = innodb charset = utf8 comment = '学生投票表';
+
+##创建mail表
+create table mail (
+    mail_id int(11) auto_increment not null comment '邮件id',
+    mail_from_username varchar(255) not null comment '发送的用户',
+    mail_to_username varchar(255) not null comment '接收的用户',
+    mail_title varchar(255) not null comment '邮件标题',
+    mail_describe varchar(255) not null comment '邮件正文',
+    primary key (mail_id),
+    foreign key (mail_from_username) references user(username),
+    foreign key (mail_to_username) references user(username)
+) engine = innodb charset = utf8 comment = '邮件表';

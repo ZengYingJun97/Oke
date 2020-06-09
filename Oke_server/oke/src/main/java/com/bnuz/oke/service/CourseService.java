@@ -1,6 +1,7 @@
 package com.bnuz.oke.service;
 
 import com.bnuz.oke.dto.CourseRecordData;
+import com.bnuz.oke.dto.QuestionData;
 import com.bnuz.oke.dto.VoteData;
 import com.bnuz.oke.entity.*;
 
@@ -43,4 +44,6 @@ public interface CourseService {
 	List<Vote> getVoteList(Course course);
 
 	List<CourseRecord> getCourseList(int studentId);
+
+	List<QuestionData> getCourseQuestionList(String courseNumber);
 }

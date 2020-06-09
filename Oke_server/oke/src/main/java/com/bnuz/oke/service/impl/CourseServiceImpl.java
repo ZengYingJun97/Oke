@@ -2,6 +2,7 @@ package com.bnuz.oke.service.impl;
 
 import com.bnuz.oke.dao.*;
 import com.bnuz.oke.dto.CourseRecordData;
+import com.bnuz.oke.dto.QuestionData;
 import com.bnuz.oke.dto.VoteData;
 import com.bnuz.oke.entity.*;
 import com.bnuz.oke.service.CourseService;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -220,5 +222,22 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public List<CourseRecord> getCourseList(int studentId) {
 		return courseRecordDao.queryByStudentId(studentId);
+	}
+
+	@Override
+	public List<QuestionData> getCourseQuestionList(String courseNumber) {
+		List<QuestionData> questionDataList = new ArrayList<>();
+		List<Question> questionList = questionDao.queryByCourseNumber(courseNumber);
+		if (questionList != null) {
+			for (Question question: questionList) {
+				List<Option> optionList = optionDao.queryByQuestionId(question.getQuestionId());
+				question.setQuestionLimitTime(0);
+				QuestionData questionData = new QuestionData();
+				questionData.setQuestion(question);
+				questionData.setOptionList(optionList);
+				questionDataList.add(questionData);
+			}
+		}
+		return questionDataList;
 	}
 }
