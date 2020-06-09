@@ -18,7 +18,7 @@ public class AnswerData implements Serializable {
 
 	private int error;
 
-	private int unCommited;
+	private int unCommitted;
 
 	public int getTotal() {
 		return total;
@@ -44,11 +44,11 @@ public class AnswerData implements Serializable {
 		this.error = error;
 	}
 
-	public int getUnCommited() {
-		return unCommited;
+	public int getUnCommitted() {
+		return unCommitted;
 	}
 
-	public void setUnCommited(int unCommited) {
-		this.unCommited = unCommited;
+	public void setUnCommitted(int unCommitted) {
+		this.unCommitted = unCommitted;
 	}
 }

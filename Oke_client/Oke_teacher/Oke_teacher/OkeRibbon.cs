@@ -41,6 +41,7 @@ namespace Oke_teacher
                 InfoButton.Visible = true;
                 Upclassbtn.Visible = true;
                 Noupclassbtn.Visible = false;
+                mailButton.Visible = true;
             }
         }
         #endregion
@@ -92,6 +93,7 @@ namespace Oke_teacher
                 Downclassbtn.Visible = false;
                 Noupclassbtn.Visible = true;
                 Nodownclassbtn.Visible = true;
+                mailButton.Visible = false;
 
             }
         }
@@ -295,7 +297,7 @@ namespace Oke_teacher
 
             #region 插入填空题题目
             Microsoft.Office.Interop.PowerPoint.TextRange FQTextRng = null;
-            NewFillQuestionSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 150F, 400F, 300F).Name = "questionDescribe";
+            NewFillQuestionSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 150F, 777F, 300F).Name = "questionDescribe";
             FQTextRng = NewFillQuestionSlide.Shapes["questionDescribe"].TextFrame.TextRange;//请注意此处Shapes的索引，由于文本框是第二个添加的Shapes，所以此处索引是2。
 
             FQTextRng.Font.NameFarEast = "微软雅黑";//文本框中，中文的字体                   
@@ -358,7 +360,7 @@ namespace Oke_teacher
             NewSimpleQuestionSlide.Shapes["questionAnswer"].TextFrame.TextRange.Text = "0";
             NewSimpleQuestionSlide.Shapes["questionAnswer"].Visible = MsoTriState.msoFalse;
 
-            NewSimpleQuestionSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 150F, 400F, 300F).Name = "questionDescribe";
+            NewSimpleQuestionSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 150F, 777F, 300F).Name = "questionDescribe";
 
             SQTextRng = NewSimpleQuestionSlide.Shapes[2].TextFrame.TextRange;//请注意此处Shapes的索引，由于文本框是第二个添加的Shapes，所以此处索引是2。
 
@@ -450,6 +452,13 @@ namespace Oke_teacher
             singleChoiceSlide.Shapes["questionAnswer"].TextFrame.TextRange.Text = "A;";
             singleChoiceSlide.Shapes["questionAnswer"].Visible = MsoTriState.msoFalse;
 
+            singleChoiceSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 91F, 16F, 82F, 33F).Name = "questionTypeText";
+            singleChoiceSlide.Shapes["questionTypeText"].TextFrame.TextRange.Text = "单选题";
+            singleChoiceSlide.Shapes["questionTypeText"].TextFrame.TextRange.Font.NameFarEast = "微软雅黑";
+            singleChoiceSlide.Shapes["questionTypeText"].TextFrame.TextRange.Font.NameAscii = "Calibri";
+            singleChoiceSlide.Shapes["questionTypeText"].TextFrame.TextRange.Font.Size = 24;
+            singleChoiceSlide.Shapes["questionTypeText"].TextFrame.TextRange.Font.Bold = MsoTriState.msoCTrue;
+
             TextRange questionDescribe = null;
             singleChoiceSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 91F, 50F, 777F, 60F).Name = "questionDescribe";
             questionDescribe = singleChoiceSlide.Shapes["questionDescribe"].TextFrame.TextRange;
@@ -521,6 +530,13 @@ namespace Oke_teacher
             multipleChoiceSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "questionAnswer";
             multipleChoiceSlide.Shapes["questionAnswer"].TextFrame.TextRange.Text = "A;";
             multipleChoiceSlide.Shapes["questionAnswer"].Visible = MsoTriState.msoFalse;
+
+            multipleChoiceSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 91F, 16F, 82F, 33F).Name = "questionTypeText";
+            multipleChoiceSlide.Shapes["questionTypeText"].TextFrame.TextRange.Text = "多选题";
+            multipleChoiceSlide.Shapes["questionTypeText"].TextFrame.TextRange.Font.NameFarEast = "微软雅黑";
+            multipleChoiceSlide.Shapes["questionTypeText"].TextFrame.TextRange.Font.NameAscii = "Calibri";
+            multipleChoiceSlide.Shapes["questionTypeText"].TextFrame.TextRange.Font.Size = 24;
+            multipleChoiceSlide.Shapes["questionTypeText"].TextFrame.TextRange.Font.Bold = MsoTriState.msoCTrue;
 
             TextRange questionDescribe = null;
             multipleChoiceSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 91F, 50F, 777F, 60F).Name = "questionDescribe";
@@ -616,6 +632,12 @@ namespace Oke_teacher
             slide.Shapes["option" + text + "Text"].TextFrame.TextRange.Font.Bold = MsoTriState.msoFalse;
         }
         #endregion
+
+        private void mailButton_Click(object sender, RibbonControlEventArgs e)
+        {
+            MailListForm mailListForm = new MailListForm();
+            mailListForm.ShowDialog();
+        }
     }
 
 }

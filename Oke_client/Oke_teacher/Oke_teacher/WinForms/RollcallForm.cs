@@ -36,20 +36,21 @@ namespace Oke_teacher.WinForms
             {
                 SessionData<string> sessionData = new SessionData<string>
                 {
-                    data = CourseInfo.CurrentUser.classCode//获取当前课程码
+                    data = CourseInfo.CurrentUser.classCode,//获取当前课程码
+                    sessionId = CourseInfo.CurrentUser.sessionId
                 };
 
                 string url = Resources.Server + Resources.CourseOnlineStudentUrl;
                 string data = JsonConvert.SerializeObject(sessionData);
                 string response = HttpUitls.POST(url, data);
-                MessageBox.Show(response);
+                //MessageBox.Show(response);
 
                 OkeResult<SessionData<List<Student>>> okeResult2 = JsonConvert.DeserializeObject<OkeResult<SessionData<List<Student>>>>(response);
                 if (okeResult2.success)
                 {
                     AddAlter("成功查询学生名单", CxFlatAlertBox.AlertType.Success);
 
-                    List<Student> Studentlist = okeResult2.data.data;//获取抽奖名单
+                    Studentlist = okeResult2.data.data;//获取抽奖名单
 
                     #region 加载抽奖名单到panel2
                     foreach (Student s in Studentlist)
@@ -87,10 +88,10 @@ namespace Oke_teacher.WinForms
             if (!RollcallnumText.Text.Equals(""))//如果输入人数不为空
             {
                 int num = int.Parse(RollcallnumText.Text);//获得抽取人数
-                                                          //MessageBox.Show(num.ToString());
+                //MessageBox.Show(num.ToString());
                 panel1.Controls.Clear();//清理结果展示框
                 Random ran = new Random();//产生随机数——如果短时间里面一直点会重复要解决
-
+                //MessageBox.Show(Studentlist.Count.ToString());
                 try
                 {
                     for (int i = 0; i < num; i++)
@@ -98,7 +99,7 @@ namespace Oke_teacher.WinForms
                         Button btn = new Button
                         {
                             Name = "Rollinstudent" + i.ToString(),
-                            Text = Studentlist[ran.Next(0, Studentlist.Count() - 1)].studentName,//把抽取到的名字写在按钮上
+                            Text = Studentlist[ran.Next(0, Studentlist.Count-1)].studentName,//把抽取到的名字写在按钮上
                             Location = new Point(8 + i * 80, 8),
                             Font = new Font("微软雅黑", 10.5f, FontStyle.Bold),
                             BackColor = Color.FromArgb(255, 255, 255)

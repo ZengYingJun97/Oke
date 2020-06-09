@@ -40,7 +40,7 @@
             // 
             this.excelbutton.ButtonType = CxFlatUI.ButtonType.Primary;
             this.excelbutton.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.excelbutton.Location = new System.Drawing.Point(192, 394);
+            this.excelbutton.Location = new System.Drawing.Point(225, 399);
             this.excelbutton.Name = "excelbutton";
             this.excelbutton.Size = new System.Drawing.Size(104, 37);
             this.excelbutton.TabIndex = 0;
@@ -51,10 +51,10 @@
             // studentdataview
             // 
             this.studentdataview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.studentdataview.Location = new System.Drawing.Point(12, 46);
+            this.studentdataview.Location = new System.Drawing.Point(12, 103);
             this.studentdataview.Name = "studentdataview";
             this.studentdataview.RowTemplate.Height = 23;
-            this.studentdataview.Size = new System.Drawing.Size(284, 323);
+            this.studentdataview.Size = new System.Drawing.Size(554, 266);
             this.studentdataview.TabIndex = 1;
             // 
             // cxFlatStatusBar1
@@ -71,21 +71,24 @@
             // 
             // Classchoose
             // 
+            this.Classchoose.AllowDrop = true;
             this.Classchoose.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.Classchoose.DropDownWidth = 200;
             this.Classchoose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Classchoose.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.Classchoose.FormattingEnabled = true;
+            this.Classchoose.IntegralHeight = false;
             this.Classchoose.ItemHeight = 30;
-            this.Classchoose.Location = new System.Drawing.Point(340, 46);
+            this.Classchoose.Location = new System.Drawing.Point(12, 46);
             this.Classchoose.Name = "Classchoose";
-            this.Classchoose.Size = new System.Drawing.Size(121, 36);
+            this.Classchoose.Size = new System.Drawing.Size(226, 36);
             this.Classchoose.TabIndex = 3;
             // 
             // Classcheckbutton
             // 
             this.Classcheckbutton.ButtonType = CxFlatUI.ButtonType.Primary;
             this.Classcheckbutton.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.Classcheckbutton.Location = new System.Drawing.Point(340, 105);
+            this.Classcheckbutton.Location = new System.Drawing.Point(254, 59);
             this.Classcheckbutton.Name = "Classcheckbutton";
             this.Classcheckbutton.Size = new System.Drawing.Size(75, 23);
             this.Classcheckbutton.TabIndex = 4;
@@ -97,6 +100,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(578, 524);
             this.Controls.Add(this.Classcheckbutton);
             this.Controls.Add(this.Classchoose);
