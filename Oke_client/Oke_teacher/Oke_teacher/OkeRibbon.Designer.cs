@@ -53,6 +53,7 @@
             this.interactgroup = this.Factory.CreateRibbonGroup();
             this.Rollcallbutton = this.Factory.CreateRibbonButton();
             this.votebutton = this.Factory.CreateRibbonButton();
+            this.mailButton = this.Factory.CreateRibbonButton();
             this.datagroup = this.Factory.CreateRibbonGroup();
             this.dataoutbutton = this.Factory.CreateRibbonButton();
             this.OkeTab.SuspendLayout();
@@ -205,6 +206,7 @@
             // 
             this.interactgroup.Items.Add(this.Rollcallbutton);
             this.interactgroup.Items.Add(this.votebutton);
+            this.interactgroup.Items.Add(this.mailButton);
             this.interactgroup.Label = "课堂互动";
             this.interactgroup.Name = "interactgroup";
             // 
@@ -225,6 +227,15 @@
             this.votebutton.Name = "votebutton";
             this.votebutton.ShowImage = true;
             this.votebutton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.votebutton_Click);
+            // 
+            // mailButton
+            // 
+            this.mailButton.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.mailButton.Image = global::Oke_teacher.Properties.Resources.Oke_mail;
+            this.mailButton.Label = "学生投稿\n";
+            this.mailButton.Name = "mailButton";
+            this.mailButton.ShowImage = true;
+            this.mailButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button1_Click);
             // 
             // datagroup
             // 
@@ -284,6 +295,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton singleChoice;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton multipleChoice;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton votebutton;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton mailButton;
     }
 
     partial class ThisRibbonCollection

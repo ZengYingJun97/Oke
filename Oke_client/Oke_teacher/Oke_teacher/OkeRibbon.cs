@@ -630,6 +630,12 @@ namespace Oke_teacher
             slide.Shapes["option" + text + "Text"].TextFrame.TextRange.Font.Bold = MsoTriState.msoFalse;
         }
         #endregion
+
+        private void button1_Click(object sender, RibbonControlEventArgs e)
+        {
+            MailListForm mailListForm = new MailListForm();
+            mailListForm.ShowDialog();
+        }
     }
 
 }
