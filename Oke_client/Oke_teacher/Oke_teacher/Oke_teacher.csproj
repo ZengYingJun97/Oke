@@ -135,6 +135,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -173,8 +174,10 @@
     <Compile Include="Dto\UpdateUserData.cs" />
     <Compile Include="Dto\UserData.cs" />
     <Compile Include="Dto\VoteData.cs" />
+    <Compile Include="Dto\VoteResultData.cs" />
     <Compile Include="Entity\Course.cs" />
     <Compile Include="Entity\CourseRecord.cs" />
+    <Compile Include="Entity\Mail.cs" />
     <Compile Include="Entity\Option.cs" />
     <Compile Include="Entity\Prize.cs" />
     <Compile Include="Entity\Question.cs" />
@@ -237,6 +240,12 @@
     <Compile Include="Uitls\MyQRUitls.cs" />
     <Compile Include="Uitls\ShapesUitls.cs" />
     <Compile Include="Uitls\UserUitls.cs" />
+    <Compile Include="WinForms\AddMailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\AddMailForm.Designer.cs">
+      <DependentUpon>AddMailForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="WinForms\AnswerSituationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -272,6 +281,18 @@
     </Compile>
     <Compile Include="WinForms\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\MailListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\MailListForm.Designer.cs">
+      <DependentUpon>MailListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\MailSituationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\MailSituationForm.Designer.cs">
+      <DependentUpon>MailSituationForm.cs</DependentUpon>
     </Compile>
     <Compile Include="WinForms\ManageInfoForm.cs">
       <SubType>Form</SubType>
@@ -351,8 +372,15 @@
     <Compile Include="TaskPane\FillTaskPane.Designer.cs">
       <DependentUpon>FillTaskPane.cs</DependentUpon>
     </Compile>
+    <Compile Include="WinForms\VoteSituationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\VoteSituationForm.Designer.cs">
+      <DependentUpon>VoteSituationForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="OkeRibbon.resx">
       <DependentUpon>OkeRibbon.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -371,6 +399,9 @@
     <EmbeddedResource Include="TaskPane\VoteTaskPane.resx">
       <DependentUpon>VoteTaskPane.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\AddMailForm.resx">
+      <DependentUpon>AddMailForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WinForms\AnswerSituationForm.resx">
       <DependentUpon>AnswerSituationForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -388,6 +419,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WinForms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\MailListForm.resx">
+      <DependentUpon>MailListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\MailSituationForm.resx">
+      <DependentUpon>MailSituationForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinForms\ManageInfoForm.resx">
       <DependentUpon>ManageInfoForm.cs</DependentUpon>
@@ -427,6 +464,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TaskPane\FillTaskPane.resx">
       <DependentUpon>FillTaskPane.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\VoteSituationForm.resx">
+      <DependentUpon>VoteSituationForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Oke_teacher_TemporaryKey.pfx" />
     <None Include="packages.config" />
@@ -472,10 +512,19 @@
     <None Include="Resources\Oke_dataout.bmp" />
     <None Include="Resources\Oke_dataout.png" />
     <None Include="Resources\Oke_fillanswerdelete.png" />
+    <Content Include="Resources\Oke_downclass1-09.png" />
+    <Content Include="Resources\Oke_downclass1-091.png" />
+    <Content Include="Resources\Oke_false.png" />
     <Content Include="Resources\Oke_judge.png" />
     <None Include="Resources\Oke_SingleChoice.png" />
     <None Include="Resources\Oke_rollcall.png" />
     <None Include="Resources\Oke_MultipleChoice.png" />
+    <None Include="Resources\Oke_mail.png" />
+    <Content Include="Resources\Oke_true.png" />
+    <Content Include="Resources\Oke_upclass1-08 %281%29.png" />
+    <Content Include="Resources\Oke_upclass1-08 %281%291.png" />
+    <Content Include="Resources\Oke_vote %282%29.png" />
+    <Content Include="Resources\Oke_vote.png" />
     <Content Include="Resources\upclassicon-08.png" />
     <Content Include="Resources\upclassicon-081.png" />
   </ItemGroup>

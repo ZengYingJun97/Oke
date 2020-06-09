@@ -61,6 +61,15 @@ namespace Oke_teacher.Properties {
         }
         
         /// <summary>
+        ///   查找类似 /mail/add 的本地化字符串。
+        /// </summary>
+        internal static string addMailUrl {
+            get {
+                return ResourceManager.GetString("addMailUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 /course/question/add 的本地化字符串。
         /// </summary>
         internal static string AddQuestionUrl {
@@ -157,6 +166,24 @@ namespace Oke_teacher.Properties {
         internal static string LogoutUrl {
             get {
                 return ResourceManager.GetString("LogoutUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 /mail/from/list 的本地化字符串。
+        /// </summary>
+        internal static string mailFromListUrl {
+            get {
+                return ResourceManager.GetString("mailFromListUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 /mail/to/list 的本地化字符串。
+        /// </summary>
+        internal static string mailToListUrl {
+            get {
+                return ResourceManager.GetString("mailToListUrl", resourceCulture);
             }
         }
         
@@ -267,6 +294,16 @@ namespace Oke_teacher.Properties {
             get {
                 object obj = ResourceManager.GetObject("Oke_logo1", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Oke_mail {
+            get {
+                object obj = ResourceManager.GetObject("Oke_mail", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

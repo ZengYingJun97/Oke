@@ -63,7 +63,7 @@ namespace Oke_teacher.WinForms
                 //分值要干嘛？
                 #endregion
 
-                MessageBox.Show("成功发布，限定作答时间为：" + Ftt);
+                MessageBox.Show("成功设置，限定作答时间为：" + Ftt);
             }
         }
         #endregion

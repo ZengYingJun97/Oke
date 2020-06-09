@@ -66,6 +66,7 @@ namespace Oke_teacher.WinForms
                     {
                         this.Classchoose.Items.Add(p.courseName);
                     }
+                    AdjustComboBoxDropDownListWidth(Classchoose);
                 }
                 else
                 {
@@ -94,13 +95,13 @@ namespace Oke_teacher.WinForms
                 };
                 Course course = new Course();
                 sessionData.data = course;
-                sessionData.data.courseName = Classchoose.Text.Trim();
-                MessageBox.Show(Classchoose.Text.Trim());
+                sessionData.data.courseNumber = Classlist[Classchoose.SelectedIndex].courseNumber;//获取下拉框里面选中的索引值，在classlist里面查找其课程码
+                //MessageBox.Show(Classchoose.Text.Trim());
                 sessionData.data.teacher = LoginInfo.CurrentUser.data;
                 string url = Resources.Server + Resources.OnlineStudentListUrl;
                 string data = JsonConvert.SerializeObject(sessionData);
                 string response = HttpUitls.POST(url, data);
-                MessageBox.Show(response);
+                //MessageBox.Show(response);
 
                 OkeResult<SessionData<List<CourseRecordData>>> okeResult2 = JsonConvert.DeserializeObject<OkeResult<SessionData<List<CourseRecordData>>>>(response);
                 if (okeResult2.success)
@@ -109,21 +110,44 @@ namespace Oke_teacher.WinForms
 
                     #region 把接受到的数据展示在datagridview
                     List<CourseRecordData> Alllist = okeResult2.data.data;
-                    int[] scorelist = Alllist.Select(x => x.score).ToArray();
-                    List<CourseRecord> CAlllist = Alllist.Select(x => x.courseRecord).ToList();
+                    //MessageBox.Show(Alllist.ToString());
+                    int[] scorelist = Alllist.Select(x => x.score).ToArray();//读出score列
 
-                    //把上面读出来的数据加入datatable
+                    List<CourseRecord> CAlllist = Alllist.Select(x => x.courseRecord).ToList();//读出CourseRecord的内容
+                    List<DateTime> OnlineTimelist = CAlllist.Select(x => x.onlineTime).ToList();//读出在线时间
+                    List<DateTime> OfflineTimelist = CAlllist.Select(x => x.offlineTime).ToList();//读出下线时间
+
+                    List<Student> SAlllist = CAlllist.Select(x => x.student).ToList();//读出student的内容
+
+                    #region 把上面读出来的数据加入datatable
                     System.Data.DataTable studentinfo = new System.Data.DataTable();
-                    studentinfo = (System.Data.DataTable)ToDataTable(CAlllist);
-                    studentinfo.Columns.Add("score", typeof(string));
+                    studentinfo = (System.Data.DataTable)ToDataTable(SAlllist);
+                    studentinfo.Columns.Add("分数", typeof(string));//把分数列添加进datatable
+                    studentinfo.Columns.Add("上线时间", typeof(DateTime));//把上线时间添加进datatable
+                    studentinfo.Columns.Add("下线时间", typeof(DateTime));//把下线时间添加进datatable
+
                     int j = 0;
                     foreach (DataRow dr in studentinfo.Rows)
                     {
-                        dr["score"] = scorelist[j];
+                        dr["分数"] = scorelist[j];
+                        dr["上线时间"] = OnlineTimelist[j];
+                        dr["下线时间"] = OfflineTimelist[j];
                         j++;
                     }
+                    #endregion
 
-                    //studentdataview.DataSource = new BindingList<CourseRecord>(CAlllist);
+                    #region 移除无关信息
+                    studentinfo.Columns.Remove("studentId");//把学生Id移除
+                    studentinfo.Columns.Remove("user");//把用户名、密码等信息移除
+                    #endregion
+
+                    
+                    #region 替换列名
+                    studentinfo.Columns["studentNumber"].ColumnName = "学号";
+                    studentinfo.Columns["studentName"].ColumnName = "学生姓名";
+                    studentinfo.Columns["studentClass"].ColumnName = "行政班";
+                    #endregion
+
                     studentdataview.DataSource = studentinfo;
                     #endregion
 
@@ -145,7 +169,7 @@ namespace Oke_teacher.WinForms
         private void Excelbutton_Click(object sender, EventArgs e)
         {
             
-            string fileName = "";
+            string fileName = "学生名单";
             string saveFileName = "";
             SaveFileDialog saveDialog = new SaveFileDialog
             {
@@ -279,6 +303,54 @@ namespace Oke_teacher.WinForms
             else
             {
                 return t;
+            }
+        }
+        #endregion
+
+        #region 调整下拉框宽度
+        private void AdjustComboBoxDropDownListWidth(object comboBox)
+        {
+            Graphics g = null;
+            System.Drawing.Font font = null;
+            try
+            {
+                ComboBox senderComboBox = null;
+                if (comboBox is ComboBox)
+                    senderComboBox = (ComboBox)comboBox;
+                else if (comboBox is ToolStripComboBox)
+                    senderComboBox = ((ToolStripComboBox)comboBox).ComboBox;
+                else
+                    return;
+
+                int width = senderComboBox.Width;
+                g = senderComboBox.CreateGraphics();
+                font = senderComboBox.Font;
+
+                //checks if a scrollbar will be displayed.
+                //If yes, then get its width to adjust the size of the drop down list.
+                int vertScrollBarWidth =
+                    (senderComboBox.Items.Count > senderComboBox.MaxDropDownItems)
+                    ? SystemInformation.VerticalScrollBarWidth : 0;
+
+                int newWidth;
+                foreach (object s in senderComboBox.Items)  //Loop through list items and check size of each items.
+                {
+                    if (s != null)
+                    {
+                        newWidth = (int)g.MeasureString(s.ToString().Trim(), font).Width
+                            + vertScrollBarWidth;
+                        if (width < newWidth)
+                            width = newWidth;   //set the width of the drop down list to the width of the largest item.
+                    }
+                }
+                senderComboBox.DropDownWidth = width;
+            }
+            catch
+            { }
+            finally
+            {
+                if (g != null)
+                    g.Dispose();
             }
         }
         #endregion

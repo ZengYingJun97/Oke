@@ -324,7 +324,7 @@ namespace Oke_teacher
             button.Enabled = false;
             string answerText = activeSlide.Shapes["questionAnswer"].TextFrame.TextRange.Text;
             //activeSlide.Shapes["option" + answerText[0] + "Type"].Fill.ForeColor.RGB = (int)CheckedEnum.CHECKED;
-            if (answerText == "True")
+            if (answerText == "True;")
             {
                 activeSlide.Shapes["answerisTrue"].Visible = MsoTriState.msoTrue;
                 activeSlide.Shapes["answerisFalse"].Visible = MsoTriState.msoFalse;
@@ -399,7 +399,7 @@ namespace Oke_teacher
 
         #endregion
 
-        #region 放映结束 初始化
+        #region 投票放映结束 初始化
         private void Vote_SlideShowEnd(Presentation Pres)
         {
             Slides slides = Pres.Slides;
