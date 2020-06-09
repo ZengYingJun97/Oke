@@ -235,7 +235,8 @@
             this.mailButton.Label = "学生投稿\n";
             this.mailButton.Name = "mailButton";
             this.mailButton.ShowImage = true;
-            this.mailButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button1_Click);
+            this.mailButton.Visible = false;
+            this.mailButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.mailButton_Click);
             // 
             // datagroup
             // 

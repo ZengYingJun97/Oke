@@ -41,6 +41,7 @@ namespace Oke_teacher
                 InfoButton.Visible = true;
                 Upclassbtn.Visible = true;
                 Noupclassbtn.Visible = false;
+                mailButton.Visible = true;
             }
         }
         #endregion
@@ -631,7 +632,7 @@ namespace Oke_teacher
         }
         #endregion
 
-        private void button1_Click(object sender, RibbonControlEventArgs e)
+        private void mailButton_Click(object sender, RibbonControlEventArgs e)
         {
             MailListForm mailListForm = new MailListForm();
             mailListForm.ShowDialog();
