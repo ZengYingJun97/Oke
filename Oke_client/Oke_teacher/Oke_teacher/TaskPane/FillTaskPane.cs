@@ -118,7 +118,7 @@ namespace Oke_teacher.WinForms
                 MySlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text = Ftt;
                 #endregion
 
-                MessageBox.Show("成功发布，限定作答时间为：" + Ftt);
+                MessageBox.Show("成功设定，限定作答时间为：" + Ftt);
             }
 
         }

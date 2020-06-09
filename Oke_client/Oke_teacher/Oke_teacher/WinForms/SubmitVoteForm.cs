@@ -17,6 +17,7 @@ using System.Windows.Forms;
 using Point = System.Drawing.Point;
 using Newtonsoft.Json;
 using Oke_teacher.Uitls;
+using Oke_teacher.Entity;
 
 namespace Oke_teacher.WinForms
 {
@@ -162,7 +163,9 @@ namespace Oke_teacher.WinForms
                 string data = JsonConvert.SerializeObject(sessionData);
                 string response = HttpUitls.POST(url, data);
                 System.Diagnostics.Debug.WriteLine(response+"触发了");
-                OkeResult<SessionData<string>> okeResult = JsonConvert.DeserializeObject<OkeResult<SessionData<string>>>(response);
+                //Vote vote = voteData.vote;
+                OkeResult<SessionData<Vote>> okeResult = JsonConvert.DeserializeObject<OkeResult<SessionData<Vote>>>(response);
+
                 if (okeResult.success)
                 {
                     addAlter(EnumExtend.GetDisplayText(OperateEnum.OP_SUCC), CxFlatAlertBox.AlertType.Success);
@@ -171,7 +174,7 @@ namespace Oke_teacher.WinForms
                     VoteSituationForm voteSituationForm = new VoteSituationForm();
                     //voteSituationForm.voteData = voteData;
                     voteSituationForm.votecount = voteData.voteChoiceList.Count;
-                    voteSituationForm.load(voteData.vote);
+                    voteSituationForm.load(okeResult.data.data);
                     System.Diagnostics.Debug.WriteLine(voteData.voteChoiceList.Count + "hahaha");
                     voteSituationForm.ShowDialog();
                     timer.Tick += formClose_Tick;
