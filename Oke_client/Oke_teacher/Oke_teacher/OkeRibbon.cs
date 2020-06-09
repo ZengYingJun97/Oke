@@ -93,6 +93,7 @@ namespace Oke_teacher
                 Downclassbtn.Visible = false;
                 Noupclassbtn.Visible = true;
                 Nodownclassbtn.Visible = true;
+                mailButton.Visible = false;
 
             }
         }
