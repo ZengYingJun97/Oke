@@ -256,4 +256,19 @@
   <data name="downclassicon_09" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\downclassicon-091.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="addMailUrl" xml:space="preserve">
+    <value>/mail/add</value>
+    <comment>发送邮件</comment>
+  </data>
+  <data name="mailFromListUrl" xml:space="preserve">
+    <value>/mail/from/list</value>
+    <comment>已发送邮件列表</comment>
+  </data>
+  <data name="mailToListUrl" xml:space="preserve">
+    <value>/mail/to/list</value>
+    <comment>接收邮件列表</comment>
+  </data>
+  <data name="Oke_mail" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Oke_mail.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

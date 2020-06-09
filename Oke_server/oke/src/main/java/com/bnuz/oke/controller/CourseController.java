@@ -447,7 +447,8 @@ public class CourseController {
 					for (Student student: studentList) {
 						WebSocketServer.sendInfo(jsonString, student.getStudentId() + "");
 					}
-					result = new OkeResult<>(true, CourseStateEnum.SUCCESS_OP.getStateInfo());
+					SessionData<Vote> voteSessionData = new SessionData<>(sessionId, vote);
+					result = new OkeResult<>(true, voteSessionData);
 				} catch (Exception e){
 					logger.info("e = {}", e);
 					result = new OkeResult<>(false, OkeStateEnum.EXCEPTION_SERVER.getStateInfo());
@@ -481,7 +482,7 @@ public class CourseController {
 				synchronized (this) {
 					String studentVote = (String) redisTemplate.opsForValue().get("studentVote:" + voteStudent.getVote().getVoteId());
 					String[] tmp = studentVote.split(":");
-					int index = voteStudent.getVoteChoice().getVoteChoiceType().indexOf(0) - 'A';
+					int index = voteStudent.getVoteChoice().getVoteChoiceType().charAt(0) - 'A';
 					int number = Integer.parseInt(tmp[index]) + 1;
 					studentVote = "";
 					for (int i = 0; i < tmp.length; i++) {
@@ -499,6 +500,8 @@ public class CourseController {
 
 				result = new OkeResult<>(true, CourseStateEnum.SUCCESS_OP.getStateInfo());
 			} catch (Exception e) {
+				logger.info("studentVote = {}", sessionData.getData());
+				logger.info("e = {}", e);
 				result = new OkeResult<>(false, OkeStateEnum.EXCEPTION_SERVER.getStateInfo());
 			}
 		}
@@ -562,6 +565,7 @@ public class CourseController {
 				SessionData<List<Integer>> listSessionData = new SessionData<>(sessionId, ints);
 				result = new OkeResult<>(true, listSessionData);
 			} catch (Exception e) {
+				logger.info("e = {}", e);
 				result = new OkeResult<>(false, OkeStateEnum.EXCEPTION_SERVER.getStateInfo());
 			}
 		}
@@ -589,6 +593,35 @@ public class CourseController {
 			try {
 				List<CourseRecord> courseRecordList = courseService.getCourseList(sessionData.getData().getStudentId());
 				SessionData<List> listSessionData = new SessionData<>(sessionId, courseRecordList);
+				result = new OkeResult<>(true, listSessionData);
+			} catch (Exception e) {
+				result = new OkeResult<>(false, OkeStateEnum.EXCEPTION_SERVER.getStateInfo());
+			}
+		}
+		return result;
+	}
+	
+	/**
+	 * 课堂已发布题目
+	 * @date 2020/06/08 22:23:12
+	 * @author handsome
+	 * @param sessionData
+	 * @return com.bnuz.oke.dto.OkeResult<com.bnuz.oke.dto.SessionData>
+	 */        
+	@RequestMapping(value = "/student/course/question/list",
+			method = RequestMethod.POST,
+			produces = {"application/json;charset=UTF-8"})
+	@ResponseBody
+	public OkeResult<SessionData> getQuestionList(@RequestBody SessionData<Course> sessionData) {
+		OkeResult<SessionData> result;
+		String sessionId = sessionData.getSessionId();
+		String value = (String) redisTemplate.opsForValue().get("session:" + sessionId);
+		if (value == null) {
+			result = new OkeResult<>(false, LoginStateEnum.INVALID_OP.getStateInfo());
+		} else {
+			try {
+				List<QuestionData> questionDataList = courseService.getCourseQuestionList(sessionData.getData().getCourseNumber());
+				SessionData<List> listSessionData = new SessionData<>(sessionId, questionDataList);
 				result = new OkeResult<>(true, listSessionData);
 			} catch (Exception e) {
 				result = new OkeResult<>(false, OkeStateEnum.EXCEPTION_SERVER.getStateInfo());
