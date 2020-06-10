@@ -29,7 +29,12 @@
         private void InitializeComponent()
         {
             this.SQAStatusBar = new CxFlatUI.CxFlatStatusBar();
-            this.ShowSQAText = new System.Windows.Forms.RichTextBox();
+            this.SQAsplitContainer = new System.Windows.Forms.SplitContainer();
+            this.SQAbutton = new CxFlatUI.CxFlatRoundButton();
+            this.SQASbutton = new CxFlatUI.CxFlatSimpleButton();
+            ((System.ComponentModel.ISupportInitialize)(this.SQAsplitContainer)).BeginInit();
+            this.SQAsplitContainer.Panel1.SuspendLayout();
+            this.SQAsplitContainer.SuspendLayout();
             this.SuspendLayout();
             // 
             // SQAStatusBar
@@ -44,13 +49,42 @@
             this.SQAStatusBar.Text = "简答题答案";
             this.SQAStatusBar.ThemeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(173)))), ((int)(((byte)(255)))));
             // 
-            // ShowSQAText
+            // SQAsplitContainer
             // 
-            this.ShowSQAText.Location = new System.Drawing.Point(80, 76);
-            this.ShowSQAText.Name = "ShowSQAText";
-            this.ShowSQAText.Size = new System.Drawing.Size(364, 244);
-            this.ShowSQAText.TabIndex = 2;
-            this.ShowSQAText.Text = "";
+            this.SQAsplitContainer.Location = new System.Drawing.Point(24, 58);
+            this.SQAsplitContainer.Name = "SQAsplitContainer";
+            // 
+            // SQAsplitContainer.Panel1
+            // 
+            this.SQAsplitContainer.Panel1.Controls.Add(this.SQASbutton);
+            this.SQAsplitContainer.Panel1.Controls.Add(this.SQAbutton);
+            this.SQAsplitContainer.Size = new System.Drawing.Size(490, 275);
+            this.SQAsplitContainer.SplitterDistance = 163;
+            this.SQAsplitContainer.TabIndex = 1;
+            // 
+            // SQAbutton
+            // 
+            this.SQAbutton.ButtonType = CxFlatUI.ButtonType.Primary;
+            this.SQAbutton.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.SQAbutton.Location = new System.Drawing.Point(24, 21);
+            this.SQAbutton.Name = "SQAbutton";
+            this.SQAbutton.Size = new System.Drawing.Size(115, 27);
+            this.SQAbutton.TabIndex = 0;
+            this.SQAbutton.Text = "参考答案";
+            this.SQAbutton.TextColor = System.Drawing.Color.White;
+            this.SQAbutton.Click += new System.EventHandler(this.SQAbutton_Click);
+            // 
+            // SQASbutton
+            // 
+            this.SQASbutton.ButtonType = CxFlatUI.ButtonType.Primary;
+            this.SQASbutton.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.SQASbutton.Location = new System.Drawing.Point(24, 72);
+            this.SQASbutton.Name = "SQASbutton";
+            this.SQASbutton.Size = new System.Drawing.Size(115, 27);
+            this.SQASbutton.TabIndex = 1;
+            this.SQASbutton.Text = "学生答案";
+            this.SQASbutton.TextColor = System.Drawing.Color.White;
+            this.SQASbutton.Click += new System.EventHandler(this.SQASbutton_Click);
             // 
             // SimpleQuestionAnswerForm
             // 
@@ -58,13 +92,16 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(537, 369);
-            this.Controls.Add(this.ShowSQAText);
+            this.Controls.Add(this.SQAsplitContainer);
             this.Controls.Add(this.SQAStatusBar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximumSize = new System.Drawing.Size(1366, 728);
             this.Name = "SimpleQuestionAnswerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SimpleQuestionAnswerForm";
+            this.SQAsplitContainer.Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.SQAsplitContainer)).EndInit();
+            this.SQAsplitContainer.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -72,6 +109,8 @@
         #endregion
 
         private CxFlatUI.CxFlatStatusBar SQAStatusBar;
-        private System.Windows.Forms.RichTextBox ShowSQAText;
+        private System.Windows.Forms.SplitContainer SQAsplitContainer;
+        private CxFlatUI.CxFlatSimpleButton SQASbutton;
+        private CxFlatUI.CxFlatRoundButton SQAbutton;
     }
 }
