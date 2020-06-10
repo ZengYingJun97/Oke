@@ -633,11 +633,18 @@ namespace Oke_teacher
         }
         #endregion
 
+        #region 邮件按钮点击事件
+        /// <summary>
+        /// 邮件按钮点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void mailButton_Click(object sender, RibbonControlEventArgs e)
         {
             MailListForm mailListForm = new MailListForm();
             mailListForm.ShowDialog();
         }
+        #endregion
     }
 
 }

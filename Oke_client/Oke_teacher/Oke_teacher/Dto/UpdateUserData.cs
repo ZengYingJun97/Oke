@@ -13,8 +13,9 @@ namespace Oke_teacher.Dto
     [Serializable]
     public class UpdateUserData
     {
+        //修改对象
         public User user { set; get; }
-
+        //新密码
         public string newPassword { set; get; }
     }
 }

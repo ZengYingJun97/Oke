@@ -13,8 +13,9 @@ namespace Oke_teacher.Dto
     [Serializable]
     public class UserData
     {
+        //是否保存用户
         public bool isSaveUser { set; get; }
-
+        //保存的用户
         public User user { set; get; }
     }
 }
