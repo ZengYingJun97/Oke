@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bnuz.oke.dao.MailDao">
+
+    <select id="queryByFromUsername" resultType="com.bnuz.oke.entity.Mail">
+        select
+            mail_id, mail_title, mail_describe,
+            mail_from_username as "mailFromUser.username",
+            mail_to_username as "mailToUser.username"
+        from mail m
+        where mail_from_username = #{username}
+        order by mail_id desc
+    </select>
+
+    <select id="queryByToUsername" resultType="com.bnuz.oke.entity.Mail">
+        select
+            mail_id, mail_title, mail_describe,
+            mail_from_username as "mailFromUser.username",
+            mail_to_username as "mailToUser.username"
+        from mail m
+        where mail_to_username = #{username}
+        order by mail_id desc
+    </select>
+
+    <insert id="insertMail" parameterType="com.bnuz.oke.entity.Mail"
+            useGeneratedKeys="true" keyProperty="mailId" keyColumn="mail_id">
+        insert into
+            mail(mail_from_username, mail_to_username, mail_title, mail_describe)
+        value
+            (#{mailFromUser.username}, #{mailToUser.username}, #{mailTitle}, #{mailDescribe})
+    </insert>
+</mapper>

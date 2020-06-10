@@ -17,14 +17,17 @@ const store = new Vuex.Store({
           }
       },
       url: {
-          serverUrl: "http://120.25.193.138:8080/oke",
+          serverUrl: "http://192.168.3.18:8080/oke",
           loginUrl: "/student/login",
           registerUrl: "/student/register",
           courseListUrl: "/student/course/list",
           entryCourseUrl: "/course/entry",
           answerQuestionUrl: "/course/question/answer",
           updateInfoUrl: "/student/info/update",
-          updatePasswordUrl: "/student/user/update"
+          updatePasswordUrl: "/student/user/update",
+          questionListUrl: "/student/course/question/list",
+          studentVoteUrl: "/course/student/vote",
+          addMailUrl: "/mail/add"
       }
   },
   mutations: {

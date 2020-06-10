@@ -329,6 +329,19 @@ namespace Oke_teacher
             Microsoft.Office.Interop.PowerPoint.TextRange SATextRng = null;
 
             NewSimpleQuestionSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 40F, 100F, 30F).Name = "SimpleAnswerQuestion";
+            NewSimpleQuestionSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "questionType";
+            NewSimpleQuestionSlide.Shapes["questionType"].TextFrame.TextRange.Text = "4";
+            NewSimpleQuestionSlide.Shapes["questionType"].Visible = MsoTriState.msoFalse;
+
+            NewSimpleQuestionSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "questionScore";
+            NewSimpleQuestionSlide.Shapes["questionScore"].TextFrame.TextRange.Text = "0";
+            NewSimpleQuestionSlide.Shapes["questionScore"].Visible = MsoTriState.msoFalse;
+            NewSimpleQuestionSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "questionLimitTime";
+            NewSimpleQuestionSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text = "0";
+            NewSimpleQuestionSlide.Shapes["questionLimitTime"].Visible = MsoTriState.msoFalse;
+            NewSimpleQuestionSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "questionAnswer";
+            NewSimpleQuestionSlide.Shapes["questionAnswer"].TextFrame.TextRange.Text = "0";
+            NewSimpleQuestionSlide.Shapes["questionAnswer"].Visible = MsoTriState.msoFalse;
 
             SATextRng = NewSimpleQuestionSlide.Shapes[1].TextFrame.TextRange;//请注意此处Shapes的索引，由于文本框是第一个添加的Shapes，所以此处索引是1。
 
@@ -345,24 +358,8 @@ namespace Oke_teacher
             #region 插入简答题题目
             Microsoft.Office.Interop.PowerPoint.TextRange SQTextRng = null;
 
-            NewSimpleQuestionSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 150F, 400F, 300F).Name = "SimpleAnswerQuestion";
-            NewSimpleQuestionSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "questionType";
-            NewSimpleQuestionSlide.Shapes["questionType"].TextFrame.TextRange.Text = "4";
-            NewSimpleQuestionSlide.Shapes["questionType"].Visible = MsoTriState.msoFalse;
-
-            NewSimpleQuestionSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "questionScore";
-            NewSimpleQuestionSlide.Shapes["questionScore"].TextFrame.TextRange.Text = "0";
-            NewSimpleQuestionSlide.Shapes["questionScore"].Visible = MsoTriState.msoFalse;
-            NewSimpleQuestionSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "questionLimitTime";
-            NewSimpleQuestionSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text = "0";
-            NewSimpleQuestionSlide.Shapes["questionLimitTime"].Visible = MsoTriState.msoFalse;
-            NewSimpleQuestionSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 0, 0, 0, 0).Name = "questionAnswer";
-            NewSimpleQuestionSlide.Shapes["questionAnswer"].TextFrame.TextRange.Text = "0";
-            NewSimpleQuestionSlide.Shapes["questionAnswer"].Visible = MsoTriState.msoFalse;
-
             NewSimpleQuestionSlide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, 21.5F, 150F, 777F, 300F).Name = "questionDescribe";
-
-            SQTextRng = NewSimpleQuestionSlide.Shapes[2].TextFrame.TextRange;//请注意此处Shapes的索引，由于文本框是第二个添加的Shapes，所以此处索引是2。
+            SQTextRng = NewSimpleQuestionSlide.Shapes["questionDescribe"].TextFrame.TextRange; ;//请注意此处Shapes的索引，由于文本框是第二个添加的Shapes，所以此处索引是2。
 
             SQTextRng.Font.NameFarEast = "微软雅黑";//文本框中，中文的字体                   
             SQTextRng.Font.NameAscii = "Calibri";//文本框中，英文和数字的字体      
@@ -375,7 +372,7 @@ namespace Oke_teacher
             #endregion
 
             AddSubmitOleForm(NewSimpleQuestionSlide, 822F, 466F, 89F, 46F, EnumExtend.GetDisplayText(ButtonNameEnum.SUMBIT), "sumbitButton");//插入发布按钮
-
+            AddSubmitOleForm(NewSimpleQuestionSlide, 727F, 466F, 80F, 46F, EnumExtend.GetDisplayText(ButtonNameEnum.GETANS), "answerButton");//插入答案按钮
             NewSimpleQuestionSlide.Select();
         }
 

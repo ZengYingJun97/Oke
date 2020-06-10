@@ -8,6 +8,7 @@
             c.course_number as "course.courseNumber", course_name as "course.courseName", course_create_time as "course.courseCreateTime", course_end_time as "course.courseEndTime", teacher_id as "course.teacher.teacherId"
         from question q, course c
         where q.course_number = c.course_number and q.course_number = #{courseNumber}
+        order by q.question_id desc
     </select>
 
     <select id="queryByQuestionId" resultType="com.bnuz.oke.entity.Question">
