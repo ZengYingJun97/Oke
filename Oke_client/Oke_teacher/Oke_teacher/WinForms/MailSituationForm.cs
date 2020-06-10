@@ -26,7 +26,19 @@ namespace Oke_teacher.WinForms
         {
             mail = _mail;
             mailTitleBox.Text = mail.mailTitle;
-            mailDescribeBox.Text = mail.mailDescribe;
+            string mailDescribeBoxText = "";
+            for (int i = 0; i < mail.mailDescribe.Length; i++)
+            {
+                if (mail.mailDescribe[i] == '\n')
+                {
+                    mailDescribeBoxText += "\r\n";
+                } 
+                else
+                {
+                    mailDescribeBoxText += mail.mailDescribe[i];
+                }
+            }
+            mailDescribeBox.Text = mailDescribeBoxText;
             isAddMailButton = _isAddMailButton;
             addMailButton.Enabled = isAddMailButton;
         }
