@@ -9,12 +9,13 @@ namespace Oke_teacher.Info
 {
     public class CourseInfo
     {
+        //登录时sessionId
         public string sessionId { set; get; }
-
+        //上课的课程信息
         public Course data { set; get; }
-
+        //上课码
         public string classCode { set; get; }
-
+        //静态单例
         private static CourseInfo _CurrentUser;
 
         public static CourseInfo CurrentUser

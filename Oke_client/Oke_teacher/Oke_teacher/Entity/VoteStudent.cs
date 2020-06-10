@@ -12,10 +12,11 @@ namespace Oke_teacher.Entity
     [Serializable]
     public class VoteStudent
     {
+        //学生
         public Student student { set; get; }
-
+        //投票
         public Vote vote { set; get; }
-
+        //学生的选择
         public VoteChoice voteChoice { set; get; }
     }
 }

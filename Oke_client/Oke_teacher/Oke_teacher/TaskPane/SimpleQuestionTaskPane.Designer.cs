@@ -28,25 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SimpleQuestionboxLabel = new System.Windows.Forms.Label();
+            this.SimpleQuestion1 = new System.Windows.Forms.Label();
             this.SimplequestionText = new System.Windows.Forms.RichTextBox();
             this.SQscoreLabel = new System.Windows.Forms.Label();
             this.SQtimeLabel = new System.Windows.Forms.Label();
             this.SQscoreText = new System.Windows.Forms.TextBox();
             this.SQAtimeText = new System.Windows.Forms.TextBox();
             this.SetSQbutton = new CxFlatUI.CxFlatRoundButton();
+            this.SQAnswerText = new CxFlatUI.CxFlatTextArea();
             this.SuspendLayout();
             // 
-            // SimpleQuestionboxLabel
+            // SimpleQuestion1
             // 
-            this.SimpleQuestionboxLabel.AutoSize = true;
-            this.SimpleQuestionboxLabel.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Bold);
-            this.SimpleQuestionboxLabel.Location = new System.Drawing.Point(13, 9);
-            this.SimpleQuestionboxLabel.Name = "SimpleQuestionboxLabel";
-            this.SimpleQuestionboxLabel.Size = new System.Drawing.Size(92, 27);
-            this.SimpleQuestionboxLabel.TabIndex = 0;
-            this.SimpleQuestionboxLabel.Text = "编辑题目";
-            this.SimpleQuestionboxLabel.Visible = false;
+            this.SimpleQuestion1.AutoSize = true;
+            this.SimpleQuestion1.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Bold);
+            this.SimpleQuestion1.Location = new System.Drawing.Point(13, 9);
+            this.SimpleQuestion1.Name = "SimpleQuestion1";
+            this.SimpleQuestion1.Size = new System.Drawing.Size(92, 27);
+            this.SimpleQuestion1.TabIndex = 0;
+            this.SimpleQuestion1.Text = "编辑题目";
             // 
             // SimplequestionText
             // 
@@ -92,7 +92,7 @@
             // 
             this.SetSQbutton.ButtonType = CxFlatUI.ButtonType.Primary;
             this.SetSQbutton.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold);
-            this.SetSQbutton.Location = new System.Drawing.Point(18, 356);
+            this.SetSQbutton.Location = new System.Drawing.Point(20, 556);
             this.SetSQbutton.Name = "SetSQbutton";
             this.SetSQbutton.Size = new System.Drawing.Size(87, 23);
             this.SetSQbutton.TabIndex = 6;
@@ -100,19 +100,40 @@
             this.SetSQbutton.TextColor = System.Drawing.Color.White;
             this.SetSQbutton.Click += new System.EventHandler(this.SetSQbutton_Click);
             // 
+            // SQAnswerText
+            // 
+            this.SQAnswerText.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SQAnswerText.Hint = "";
+            this.SQAnswerText.Location = new System.Drawing.Point(20, 341);
+            this.SQAnswerText.MaxLength = 32767;
+            this.SQAnswerText.Multiline = true;
+            this.SQAnswerText.Name = "SQAnswerText";
+            this.SQAnswerText.PasswordChar = '\0';
+            this.SQAnswerText.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.SQAnswerText.SelectedText = "";
+            this.SQAnswerText.SelectionLength = 0;
+            this.SQAnswerText.SelectionStart = 0;
+            this.SQAnswerText.Size = new System.Drawing.Size(224, 192);
+            this.SQAnswerText.TabIndex = 8;
+            this.SQAnswerText.TabStop = false;
+            this.SQAnswerText.Text = "请输入答案";
+            this.SQAnswerText.UseSystemPasswordChar = false;
+            // 
             // SimpleQuestionTaskPane
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
+            this.Controls.Add(this.SQAnswerText);
             this.Controls.Add(this.SetSQbutton);
             this.Controls.Add(this.SQAtimeText);
             this.Controls.Add(this.SQscoreText);
             this.Controls.Add(this.SQtimeLabel);
             this.Controls.Add(this.SQscoreLabel);
             this.Controls.Add(this.SimplequestionText);
-            this.Controls.Add(this.SimpleQuestionboxLabel);
+            this.Controls.Add(this.SimpleQuestion1);
             this.Name = "SimpleQuestionTaskPane";
-            this.Size = new System.Drawing.Size(261, 413);
+            this.Size = new System.Drawing.Size(268, 593);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -120,12 +141,13 @@
 
         #endregion
 
-        private System.Windows.Forms.Label SimpleQuestionboxLabel;
+        private System.Windows.Forms.Label SimpleQuestion1;
         private System.Windows.Forms.RichTextBox SimplequestionText;
         private System.Windows.Forms.Label SQscoreLabel;
         private System.Windows.Forms.Label SQtimeLabel;
         private System.Windows.Forms.TextBox SQscoreText;
         private System.Windows.Forms.TextBox SQAtimeText;
         private CxFlatUI.CxFlatRoundButton SetSQbutton;
+        private CxFlatUI.CxFlatTextArea SQAnswerText;
     }
 }

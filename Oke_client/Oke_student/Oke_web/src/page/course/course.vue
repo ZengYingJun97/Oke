@@ -1,9 +1,9 @@
 <template>
     <div class="w-100 h-100">
         <nav class="navbar navbar-expand-lg navbar-light border-bottom text-right justify-content-end bg-white shadow">
-            <button class="btn btn-outline-dark my-2 my-sm-0" type="submit" @click="goback">返回</button>
             <form class="form-inline my-2 my-lg-0">
-                <h5 class="card-title">{{course.courseName}}</h5>
+                <button class="btn btn-outline-dark my-2 my-sm-0" @click="entryMail">投稿</button>
+                <button class="btn btn-dark active my-2 my-sm-0" disabled>{{course.courseName}}</button>
             </form>
         </nav>
         <div class="h-100 abs-bottom ">
@@ -15,7 +15,7 @@
                                 <h5 class="card-title">投票</h5>
                                 <p class="card-text">{{questionData.vote.voteDescribe}}</p>   
                                 <div class=" w-100" data-toggle="buttons">
-                                    <label class="text-left btn btn-outline-primary active w-100" v-for="voteChoice in questionData.voteChoiceList" :key="voteChoice.voteChoiceId">
+                                    <label class="text-left btn btn-outline-primary w-100" v-for="voteChoice in questionData.voteChoiceList" :key="voteChoice.voteChoiceId">
                                         <input type="radio" name="options" :id="voteChoice.voteChoiceType" autocomplete="off"> {{voteChoice.voteChoiceType}} {{voteChoice.voteChoiceDescribe}}
                                     </label>
                                 </div>
@@ -106,9 +106,17 @@ export default {
         this.course = this.$route.params.course;
         if (this.course.courseEndTime != null) {
             alert('课程已结束!');
-            this.$router.push({name:"courseList"});
-            return;
         }
+        let sessionData = {};
+        sessionData.sessionId = this.$store.state.sessionId;
+        sessionData.data = this.course;
+        this.$http.post(this.$store.state.url.serverUrl + this.$store.state.url.questionListUrl, JSON.stringify(sessionData), {emulateJSON: true}).then((response) => {
+            if (response.data.success == true) {
+                this.questionList = response.data.data.data;
+            } else {
+                alert(response.data.error);
+            }
+        });
         this.initWebSocket()
     },
     destroyed() {
@@ -116,7 +124,7 @@ export default {
     },
     methods: {
         initWebSocket(){ //初始化weosocket
-            const wsuri = "ws://120.25.193.138:8080/imserver/" + this.$store.state.student.studentId;
+            const wsuri = "ws://192.168.3.18:8080/imserver/" + this.$store.state.student.studentId;
             this.websock = new WebSocket(wsuri);
             this.websock.onmessage = this.websocketonmessage;
             this.websock.onopen = this.websocketonopen;
@@ -131,12 +139,21 @@ export default {
         websocketonmessage(e){ //数据接收
             const redata = $.parseJSON(e.data);
             this.questionList.unshift(redata);
-            this.timer = setInterval(() => {
-                redata.question.questionLimitTime--;
-                if (redata.question.questionLimitTime <= 0) {
-                    clearInterval(this.timer);
-                }
-            }, 1000);
+            if ("question" in redata) {
+                this.timer = setInterval(() => {
+                    redata.question.questionLimitTime--;
+                    if (redata.question.questionLimitTime <= 0) {
+                        clearInterval(this.timer);
+                    }
+                }, 1000);
+            } else {
+                this.timer = setInterval(() => {
+                    redata.vote.voteLimitTime--;
+                    if (redata.vote.voteLimitTime <= 0) {
+                        clearInterval(this.timer);
+                    }
+                }, 1000);
+            }
         },
         websocketclose(e){  //关闭
             this.$router.push({name:"courseList"});
@@ -183,11 +200,46 @@ export default {
                     }
                 });
             } else {
-
+                let el = event.currentTarget.parentElement.parentElement;
+                let ell = $(el).find('input[name="options"]:checked');
+                let answer = "";
+                ell.each(function(){
+                    answer += $(this).attr('id');
+                });
+                let sessionData = {};
+                sessionData.sessionId = this.$store.state.sessionId;
+                let voteStudent = {};
+                let student = {};
+                student.studentId = this.$store.state.student.studentId;
+                voteStudent.student = student;
+                let vote = {};
+                vote.voteId = questionData.vote.voteId;
+                voteStudent.vote = vote;
+                let voteChoice = {};
+                voteChoice.voteChoiceType = answer;
+                for (let i = 0; i < questionData.voteChoiceList.length; i++) {
+                    if (questionData.voteChoiceList[i].voteChoiceType == answer) {
+                        voteChoice.voteChoiceId = questionData.voteChoiceList[i].voteChoiceId;
+                        break;
+                    }
+                }
+                voteStudent.voteChoice = voteChoice;
+                sessionData.data = voteStudent;
+                this.$http.post(this.$store.state.url.serverUrl + this.$store.state.url.studentVoteUrl, JSON.stringify(sessionData), {emulateJSON: true}).then((response) => {
+                    if (response.data.success == true) {
+                        questionData.vote.voteLimitTime = 0;
+                        alert(response.data.error);
+                    } else {
+                        alert(response.data.error);
+                    }
+                });
             }
         },
         goback() {
             this.$router.push({name:"courseList"});
+        },
+        entryMail() {
+            this.$router.push({name:"mail", params: {course: this.course}});
         }
     }
 }

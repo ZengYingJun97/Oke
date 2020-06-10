@@ -26,12 +26,18 @@ namespace Oke_teacher.WinForms
             InitializeComponent();
         }
 
+        #region 加载数据
+        /// <summary>
+        /// 加载数据
+        /// </summary>
+        /// <param name="_mail"></param>
         public void load(Mail _mail)
         {
             mail = _mail;
             mailToBox.Text = mail.mailFromUser.username;
             mailTitleBox.Text = "回复：" + mail.mailTitle;
         }
+        #endregion
 
         #region 锁住发送按钮
         /// <summary>
@@ -85,6 +91,12 @@ namespace Oke_teacher.WinForms
         }
         #endregion
 
+        #region 发布稿件按钮事件
+        /// <summary>
+        /// 发布稿件按钮事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void addMailButton_Click(object sender, EventArgs e)
         {
             lockButton();
@@ -119,5 +131,6 @@ namespace Oke_teacher.WinForms
             }
             unlockButton();
         }
+        #endregion
     }
 }

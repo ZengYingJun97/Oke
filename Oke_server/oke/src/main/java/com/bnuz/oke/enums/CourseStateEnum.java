@@ -10,7 +10,8 @@ public enum CourseStateEnum {
 	REPEAT_COURSE(0, "已有正在进行的课堂"),
 	SUCCESS_OP(1, "操作成功"),
 	NULL_COURSE(2, "课堂已下课或不存在"),
-	COURSE_ONLINE(3, "课堂正在上课");
+	COURSE_ONLINE(3, "课堂正在上课"),
+	Fail_OP(4, "操作失败");
 
 	private int state;
 

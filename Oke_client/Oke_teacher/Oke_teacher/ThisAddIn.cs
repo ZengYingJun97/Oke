@@ -664,6 +664,8 @@ namespace Oke_teacher
                     sumbitButton.Enabled = true;
                     buttonClickCount = 1;
 
+                    MF.CommandButton answerButton = (MF.CommandButton)slide.Shapes["answerButton"].OLEFormat.Object;
+                    answerButton.Enabled = true;
                 }
             }
         }
@@ -681,6 +683,12 @@ namespace Oke_teacher
                 sumbitButton.TakeFocusOnClick = false;
                 sumbitButton.Enabled = true;
                 buttonClickCount = 1;
+
+                MF.CommandButton answerButton = (MF.CommandButton)slide.Shapes["answerButton"].OLEFormat.Object;//答案按钮
+                answerButton.Click -= answerSimple_Click;
+                answerButton.Click += answerSimple_Click;
+                answerButton.TakeFocusOnClick = false;
+                answerButton.Enabled = true;
             }
         }
         #endregion
@@ -728,7 +736,11 @@ namespace Oke_teacher
             MF.CommandButton button = (MF.CommandButton)activeSlide.Shapes["answerButton"].OLEFormat.Object;
             button.Enabled = false;
             string answerText = activeSlide.Shapes["questionAnswer"].TextFrame.TextRange.Text;
-            string[] tmp = answerText.Split(';');//切割答案
+
+            //弹出一个答案显示窗口
+            SimpleQuestionAnswerForm sqanswerform = new SimpleQuestionAnswerForm();
+            sqanswerform.ShowAnswerForm(answerText);
+            sqanswerform.ShowDialog();
         }
         #endregion
 

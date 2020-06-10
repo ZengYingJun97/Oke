@@ -11,10 +11,11 @@ namespace Oke_teacher.Dto
     /// </summary>
     public class OkeResult<T>
     {
+        //响应是否成功
         public bool success { set; get; }
-
+        //响应结果
         public T data { set; get; }
-
+        //响应错误
         public string error { set; get; }
     }
 }

@@ -134,7 +134,7 @@ export default {
 			this.$http.post(this.$store.state.url.serverUrl + this.$store.state.url.loginUrl, JSON.stringify(data), {emulateJSON: true}).then((response) => {
 				if (response.data.success == true) {
 					this.$store.commit('login', response.data.data);
-					this.$router.push({path: '/student/course/list'})
+					this.$router.push({name: 'courseList'})
 				} else {
 					alert(response.data.error);
 				}

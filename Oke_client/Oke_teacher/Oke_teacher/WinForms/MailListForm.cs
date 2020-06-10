@@ -28,10 +28,15 @@ namespace Oke_teacher.WinForms
         {
             InitializeComponent();
 
+            //加载数据
             loadMailToList(); 
             loadMailFromList();
         }
 
+        #region 加载发给我的邮件列表
+        /// <summary>
+        /// 加载发给我的邮件列表
+        /// </summary>
         private void loadMailToList()
         {
             SessionData<User> sessionData = new SessionData<User>();
@@ -66,7 +71,12 @@ namespace Oke_teacher.WinForms
                 addAlter(Resources.ExceptionTip, CxFlatAlertBox.AlertType.Error);
             }
         }
+        #endregion
 
+        #region 加载发给别人的邮件列表
+        /// <summary>
+        /// 加载发给别人的邮件列表
+        /// </summary>
         private void loadMailFromList()
         {
             SessionData<User> sessionData = new SessionData<User>();
@@ -101,7 +111,14 @@ namespace Oke_teacher.WinForms
                 addAlter(Resources.ExceptionTip, CxFlatAlertBox.AlertType.Error);
             }
         }
+        #endregion
 
+        #region ListViewItem被双击事件
+        /// <summary>
+        /// ListViewItem被双击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void maillToListView_DoubleClick(object sender, EventArgs e)
         {
             ListView listView = (ListView) sender;
@@ -121,6 +138,7 @@ namespace Oke_teacher.WinForms
                 }
             }
         }
+        #endregion 
 
         #region 增加提示框
         /// <summary>

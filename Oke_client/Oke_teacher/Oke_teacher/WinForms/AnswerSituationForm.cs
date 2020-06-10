@@ -101,7 +101,7 @@ namespace Oke_teacher.WinForms
             }
             timeBar.ValueNumber = tmp;
 
-            if (questionLimitTime % 100 == 0)
+            if (tmp == 0 || questionLimitTime % 100 == 0)
             {
                 SessionData<Question> sessionData = new SessionData<Question>();
                 sessionData.sessionId = LoginInfo.CurrentUser.sessionId;

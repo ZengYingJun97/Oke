@@ -33,12 +33,13 @@ namespace Oke_teacher.TaskPane
         /// <param name="top2"></param>
         private void addOption(Slide slide, string text, Single left1, Single top1, Single left2, Single top2)
         {
+            //添加选项类型
             slide.Shapes.AddShape(MsoAutoShapeType.msoShapeOval, left1, top1, 38F, 44F).Name = "option" + text + "Type";
             slide.Shapes["option" + text + "Type"].Fill.ForeColor.RGB = 211 + 211 * 256 + 211 * 256 * 256;
             slide.Shapes["option" + text + "Type"].TextFrame.TextRange.Text = text;
             slide.Shapes["option" + text + "Type"].TextFrame.TextRange.Font.Size = 20;
             slide.Shapes["option" + text + "Type"].TextFrame.HorizontalAnchor = MsoHorizontalAnchor.msoAnchorCenter;
-
+            //添加选项描述
             slide.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, left2, top2, 656F, 33F).Name = "option" + text + "Text";
             slide.Shapes["option" + text + "Text"].TextFrame.TextRange.Text = "此处填写" + text + "选项描述";
             slide.Shapes["option" + text + "Text"].TextFrame.TextRange.Font.NameFarEast = "微软雅黑";
@@ -57,6 +58,7 @@ namespace Oke_teacher.TaskPane
         private void addOptionButton_Click(object sender, EventArgs e)
         {
             Slide activeSlide = (Slide)Globals.ThisAddIn.Application.ActiveWindow.View.Slide;
+            //判断是否有D选项
             if (optionDButton.Visible == false)
             {
                 optionDButton.Visible = true;
@@ -67,6 +69,7 @@ namespace Oke_teacher.TaskPane
                 subOptionButton.Enabled = true;
                 return;
             }
+            //判断是否有E选项
             if (optionEButton.Visible == false)
             {
                 optionEButton.Visible = true;
@@ -77,6 +80,7 @@ namespace Oke_teacher.TaskPane
                 subOptionButton.Enabled = true;
                 return;
             }
+            //判断是否有F选项
             if (optionFButton.Visible == false)
             {
                 optionFButton.Visible = true;
@@ -87,6 +91,7 @@ namespace Oke_teacher.TaskPane
                 subOptionButton.Enabled = true;
                 return;
             }
+            //判断是否有G选项
             if (optionGButton.Visible == false)
             {
                 optionGButton.Visible = true;
@@ -101,6 +106,11 @@ namespace Oke_teacher.TaskPane
         }
         #endregion
 
+        #region 查看当前是否有答案
+        /// <summary>
+        /// 查看当前是否有答案
+        /// </summary>
+        /// <returns></returns>
         private bool hasAnswer()
         {
             if (optionAButton.Checked)
@@ -133,7 +143,13 @@ namespace Oke_teacher.TaskPane
             }
             return false;
         }
+        #endregion
 
+        #region 查看现在的答案
+        /// <summary>
+        /// 查看现在的答案
+        /// </summary>
+        /// <returns></returns>
         private string nowAnswer()
         {
             string nowAns = "";
@@ -167,6 +183,7 @@ namespace Oke_teacher.TaskPane
             }
             return nowAns;
         }
+        #endregion
 
         #region 减少选择按钮事件
         /// <summary>
@@ -259,6 +276,7 @@ namespace Oke_teacher.TaskPane
             scoreBox.Text = activeSlide.Shapes["questionScore"].TextFrame.TextRange.Text;
             questionLimitTimeBox.Text = activeSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text;
             string[] tmp = activeSlide.Shapes["questionAnswer"].TextFrame.TextRange.Text.Split(';');
+            //初始化被选的按钮
             optionAButton.Checked = false;
             optionBButton.Checked = false;
             optionCButton.Checked = false;
@@ -266,6 +284,7 @@ namespace Oke_teacher.TaskPane
             optionEButton.Checked = false;
             optionFButton.Checked = false;
             optionGButton.Checked = false;
+            //根据答案对按钮选择是否被选
             for (int i = 0; i < tmp.Length - 1; i++)
             {
                 if (tmp[i].Equals("A"))

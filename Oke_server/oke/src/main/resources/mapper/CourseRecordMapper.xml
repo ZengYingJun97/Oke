@@ -36,7 +36,7 @@
             cr.online_time, cr.offline_time,
             c.course_number as "course.courseNumber", course_name as "course.courseName", course_create_time as "course.courseCreateTime", course_end_time as "course.courseEndTime", c.teacher_id as "course.teacher.teacherId",
             s.student_id as "student.studentId",
-            t.teacher_name as "course.teacher.teacherName", t.teacher_title as "course.teacher.teacherTitle"
+            t.teacher_name as "course.teacher.teacherName", t.teacher_title as "course.teacher.teacherTitle", t.username as "course.teacher.user.username"
         from course_record cr, course c, student s, teacher t
         where c.teacher_id = t.teacher_id and cr.course_number = c.course_number and cr.student_id = s.student_id and cr.student_id = #{studentId}
         order by c.course_create_time desc

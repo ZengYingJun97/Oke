@@ -12,8 +12,9 @@ namespace Oke_teacher.Entity
     [Serializable]
     public class User
     {
+        //用户名
         public string username { set; get; }
-
+        //密码
         public string password { set; get; }
     }
 }
