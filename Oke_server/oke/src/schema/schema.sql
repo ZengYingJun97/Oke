@@ -144,7 +144,7 @@ create table mail (
     mail_from_username varchar(255) not null comment '发送的用户',
     mail_to_username varchar(255) not null comment '接收的用户',
     mail_title varchar(255) not null comment '邮件标题',
-    mail_describe varchar(255) not null comment '邮件正文',
+    mail_describe text not null comment '邮件正文',
     primary key (mail_id),
     foreign key (mail_from_username) references user(username),
     foreign key (mail_to_username) references user(username)
