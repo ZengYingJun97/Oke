@@ -14,8 +14,9 @@ namespace Oke_teacher.Dto
     [Serializable]
     public class SessionData<T>
     {
+        //登录时对话sessionId
         public string sessionId { set; get; }
-
+        //携带数据
         public T data { set; get; }
 
         public static implicit operator SessionData<T>(Course v)

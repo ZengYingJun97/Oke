@@ -12,12 +12,13 @@ namespace Oke_teacher.Entity
     [Serializable]
     public class Prize
     {
+        //奖品ID
         public int prizeId { set; get; }
-
+        //所属抽奖
         public Scratcher scratcher { set; get; }
-
+        //奖品描述
         public string prizeDescribe { set; get; }
-
+        //奖品数量
         public int prizeCount { set; get; }
     }
 }

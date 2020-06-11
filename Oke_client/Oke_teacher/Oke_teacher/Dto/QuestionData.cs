@@ -13,8 +13,9 @@ namespace Oke_teacher.Dto
     [Serializable]
     public class QuestionData
     {
+        //问题
         public Question question { set; get; }
-
+        //选项
         public List<Option> optionList { set; get; }
     }
 }

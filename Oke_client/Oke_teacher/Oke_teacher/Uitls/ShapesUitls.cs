@@ -37,9 +37,9 @@ namespace Oke_teacher.Uitls
         }
         #endregion
 
-        #region 单选题幻灯片初始化答案
+        #region 选择题幻灯片初始化答案
         /// <summary>
-        /// 单选题幻灯片初始化答案
+        /// 选择题幻灯片初始化答案
         /// </summary>
         /// <param name="slide"></param>
         public static void ChoiceOptionNoChecked(Slide slide)

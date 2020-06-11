@@ -31,10 +31,10 @@
             this.titleBar = new CxFlatUI.CxFlatStatusBar();
             this.cxFlatGroupBox1 = new CxFlatUI.CxFlatGroupBox();
             this.addMailButton = new CxFlatUI.CxFlatRoundButton();
-            this.mailDescribeBox = new CxFlatUI.CxFlatTextBox();
             this.mailDescribeLabel = new System.Windows.Forms.Label();
             this.mailTitleBox = new CxFlatUI.CxFlatTextBox();
             this.mailTitleLabel = new System.Windows.Forms.Label();
+            this.mailDescribeBox = new CxFlatUI.CxFlatTextArea();
             this.cxFlatGroupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,8 +52,8 @@
             // 
             // cxFlatGroupBox1
             // 
-            this.cxFlatGroupBox1.Controls.Add(this.addMailButton);
             this.cxFlatGroupBox1.Controls.Add(this.mailDescribeBox);
+            this.cxFlatGroupBox1.Controls.Add(this.addMailButton);
             this.cxFlatGroupBox1.Controls.Add(this.mailDescribeLabel);
             this.cxFlatGroupBox1.Controls.Add(this.mailTitleBox);
             this.cxFlatGroupBox1.Controls.Add(this.mailTitleLabel);
@@ -79,25 +79,6 @@
             this.addMailButton.Text = "回复";
             this.addMailButton.TextColor = System.Drawing.Color.White;
             this.addMailButton.Click += new System.EventHandler(this.addMailButton_Click);
-            // 
-            // mailDescribeBox
-            // 
-            this.mailDescribeBox.Enabled = false;
-            this.mailDescribeBox.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.mailDescribeBox.Hint = "";
-            this.mailDescribeBox.Location = new System.Drawing.Point(26, 171);
-            this.mailDescribeBox.MaxLength = 255;
-            this.mailDescribeBox.Multiline = true;
-            this.mailDescribeBox.Name = "mailDescribeBox";
-            this.mailDescribeBox.PasswordChar = '\0';
-            this.mailDescribeBox.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.mailDescribeBox.SelectedText = "";
-            this.mailDescribeBox.SelectionLength = 0;
-            this.mailDescribeBox.SelectionStart = 0;
-            this.mailDescribeBox.Size = new System.Drawing.Size(348, 183);
-            this.mailDescribeBox.TabIndex = 3;
-            this.mailDescribeBox.TabStop = false;
-            this.mailDescribeBox.UseSystemPasswordChar = false;
             // 
             // mailDescribeLabel
             // 
@@ -138,6 +119,24 @@
             this.mailTitleLabel.TabIndex = 0;
             this.mailTitleLabel.Text = "主题";
             // 
+            // mailDescribeBox
+            // 
+            this.mailDescribeBox.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.mailDescribeBox.Hint = "";
+            this.mailDescribeBox.Location = new System.Drawing.Point(26, 171);
+            this.mailDescribeBox.MaxLength = 32767;
+            this.mailDescribeBox.Multiline = true;
+            this.mailDescribeBox.Name = "mailDescribeBox";
+            this.mailDescribeBox.PasswordChar = '\0';
+            this.mailDescribeBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.mailDescribeBox.SelectedText = "";
+            this.mailDescribeBox.SelectionLength = 0;
+            this.mailDescribeBox.SelectionStart = 0;
+            this.mailDescribeBox.Size = new System.Drawing.Size(348, 183);
+            this.mailDescribeBox.TabIndex = 5;
+            this.mailDescribeBox.TabStop = false;
+            this.mailDescribeBox.UseSystemPasswordChar = false;
+            // 
             // MailSituationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -163,10 +162,10 @@
 
         private CxFlatUI.CxFlatStatusBar titleBar;
         private CxFlatUI.CxFlatGroupBox cxFlatGroupBox1;
-        private CxFlatUI.CxFlatTextBox mailDescribeBox;
         private System.Windows.Forms.Label mailDescribeLabel;
         private CxFlatUI.CxFlatTextBox mailTitleBox;
         private System.Windows.Forms.Label mailTitleLabel;
         private CxFlatUI.CxFlatRoundButton addMailButton;
+        private CxFlatUI.CxFlatTextArea mailDescribeBox;
     }
 }

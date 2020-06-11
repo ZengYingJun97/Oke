@@ -12,12 +12,13 @@ namespace Oke_teacher.Entity
     [Serializable]
     public class CourseRecord
     {
+        //所上课的信息
         public Course course { set; get; }
-
+        //学生
         public Student student { set; get; }
-
+        //上课时间
         public DateTime onlineTime { set; get; }
-
+        //下课时间
         public DateTime offlineTime { set; get; }
     }
 }

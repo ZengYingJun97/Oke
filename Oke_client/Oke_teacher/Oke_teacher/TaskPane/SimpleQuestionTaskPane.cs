@@ -28,6 +28,8 @@ namespace Oke_teacher.WinForms
             string Fqt = SimplequestionText.Text.Trim();//题目
             string Eft = SQscoreText.Text.Trim();//分数
             string Ftt = SQAtimeText.Text.Trim();//答题时间
+            string answstr = SQAnswerText.Text.Trim();//答案解析
+            //MessageBox.Show(answstr);
 
             //题干不能为空
             if (Fqt.Equals(""))
@@ -50,17 +52,33 @@ namespace Oke_teacher.WinForms
                 return;
             }
 
-            if (!Ftt.Equals("") && !Eft.Equals("") && !Fqt.Equals(""))
+            //答案不能为空
+            if (answstr.Equals(""))
+            {
+                AddAlter("答案不能为空", CxFlatAlertBox.AlertType.Error);
+                return;
+            }
+
+            if (!Ftt.Equals("") && !Eft.Equals("") && !Fqt.Equals("") && !answstr.Equals(""))
             {
                 #region 设置PPT文本框的内容
                 string fillstr = SimplequestionText.Text;//获取输入框里面的内容
                 Microsoft.Office.Interop.PowerPoint.Slide MySlide = Globals.ThisAddIn.Application.ActiveWindow.View.Slide;//获取当前选择的PPT
-                MySlide.Shapes[2].TextFrame.TextRange.Text = fillstr;//设置到PPT的文本框里面
+                MySlide.Shapes["questionDescribe"].TextFrame.TextRange.Text = fillstr;//设置到PPT的文本框里面
                 #endregion
 
                 #region 题目分值的总合
                 allscore = int.Parse(SQscoreText.Text);
-                //分值要干嘛？
+                MySlide.Shapes["questionScore"].TextFrame.TextRange.Text = allscore.ToString();//传递总分值
+                #endregion
+
+                #region 把做题时间赋值给PPT
+                MySlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text = Ftt;
+                #endregion
+
+                #region 把答案赋值给PPT
+                MySlide.Shapes["questionAnswer"].TextFrame.TextRange.Text = answstr;//传递答案
+                //MessageBox.Show(MySlide.Shapes["questionAnswer"].TextFrame.TextRange.Text);
                 #endregion
 
                 MessageBox.Show("成功设置，限定作答时间为：" + Ftt);

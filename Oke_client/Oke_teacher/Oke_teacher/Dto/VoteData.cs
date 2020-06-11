@@ -13,8 +13,9 @@ namespace Oke_teacher.Dto
     [Serializable]
     public class VoteData
     {
+        //投票信息
         public Vote vote { set; get; }
-
+        //投票的选项
         public List<VoteChoice> voteChoiceList { set; get; }
     }
 }

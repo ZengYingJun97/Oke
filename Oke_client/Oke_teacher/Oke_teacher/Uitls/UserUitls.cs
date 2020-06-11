@@ -33,9 +33,17 @@ namespace Oke_teacher.Uitls
         }
         #endregion
 
+        #region 输入的用户信息是否符合标准
+        /// <summary>
+        /// 输入的用户信息是否符合标准
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="title"></param>
+        /// <returns></returns>
         public static bool IsOkInfo(string name, string title)
         {
             return name.Length >= 2 && name.Length <= 10 && title.Length >= 2 && title.Length <= 10;
         }
+        #endregion
     }
 }
