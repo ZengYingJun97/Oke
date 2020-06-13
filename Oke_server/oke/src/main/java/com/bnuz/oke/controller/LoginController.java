@@ -155,7 +155,7 @@ public class LoginController {
 			}
 		} catch (Exception e) {
 			logger.info("exception = {}", e);
-			result = new OkeResult<>(false, OkeStateEnum.EXCEPTION_SERVER.getStateInfo());
+			result = new OkeResult<>(false, LoginStateEnum.FAIL_LOGIN.getStateInfo());
 		}
 		return result;
 	}

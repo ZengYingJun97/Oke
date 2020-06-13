@@ -2,7 +2,7 @@
     <div class="w-100 h-100">
         <nav class="navbar navbar-expand-lg navbar-light border-bottom text-right justify-content-end bg-white shadow">
             <form class="form-inline my-2 my-lg-0">
-                <button class="btn btn-outline-dark my-2 my-sm-0" @click="entryMail">投稿</button>
+                <button class="btn btn-outline-dark my-2 my-sm-0 margin-right" @click="entryMail">投稿</button>
                 <button class="btn btn-dark active my-2 my-sm-0" disabled>{{course.courseName}}</button>
             </form>
         </nav>
@@ -57,7 +57,7 @@
                                 <h5 class="card-title">判断题 {{questionData.question.questionScore}}分</h5>
                                 <p class="card-text">{{questionData.question.questionDescribe}}</p>   
                                 <div class=" w-100" data-toggle="buttons">
-                                    <label class="text-left btn btn-outline-primary active w-100">
+                                    <label class="text-left btn btn-outline-primary w-100">
                                         <input type="radio" name="options" id="True" autocomplete="off"> True
                                     </label>
                                     <label class="text-left btn btn-outline-primary w-100">
@@ -124,7 +124,7 @@ export default {
     },
     methods: {
         initWebSocket(){ //初始化weosocket
-            const wsuri = "ws://192.168.3.18:8080/imserver/" + this.$store.state.student.studentId;
+            const wsuri = "ws://120.25.193.138:8080/imserver/" + this.$store.state.student.studentId;
             this.websock = new WebSocket(wsuri);
             this.websock.onmessage = this.websocketonmessage;
             this.websock.onopen = this.websocketonopen;
@@ -156,7 +156,7 @@ export default {
             }
         },
         websocketclose(e){  //关闭
-            this.$router.push({name:"courseList"});
+            //this.$router.push({name:"courseList"});
         },
         answerQuestion(event, questionData) {
             if ("question" in questionData) {
@@ -239,7 +239,7 @@ export default {
             this.$router.push({name:"courseList"});
         },
         entryMail() {
-            this.$router.push({name:"mail", params: {course: this.course}});
+            this.$router.push({name:"addMail", params: {course: this.course}});
         }
     }
 }
