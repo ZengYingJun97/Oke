@@ -21,10 +21,10 @@
 * 数据库: MySQL、Redis
 * 代码托管平台: GitHub
 ### 部署环境
-操作系统: CentOS 7.4
-编程语言: Java 8
-服务器: Tomcat 9.0
-数据库: MySQL、Redis
+* 操作系统: CentOS 7.4
+* 编程语言: Java 8
+* 服务器: Tomcat 9.0
+* 数据库: MySQL、Redis
 ## 功能结构
 ![Image text](https://raw.githubusercontent.com/ZengYingJun97/Oke/develop/img-folder/img1.png)
 ## 流程图
