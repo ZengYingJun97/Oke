@@ -4,7 +4,7 @@
 ## 技术选型
 ### PC端技术选型
 * VSTO
-* CxFlatUI(https://github.com/HuJinguang/CxFlatUI)
+* [CxFlatUI](https://github.com/HuJinguang/CxFlatUI)
 ### 后台技术选型
 * SpringBoot
 * MyBatis
