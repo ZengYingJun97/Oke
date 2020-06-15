@@ -25,22 +25,26 @@ namespace Oke_teacher.WinForms
             InitializeComponent();
             if (CourseInfo.CurrentUser.classCode != null)
             {
+                //已经上课的状态下 按钮变为复制
                 classTextBox1.Text = CourseInfo.CurrentUser.data.courseName;
                 classTextBox1.Enabled = false;
                 getclassbtn.Text = "复制上课码";
+                //每个richbox各放一个字符
                 richTextBox1.Text = CourseInfo.CurrentUser.classCode.Substring(0, 1);
                 richTextBox2.Text = CourseInfo.CurrentUser.classCode.Substring(1, 1);
                 richTextBox3.Text = CourseInfo.CurrentUser.classCode.Substring(2, 1);
                 richTextBox4.Text = CourseInfo.CurrentUser.classCode.Substring(3, 1);
                 richTextBox5.Text = CourseInfo.CurrentUser.classCode.Substring(4, 1);
                 richTextBox6.Text = CourseInfo.CurrentUser.classCode.Substring(5, 1);
+                //关闭按钮可点击
                 this.closebtn.Enabled = true;
+                //设置二维码 暂无微信权限 仅显示课程码
                 MyQRUitls myqr = new MyQRUitls();
                 Bitmap b = MyQRUitls.BarcodeImage(CourseInfo.CurrentUser.classCode);
                 //MessageBox.Show("ok!");
                 pictureBox1.Image = b;
             }
-            
+            //设置中心化
             this.richTextBox1.SelectionAlignment = HorizontalAlignment.Center;
             this.richTextBox2.SelectionAlignment = HorizontalAlignment.Center;
             this.richTextBox3.SelectionAlignment = HorizontalAlignment.Center;
@@ -63,6 +67,7 @@ namespace Oke_teacher.WinForms
         {
             if (CourseInfo.CurrentUser.classCode!=null)
             {
+                //上课状态下 为复制功能
                 classTextBox1.Enabled = false;
                 Clipboard.SetDataObject(CourseInfo.CurrentUser.classCode);
                 addAlter("已复制", CxFlatAlertBox.AlertType.Success);
@@ -77,6 +82,7 @@ namespace Oke_teacher.WinForms
             {
                 if (classTextBox1.Text == "")
                 {
+                    //课程名为空时 提示
                     addAlter("请输入课程名", CxFlatAlertBox.AlertType.Error);
                     timer1.Stop();
                     timer1.Interval = 1000;
@@ -88,6 +94,7 @@ namespace Oke_teacher.WinForms
                 {
                     try
                     {
+                        //往后台发生json 获取课程码 并存储课程码
                         SessionData<Course> sessionData = new SessionData<Course>();
                         sessionData.sessionId = LoginInfo.CurrentUser.sessionId;
                         Course course = new Course();
@@ -136,79 +143,23 @@ namespace Oke_teacher.WinForms
                         }
                         else
                         {
-                            //classTextBox2.Text = okeResult.data.data;
+
 
                         }
 
-                        //classTextBox2.Text = okeResult.data.data.courseNumber;
-                        //Console.WriteLine(classTextBox2.Text);
+
                     }
                     catch (Exception)
                     {
 
-                        //addAlter(Resources.ExceptionTip, CxFlatAlertBox.AlertType.Error);
-                        //unlockButton();
+
                     }
                 }
                
             
             }
-            //string coursename = classTextBox1.Text.Trim();
-
-            //Course course = new Course();
-            //course.courseName = coursename;
 
 
-
-            //发送HTTP请求访问服务器
-            //try
-            //{
-            //    SessionData<Course> sessionData = new SessionData<Course>();
-            //    sessionData.sessionId = LoginInfo.CurrentUser.sessionId;
-            //    Course course = new Course();
-            //    sessionData.data = course;
-            //    sessionData.data.courseName = classTextBox1.Text;
-            //    sessionData.data.teacher = LoginInfo.CurrentUser.data;
-            //    string url = Resources.Server + Resources.BeginCourseUrl;
-            //    string data = JsonConvert.SerializeObject(sessionData);
-            //    string response = HttpUitls.POST(url, data);
-            //    //classTextBox2.Text = response;
-                
-
-            //    OkeResult<SessionData<string>> okeResult = JsonConvert.DeserializeObject<OkeResult<SessionData<string>>>(response);
-            //    //classTextBox2.Text = okeResult.data.data;
-            //    //classTextBox2.Text = okeResult.data.data.courseNumber;
-            //    if (okeResult.success)
-            //    {
-
-            //        CourseInfo.CurrentUser.sessionId = okeResult.data.sessionId;
-            //        course.courseNumber = okeResult.data.data;
-            //        CourseInfo.CurrentUser.data = course;
-            //        //classTextBox2.Text = okeResult.data.data;
-            //        richTextBox1.Text = okeResult.data.data.Substring(0, 1);
-            //        richTextBox2.Text = okeResult.data.data.Substring(1, 1);
-            //        richTextBox3.Text = okeResult.data.data.Substring(2, 1);
-            //        richTextBox4.Text = okeResult.data.data.Substring(3, 1);
-            //        richTextBox5.Text = okeResult.data.data.Substring(4, 1);
-            //        richTextBox6.Text = okeResult.data.data.Substring(5, 1);
-
-            //    }
-            //    else
-            //    {
-            //        //classTextBox2.Text = okeResult.data.data;
-
-            //    }
-
-            //    //classTextBox2.Text = okeResult.data.data.courseNumber;
-            //    //Console.WriteLine(classTextBox2.Text);
-            //}
-            //catch (Exception)
-            //{
-
-            //    //addAlter(Resources.ExceptionTip, CxFlatAlertBox.AlertType.Error);
-            //    //unlockButton();
-            //}
-            //this.closebtn.Enabled = true;
         }
         
 

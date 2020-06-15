@@ -51,28 +51,17 @@ namespace Oke_teacher.WinForms
 
         private void confirmButton_Click(object sender, EventArgs e)
         {
-            //int count = votecount;
-            //System.Diagnostics.Debug.WriteLine(count + "xixixix");
-            //string[] xData = { "A", "B", "C", "D", "E", "F", "G" };
-            //int[] yData = { 10, 10, 10, 10, 10, 10, 10 };
-            //string[] tt = new string[count];
-            //Array.ConstrainedCopy(xData, 0, tt, 0,count);
-            //int[] xx = new int[count];
-            //Array.ConstrainedCopy(yData, 0, xx, 0, count);
-
-            //chart1.Series[0]["PieLabelStyle"] = "Outside";//将文字移到外侧
-            //chart1.Series[0]["PieLineColor"] = "Black";//绘制黑色的连线。
-            //chart1.Series[0].Points.DataBindXY(tt, xx);
+            
             this.Close();
 
         }
         public void load(Vote _vote)
         {
-            //accuracyBar.ValueNumber = 0;
+
             totalBox.Text = "0";
-            //correctBox.Text = "0";
+ 
             unCommitBox.Text = "0";
-            //errorBox.Text = "0";
+
             vote = _vote;
             voteLimitTime = _vote.voteLimitTime * 10 + 2;
             sumTime = _vote.voteLimitTime * 10;
@@ -107,19 +96,16 @@ namespace Oke_teacher.WinForms
                     string url = Resources.Server + Resources.VoteSituAnonUrl;
                     string data = JsonConvert.SerializeObject(sessionData);
                     string response = HttpUitls.POST(url, data);
-                    System.Diagnostics.Debug.WriteLine(data + "hahxxxi");
-                    System.Diagnostics.Debug.WriteLine(response + "hahaahahxxxi");
+                    //System.Diagnostics.Debug.WriteLine(data + "hahxxxi");
+                    //System.Diagnostics.Debug.WriteLine(response + "hahaahahxxxi");
+
+                    //获取后台list
                     OkeResult<SessionData<List<int>>> okeResult = JsonConvert.DeserializeObject<OkeResult<SessionData<List<int>>>>(response);
                     if (okeResult.success)
                     {
                         int number=0;
                         totalBox.Text = okeResult.data.data.Last().ToString();
-                        //System.Diagnostics.Debug.WriteLine(okeResult.data.data.total.ToString() + "hahaahahxxxi");
-                        //number = int.Parse(totalBox.Text);
-                        //correctBox.Text = okeResult.data.data.correct.ToString();
-                        //unCommitBox.Text = okeResult.data.data.unCommitted.ToString();
 
-                        //errorBox.Text = okeResult.data.data.error.ToString();
                         number = okeResult.data.data.Last();
                         int[] xixi = okeResult.data.data.ToArray();
                         for(int i = 0; i < votecount; i++)
@@ -150,6 +136,7 @@ namespace Oke_teacher.WinForms
                     }
                     else
                     {
+                        //连接失败时 显示空
                         int count = votecount;
                         System.Diagnostics.Debug.WriteLine(count + "xixixix");
                         string[] xData = { "A", "B", "C", "D", "E", "F", "G" };
@@ -169,6 +156,8 @@ namespace Oke_teacher.WinForms
                 }
                 catch (Exception)
                 {
+
+                    //有错误时显示情况为空
                     int count = votecount;
                     System.Diagnostics.Debug.WriteLine(count + "xixixix");
                     string[] xData = { "A", "B", "C", "D", "E", "F", "G" };

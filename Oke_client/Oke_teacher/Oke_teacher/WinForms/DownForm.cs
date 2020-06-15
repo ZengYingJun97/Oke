@@ -50,13 +50,7 @@ namespace Oke_teacher.WinForms
             sessionData.sessionId = CourseInfo.CurrentUser.sessionId;
 
             sessionData.data = CourseInfo.CurrentUser.classCode;
-            //sessionData.data.courseNumber = CourseInfo.CurrentUser.data.courseNumber;
-            
-            //string url = Resources.Server + Resources.EndCourseUrl;
-            //string data = JsonConvert.SerializeObject(sessionData);
 
-            //string response = HttpUitls.POST(url, data);
-            //textBox1.Text = data;
             try
             {
                 string url = Resources.Server + Resources.EndCourseUrl;

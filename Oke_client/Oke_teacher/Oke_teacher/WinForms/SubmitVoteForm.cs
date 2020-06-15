@@ -31,13 +31,13 @@ namespace Oke_teacher.WinForms
         public void LoadText()
         {
             Slide activeSlide = Globals.ThisAddIn.Application.ActivePresentation.SlideShowWindow.View.Slide;
-            //questionScoreBox.Text = activeSlide.Shapes["questionScore"].TextFrame.TextRange.Text;
+           
             questionLimitTimeBox.Text = activeSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text;
         }
         public void LoadText1()
         {
             Slide activeSlide = (Slide)Globals.ThisAddIn.Application.ActiveWindow.View.Slide;
-            //questionScoreBox.Text = activeSlide.Shapes["questionScore"].TextFrame.TextRange.Text;
+            
             questionLimitTimeBox.Text = activeSlide.Shapes["questionLimitTime"].TextFrame.TextRange.Text;
         }
 
