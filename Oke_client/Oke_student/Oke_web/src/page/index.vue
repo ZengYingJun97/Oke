@@ -15,6 +15,11 @@
                         课程列表
                     </li>
                 </router-link>
+                <router-link :to="{name: 'mailList'}" class=" w-100 a-block">
+                    <li class="text-center white margin-bottom">
+                        邮件列表
+                    </li>
+                </router-link>
             </ul>
         </div>
         <div class="right-menu" style="overflow-y: hidden;">

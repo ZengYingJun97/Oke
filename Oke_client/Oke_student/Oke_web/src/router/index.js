@@ -6,7 +6,8 @@ import studentIndex from '@/page/index'
 import courseList from '@/page/course/courseList'
 import course from '@/page/course/course'
 import personalInfo from '@/page/personalInfo/personalInfo'
-import mail from '@/page/mail/mail'
+import addMail from '@/page/course/addMail'
+import mailList from '@/page/mailList'
 
 Vue.use(Router)
 
@@ -32,7 +33,8 @@ export default new Router({
         {path: 'course/list', name: 'courseList', component: courseList,meta:{requireAuth: false}},
         {path: 'course', name: 'course', component: course,meta:{requireAuth: false}},
         {path: 'info', name: 'personalInfo', component: personalInfo,meta:{requireAuth: false}},
-        {path: 'mail/add', name: 'mail', component: mail,meta:{requireAuth: false}}
+        {path: 'mail/add', name: 'addMail', component: addMail,meta:{requireAuth: false}},
+        {path: 'mail/list', name: 'mailList', component: mailList,meta:{requireAuth: false}}
       ]
     },
     {
